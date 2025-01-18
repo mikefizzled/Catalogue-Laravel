@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('order_name')->unique();
             $table->string('slug')->unique();
-            $table->string('city');
-            $table->decimal('latitude', 9, 6)->nullable();
-            $table->decimal('longitude', 9, 6)->nullable();
-            $table->string('image')->nullable();
-            $table->text('area_caption')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('orders');
     }
 };

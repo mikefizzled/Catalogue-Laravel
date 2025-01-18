@@ -11,18 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('conservation_lists', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->string('city');
-            $table->decimal('latitude', 9, 6)->nullable();
-            $table->decimal('longitude', 9, 6)->nullable();
-            $table->string('image')->nullable();
-            $table->text('area_caption')->nullable();
+            $table->string('short_name')->unique();
+            $table->year('year');
+            $table->string('full_name');
+            $table->string('filename')->nullable();
+            $table->text('authors')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
+        
     }
 
     /**
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('conservation_lists');
     }
 };
