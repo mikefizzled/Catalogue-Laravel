@@ -41,11 +41,11 @@
                                     {{ __('Orders') }}
                                 </x-dropdown-link>
                                 
-                                <x-dropdown-link :href="route('profile.edit')">
+                                <x-dropdown-link :href="route('families.index')">
                                     {{ __('Families') }}
                                 </x-dropdown-link>
                                 
-                                <x-dropdown-link :href="route('profile.edit')">
+                                <x-dropdown-link :href="route('genera.index')">
                                     {{ __('Genera') }}
                                 </x-dropdown-link>
                                 

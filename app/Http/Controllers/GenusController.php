@@ -12,7 +12,9 @@ class GenusController extends Controller
      */
     public function index()
     {
-        //
+        $genera = Genus::orderBy('genus_name', 'asc')->paginate(20);
+
+        return view('taxonomy.index', ['taxa' => $genera, 'taxonType' => 'genera']);
     }
 
     /**

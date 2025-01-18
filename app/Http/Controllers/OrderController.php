@@ -12,9 +12,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::paginate(10);
+        $orders = Order::orderBy('order_name', 'asc')->paginate(10);
 
-        return view('orders.index')->with('orders', $orders);
+        return view('taxonomy.index', ['taxa' => $orders, 'taxonType' => 'orders']);
     }
 
     /**

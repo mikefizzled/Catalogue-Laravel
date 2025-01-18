@@ -12,9 +12,10 @@ class FamilyController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $families = Family::orderBy('family_name', 'asc')->paginate(20);
 
+        return view('taxonomy.index', ['taxa' => $families, 'taxonType' => 'families']);
+    }
     /**
      * Show the form for creating a new resource.
      */
