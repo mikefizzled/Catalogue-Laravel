@@ -2,15 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
 
 class Order extends Model
 {
-    use Sluggable;
-
     protected $fillable = ['order_name', 'slug'];
     
+    protected static function boot() {
+        parent::boot();
+
+        static::creating(function ($question) {
+            $question->slug = Str::slug($question->title);
+        });
+    }
 
     public function families()
     {
@@ -22,13 +27,5 @@ class Order extends Model
         return 'slug'; 
     }
 
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'order_name',
-                'onUpdate' => true,
-            ]
-        ];
-    }
+
 }

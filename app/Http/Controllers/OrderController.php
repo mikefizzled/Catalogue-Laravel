@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -59,14 +60,9 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $order)
+    public function update(OrderRequest $request, Order $order)
     {
-        $data = $request->validate([
-            'order_name' => 'required|string|max:255|unique:orders,order_name,' . $order->id,
-        ]);
-
-        $order->update($data);
-
+        $order->update($request->validated());
         return redirect()->route('orders.show', $order)->with('success', 'Order updated successfully!');
     }
 
