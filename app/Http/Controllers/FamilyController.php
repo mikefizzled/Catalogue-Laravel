@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Family;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class FamilyController extends Controller
@@ -21,7 +22,8 @@ class FamilyController extends Controller
      */
     public function create()
     {
-        //
+        $orders = Order::get();
+        return view('families.create')->with('orders', $orders);
     }
 
     /**
@@ -37,7 +39,8 @@ class FamilyController extends Controller
      */
     public function show(Family $family)
     {
-        //
+        $family->load('genera');
+        return view('families.show', ['family' => $family]);
     }
 
     /**
@@ -45,7 +48,8 @@ class FamilyController extends Controller
      */
     public function edit(Family $family)
     {
-        //
+        $orders = Order::select('id', 'order_name')->get();
+        return view('families.edit', ['family' => $family, 'orders' => $orders]);
     }
 
     /**

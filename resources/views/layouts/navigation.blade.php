@@ -106,9 +106,20 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
+        <div class="pt-1 pb-2 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-1 pb-2  border-t border-gray-200 dark:border-gray-600">
+            <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
+                {{ __('Orders') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('families.index')" :active="request()->routeIs('families.index')">
+                {{ __('Families') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('genera.index')" :active="request()->routeIs('genera.index')">
+                {{ __('Genera') }}
             </x-responsive-nav-link>
         </div>
 

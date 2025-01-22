@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Genus;
+use App\Models\Family;
 use Illuminate\Http\Request;
 
 class GenusController extends Controller
@@ -38,7 +39,9 @@ class GenusController extends Controller
      */
     public function show(Genus $genus)
     {
-        //
+        $genus->load('family');
+        $genus->load('animals');
+        return view('genera.show', ['genus' => $genus]);
     }
 
     /**
@@ -46,7 +49,8 @@ class GenusController extends Controller
      */
     public function edit(Genus $genus)
     {
-        //
+        $families = Family::select('id', 'family_name')->orderBy('family_name', 'asc')->get();
+        return view('genera.edit', ['genus' => $genus, 'families' => $families]);
     }
 
     /**

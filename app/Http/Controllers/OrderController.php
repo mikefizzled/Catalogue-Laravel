@@ -22,7 +22,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('orders.create');
     }
 
     /**
@@ -30,7 +30,13 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'order_name' => 'required|string|max:255',
+        ]);
+
+        $order = Order::create($data);
+
+        return redirect()->route('orders.show', $order)->with('success', 'Order created successfully!');
     }
 
     /**
@@ -38,7 +44,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $order->load('families');
+        return view('orders.show', ['order' => $order]);
     }
 
     /**
@@ -46,7 +53,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return view('orders.edit', ['order' => $order]);
     }
 
     /**
@@ -54,7 +61,13 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $data = $request->validate([
+            'order_name' => 'required|string|max:255|unique:orders,order_name,' . $order->id,
+        ]);
+
+        $order->update($data);
+
+        return redirect()->route('orders.show', $order)->with('success', 'Order updated successfully!');
     }
 
     /**
