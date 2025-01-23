@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class OrderRequest extends FormRequest
+class GenusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,23 +21,26 @@ class OrderRequest extends FormRequest
      */
     public function rules(): array
     {
-        $orderId = optional($this->route('order'))->id;
+        $genusId = optional($this->route('genus'))->id;
 
-        // 1) The base rules: required, string, max:255
         $rules = [
-            'order_name' => [
+            'genus_name' => [
                 'required',
                 'string',
                 'max:255',
             ],
+            'family_id' => [
+                'required',
+                'exists:families,id'
+            ]
         ];
 
-        if ($orderId) {
+        if ($genusId) {
             // Update scenario: exclude this record's ID from the unique check
-            $rules['order_name'][] = 'unique:orders,order_name,' . $orderId;
+            $rules['genus_name'][] = 'unique:genera,genus_name,' . $genusId;
         } else {
             // Store scenario: no ID to exclude, so standard unique rule
-            $rules['order_name'][] = 'unique:orders,order_name';
+            $rules['genus_name'][] = 'unique:genera,genus_name';
         }
 
         return $rules;

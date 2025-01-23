@@ -11,7 +11,7 @@ class FamilyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,29 @@ class FamilyRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $rules = [
+            'family_name' => [
+                'required',
+                'string',
+                'max:255'
+            ],
+            'common_name' => [
+                'required',
+                'string',
+                'max:255'
+            ],
+            'order_id' => [
+                'required',
+                'exists:orders,id'
+            ]];
+        
+        $familyId = optional($this->route('family'))->id;
+        // Performing the unique check against with or without checking against itself
+        if($familyId)
+            $rules['family_name'][] = 'unique:families,family_name,'.$familyId;
+        else
+            $rules['family_name'][] = 'unique:families,family_name';
+
+        return $rules;
     }
 }

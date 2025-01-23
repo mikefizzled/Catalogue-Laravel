@@ -7,7 +7,7 @@
     </x-slot>
     <x-crud-layout>
         <x-slot name="inside">
-            <form action="{{ route('genera.show', $genus) }}" method="post">
+            <form action="{{ route('admin.genera.show', $genus) }}" method="post">
                 @method('put')
                 @csrf
                 <div class="py-2">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="py-2 flex gap-4">
                     <x-primary-button class="mt-1">Save Order</x-primary-button>
-                    <x-link-button href="{{url()->previous()}}" class="mt-1">Go Back</x-link-button>
+                    <x-link-button href="{{ route('admin.genera.index')}}" class="mt-1">Go Back</x-link-button>
                 </div>
             </form>
         </x-slot>

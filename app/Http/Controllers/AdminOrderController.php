@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
-use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class AdminOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class OrderController extends Controller
     {
         $orders = Order::orderBy('order_name', 'asc')->paginate(10);
 
-        return view('taxonomy.index', ['taxa' => $orders, 'taxonType' => 'orders']);
+        return view('admin.taxonomy.index', ['taxa' => $orders, 'taxonType' => 'orders']);
     }
 
     /**
@@ -23,21 +22,21 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        return view('admin.orders.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-        $data = $request->validate([
-            'order_name' => 'required|string|max:255',
+        $data = $request->validated();
+
+        $order = Order::create([
+            'order_name' => $data['order_name'],
         ]);
 
-        $order = Order::create($data);
-
-        return redirect()->route('orders.show', $order)->with('success', 'Order created successfully!');
+        return redirect()->route('admin.orders.show', $order)->with('success', 'Order created successfully!');
     }
 
     /**
@@ -46,7 +45,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $order->load('families');
-        return view('orders.show', ['order' => $order]);
+        return view('admin.orders.show', ['order' => $order]);
     }
 
     /**
@@ -54,7 +53,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        return view('orders.edit', ['order' => $order]);
+        return view('admin.orders.edit', ['order' => $order]);
     }
 
     /**
@@ -63,7 +62,7 @@ class OrderController extends Controller
     public function update(OrderRequest $request, Order $order)
     {
         $order->update($request->validated());
-        return redirect()->route('orders.show', $order)->with('success', 'Order updated successfully!');
+        return redirect()->route('admin.orders.show', $order)->with('success', 'Order updated successfully!');
     }
 
     /**

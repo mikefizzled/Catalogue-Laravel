@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FamilyRequest;
 use App\Models\Family;
 use App\Models\Order;
-use Illuminate\Http\Request;
 
 class FamilyController extends Controller
 {
@@ -15,7 +15,7 @@ class FamilyController extends Controller
     {
         $families = Family::orderBy('family_name', 'asc')->paginate(20);
 
-        return view('taxonomy.index', ['taxa' => $families, 'taxonType' => 'families']);
+        return view('admin.taxonomy.index', ['taxa' => $families, 'taxonType' => 'families']);
     }
     /**
      * Show the form for creating a new resource.
@@ -23,15 +23,22 @@ class FamilyController extends Controller
     public function create()
     {
         $orders = Order::get();
-        return view('families.create')->with('orders', $orders);
+        return view('admin.families.create')->with('orders', $orders);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FamilyRequest $request)
     {
-        //
+        $data = $request->validated();
+        $family = Family::create([
+            'family_name' => $data['family_name'], 
+            'common_name' => $data['common_name'], 
+            'order_id' => $data['order_id'],
+        ]);
+
+        return redirect()->route('admin.families.show', $family)->with('success', 'Family created successfully!');
     }
 
     /**
@@ -40,7 +47,7 @@ class FamilyController extends Controller
     public function show(Family $family)
     {
         $family->load('genera');
-        return view('families.show', ['family' => $family]);
+        return view('admin.families.show', ['family' => $family]);
     }
 
     /**
@@ -49,15 +56,22 @@ class FamilyController extends Controller
     public function edit(Family $family)
     {
         $orders = Order::select('id', 'order_name')->get();
-        return view('families.edit', ['family' => $family, 'orders' => $orders]);
+        return view('admin.families.edit', ['family' => $family, 'orders' => $orders]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Family $family)
+    public function update(FamilyRequest $request, Family $family)
     {
-        //
+        $data = $request->validated();
+        $family->update([
+            'order_id' => $data['order_id'],
+            'family_name' => $data['family_name'], 
+            'common_name' => $data['common_name'], 
+        ]);
+
+        return redirect()->route('admin.families.show', $family)->with('success', 'Family updated successfully!');
     }
 
     /**

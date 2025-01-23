@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GenusRequest;
 use App\Models\Genus;
 use App\Models\Family;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class GenusController extends Controller
     {
         $genera = Genus::orderBy('genus_name', 'asc')->paginate(20);
 
-        return view('taxonomy.index', ['taxa' => $genera, 'taxonType' => 'genera']);
+        return view('admin.taxonomy.index', ['taxa' => $genera, 'taxonType' => 'genera']);
     }
 
     /**
@@ -23,15 +24,22 @@ class GenusController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.genera.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GenusRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $genus = Genus::create([
+            'genus_name' => $data['genus_name'],
+            'family_id' => $data['family_id'],
+        ]);
+
+        return redirect()->route('admin.genera.show', $genus)->with('success', 'Genus created successfully!');
     }
 
     /**
@@ -41,7 +49,7 @@ class GenusController extends Controller
     {
         $genus->load('family');
         $genus->load('animals');
-        return view('genera.show', ['genus' => $genus]);
+        return view('admin.genera.show', ['genus' => $genus]);
     }
 
     /**
@@ -49,16 +57,17 @@ class GenusController extends Controller
      */
     public function edit(Genus $genus)
     {
-        $families = Family::select('id', 'family_name')->orderBy('family_name', 'asc')->get();
-        return view('genera.edit', ['genus' => $genus, 'families' => $families]);
+        $families = Family::orderedByName()->get(['id','family_name']);
+        return view('admin.genera.edit', ['genus' => $genus, 'families' => $families]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Genus $genus)
+    public function update(GenusRequest $request, Genus $genus)
     {
-        //
+        $genus->update($request->validated());
+        return redirect()->route('admin.genera.show', $genus)->with('success', 'Genus update successfully!');
     }
 
     /**

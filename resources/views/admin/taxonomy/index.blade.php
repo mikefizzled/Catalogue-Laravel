@@ -22,13 +22,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             @switch($taxonType)
             @case('orders') 
-                <x-link-button href="{{ route('orders.create') }}"> + New Order </x-link-button>
+                <x-link-button href="{{ route('admin.orders.create') }}"> + New Order </x-link-button>
                 @break 
             @case('families') 
-                <x-link-button href="{{ route('families.create') }}"> + New Family </x-link-button>
+                <x-link-button href="{{ route('admin.families.create') }}"> + New Family </x-link-button>
                 @break 
             @case('genera') 
-            <x-link-button href="{{ route('orders.index') }}"> + New Genus </x-link-button>
+            <x-link-button href="{{ route('admin.orders.index') }}"> + New Genus </x-link-button>
                 @break
         @endswitch
             
@@ -49,13 +49,13 @@
                         <a href="
                         @switch($taxonType)
                             @case('orders') 
-                                {{ route('orders.show', ['order' => $taxon->slug]) }}
+                                {{ route('admin.orders.show', ['order' => $taxon->slug]) }}
                                 @break 
                             @case('families') 
-                                {{ route('families.show', ['family' => $taxon->slug]) }}
+                                {{ route('admin.families.show', ['family' => $taxon->slug]) }}
                                 @break 
                             @case('genera') 
-                                {{ route('genera.show', ['genus' => $taxon->slug]) }}
+                                {{ route('admin.genera.show', ['genus' => $taxon->slug]) }}
                                 @break
                         @endswitch
                         ">

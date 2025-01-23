@@ -12,7 +12,9 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        //
+        $animals = Animal::orderBy('common_name', 'asc')->paginate(20);
+
+        return view('admin.animals.index', ['animals' => $animals]);
     }
 
     /**

@@ -1,8 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <x-h2>
             Families
-        </h2>
+        </x-h2>
+        @section('title', $family->family_name)
     </x-slot>
 
     <x-crud-layout>
@@ -12,12 +13,12 @@
                 <p class="opacity-70 dark:text-gray-400"><strong>Last Changed: </strong>{{ $family->updated_at->diffForHumans() }}</p>
             </div>
             <div class="flex gap-2 py-2">
-                <x-link-button href="{{ route('families.edit', $family)}}" class="ml-auto">Edit Family</x-link-button>
+                <x-link-button href="{{ route('admin.families.edit', $family)}}" class="ml-auto">Edit Family</x-link-button>
                 <x-link-button class="bg-red-400 hover:bg-red-600 focus:bg-red-600" 
                     onclick="return confirm('Move note to trash?')">
                         Delete Family</x-link-button>
                 {{-- 
-                <form action="{{ route('notes.destroy', $note) }}" method="post">
+                <form action="{{ route('admin.notes.destroy', $note) }}" method="post">
                     @method('delete')
                     @csrf
                     <x-primary-button class="bg-red-400 hover:bg-red-600 focus:bg-red-600" onclick="return confirm('Move note to trash?')">
@@ -28,25 +29,25 @@
         </x-slot>
         <x-slot name="inside">
             <div class="pb-2">
-                <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-100 ">
+                <x-h2>
                     {{ $family->family_name }}
-                </h2>
+                </x-h2>
             </div>
             <div class="py-2">
-                <h3 class="font-semibold text-l text-gray-800 dark:text-gray-200">Common Names</h3>
+                <x-h3>Common Names</x-h3>
                 <p class="opacity-70 dark:text-gray-400">{{ $family->common_name}}</p>
             </div>
             <div class="py-2">
-                <h3 class="font-semibold text-l text-gray-800 dark:text-gray-200">Parent Order</h3>
-                <p class="opacity-70 dark:text-gray-400">{{ $family->order->order_name}}</p>
+                <x-h3>Parent Order</x-h3>
+                <p class="opacity-70 dark:text-gray-400"><a href="{{route('admin.orders.show', $family->order)}}">{{ $family->order->order_name}}</a></p>
             </div>
             <div class="py-2"> 
-                <h3 class="font-semibold text-l text-gray-800 dark:text-gray-200">Associated Genera</h3> 
+                <x-h3>Associated Genera</x-h3> 
                 <ul class="list-disc list-inside"> 
                     @forelse($family->genera as $genus) 
-                        <li class="opacity-70 dark:text-gray-400">{{ $genus->genus_name }}</li> 
+                        <li class="opacity-70 dark:text-gray-400"><a href="{{route('admin.genera.show', $genus)}}">{{ $genus->genus_name }}</a></li> 
                     @empty 
-                        <li>No genera found.</li> 
+                        <li class="opacity-70 dark:text-gray-400">No genera found.</li> 
                     @endforelse 
                 </ul> 
             </div>

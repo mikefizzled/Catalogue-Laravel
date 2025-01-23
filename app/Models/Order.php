@@ -2,20 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
-    protected $fillable = ['order_name', 'slug'];
-    
-    protected static function boot() {
-        parent::boot();
+    use HasFactory, HasSlug;
 
-        static::creating(function ($question) {
-            $question->slug = Str::slug($question->title);
-        });
-    }
+    protected $fillable = ['order_name', 'slug'];
 
     public function families()
     {
@@ -27,5 +23,14 @@ class Order extends Model
         return 'slug'; 
     }
 
+    /**
+     * Configure the SlugOptions for this model.
+     */
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('order_name')    
+            ->saveSlugsTo('slug');
+    }
 
 }
