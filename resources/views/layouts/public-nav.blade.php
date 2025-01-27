@@ -6,12 +6,13 @@
             <div class="flex">
                 <div class="shrink-0 flex items-center">
                     <a href="{{ url('/') }}">
-                        <img src="{{ asset('images/logo.png') }}" alt="Site Logo" class="h-9 w-auto">
+                        <!-- img src="{{ asset('images/logo.png') }}" alt="Site Logo" class="h-9 w-auto"-->
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-100" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:items-center sm:-my-px sm:ml-10 sm:flex">
                     <a href="{{ url('/') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium">
                         Home
                     </a>

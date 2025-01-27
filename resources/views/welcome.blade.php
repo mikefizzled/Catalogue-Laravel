@@ -1,11 +1,9 @@
-<x-app-layout>
-    <x-slot name="header">
-        @section('title', 'Manage Birds')
-    </x-slot>
+<x-public-app-layout>
+        @section('title', 'Home')
         <div class="max-w-7xl mx-auto space-y-6">
-            <div id="animation-carousel" class="relative overflow-hidden w-full mx-auto" data-carousel="static">
+            <div id="animation-carousel" class="relative overflow-hidden w-full mx-auto bg-black" data-carousel="static">
                 <!-- Carousel wrapper -->
-                <div class="relative h-[75vh] rounded-lg">
+                <div class="relative h-[80vh] rounded-lg">
                     <!-- Item 1 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('cormorant.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant">
