@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Genus;
 use App\Models\Animal;
 use Illuminate\Http\Request;
+use App\Models\ConservationList;
+use Illuminate\Support\Facades\Storage;
 
 class AnimalController extends Controller
 {
@@ -14,6 +17,11 @@ class AnimalController extends Controller
     {
         $animals = Animal::orderBy('common_name', 'asc')->paginate(20);
 
+        $animals->getCollection()->transform(function ($animal) {
+            $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);
+            return $animal;
+        });
+
         return view('admin.animals.index', ['animals' => $animals]);
     }
 
@@ -22,8 +30,15 @@ class AnimalController extends Controller
      */
     public function create()
     {
-        //
+        $genera = Genus::orderBy('genus_name', 'asc')->get();
+        $conservationLists = ConservationList::orderBy('short_name', 'asc')->get();
+    
+        return view('admin.animals.create')->with([
+            'genera' => $genera,
+            'conservationLists' => $conservationLists
+        ]);
     }
+    
 
     /**
      * Store a newly created resource in storage.
