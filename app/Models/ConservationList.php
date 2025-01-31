@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ConservationStatus;
 use Illuminate\Database\Eloquent\Model;
 
 class ConservationList extends Model

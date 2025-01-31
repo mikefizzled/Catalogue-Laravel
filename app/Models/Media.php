@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AnimalImage extends Model
+class Media extends Model
 {
     public function animal()
     {

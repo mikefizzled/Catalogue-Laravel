@@ -7,7 +7,7 @@
     </x-slot>
     <x-crud-layout>
         <x-slot name="inside">
-            <form action="{{ route('admin.families.store') }}" method="post">
+            <form action="{{ route('families.store') }}" method="post">
                 @csrf
                 <div class="py-2">
                     <x-h3>Family Name</x-h3>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="py-2 my-2 flex gap-4">
                     <x-primary-button class="mt-1">Save Order</x-primary-button>
-                    <x-link-button href="{{ route('admin.families.index') }}">Go Back</x-link-button>
+                    <x-link-button href="{{ route('families.index') }}">Go Back</x-link-button>
                 </div>
             </form>
         </x-slot>

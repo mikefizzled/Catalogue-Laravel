@@ -13,7 +13,7 @@
                 @forelse ($animals as $bird)
                 <div class="p-6 sm:p-2 bg-white dark:bg-gray-800 shadow sm:rounded-lg flex gap-6 items-center"> 
                     
-                    <div class="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 border-2 border-gray-300 dark:border-gray-700 rounded-md p-1">
+                    <div class="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-md p-1">
 
                         <img src="{{ $bird->thumbnail_url }}" alt="{{ $bird->common_name }}" class="w-full h-full object-cover rounded-md">
                     </div>

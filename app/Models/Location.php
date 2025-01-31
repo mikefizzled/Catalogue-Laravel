@@ -8,6 +8,6 @@ class Location extends Model
 {
     public function images()
     {
-        return $this->hasMany(AnimalImage::class);
+        return $this->hasMany(Media::class);
     }
 }

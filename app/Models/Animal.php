@@ -21,7 +21,7 @@ class Animal extends Model
 
     public function images()
     {
-        return $this->hasMany(AnimalImage::class);
+        return $this->hasMany(Media::class);
     }
 
     public function getRouteKeyName() : string
@@ -29,9 +29,9 @@ class Animal extends Model
         return 'slug'; 
     }
 
-    public function conservationLists()
+    public function conservationStatuses()
     {
-        return $this->belongsToMany(ConservationList::class);
+        return $this->hasMany(ConservationStatus::class);
     }
 
     public function getSlugOptions(): SlugOptions

@@ -7,6 +7,7 @@ use App\Models\Animal;
 use Illuminate\Http\Request;
 use App\Models\ConservationList;
 use Illuminate\Support\Facades\Storage;
+use App\Helpers\FileHelper;
 
 class AnimalController extends Controller
 {
@@ -32,7 +33,7 @@ class AnimalController extends Controller
     {
         $genera = Genus::orderBy('genus_name', 'asc')->get();
         $conservationLists = ConservationList::orderBy('short_name', 'asc')->get();
-    
+        
         return view('admin.animals.create')->with([
             'genera' => $genera,
             'conservationLists' => $conservationLists
@@ -45,7 +46,18 @@ class AnimalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $bird = new Animal();
+        $bird->common_name = $request->common_name;
+        $bird->scientific_name = $request->scientific_name;
+        $bird->genus_id = $request->genus_id;
+        
+        $thumbnail = $request->File('thumbnail');
+        $bird->thumbnail_url = FileHelper::generateFileName($thumbnail, $bird->$bird->generateSlug(), '-thumbnail');
+        
+        $thumbnail->storeAs('thumbnails', $bird->thumbnail_url, 's3');
+        $bird->save();
+
+        
     }
 
     /**

@@ -8,7 +8,7 @@
 
     <x-crud-layout>
         <x-slot name="inside">
-            <form action="{{ route('admin.animals.index') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.animals.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="py-2">
                     <x-form-label for="common_name">Common Name</x-form-label>
@@ -28,18 +28,18 @@
 
                 <div class="py-2">
                     <x-form-label for="genus_id">Genus Member</x-form-label>
-                    <x-select-dropdown id="genus_id" name="genus_id" class="w-full mt-2" :options="$genera" optionLabel="genus_name" valueField="genus_id"></x-select-dropdown>
+                    <x-select-dropdown id="genus_id" name="genus_id" class="w-full mt-2" :options="$genera" optionLabel="genus_name" optionId="id"></x-select-dropdown>
                     @error('genus_id')
                         <x-update-error class="mt-2">{{ $message }}</x-update-error>
                     @enderror
                 </div>
 
                 <div class="py-2">
-                    <x-form-label for="file_input">Bird Thumbnail</x-form-label>
+                    <x-form-label for="thumbnail">Bird Thumbnail</x-form-label>
                     <div class="p-2 w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-                        <input id="file_input" name="thumbnail" type="file" class="w-full text-gray-900 dark:text-gray-300" aria-describedby="file_input_help">
+                        <input id="thumbnail" name="thumbnail" type="file" class="w-full text-gray-900 dark:text-gray-300" aria-describedby="file_input_help">
                     </div>
-                    <span id="file_input_help" class="text-sm text-gray-500 dark:text-gray-400">JPG or WebP - 512x512.</span>
+                    <span id="thumbnail_help" class="text-sm text-gray-500 dark:text-gray-400">JPG or WebP - 512x512.</span>
                 </div>
 
                 <div class="py-2">

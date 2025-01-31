@@ -28,7 +28,7 @@
                 <x-link-button href="{{ route('admin.families.create') }}"> + New Family </x-link-button>
                 @break 
             @case('genera') 
-            <x-link-button href="{{ route('admin.orders.index') }}"> + New Genus </x-link-button>
+            <x-link-button href="{{ route('admin.genera.create') }}"> + New Genus </x-link-button>
                 @break
         @endswitch
             
