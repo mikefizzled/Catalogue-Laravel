@@ -13,17 +13,20 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:items-center sm:-my-px sm:ml-10 sm:flex">
-                    <a href="{{ url('/') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium">
+                    <a href="{{ url('/') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
                         Home
                     </a>
-                    <a href="{{ url('/about') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium">
-                        About
-                    </a>
-                    <a href="{{ url('/catalogue') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium">
+                    <a href="{{ url('/catalogue') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
                         Catalogue
                     </a>
-                    <a href="{{ url('/contact') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium">
-                        Contact
+                    <a href="{{ url('/map') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
+                        Map
+                    </a>
+                    <a href="{{ url('/conservation') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
+                        Conservation
+                    </a>
+                    <a href="{{ url('/about') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
+                        About
                     </a>
                 </div>
             </div>
@@ -32,15 +35,15 @@
             @if (Route::has('login'))
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium">
+                        <a href="{{ url('/dashboard') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-1 py-2 rounded-md text-sm font-medium">
                             Dashboard
                         </a>
                     @else
-                        <a href="{{ route('login') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium">
+                        <a href="{{ route('login') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-2 py-2 rounded-md text-sm font-medium">
                             Log in
                         </a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium">
+                            <a href="{{ route('register') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-2 py-2 rounded-md text-sm font-medium">
                                 Register
                             </a>
                         @endif
@@ -66,14 +69,14 @@
             <a href="{{ url('/') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
                 Home
             </a>
-            <a href="{{ url('/about') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
-                About
-            </a>
             <a href="{{ url('/catalogue') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
                 Catalogue
             </a>
-            <a href="{{ url('/contact') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
-                Contact
+            <a href="{{ url('/map') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
+                Map
+            </a>
+            <a href="{{ url('/conservation') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
+                Conservation
             </a>
         </div>
 

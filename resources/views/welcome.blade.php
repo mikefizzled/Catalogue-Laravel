@@ -1,16 +1,24 @@
 <x-public-app-layout>
         @section('title', 'Home')
-        <div class="max-w-7xl mx-auto space-y-6">
-            <div id="animation-carousel" class="relative overflow-hidden w-full mx-auto bg-black" data-carousel="static">
+        <div class="  mx-auto">
+            <div id="animation-carousel" class="relative overflow-hidden w-full mx-auto bg-black" data-carousel="slide">
                 <!-- Carousel wrapper -->
-                <div class="relative h-[80vh] rounded-lg">
+                <div class="relative h-[80vh] overflow-hidden rounded-lg">
                     <!-- Item 1 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('cormorant.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant">
                     </div>
                     <!-- Item 2 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('cormorant-2.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant 2">
+                        <img src="{{ asset('cormorant-2.webp') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant 2">
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="{{ asset('grey-heron.webp') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant 2">
+                    </div>
+                    <!-- Item 4 --> 
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="{{ asset('starling-1.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant 2">
                     </div>
                 </div>
                 <!-- Slider controls -->
@@ -52,6 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             position: 1,
             el: document.getElementById('carousel-item-2'),
+        },
+        {
+            position: 2,
+            el: document.getElementById('carousel-item-3'),
+        },
+        {
+            position: 3,
+            el: document.getElementById('carousel-item-4'),
         }
     ];
 
@@ -69,6 +85,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     position: 1,
                     el: document.getElementById('carousel-indicator-2'),
+                },
+                {
+                    position: 2,
+                    el: document.getElementById('carousel-indicator-3'),
+                },
+                {
+                    position: 3,
+                    el: document.getElementById('carousel-indicator-4'),
                 },
             ],
         },
