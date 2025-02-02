@@ -3,7 +3,7 @@
         <div class="  mx-auto">
             <div id="animation-carousel" class="relative overflow-hidden w-full mx-auto bg-black" data-carousel="slide">
                 <!-- Carousel wrapper -->
-                <div class="relative h-[80vh] overflow-hidden rounded-lg">
+                <div class="relative h-[85vh] overflow-hidden rounded-lg">
                     <!-- Item 1 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('cormorant.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant">
@@ -13,11 +13,11 @@
                         <img src="{{ asset('cormorant-2.webp') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant 2">
                     </div>
                     <!-- Item 3 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <div class="hidden duration-7000 ease-in-out" data-carousel-item>
                         <img src="{{ asset('grey-heron.webp') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant 2">
                     </div>
                     <!-- Item 4 --> 
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <div class="hidden duration-7000 ease-in-out" data-carousel-item>
                         <img src="{{ asset('starling-1.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant 2">
                     </div>
                 </div>
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const options = {
         defaultPosition: 0,
-        interval: 3000, // Slide interval in ms
+        interval: 8000, // Slide interval in ms
         indicators: {
             activeClasses: 'bg-white dark:bg-gray-800',
             inactiveClasses: 'bg-gray-300 dark:bg-gray-800 hover:bg-gray-400',

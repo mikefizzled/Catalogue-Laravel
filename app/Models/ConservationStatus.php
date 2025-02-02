@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ConservationStatus extends Model
 {
+    protected $fillable = ['animal_id', 'conservation_list_id', 'status'];
+
     public function animal()
     {
         return $this->belongsTo(Animal::class);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\ConservationList;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AnimalRequest extends FormRequest
@@ -21,6 +22,8 @@ class AnimalRequest extends FormRequest
      */
     public function rules(): array
     {
+        $conservationLists = ConservationList::all();
+        
         $rules = [
             'common_name' => [
                 'required',
@@ -40,12 +43,19 @@ class AnimalRequest extends FormRequest
             'thumbnail' => [
                 'required',
                 'image',
-                'mimes:jpg, webp',
+                'mimes:jpg,webp',
                 'max:512'
             ],
-            
-        
+            'statuses' => [
+                'required',
+                'array'
+            ],        
         ];
+
+        foreach ($conservationLists as $conservationList) {
+            $rules["statuses.{$conservationList->id}"] = 'required|in:green,amber,red,former breeder,not assessed';
+        }
+
         return $rules;
     }
 }
