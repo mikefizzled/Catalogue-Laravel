@@ -2,10 +2,11 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use App\Models\ConservationList;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AnimalRequest extends FormRequest
+class AnimalUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,39 +18,24 @@ class AnimalRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         $conservationLists = ConservationList::all();
-        
+        // Retrieve the animal being updated from the route.
+        $animalId = optional($this->route('animal'))->id;
+
         $rules = [
-            'common_name' => [
-                'required',
-                'string',
-                'max:255'
-            ],
-            'scientific_name' => [
+            'common_name'       => ['required', 'string', 'max:255'],
+            'scientific_name'   => [
                 'required',
                 'string',
                 'max:255',
-                'unique:animals,scientific_name'
+                Rule::unique('animals')->ignore($animalId),
             ],
-            'genus_id' => [
-                'required',
-                'exists:genera,id'
-            ],
-            'thumbnail' => [
-                'required',
-                'image',
-                'mimes:jpg,webp',
-                'max:512'
-            ],
-            'statuses' => [
-                'required',
-                'array'
-            ],        
+            'genus_id'          => ['required', 'exists:genera,id'],
+            'thumbnail'         => ['sometimes', 'nullable', 'image', 'mimes:jpg,webp', 'max:512'],
+            'statuses'          => ['required', 'array'],
         ];
 
         foreach ($conservationLists as $conservationList) {

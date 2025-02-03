@@ -22,13 +22,13 @@
                             {{ $bird->scientific_name }}
                         </span>
                         <h2 class="font-bold text-xl dark:text-gray-100">
-                            <a href="{{ route('admin.animals.index', ['animal' => $bird->slug]) }}">
+                            <a href="{{ route('admin.animals.show', ['animal' => $bird->slug]) }}">
                                 {{ $bird->common_name }}
                             </a>
                         </h2>
                     </div>
                     <div class="ml-auto text-right">
-                        <span class="block mt-4 text-sm opacity-70 text-gray-600 dark:text-gray-600">
+                        <span class="block mt-4 pr-6 text-sm opacity-70 text-gray-600 dark:text-gray-400">
                             <strong>Created: {{ $bird->created_at->diffForHumans() }}</strong><br>
                             <strong>Updated: {{ $bird->updated_at->diffForHumans() }}</strong>
                             

@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Genus;
 use App\Models\Animal;
-use Illuminate\Http\Request;
-use App\Models\ConservationList;
-use Illuminate\Support\Facades\Storage;
 use App\Helpers\FileHelper;
-use App\Http\Requests\AnimalRequest;
+use App\Http\Requests\AnimalUpdateRequest;
+use App\Models\ConservationList;
 use App\Models\ConservationStatus;
+use App\Http\Requests\AnimalCreateRequest;
+use Illuminate\Support\Facades\Storage;
 
 class AnimalController extends Controller
 {
@@ -46,7 +46,7 @@ class AnimalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AnimalRequest $request)
+    public function store(AnimalCreateRequest $request)
     {
         $bird = new Animal();
         $bird->common_name = $request->common_name;
@@ -77,7 +77,10 @@ class AnimalController extends Controller
      */
     public function show(Animal $animal)
     {
-        //
+        $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);
+        
+        $animal->load('conservationStatuses');
+
         return view('admin.animals.show', ['animal' => $animal]);
     }
 
@@ -86,16 +89,58 @@ class AnimalController extends Controller
      */
     public function edit(Animal $animal)
     {
-        //
+        $genera = Genus::orderBy('genus_name', 'asc')->get();
+    
+        $conservationLists = ConservationList::orderBy('short_name', 'asc')->get();
+    
+        $animal->load('conservationStatuses');
+    
+        return view('admin.animals.edit')->with([
+            'animal'             => $animal,
+            'genera'             => $genera,
+            'conservationLists'  => $conservationLists,
+        ]);
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Animal $animal)
+    public function update(AnimalUpdateRequest $request, Animal $animal)
     {
-        //
+        // Get all validated data.
+        $data = $request->validated();
+        unset($data['statuses']);
+
+        // Only if new thumbnail is provided
+        if ($request->hasFile('thumbnail')) {
+            // Remove old thumbnail from s3
+            Storage::disk('s3')->delete('thumbnails/'.$animal->thumbnail_url);
+            
+            // Process new to conform to naming convention
+            $thumbnail = $request->file('thumbnail');
+            $animal->generateSlug();
+            
+            // Add the new filename to Animal data
+            $data['thumbnail_url'] = FileHelper::generateFileName($thumbnail, $animal->slug, '-thumbnail');
+
+            // Upload into thumbnails in s3 storage
+            $thumbnail->storeAs('thumbnails', $data['thumbnail_url'], 's3');
+        }
+
+        // Update pre-existing bird via eloquent
+        $animal->update($data);
+
+        foreach ($request->statuses as $conservationListId => $status) {
+            ConservationStatus::where('animal_id', $animal->id)
+                ->where('conservation_list_id', $conservationListId)
+                ->update(['status' => $status]);
+        }
+    
+        return redirect()->route('admin.animals.show', $animal)
+                         ->with('success', 'Bird updated successfully!');
     }
+    
 
     /**
      * Remove the specified resource from storage.

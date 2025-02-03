@@ -8,11 +8,11 @@
 
     <x-crud-layout>
         <x-slot name="outside">
-            <div class="flex gap-2 py-1">
-                <p class="opacity-70 dark:text-gray-400 "><strong>Created: </strong>{{ $order->created_at->diffForHumans() }}</p>
-                <p class="opacity-70 dark:text-gray-400"><strong>Last Changed: </strong>{{ $order->updated_at->diffForHumans() }}</p>
+            <div class="flex gap-2 opacity-70 dark:text-gray-400">
+                <p><strong>Created: </strong>{{ $order->created_at->diffForHumans() }}</p>
+                <p><strong>Last Changed: </strong>{{ $order->updated_at->diffForHumans() }}</p>
             </div>
-            <div class="flex gap-2 py-2">
+            <div class="flex gap-2">
                 <x-link-button href="{{ route('admin.orders.edit', $order)}}" class="ml-auto">Edit Order</x-link-button>
                 <x-link-button class="bg-red-400 hover:bg-red-600 focus:bg-red-600" 
                     onclick="return confirm('Move note to trash?')">
