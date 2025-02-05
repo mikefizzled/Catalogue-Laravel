@@ -78,12 +78,14 @@ class AnimalController extends Controller
     public function show(Animal $animal)
     {
         $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);
-        
-        $animal->load('conservationStatuses');
-
+    
+        $animal->load(['conservationStatuses' => function ($query) {
+            $query->orderBy('conservation_list_id'); 
+        }]);
+    
         return view('admin.animals.show', ['animal' => $animal]);
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
