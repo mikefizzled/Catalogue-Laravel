@@ -94,10 +94,10 @@ class AnimalController extends Controller
         $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);
         $metadata = json_decode($animal->metadata);
         $animal->load('conservationStatuses');
+        return view('admin.animals.show', ['animal' => $animal, 'metadata' => $metadata]);
 
-        return view('admin.animals.show', compact('animal', 'metadata'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
