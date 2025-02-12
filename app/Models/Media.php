@@ -24,6 +24,16 @@ class Media extends Model
         'age',
         'metadata',
     ];
+
+    public static function countMedia($animalId) : int
+    {
+        $total = Media::where('animal_id', $animalId)->count();
+        if($total === 0){
+            return 1;
+        }
+        return $total;
+    }
+    
     const GENDERS = [
         ['id' => 'Male', 'label' => 'Male'],
         ['id' => 'Female', 'label' => 'Female'],

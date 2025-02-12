@@ -44,27 +44,35 @@ class AdminMediaController extends Controller
     {
 
 
-        $thumbnail = $request->File('media');
-        $exif = exif_read_data($thumbnail->getPathname());
+        $file = $request->File('media');
+        $exif = exif_read_data($file->getPathname());
  
         $metadata = FileHelper::collectMetadata($exif);
 
 
         $data['animal_id'] = $request->animal_id;
+        $previousMediaTotal = Media::countMedia($request->animal_id);
+        $animal = Animal::getSlug($request->animal_id);
 
-        $data['location_id'] = $request->location_id;
-        //$data['media_url']   = $mediaPath;
-        //$data['thumbnail_url'] = $thumbnailPath;
-        $data['media_type']  = $request->media_type;
-        $data['rating']      = $request->rating ?? null;
-        $data['caption']     = $request->caption;
-        $data['gender']      = $request->gender;
-        $data['age']         = $request->age;
+        $filename = FileHelper::generateFileName($file, $animal, '-media-' . $previousMediaTotal);
+
+        $file->storeAs('media', $filename, 's3');
         
         $data['datetaken'] = FileHelper::formatDate($exif['DateTimeOriginal']);
         $data['metadata']    = $metadata;
-        dd($data);
-    
+        
+        Media::create([
+            'animal_id' => $request->animal_id,
+            'location_id' => $request->location_id,
+            'media_url' => $filename,
+            'media_type' => 'image',
+            'rating' => $request->rating ?? null,
+            'date_taken' => FileHelper::formatDate($exif['DateTimeOriginal']),
+            'caption' => $request->caption,
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'metadata' => $metadata
+         ]);
         }
 
     /**

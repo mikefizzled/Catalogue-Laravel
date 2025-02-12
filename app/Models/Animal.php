@@ -40,4 +40,11 @@ class Animal extends Model
             ->generateSlugsFrom('common_name')    
             ->saveSlugsTo('slug');
     }
+
+    public static function getSlug($animalId)
+    {
+        return self::where('id', $animalId)->value('slug') ?? 'Unknown';
+    }
+    
+
 }

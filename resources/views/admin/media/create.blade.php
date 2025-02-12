@@ -62,9 +62,9 @@
 
             {{-- Caption --}}
             <div class="py-2">
-              <x-form-label for="scientific_name">Caption</x-form-label>
-              <x-text-area id="scientific_name" name="scientific_name" class="w-full mt-2" placeholder="Scientific Name" value="{{ old('scientific_name') }}" /> 
-                @error('scientific_name') 
+              <x-form-label for="caption">Caption</x-form-label>
+              <x-text-area id="caption" name="caption" class="w-full mt-2" placeholder="Caption" value="{{ old('caption') }}" /> 
+                @error('caption') 
                     <x-update-error class="mt-2">{{ $message }}</x-update-error> 
                 @enderror
             </div>
