@@ -10,6 +10,7 @@ use App\Models\ConservationList;
 use App\Models\ConservationStatus;
 use App\Http\Requests\AnimalCreateRequest;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class AnimalController extends Controller
 {
@@ -58,16 +59,29 @@ class AnimalController extends Controller
         $bird->thumbnail_url = FileHelper::generateFileName($thumbnail, $bird->slug, '-thumbnail');
         
         $thumbnail->storeAs('thumbnails', $bird->thumbnail_url, 's3');
+
+        $exif = exif_read_data($thumbnail->getPathname());
+ 
+        $metadata = FileHelper::collectMetadata($exif);
+
+        $bird->metadata = $metadata;
+        
+        //$metadata = json_encode($metadata);
+        //dd($metadata);
         $bird->save();
+
+
         
         // Adding each of the 6 report statuses to link table
         foreach ($request->statuses as $conservationListId => $status) {
-            ConservationStatus::create([
-                'animal_id' => $bird->id,
-                'conservation_list_id' => $conservationListId,
-                'status' => $status,
+           ConservationStatus::create([
+               'animal_id' => $bird->id,
+               'conservation_list_id' => $conservationListId,
+               'status' => $status,
             ]);
         }
+        
+
 
         return redirect()->route('admin.animals.show', $bird)->with('success', 'Bird created successfully!');
     }
@@ -78,10 +92,10 @@ class AnimalController extends Controller
     public function show(Animal $animal)
     {
         $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);
-        
+        $metadata = json_decode($animal->metadata);
         $animal->load('conservationStatuses');
 
-        return view('admin.animals.show', ['animal' => $animal]);
+        return view('admin.animals.show', compact('animal', 'metadata'));
     }
 
     /**

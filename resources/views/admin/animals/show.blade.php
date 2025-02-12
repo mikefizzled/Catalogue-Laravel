@@ -57,6 +57,12 @@
                       <th class="py-2 px-4">Genus</th>
                       <td class="py-2 px-4">{{ $animal->genus->genus_name }}</td>
                     </tr>
+                    @foreach($metadata as $key => $value)
+                      <tr>
+                          <th class="py-2 px-4">{{ $key }}</th>
+                          <td class="py-2 px-4">{{ $value ?? 'N/A' }}</td>
+                      </tr>
+                      @endforeach
                   </tbody>
                 </table>
               </div>

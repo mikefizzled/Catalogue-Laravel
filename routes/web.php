@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminMediaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GenusController;
 use App\Http\Controllers\OrderController;
@@ -15,19 +16,19 @@ Route::get('/', function () {
 
 require __DIR__.'/auth.php';
 
-//Route::resource('orders', OrderController::class)->middleware('auth');
-
-
 
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('orders', AdminOrderController::class);
     Route::resource('families', FamilyController::class);
     Route::resource('genera', GenusController::class);
     Route::resource('animals',AnimalController::class);
+    Route::resource('media',AdminMediaController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+    // routes/web.php
+    Route::get('search-species', [AdminMediaController::class, 'searchSpecies']);
+
     Route::get('/dashboard', function () {
         return view('admin.dashboard'); 
     })->name('dashboard');
