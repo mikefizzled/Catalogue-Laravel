@@ -7,6 +7,11 @@ use App\Models\Animal;
 use App\Models\Location;
 use App\Helpers\FileHelper;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManager;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Imagick\Driver as ImagickDriver;
+use Intervention\Image\Encoders\JpegEncoder;
+
 
 class AdminMediaController extends Controller
 {
@@ -16,6 +21,12 @@ class AdminMediaController extends Controller
     public function index()
     {
         $mediaItems = Media::orderBy('created_at', 'asc')->paginate(20);
+
+        $mediaItems->getCollection()->transform(function ($media) {
+            $media->thumbnail_url = Storage::disk('s3')->url('media/' . $media->thumbnail_url);
+            return $media;
+        });
+
 
         return view('admin.media.index', ['mediaItems' => $mediaItems]);
     }
@@ -42,32 +53,38 @@ class AdminMediaController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $file = $request->File('media');
+        
+        // Collect metadata from file
         $exif = exif_read_data($file->getPathname());
- 
         $metadata = FileHelper::collectMetadata($exif);
+        $dateTaken = FileHelper::formatDate($exif['DateTimeOriginal'] ?? null);
 
-
-        $data['animal_id'] = $request->animal_id;
+        // Get animal and media details
+        $animalSlug = Animal::getSlug($request->animal_id);
         $previousMediaTotal = Media::countMedia($request->animal_id);
-        $animal = Animal::getSlug($request->animal_id);
 
-        $filename = FileHelper::generateFileName($file, $animal, '-media-' . $previousMediaTotal);
-
+        // Generate filenames for both original and thumbnail
+        $extension = $file->getClientOriginalExtension();
+        $filename = FileHelper::generateFileName($extension, $animalSlug, "-media-{$previousMediaTotal}");
+        $thumbnailName = FileHelper::generateFileName($extension, $animalSlug, "-thumb-{$previousMediaTotal}");
+        
         $file->storeAs('media', $filename, 's3');
         
-        $data['datetaken'] = FileHelper::formatDate($exif['DateTimeOriginal']);
-        $data['metadata']    = $metadata;
-        
+        $manager = new ImageManager(new ImagickDriver());
+        $image = $manager->read($file)->resize(256, 144);
+        $imageBinary = $image->encode(new JpegEncoder());
+
+        Storage::disk('s3')->put("media/{$thumbnailName}", (string) $imageBinary, 'public');
+
         Media::create([
             'animal_id' => $request->animal_id,
             'location_id' => $request->location_id,
             'media_url' => $filename,
+            'thumbnail_url' => $thumbnailName,
             'media_type' => 'image',
             'rating' => $request->rating ?? null,
-            'date_taken' => FileHelper::formatDate($exif['DateTimeOriginal']),
+            'date_taken' => $dateTaken,
             'caption' => $request->caption,
             'age' => $request->age,
             'gender' => $request->gender,

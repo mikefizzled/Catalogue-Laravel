@@ -7,22 +7,18 @@ use Illuminate\Support\Str;
 class FileHelper
 {
     /**
-     * Rename a file to fit a specific pattern.
+     * Generate a formatted file name.
      *
-     * @param \Illuminate\Http\UploadedFile $file
-     * @param string $suffix
-     * @param string $slug
-     * @return string
+     * @param string $extension The file extension (e.g., jpg, png).
+     * @param string $slug The unique slug related to the file.
+     * @param string $suffix Optional suffix for differentiation.
+     * @return string The generated file name.
      */
-    public static function generateFileName($file, $slug,  $suffix = '')
+    public static function generateFileName(string $extension, string $slug, string $suffix = ''): string
     {
-        // Get the file extension
-        $extension = $file->getClientOriginalExtension();
-        
-        $newFileName = $slug .  $suffix .  '.' .  $extension;
-
-        return $newFileName;
+        return "{$slug}{$suffix}.{$extension}";
     }
+
 
     /**
      * Collect JPEG metadata in JSON array

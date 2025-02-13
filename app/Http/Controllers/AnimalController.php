@@ -55,8 +55,10 @@ class AnimalController extends Controller
         $bird->genus_id = $request->genus_id;
         
         $thumbnail = $request->File('thumbnail');
+
+        $extension = $thumbnail->getClientOriginalExtension();
         $bird->generateSlug();
-        $bird->thumbnail_url = FileHelper::generateFileName($thumbnail, $bird->slug, '-thumbnail');
+        $bird->thumbnail_url = FileHelper::generateFileName($extension, $bird->slug, '-thumbnail');
         
         $thumbnail->storeAs('thumbnails', $bird->thumbnail_url, 's3');
 
@@ -65,13 +67,9 @@ class AnimalController extends Controller
         $metadata = FileHelper::collectMetadata($exif);
 
         $bird->metadata = $metadata;
-        
-        //$metadata = json_encode($metadata);
-        //dd($metadata);
+
         $bird->save();
 
-
-        
         // Adding each of the 6 report statuses to link table
         foreach ($request->statuses as $conservationListId => $status) {
            ConservationStatus::create([
@@ -134,9 +132,9 @@ class AnimalController extends Controller
             // Process new to conform to naming convention
             $thumbnail = $request->file('thumbnail');
             $animal->generateSlug();
-            
+            $extension = $thumbnail->getClientOriginalExtension();
             // Add the new filename to Animal data
-            $data['thumbnail_url'] = FileHelper::generateFileName($thumbnail, $animal->slug, '-thumbnail');
+            $data['thumbnail_url'] = FileHelper::generateFileName($extension, $animal->slug, '-thumbnail');
 
             // Upload into thumbnails in s3 storage
             $thumbnail->storeAs('thumbnails', $data['thumbnail_url'], 's3');

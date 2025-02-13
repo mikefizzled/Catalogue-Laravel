@@ -13,11 +13,19 @@
                 @forelse ($mediaItems as $media)
                 <div class="p-6 sm:p-2 bg-white dark:bg-gray-800 shadow sm:rounded-lg flex gap-6 items-center"> 
                     
-                    <div class="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-md p-1">
+                    <div class="flex-shrink-0 w-32 h-18 sm:w-32 sm:h-18 rounded-md p-1">
 
-                       
+                        <img src="{{ $media->thumbnail_url }}" alt="{{ $media->thumbnail_url }}" class="w-full h-full object-cover rounded-md">
                     </div>
                     <div class="flex-1 max-w-xl">
+                        <span class="mb-2 text-xs dark:text-gray-500 italic">
+                            {{ $media->location->name }}
+                        </span>
+                        <h2 class="font-bold text-xl dark:text-gray-100"><!--href="  route('admin.media.show', ['media' => $media->slug]) }}"-->
+                            <a>
+                                {{ $media->animal->common_name }}
+                            </a>
+                        </h2>
                     </div>
                     <div class="ml-auto text-right">
                         <span class="block mt-4 pr-6 text-sm opacity-70 text-gray-600 dark:text-gray-400">

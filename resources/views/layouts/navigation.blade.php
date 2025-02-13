@@ -24,13 +24,13 @@
             </button>
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.animals.index')" :active="request()->routeIs('admin.animals.index')">
                         {{ __('Birds') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('admin.media.index')" :active="request()->routeIs('admin.media.index')">
                         {{ __('Media') }}
                     </x-nav-link>
                     <div class="hidden sm:flex sm:items-center sm:ms-6" >
