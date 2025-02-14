@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <x-h2>
-            Birds
+            Media
         </x-h2>
-        @section('title', 'Manage Birds')
+        @section('title', 'Manage Media')
     </x-slot>
 
     <div class="py-6">
@@ -19,10 +19,10 @@
                     </div>
                     <div class="flex-1 max-w-xl">
                         <span class="mb-2 text-xs dark:text-gray-500 italic">
-                            {{ $media->location->name }}
+                            {{$media->location->name}} - {{ \Carbon\Carbon::parse($media->date_taken)->format('F j, Y g:i A') }}
                         </span>
-                        <h2 class="font-bold text-xl dark:text-gray-100"><!--href="  route('admin.media.show', ['media' => $media->slug]) }}"-->
-                            <a>
+                        <h2 class="font-bold text-xl dark:text-gray-100">
+                            <a href="{{ route('admin.media.show', ['media' => $media->id]) }}">
                                 {{ $media->animal->common_name }}
                             </a>
                         </h2>

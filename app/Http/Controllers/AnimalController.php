@@ -58,15 +58,9 @@ class AnimalController extends Controller
 
         $extension = $thumbnail->getClientOriginalExtension();
         $bird->generateSlug();
-        $bird->thumbnail_url = FileHelper::generateFileName($extension, $bird->slug, '-thumbnail');
+        $bird->thumbnail_url = FileHelper::generateFileName($bird->slug, '-thumbnail', $extension);
         
         $thumbnail->storeAs('thumbnails', $bird->thumbnail_url, 's3');
-
-        $exif = exif_read_data($thumbnail->getPathname());
- 
-        $metadata = FileHelper::collectMetadata($exif);
-
-        $bird->metadata = $metadata;
 
         $bird->save();
 
@@ -78,9 +72,6 @@ class AnimalController extends Controller
                'status' => $status,
             ]);
         }
-        
-
-
         return redirect()->route('admin.animals.show', $bird)->with('success', 'Bird created successfully!');
     }
 
@@ -90,9 +81,8 @@ class AnimalController extends Controller
     public function show(Animal $animal)
     {
         $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);
-        $metadata = json_decode($animal->metadata);
         $animal->load('conservationStatuses');
-        return view('admin.animals.show', ['animal' => $animal, 'metadata' => $metadata]);
+        return view('admin.animals.show', ['animal' => $animal]);
 
     }
     

@@ -9,12 +9,12 @@ class FileHelper
     /**
      * Generate a formatted file name.
      *
-     * @param string $extension The file extension (e.g., jpg, png).
      * @param string $slug The unique slug related to the file.
      * @param string $suffix Optional suffix for differentiation.
+     * @param string $extension The file extension (e.g., jpg, png).
      * @return string The generated file name.
      */
-    public static function generateFileName(string $extension, string $slug, string $suffix = ''): string
+    public static function generateFileName(string $slug, string $suffix = '', string $extension): string
     {
         return "{$slug}{$suffix}.{$extension}";
     }

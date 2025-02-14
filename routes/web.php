@@ -22,11 +22,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('families', FamilyController::class);
     Route::resource('genera', GenusController::class);
     Route::resource('animals',AnimalController::class);
-    Route::resource('media',AdminMediaController::class);
+    //Route::resource('media',AdminMediaController::class);
+    Route::resource('media', AdminMediaController::class)->parameters([
+        'media' => 'media', // Ensures Laravel expects {media} in the URL
+    ]);
+    
+
+
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    // routes/web.php
     Route::get('search-species', [AdminMediaController::class, 'searchSpecies']);
 
     Route::get('/dashboard', function () {

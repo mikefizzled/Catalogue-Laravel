@@ -20,7 +20,7 @@ class AdminMediaController extends Controller
      */
     public function index()
     {
-        $mediaItems = Media::orderBy('created_at', 'asc')->paginate(20);
+        $mediaItems = Media::orderBy('id', 'asc')->paginate(20);
 
         $mediaItems->getCollection()->transform(function ($media) {
             $media->thumbnail_url = Storage::disk('s3')->url('media/' . $media->thumbnail_url);
@@ -48,6 +48,7 @@ class AdminMediaController extends Controller
         $results = Animal::where('common_name', 'LIKE', "%{$query}%")->take(3)->get();
         return response()->json($results);
     }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -55,6 +56,9 @@ class AdminMediaController extends Controller
     {
         $file = $request->File('media');
         
+        $hash = hash_file('sha256', $file->getPathname());
+
+
         // Collect metadata from file
         $exif = exif_read_data($file->getPathname());
         $metadata = FileHelper::collectMetadata($exif);
@@ -66,8 +70,8 @@ class AdminMediaController extends Controller
 
         // Generate filenames for both original and thumbnail
         $extension = $file->getClientOriginalExtension();
-        $filename = FileHelper::generateFileName($extension, $animalSlug, "-media-{$previousMediaTotal}");
-        $thumbnailName = FileHelper::generateFileName($extension, $animalSlug, "-thumb-{$previousMediaTotal}");
+        $filename = FileHelper::generateFileName($animalSlug, "-media-{$previousMediaTotal}", $extension);
+        $thumbnailName = FileHelper::generateFileName($animalSlug, "-thumb-{$previousMediaTotal}", $extension);
         
         $file->storeAs('media', $filename, 's3');
         
@@ -88,7 +92,8 @@ class AdminMediaController extends Controller
             'caption' => $request->caption,
             'age' => $request->age,
             'gender' => $request->gender,
-            'metadata' => $metadata
+            'metadata' => $metadata,
+            'hash' => $hash
          ]);
         }
 
@@ -97,9 +102,14 @@ class AdminMediaController extends Controller
      */
     public function show(Media $media)
     {
-        //
-    }
 
+        $previous = Media::where('id', '<', $media->id)->orderBy('id', 'desc')->first();
+        $next = Media::where('id', '>', $media->id)->orderBy('id', 'asc')->first();
+        $media->media_url = Storage::disk('s3')->url('media/' . $media->media_url);
+        $metadata = json_decode($media->metadata);
+        
+        return view('admin.media.show', compact('media', 'metadata', 'previous', 'next'));
+    }
     /**
      * Show the form for editing the specified resource.
      */
@@ -113,7 +123,8 @@ class AdminMediaController extends Controller
      */
     public function update(Request $request, Media $media)
     {
-        //
+        //2025-02-13 02:34:02
+        //2024-06-20 16:03:05
     }
 
     /**

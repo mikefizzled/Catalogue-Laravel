@@ -26,6 +26,7 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female', 'unknown'])->default('unknown');
             $table->enum('age', ['juvenile', 'adult', 'unknown'])->default('unknown');
             $table->json('metadata')->nullable();
+            $table->string('hash', 64)->unique()->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

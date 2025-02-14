@@ -23,6 +23,7 @@ class Media extends Model
         'gender',
         'age',
         'metadata',
+        'hash'
     ];
 
     public static function countMedia($animalId) : int
@@ -54,5 +55,10 @@ class Media extends Model
     public function location()
     {
         return $this->belongsTo(Location::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'id';
     }
 }
