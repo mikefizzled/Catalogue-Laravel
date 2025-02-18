@@ -39,11 +39,10 @@ class FileHelper
             'Exposure Bias' => self::formatExposureBias($exif['ExposureBiasValue']),
             'Dimensions' => $exif['COMPUTED']['Width']. 'x'. $exif['COMPUTED']['Height'] ?? null,
             'Software' => $exif['Software'] ?? null,
-            'Size' => self::formatFilesize($exif['FileSize']),
-            //'Date' => self::formatDate( $exif['DateTimeOriginal']),
+            'Filesize' => null
         ];
  
-         return json_encode($metadata);
+         return $metadata;
      }
 
     /**
@@ -82,7 +81,7 @@ class FileHelper
      * @param int|null $bytes
      * @return string|null 
      */
-    private static function formatFilesize(?string $bytes): ?string
+    public static function formatFilesize(?string $bytes): ?string
     {
         if ($bytes !== null) {
             return number_format($bytes / 1048576, 2) . ' MB';
@@ -104,6 +103,25 @@ class FileHelper
         $formattedDate = str_replace(':', '-', substr($date, 0, 10)) . substr($date, 10);
 
         return $formattedDate;
+    }
+
+    /**
+     * Temp compressing function that also strips the metadata
+     *
+     * @param  
+     * @return 
+     */
+
+    public static function compressAndRemoveMeta(?string $filePath, ?string $format)
+    {
+        switch($format){
+            case "webp":
+                return shell_exec("cwebp -q 95 -mt -metadata none {$filePath} -o {$filePath}");
+            case "jpg":
+            case "jpeg":
+                return shell_exec("jpegoptim -m95 --strip-all --all-progressive {$filePath}");
+                
+        }
     }
 
 }

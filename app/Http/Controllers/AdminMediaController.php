@@ -9,9 +9,8 @@ use App\Helpers\FileHelper;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Drivers\Imagick\Driver as ImagickDriver;
 use Intervention\Image\Encoders\JpegEncoder;
-
+use Intervention\Image\Drivers\Imagick\Driver as ImagickDriver;
 
 class AdminMediaController extends Controller
 {
@@ -20,7 +19,7 @@ class AdminMediaController extends Controller
      */
     public function index()
     {
-        $mediaItems = Media::orderBy('id', 'asc')->paginate(20);
+        $mediaItems = Media::orderBy('id', 'desc')->paginate(10);
 
         $mediaItems->getCollection()->transform(function ($media) {
             $media->thumbnail_url = Storage::disk('s3')->url('media/' . $media->thumbnail_url);
@@ -56,32 +55,43 @@ class AdminMediaController extends Controller
     {
         $file = $request->File('media');
         
-        $hash = hash_file('sha256', $file->getPathname());
+        // Get data for new filenames
+        $animalSlug = Animal::getSlug($request->animal_id);
+        $newTotal = Media::nextMediaNumber($request->animal_id);
+        $extension = strtolower($file->getClientOriginalExtension());
 
+        // Generate filenames for both original and thumbnail
+        $filename = FileHelper::generateFileName($animalSlug, "-image-{$newTotal}", $extension);
+        $thumbnailName = FileHelper::generateFileName($animalSlug, "-thumb-{$newTotal}", $extension);
 
+        $tempPath = $file->storeAs('temp', $filename, 'public');
+
+        $test = Storage::disk('public')->path($tempPath);
+        
+    
         // Collect metadata from file
-        $exif = exif_read_data($file->getPathname());
+        $exif = exif_read_data($test);
         $metadata = FileHelper::collectMetadata($exif);
         $dateTaken = FileHelper::formatDate($exif['DateTimeOriginal'] ?? null);
 
-        // Get animal and media details
-        $animalSlug = Animal::getSlug($request->animal_id);
-        $previousMediaTotal = Media::countMedia($request->animal_id);
-
-        // Generate filenames for both original and thumbnail
-        $extension = $file->getClientOriginalExtension();
-        $filename = FileHelper::generateFileName($animalSlug, "-media-{$previousMediaTotal}", $extension);
-        $thumbnailName = FileHelper::generateFileName($animalSlug, "-thumb-{$previousMediaTotal}", $extension);
-        
-        $file->storeAs('media', $filename, 's3');
-        
         $manager = new ImageManager(new ImagickDriver());
-        $image = $manager->read($file)->resize(256, 144);
+
+        $output = FileHelper::compressAndRemoveMeta($test, $extension);
+
+
+        $hash = hash_file('sha256', Storage::disk('public')->path($tempPath));
+        $image = $manager->read(file_get_contents($test))->resize(400, 225);
+        
         $imageBinary = $image->encode(new JpegEncoder());
 
-        Storage::disk('s3')->put("media/{$thumbnailName}", (string) $imageBinary, 'public');
 
-        Media::create([
+
+        Storage::disk('s3')->put('media\\'.$thumbnailName, (string) $imageBinary, 'public');
+        Storage::disk('s3')->put('media\\' . $filename, file_get_contents($test));
+        $compSize =  filesize(Storage::disk('public')->path($tempPath));
+        clearstatcache();
+        $metadata['filesize'] = FileHelper::formatFilesize($compSize);
+        $media = Media::create([
             'animal_id' => $request->animal_id,
             'location_id' => $request->location_id,
             'media_url' => $filename,
@@ -92,9 +102,13 @@ class AdminMediaController extends Controller
             'caption' => $request->caption,
             'age' => $request->age,
             'gender' => $request->gender,
-            'metadata' => $metadata,
+            'metadata' => json_encode($metadata),
             'hash' => $hash
          ]);
+        
+        Storage::disk('public')->delete(['\\temp\\'.$filename, '\\temp\\'.$thumbnailName]);
+       
+        return redirect()->route('admin.media.show', $media)->with('success', 'Bird created successfully!');
         }
 
     /**
@@ -107,7 +121,7 @@ class AdminMediaController extends Controller
         $next = Media::where('id', '>', $media->id)->orderBy('id', 'asc')->first();
         $media->media_url = Storage::disk('s3')->url('media/' . $media->media_url);
         $metadata = json_decode($media->metadata);
-        
+
         return view('admin.media.show', compact('media', 'metadata', 'previous', 'next'));
     }
     /**

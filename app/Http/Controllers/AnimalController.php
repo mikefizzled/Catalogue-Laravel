@@ -56,12 +56,22 @@ class AnimalController extends Controller
         
         $thumbnail = $request->File('thumbnail');
 
-        $extension = $thumbnail->getClientOriginalExtension();
+        $extension = strtolower($thumbnail->getClientOriginalExtension());
         $bird->generateSlug();
-        $bird->thumbnail_url = FileHelper::generateFileName($bird->slug, '-thumbnail', $extension);
         
-        $thumbnail->storeAs('thumbnails', $bird->thumbnail_url, 's3');
+        $thumbnailName = FileHelper::generateFileName($bird->slug, '-thumbnail', $extension);
+        
+        $tempPath = $thumbnail->storeAs('temp', $thumbnailName, 'public');
 
+        $path = Storage::disk('public')->path($tempPath);
+        
+        FileHelper::compressAndRemoveMeta($path, $extension);
+
+        $bird->thumbnail_url = $thumbnailName;
+        //$thumbnail->storeAs('thumbnails', $bird->thumbnail_url, 's3');
+
+        Storage::disk('s3')->put('thumbnails\\' . $thumbnailName, file_get_contents($path));
+        Storage::disk('public')->delete(['thumbnails\\' . $thumbnailName]);
         $bird->save();
 
         // Adding each of the 6 report statuses to link table
@@ -73,6 +83,7 @@ class AnimalController extends Controller
             ]);
         }
         return redirect()->route('admin.animals.show', $bird)->with('success', 'Bird created successfully!');
+        
     }
 
     /**

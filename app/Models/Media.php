@@ -26,14 +26,13 @@ class Media extends Model
         'hash'
     ];
 
-    public static function countMedia($animalId) : int
+    public static function nextMediaNumber($animalId) :int
     {
         $total = Media::where('animal_id', $animalId)->count();
-        if($total === 0){
-            return 1;
-        }
+        $total++;
         return $total;
     }
+
     
     const GENDERS = [
         ['id' => 'Male', 'label' => 'Male'],

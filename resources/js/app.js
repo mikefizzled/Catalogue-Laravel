@@ -12,6 +12,4 @@ import App from './components/SearchComponent.vue';
 
 
 const app = createApp(App);
-
-
 app.mount('#app');
