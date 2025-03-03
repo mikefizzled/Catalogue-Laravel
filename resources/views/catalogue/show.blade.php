@@ -1,43 +1,18 @@
-<x-app-layout>
-    <x-slot name="header">
-        <x-h2>
-            {{$animal->common_name}}
-        </x-h2>
-        @section('title', $animal->common_name)
-    </x-slot>
+<x-public-app-layout>
+    @section('title', $animal->common_name)
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-2">
-          <!-- Header Info and Action Buttons -->
-          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center ">
-            <div class="flex gap-2 opacity-70 dark:text-gray-400">
-              <p>
-                <strong>Created:</strong> {{ $animal->created_at->diffForHumans() }}
-              </p>
-              <p>
-                <strong>Last Changed:</strong> {{ $animal->updated_at->diffForHumans() }}
-              </p>
-            </div>
-            <div class="flex gap-2">
-              <x-link-button href="{{ route('admin.animals.edit', $animal) }}" class="ml-auto"> Edit Bird </x-link-button>
-              <x-link-button class="bg-red-400 hover:bg-red-600 focus:bg-red-600" onclick="return confirm('Move note to trash?')"> Delete Bird </x-link-button>
-            </div>
-          </div>
           <div class="bg-white dark:bg-gray-800 px-6 py-3 overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="py-2">
-                <x-h2>Basic Info</x-h2>
-            </div>
             <div class="flex flex-col md:flex-row gap-6">
-              <div class="flex-grow">
-                <table class="w-full table-auto border-collapse dark:text-gray-100 text-left">
+                <div class="self-center p-5">
+                    <div class="dark:text-gray-100">
+                        <x-h2>{{ $animal->common_name }} </x-h2><h3 class="italic">{{ $animal->scientific_name }}</h3>
+                     
+                    </div>
+                </div>
+              <div class="flex-grow  self-center p-5">
+                <table class="w-full table-auto border-collapse dark:text-gray-100">
                   <tbody>
-                    <tr class="border-b">
-                      <th class="py-2 px-4">Common Name</th>
-                      <td class="py-2 px-4">{{ $animal->common_name }}</td>
-                    </tr>
-                    <tr class="border-b">
-                      <th class="py-2 px-4">Scientific Name</th>
-                      <td class="py-2 px-4">{{ $animal->scientific_name }}</td>
-                    </tr>
                     <tr class="border-b">
                       <th class=" py-2 px-4">Class</th>
                       <td class="py-2 px-4">Aves</td>
@@ -68,12 +43,13 @@
               </div>
             </div>
           </div>
-          <div class="bg-white dark:bg-gray-800 px-6 py-3 overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="py-2">
-                <x-h2>Conservation Status</x-h2>
-            </div>
+          <div class="bg-white dark:bg-gray-800 px-6 py-3 shadow-sm sm:rounded-lg content-center">
+
                 @if($animal->conservationStatuses->isNotEmpty())
-                    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-7 py-3 ">
+                        <div class="py-2 text-center">
+                            <x-h2>Conservation Status</x-h2>
+                        </div>
                         @foreach($animal->conservationStatuses as $cs)
                             @php
                                 $bgClass = '';
@@ -95,7 +71,7 @@
                                         break;
                                 }
                             @endphp
-                            <div class="p-2 border rounded-lg shadow-sm {{ $bgClass }} mb-2">
+                            <div class="p-2 border rounded-lg shadow-sm {{ $bgClass }}">
                                 <h4 class="text-md font-semibold">
                                     {{ $cs->conservationList->short_name }} ({{ $cs->conservationList->year }})
                                 </h4>
@@ -110,27 +86,46 @@
                 @endif
 
         </div>
-       
-        <div class="bg-white dark:bg-gray-800 px-6 py-3 overflow-hidden sm:rounded-lg">
-          <div class="py-2">
-            <x-h2>Related Media</x-h2>
-          </div>  
-          <div class=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
-            @forelse ($mediaItems as $media)
-            <a href="{{ route('admin.media.show', $media->id) }}" class="  p-2">
-                <div class="border  rounded-lg">
-                    <img src="{{ $media->thumbnail_url }}" 
-                         alt="Thumbnail" 
-                         class="w-full h-32 object-cover rounded-md">
+        
+<!-- Flowbite Carousel -->
+<div id="gallery" class="relative w-full" data-carousel="static">
+    <!-- Carousel wrapper -->
+    <div class="relative h-[calc(100vw*9/16)] max-h-[600px] overflow-hidden rounded-lg border">
+        @foreach ($mediaItems as $media)
+            <div class="hidden ease-in-out w-full h-full flex justify-center items-center" data-carousel-item>
+                <img src="{{ $media->media_url }}" class="w-full h-full object-cover" alt="">
+                <div class="absolute bottom-4 left-4 bg-black bg-opacity-50 text-white p-3 rounded-lg shadow-lg w-auto text-center">
+                    <h2 class="text-lg font-semibold">
+                        {{ $media->location->name. ', '.$media->location->city ?? 'Unknown Location' }}
+                    </h2>
+                    <p class="text-sm">
+                        {{ $media->date_taken ? \Carbon\Carbon::parse($media->date_taken)->format('F j, Y g:i A') : 'Date Unknown' }}
+                    </p>
                 </div>
-            </a>
-        @empty
-            <p class="text-gray-500 dark:text-gray-400">No related media available.</p>
-        @endforelse
-          </div>
+            </div>
+            
+        @endforeach
+    </div>
+    <!-- Slider controls -->
+    <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-300 group-hover:bg-white/50 dark:group-hover:bg-gray-500 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+            </svg>
+            <span class="sr-only">Previous</span>
+        </span>
+    </button>
+    <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-300 group-hover:bg-white/50 dark:group-hover:bg-gray-500 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="sr-only">Next</span>
+        </span>
+    </button>
+</div>
 
-        </div>
         
           </div>
         </div>
-</x-app-layout>
+</x-public-app-layout>

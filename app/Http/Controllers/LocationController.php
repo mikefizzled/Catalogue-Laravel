@@ -16,9 +16,7 @@ class LocationController extends Controller
         $locations = Location::orderBy('name', 'asc')->paginate(10);
 
         $locations->getCollection()->transform(function ($location) {
-            $location->image = $location->image 
-            ? Storage::disk('s3')->url('locations/' . $location->image) 
-            : asset('images/location-placeholder.svg');
+            $location->image = $location->image ? Storage::disk('s3')->url('locations/' . $location->image) : asset('images/location-placeholder.svg');
             return $location;
         });
 
@@ -30,16 +28,39 @@ class LocationController extends Controller
      */
     public function create()
     {
-        
-        return view('admin.locations.create');
+        $locations = Location::select('name', 'latitude', 'longitude')->get();
+        return view('admin.locations.create', compact('locations'));
     }
+    
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name'         => 'required|string|max:255',
+            'city'         => 'nullable|string|max:255',
+            'latitude'     => 'nullable|numeric',
+            'longitude'    => 'nullable|numeric',
+            'caption'      => 'nullable|string|max:500',
+            'image'        => 'nullable|image|mimes:jpg,webp',
+        ]);
+
+        // Just ignoring the images for now
+        $imagePath = null;
+        
+        $location = Location::create([
+            'name'         => $validated['name'],
+            'city'         => $validated['city'] ?? null,
+            'latitude'     => $validated['latitude'],
+            'longitude'    => $validated['longitude'],
+            'area_caption' => $validated['caption'] ?? null,
+            'image'        => $imagePath,
+        ]);
+
+        return redirect()->route('admin.locations.index')->with('success', 'Location added successfully!');
+
     }
 
     /**

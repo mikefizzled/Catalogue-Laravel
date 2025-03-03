@@ -83,7 +83,7 @@
         @if (Route::has('login'))
             <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
                 @auth
-                    <a href="{{ url('/dashboard') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
+                    <a href="{{ url('/admin/dashboard') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
                         Dashboard
                     </a>
                 @else

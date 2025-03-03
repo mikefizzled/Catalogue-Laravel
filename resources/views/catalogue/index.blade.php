@@ -1,0 +1,49 @@
+<x-public-app-layout>
+
+@section('title', 'Manage Media')
+<div class="p-4 px-8 text-center text-white bg-gray-800 flex flex-wrap justify-center border border-gray-700 dark:bg-gray-900">
+    <!-- Title -->
+        <div>
+ <x-h2>Animal Catalogue</x-h2>
+    <!-- Filters -->
+    <div class="flex flex-wrap justify-center gap-4 mb-6">
+        <div class="min-w-[10rem] w-fit p-2  ">
+            <label for="orders" class="block ">Order</label>
+            <select id="orders" class="mt-1 block w-full px-3 py-2 bg-white text-gray-900 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                <option value="">All</option>
+                <!-- Options here -->
+            </select>
+        </div>
+        <div class="min-w-[10rem] w-fit p-2 overflow-hidden text-ellipsis">
+            <label for="families" class="block  ">Family</label>
+            <select id="families" class="mt-1 block w-full px-3 py-2 bg-white text-gray-900 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                <option value="">All</option>
+                <!-- Options here -->
+            </select>
+        </div>
+    </div>
+
+    <div class="py-2 da">
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6">
+                @forelse ($animals as $bird)
+                    <a href="{{ route('catalogue.show', ['animal' => $bird->id]) }}" class=" ">
+                        <div class="card bg-white dark:bg-gray-800 shadow-md rounded-lg border border-gray-600  hover:scale-105 transition-transform  ">
+                            <!-- Thumbnail -->
+                            <img src="{{ $bird->thumbnail_url }}" alt="{{ $bird->common_name }}"   class="w-full h-50 object-cover rounded-md">
+                            <!-- Name -->
+                            <p class="text-center text-lg font-medium text-gray-900 dark:text-gray-100 mt-2">{{ $bird->common_name }}</p>
+                        </div>
+                    </a>
+                @empty
+                    <p class="text-center text-gray-500 dark:text-gray-400 col-span-full">No animals found.</p>
+                @endforelse
+            </div>
+        
+        
+            {{ $animals->links() }}
+            
+        </div>
+    </div>
+</x-public-app-layout>

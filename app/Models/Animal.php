@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +11,7 @@ class Animal extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $fillable = ['genus_id', 'common_name', 'scientific_name', 'thumbnail_url', 'metadata'];
+    protected $fillable = ['genus_id', 'common_name', 'scientific_name', 'thumbnail_url', 'metadata', 'ebird_species_code'];
 
     public function genus()
     {

@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Genus;
+use App\Models\Media;
 use App\Models\Animal;
 use App\Helpers\FileHelper;
-use App\Http\Requests\AnimalUpdateRequest;
 use App\Models\ConservationList;
 use App\Models\ConservationStatus;
-use App\Http\Requests\AnimalCreateRequest;
-use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\AnimalCreateRequest;
+use App\Http\Requests\AnimalUpdateRequest;
 
 class AnimalController extends Controller
 {
@@ -93,7 +94,17 @@ class AnimalController extends Controller
     {
         $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);
         $animal->load('conservationStatuses');
-        return view('admin.animals.show', ['animal' => $animal]);
+        
+        // Fetch all media related to the animal
+         $mediaItems = Media::where('animal_id', $animal->id)->get();
+
+        // Transform media URLs to include full S3 paths
+        $mediaItems->transform(function ($media) {
+            $media->thumbnail_url = Storage::disk('s3')->url('media/' . $media->thumbnail_url);
+            return $media;
+        });
+
+        return view('admin.animals.show', compact('animal', 'mediaItems'));
 
     }
     

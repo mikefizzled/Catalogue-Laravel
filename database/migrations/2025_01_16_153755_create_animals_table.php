@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(Genus::class)->constrained()->onDelete('cascade');
             $table->string('common_name')->index();
             $table->string('scientific_name')->unique();
+            $table->string('ebird_species_code')->nullable()->unique();
             $table->string('slug')->unique();
             $table->string('thumbnail_url')->unique();
             $table->timestamps();

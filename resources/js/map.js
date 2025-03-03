@@ -13,12 +13,26 @@ function initMap() {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    console.log("Leaflet Map Initialized");
+    // console.log("Leaflet Map Initialized");
 
     // store global marker for pointing
     let marker = null;
 
-    // Handle map click event
+
+    // Add markers for existing locations
+    if (window.existingLocations && Array.isArray(window.existingLocations)) {
+        window.existingLocations.forEach(location => {
+            if (location.latitude && location.longitude) {
+                L.marker([location.latitude, location.longitude])
+                    .addTo(map)
+                    .bindPopup(`<strong>${location.name}</strong>`);
+                 
+            }
+        });
+    }
+
+
+    // Use map on click to set the values in the 
     map.on("click", function (e) {
 
         var lat = e.latlng.lat;
@@ -35,8 +49,8 @@ function initMap() {
             .openOn(map);
         */
         // Auto-fill input fields
-        var xInput = document.getElementById("x-coord");
-        var yInput = document.getElementById("y-coord");
+        var xInput = document.getElementById("latitude");
+        var yInput = document.getElementById("longitude");
 
         if(marker)
             map.removeLayer(marker);
@@ -50,5 +64,5 @@ function initMap() {
     });
 }
 
-// Ensure the map initializes after the DOM is fully loaded
+// Make sure the map only loads after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", initMap);

@@ -13,6 +13,8 @@
             {{-- Common Name --}}
             <div class="py-2">
                 <x-form-label for="common_name">Common Name</x-form-label>
+                <div class="flex items-center gap-2">
+                    
                 <x-text-input 
                     id="common_name" 
                     name="common_name" 
@@ -20,10 +22,14 @@
                     placeholder="Common Name" 
                     value="{{ old('common_name') }}" 
                 />
+                <x-primary-button type="button" onclick="fetchEbirdCode()">Search eBird</x-primary-button>
+                </div>
+                
                 @error('common_name')
                     <x-update-error class="mt-2">{{ $message }}</x-update-error>
                 @enderror
             </div>
+            <div id="results" class="bg-white mt-1 w-full rounded-md shadow-lg max-h-60 overflow-auto z-10"></div>
 
             {{-- Scientific Name --}}
             <div class="py-2">
@@ -39,7 +45,74 @@
                     <x-update-error class="mt-2">{{ $message }}</x-update-error>
                 @enderror
             </div>
+{{-- eBird Species Code --}}
+<div class="py-2">
+    <x-form-label for="ebird_species_code">eBird Species Code</x-form-label>
 
+        <x-text-input 
+            id="ebird_species_code" 
+            name="ebird_species_code" 
+            class="w-full mt-2" 
+            placeholder="eBird Code" 
+            value="{{ old('ebird_species_code') }}" 
+            readonly
+        />
+    @error('ebird_species_code')
+        <x-update-error class="mt-2">{{ $message }}</x-update-error>
+    @enderror
+</div>
+<script>
+    function fetchEbirdCode() {
+        let commonName = document.getElementById("common_name").value.trim();
+        let resultsDiv = document.getElementById("results");
+        resultsDiv.innerHTML = "";  
+    
+        if (commonName.length < 3) return;
+    
+        fetch(`/search-ebird?query=${encodeURIComponent(commonName)}`)
+        .then(response => response.json())
+        .then(data => {
+            resultsDiv.innerHTML = "";
+    
+            if (data.error) {
+                resultsDiv.innerHTML = `<p class="text-gray-500">No matches found.</p>`;
+                return;
+            }
+    
+            data.forEach(species => {
+                let listItem = document.createElement("p");
+                listItem.innerHTML = `<strong>${species.comName}</strong> (${species.sciName})`;
+                listItem.classList.add("cursor-pointer", "p-2", "hover:bg-gray-200", "rounded-md");
+    
+                listItem.onclick = function() {
+                    document.getElementById("common_name").value = species.comName;
+                    document.getElementById("scientific_name").value = species.sciName;
+                    document.getElementById("ebird_species_code").value = species.speciesCode;
+
+
+                    // Extract the genus (first word of scientific name)
+                let genus = species.sciName.split(" ")[0];
+
+                // Find the corresponding genus in the dropdown
+                let genusDropdown = document.getElementById("genus_id");
+                for (let i = 0; i < genusDropdown.options.length; i++) {
+                    if (genusDropdown.options[i].text.trim().toLowerCase() === genus.toLowerCase()) {
+                        genusDropdown.selectedIndex = i;
+                        break;
+                    }
+                }
+                    resultsDiv.innerHTML = "";
+                };
+    
+                resultsDiv.appendChild(listItem);
+            });
+        })
+        .catch(error => console.error("Error fetching eBird data:", error));
+    }
+    </script>
+    
+        
+    
             {{-- Genus Member --}}
             <div class="py-2">
                 <x-form-label for="genus_id">Genus Member</x-form-label>
@@ -74,20 +147,27 @@
         
             {{-- Conservation Status --}}
             <div class="bg-white dark:bg-gray-800 p-6 overflow-hidden shadow-sm sm:rounded-lg">
-                <x-form-label for="conservation_status" class="text-left">Conservation Status</x-form-label>
-                <p class="text-sm italic mt-1 text-gray-500 dark:text-gray-300">Use 'Not Assessed' for all non-sea birds in BoCC5a</p>
+                <div class="flex items-center justify-between w-full">
+                    <div class="flex flex-col">
+                        <x-form-label for="conservation_status" class="text-left">Conservation Status</x-form-label>
+                        <p class="text-sm italic mt-1 text-gray-500 dark:text-gray-300">
+                            Use 'Not Assessed' for all non-sea birds in BoCC5a
+                        </p>
+                    </div>
+                    <x-primary-button type="button" onclick="fetchBoccData()">Search Journal</x-primary-button>
+                </div>
                 @error("statuses")
                     <x-update-error class="mt-2">{{ $message }}</x-update-error>
                 @enderror
                 <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 p-2 md:p-2 xl:p-2 mt-2">
                     @foreach ($conservationLists as $conservationList)
                         <div class="px-2 py-2">
-                            <x-form-label for="status_{{ $conservationList->id }}">
+                            <x-form-label for="{{ $conservationList->import_name }}">
                                 {{ $conservationList->short_name }}
                             </x-form-label>
                             <select 
-                                id="status_{{ $conservationList->id }}" 
-                                name="statuses[{{ $conservationList->id }}]" 
+                                id="{{$conservationList->import_name}}" 
+                                name="{{ $conservationList->import_name }}" 
                                 class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                 required 
                             >
@@ -112,3 +192,50 @@
     </div>
     </div>
 </x-app-layout>
+<script>
+    async function fetchBoccData() {
+        const scientificName = document.getElementById("scientific_name").value.trim();
+    
+        if (!scientificName) {
+            alert("Please enter a scientific name first.");
+            return;
+        }
+    
+        try {
+            const response = await fetch(`/conservation-status?scientific_name=${encodeURIComponent(scientificName)}`);
+    
+            if (!response.ok) {
+                throw new Error(await response.text());
+            }
+    
+            const birdData = await response.json();
+
+// List of expected conservation status fields
+const statusFields = ["bocc_1", "bocc_2", "bocc_3", "bocc_4", "bocc_5", "bocc_5a"];
+
+// Loop through all status fields and update the corresponding select field
+statusFields.forEach(field => {
+    if (birdData.hasOwnProperty(field)) {
+        const statusValue = birdData[field].toLowerCase();
+        const selectField = document.getElementById(field);
+
+        if (selectField) {
+            for (const option of selectField.options) {
+                if (option.value.toLowerCase() === statusValue) {
+                    selectField.value = option.value;
+                    break;
+                }
+            }
+        }
+    }
+});
+
+alert("Conservation status updated successfully!");
+    
+        } catch (error) {
+            console.error("Error fetching conservation data:", error);
+            alert("Could not retrieve conservation data.");
+        }
+    }
+    </script>
+    

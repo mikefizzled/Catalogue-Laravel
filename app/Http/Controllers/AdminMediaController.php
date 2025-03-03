@@ -137,8 +137,8 @@ class AdminMediaController extends Controller
      */
     public function update(Request $request, Media $media)
     {
-        //2025-02-13 02:34:02
-        //2024-06-20 16:03:05
+        //
+
     }
 
     /**
