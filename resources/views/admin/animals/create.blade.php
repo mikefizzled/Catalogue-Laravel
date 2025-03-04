@@ -167,7 +167,7 @@
                             </x-form-label>
                             <select 
                                 id="{{$conservationList->import_name}}" 
-                                name="{{ $conservationList->import_name }}" 
+                                name="statuses[{{ $conservationList->id }}]"
                                 class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                 required 
                             >

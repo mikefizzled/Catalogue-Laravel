@@ -10,6 +10,7 @@ use App\Models\ConservationList;
 use App\Models\ConservationStatus;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 use App\Http\Requests\AnimalCreateRequest;
 use App\Http\Requests\AnimalUpdateRequest;
 
@@ -48,13 +49,13 @@ class AnimalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AnimalCreateRequest $request)
-    {
+    public function store(Request $request)
+    {  
         $bird = new Animal();
         $bird->common_name = $request->common_name;
         $bird->scientific_name = $request->scientific_name;
         $bird->genus_id = $request->genus_id;
-        
+        $bird->ebird_species_code = $request->ebird_species_code;
         $thumbnail = $request->File('thumbnail');
 
         $extension = strtolower($thumbnail->getClientOriginalExtension());
@@ -75,14 +76,15 @@ class AnimalController extends Controller
         Storage::disk('public')->delete(['thumbnails\\' . $thumbnailName]);
         $bird->save();
 
-        // Adding each of the 6 report statuses to link table
+        // Adding each of the 6 report statuses to the link table
         foreach ($request->statuses as $conservationListId => $status) {
-           ConservationStatus::create([
-               'animal_id' => $bird->id,
-               'conservation_list_id' => $conservationListId,
-               'status' => $status,
+            ConservationStatus::create([
+                'animal_id' => $bird->id,
+                'conservation_list_id' => $conservationListId,
+                'status' => $status,
             ]);
         }
+
         return redirect()->route('admin.animals.show', $bird)->with('success', 'Bird created successfully!');
         
     }

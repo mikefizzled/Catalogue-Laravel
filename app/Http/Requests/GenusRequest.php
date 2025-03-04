@@ -22,27 +22,19 @@ class GenusRequest extends FormRequest
     public function rules(): array
     {
         $genusId = optional($this->route('genus'))->id;
-
-        $rules = [
+    
+        return [
             'genus_name' => [
                 'required',
                 'string',
                 'max:255',
+                'unique:genera,genus_name,' . $genusId . ',id', // Ensure genus_name is unique except when updating
             ],
             'family_id' => [
                 'required',
                 'exists:families,id'
             ]
         ];
-
-        if ($genusId) {
-            // Update scenario: exclude this record's ID from the unique check
-            $rules['genus_name'][] = 'unique:genera,genus_name,' . $genusId;
-        } else {
-            // Store scenario: no ID to exclude, so standard unique rule
-            $rules['genus_name'][] = 'unique:genera,genus_name';
-        }
-
-        return $rules;
     }
+    
 }

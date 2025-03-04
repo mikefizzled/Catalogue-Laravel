@@ -26,14 +26,14 @@
     <div class="py-2 da">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6">
+            <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
                 @forelse ($animals as $bird)
                     <a href="{{ route('catalogue.show', ['animal' => $bird->id]) }}" class=" ">
                         <div class="card bg-white dark:bg-gray-800 shadow-md rounded-lg border border-gray-600  hover:scale-105 transition-transform  ">
                             <!-- Thumbnail -->
                             <img src="{{ $bird->thumbnail_url }}" alt="{{ $bird->common_name }}"   class="w-full h-50 object-cover rounded-md">
                             <!-- Name -->
-                            <p class="text-center text-lg font-medium text-gray-900 dark:text-gray-100 mt-2">{{ $bird->common_name }}</p>
+                            <p class="text-center text-md font-medium text-gray-900 dark:text-gray-100 mt-2">{{ $bird->common_name }}</p>
                         </div>
                     </a>
                 @empty

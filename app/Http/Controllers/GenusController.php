@@ -24,7 +24,8 @@ class GenusController extends Controller
      */
     public function create()
     {
-        return view('admin.genera.create');
+        $families = Family::orderBy('family_name', 'asc')->get();
+        return view('admin.genera.create', ['families' => $families]);
     }
 
     /**

@@ -25,6 +25,7 @@ class AnimalCreateRequest extends FormRequest
         $rules = [
             'common_name'       => ['required', 'string', 'max:255'],
             'scientific_name'   => ['required', 'string', 'max:255', 'unique:animals,scientific_name'],
+            'ebird_species_code'=> ['required', 'string', 'max:255'],
             'genus_id'          => ['required', 'exists:genera,id'],
             'thumbnail'         => ['required', 'image', 'mimes:jpg,webp', 'max:512'],
             'statuses'          => ['required', 'array'],

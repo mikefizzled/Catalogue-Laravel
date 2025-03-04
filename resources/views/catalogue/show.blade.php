@@ -102,6 +102,7 @@
                         {{ $media->date_taken ? \Carbon\Carbon::parse($media->date_taken)->format('F j, Y g:i A') : 'Date Unknown' }}
                     </p>
                 </div>
+                <button type="button" class="absolute top-50 start-50 z-50 flex items-center justify-center px-4 cursor-pointer group focus:outline-none">EXIF</button>
             </div>
             
         @endforeach

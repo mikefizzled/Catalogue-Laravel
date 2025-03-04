@@ -20,7 +20,14 @@
                 </div>
                 <div class="py-2">
                     <x-h3>Parent Family</x-h3>    
-                    <x-select-dropdown name="family_id" class="w-full mt-2" :options="$families" optionLabel="family_name" :selected="old('family_id', $genus->family_id)" />  
+                    <x-select-dropdown 
+                        id="family_id" 
+                        name="family_id" 
+                        class="w-full mt-2" 
+                        :options="$families" 
+                        optionLabel="family_name" 
+                        optionId="id"
+                        :selected="old('family_id', $genus->family_id)" />  
                 </div>
                 <div class="py-2 flex gap-4">
                     <x-primary-button class="mt-1">Save Order</x-primary-button>
