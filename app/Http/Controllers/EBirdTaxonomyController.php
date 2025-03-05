@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class EBirdTaxonomyController extends Controller
 {
@@ -85,5 +86,37 @@ class EBirdTaxonomyController extends Controller
             $defaultBirdData['iucn_status'] = $birdData5a['iucn_status'] ?? "Not Assessed";
         }
         return response()->json($defaultBirdData);
+    }
+
+    
+    public function taxonomyJson()
+    {
+        $taxonomy = Order::with('families.genera.animals')->get();
+
+        $jsonStructure = [
+            "name" => "Birds",
+            "children" => $taxonomy->map(function ($order) {
+                return [
+                    "name" => $order->order_name,
+                    "children" => $order->families->map(function ($family) {
+                        return [
+                            "name" => $family->family_name,
+                            "children" => $family->genera->map(function ($genus) {
+                                return [
+                                    "name" => $genus->genus_name,
+                                    "children" => $genus->animals->map(function ($animal) {
+                                        return [
+                                            "name" => $animal->common_name
+                                        ];
+                                    })->toArray()
+                                ];
+                            })->toArray()
+                        ];
+                    })->toArray()
+                ];
+            })->toArray()
+        ];
+
+    return response()->json($jsonStructure);
     }
 }

@@ -40,6 +40,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 });
 Route::get('/search-ebird', [EBirdTaxonomyController::class, 'search'])->middleware(['auth']);
 Route::get('/conservation-status', [EBirdTaxonomyController::class, 'fetchBoccData'])->middleware(['auth']);
+Route::get('/taxonomy-json', [EBirdTaxonomyController::class, 'taxonomyJson']);
 Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue.index');
 Route::get('/catalogue/{animal}', [CatalogueController::class, 'show'])->name('catalogue.show');
 
