@@ -21,12 +21,12 @@ class AdminDashboardController extends Controller
             'familyCount' => Family::count(),
             'genusCount' => Genus::count(),
             'locationCount' => Location::count(),
-            // Recent Media Thumbnails
+            
             'recentMedia' => Media::orderBy('created_at', 'desc')->take(3)->get()->transform(function ($media) {
                 $media->thumbnail_url = Storage::disk('s3')->url('media/' . $media->thumbnail_url);
                 return $media;
             }),
-            // Recent Animals (512x512)
+            
             'recentAnimals' => Animal::latest()->take(6)->get()->transform(function ($animal) {
                 $animal->thumbnail_url =  Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);
                 return $animal;

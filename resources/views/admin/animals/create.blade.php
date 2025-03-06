@@ -30,7 +30,7 @@
                 @enderror
             </div>
             <div id="results" class="bg-white mt-1 w-full rounded-md shadow-lg max-h-60 overflow-auto z-10"></div>
-
+            
             {{-- Scientific Name --}}
             <div class="py-2">
                 <x-form-label for="scientific_name">Scientific Name</x-form-label>
@@ -181,6 +181,38 @@
                         </div>
                     @endforeach
                 </div>
+                <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-2 px-5">
+                    <div class="p-5">
+                        <x-form-label for="bocc_5_criteria">BoCC5 Criteria</x-form-label>
+                    
+                            <x-text-input 
+                                id="bocc_5_criteria" 
+                                name="bocc_5_criteria" 
+                                class="w-full mt-2" 
+                                placeholder="Criteria" 
+                                value="{{ old('bocc_5_criteria') }}" 
+                                readonly
+                            />
+                        @error('bocc_5_criteria')
+                            <x-update-error class="mt-2">{{ $message }}</x-update-error>
+                        @enderror
+                    </div>
+                    <div class="p-5">
+                        <x-form-label for="bocc_5a_criteria">BoCC5a Criteria</x-form-label>
+                    
+                            <x-text-input 
+                                id="bocc_5a_criteria" 
+                                name="bocc_5a_criteria" 
+                                class="w-full mt-2" 
+                                placeholder="Criteria" 
+                                value="{{ old('bocc_5a_criteria') }}" 
+                                readonly
+                            />
+                        @error('ebird_species_code')
+                            <x-update-error class="mt-2">{{ $message }}</x-update-error>
+                        @enderror
+                    </div>
+                </div>
             </div>
 
             {{-- Form Buttons --}}
@@ -211,7 +243,7 @@
             const birdData = await response.json();
 
 // List of expected conservation status fields
-const statusFields = ["bocc_1", "bocc_2", "bocc_3", "bocc_4", "bocc_5", "bocc_5a"];
+const statusFields = ["bocc_1", "bocc_2", "bocc_3", "bocc_4", "bocc_5", "bocc_5a", "bocc_5_criteria", "bocc_5a_criteria"];
 
 // Loop through all status fields and update the corresponding select field
 statusFields.forEach(field => {
@@ -226,6 +258,8 @@ statusFields.forEach(field => {
                     break;
                 }
             }
+            document.getElementById("bocc_5_criteria").value = birdData.bocc_5_criteria;
+            document.getElementById("bocc_5a_criteria").value = birdData.bocc_5a_criteria;
         }
     }
 });

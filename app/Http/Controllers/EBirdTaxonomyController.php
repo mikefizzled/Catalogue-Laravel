@@ -85,6 +85,7 @@ class EBirdTaxonomyController extends Controller
             $defaultBirdData['bocc_5a_criteria'] = $birdData5a['bocc_5a_criteria'] ?? "";
             $defaultBirdData['iucn_status'] = $birdData5a['iucn_status'] ?? "Not Assessed";
         }
+
         return response()->json($defaultBirdData);
     }
 
@@ -92,7 +93,7 @@ class EBirdTaxonomyController extends Controller
     public function taxonomyJson()
     {
         $taxonomy = Order::with('families.genera.animals')->get();
-
+    
         $jsonStructure = [
             "name" => "Birds",
             "children" => $taxonomy->map(function ($order) {
@@ -101,14 +102,38 @@ class EBirdTaxonomyController extends Controller
                     "children" => $order->families->map(function ($family) {
                         return [
                             "name" => $family->family_name,
-                            "children" => $family->genera->map(function ($genus) {
+                            "children" => $family->genera->flatMap(function ($genus) {
+                                return $genus->animals->map(function ($animal) {
+                                    return [
+                                        "name" => $animal->common_name
+                                    ];
+                                });
+                            })->toArray() // Flatten animals from all genera into one array under families
+                        ];
+                    })->toArray()
+                ];
+            })->toArray()
+        ];
+    
+        return response()->json($jsonStructure);
+    }
+    
+    /*
+        public function taxonomyJson()
+    {
+        $taxonomy = Order::with('families.animals')->get();
+    
+        $jsonStructure = [
+            "name" => "Birds",
+            "children" => $taxonomy->map(function ($order) {
+                return [
+                    "name" => $order->order_name,
+                    "children" => $order->families->map(function ($family) {
+                        return [
+                            "name" => $family->family_name,
+                            "children" => $family->animals->map(function ($animal) {
                                 return [
-                                    "name" => $genus->genus_name,
-                                    "children" => $genus->animals->map(function ($animal) {
-                                        return [
-                                            "name" => $animal->common_name
-                                        ];
-                                    })->toArray()
+                                    "name" => $animal->common_name
                                 ];
                             })->toArray()
                         ];
@@ -116,7 +141,9 @@ class EBirdTaxonomyController extends Controller
                 ];
             })->toArray()
         ];
-
-    return response()->json($jsonStructure);
-    }
+    
+        return response()->json($jsonStructure);
+    }*/
+    
+    
 }

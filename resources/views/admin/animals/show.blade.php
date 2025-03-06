@@ -53,9 +53,13 @@
                         <span class="italic"> - {{ $animal->genus->family->common_name }}</span>
                       </td>
                     </tr>
-                    <tr>
+                    <tr  class="border-b">
                       <th class="py-2 px-4">Genus</th>
                       <td class="py-2 px-4">{{ $animal->genus->genus_name }}</td>
+                    </tr>
+                    <tr>
+                      <th class="py-2 px-4">eBird Code</th>
+                      <td class="py-2 px-4">{{ $animal->ebird_species_code }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -102,9 +106,15 @@
                                 <p class="text-sm ">
                                     Status: <span class="font-bold">{{ ucfirst($cs->status) }}</span>
                                 </p>
+                                <ul class="text-sm">
+                                    @foreach ($cs->criteria as $criterion)
+                                        <li>{{ $criterion->boccCriteria->description }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
                         @endforeach
                     </div>
+
                 @else
                     <p class="text-gray-600 dark:text-gray-400">No conservation status available.</p>
                 @endif

@@ -19,4 +19,10 @@ class ConservationStatus extends Model
     {
         return $this->belongsTo(ConservationList::class);
     }
+
+    public function criteria()
+    {
+        return $this->hasMany(ConservationStatusCriteria::class);
+    }
+
 }

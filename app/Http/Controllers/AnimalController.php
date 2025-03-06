@@ -6,13 +6,15 @@ use App\Models\Genus;
 use App\Models\Media;
 use App\Models\Animal;
 use App\Helpers\FileHelper;
+use Illuminate\Http\Request;
 use App\Models\ConservationList;
 use App\Models\ConservationStatus;
 use Intervention\Image\Facades\Image;
+use App\Models\BoccCriteriaDefinition;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Request;
 use App\Http\Requests\AnimalCreateRequest;
 use App\Http\Requests\AnimalUpdateRequest;
+use App\Models\ConservationStatusCriteria;
 
 class AnimalController extends Controller
 {
@@ -51,13 +53,16 @@ class AnimalController extends Controller
      */
     public function store(Request $request)
     {  
+        $bocc5criteria = explode('; ', $request->bocc_5_criteria);
+        $bocc5acriteria = explode('; ', $request->bocc_5a_criteria);
+
         $bird = new Animal();
         $bird->common_name = $request->common_name;
         $bird->scientific_name = $request->scientific_name;
         $bird->genus_id = $request->genus_id;
         $bird->ebird_species_code = $request->ebird_species_code;
         $thumbnail = $request->File('thumbnail');
-
+      
         $extension = strtolower($thumbnail->getClientOriginalExtension());
         $bird->generateSlug();
         
@@ -76,13 +81,52 @@ class AnimalController extends Controller
         Storage::disk('public')->delete(['thumbnails\\' . $thumbnailName]);
         $bird->save();
 
+        
+        // for capturing the criteria
+        $bocc5StatusId = null;
+        $bocc5aStatusId = null;
+        
         // Adding each of the 6 report statuses to the link table
+
         foreach ($request->statuses as $conservationListId => $status) {
-            ConservationStatus::create([
+            $conservationStatus = ConservationStatus::create([
                 'animal_id' => $bird->id,
                 'conservation_list_id' => $conservationListId,
                 'status' => $status,
             ]);
+
+            if ($conservationListId == 5) {
+                $bocc5StatusId = $conservationStatus->id;
+            } elseif ($conservationListId == 6) {
+                $bocc5aStatusId = $conservationStatus->id;
+            }
+        }
+
+
+        if ($bocc5StatusId) {
+            foreach ($bocc5criteria as $criterionCode) {
+
+                $criterion = BoccCriteriaDefinition::where('code', trim($criterionCode))->first();
+                
+                if ($criterion) {
+                    ConservationStatusCriteria::create([
+                        'conservation_status_id' => $bocc5StatusId,
+                        'bocc_criteria_id' => $criterion->id,
+                    ]);
+                }
+            }
+        }
+
+        if ($bocc5aStatusId) {
+            foreach ($bocc5acriteria as $criterionCode) {
+                $criterion = BoccCriteriaDefinition::where('code', trim($criterionCode))->first();
+                if ($criterion) {
+                    ConservationStatusCriteria::create([
+                        'conservation_status_id' => $bocc5aStatusId,
+                        'bocc_criteria_id' => $criterion->id,
+                    ]);
+                }
+            }
         }
 
         return redirect()->route('admin.animals.show', $bird)->with('success', 'Bird created successfully!');
@@ -95,7 +139,7 @@ class AnimalController extends Controller
     public function show(Animal $animal)
     {
         $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);
-        $animal->load('conservationStatuses');
+        $animal->load('conservationStatuses.criteria.boccCriteria');
         
         // Fetch all media related to the animal
          $mediaItems = Media::where('animal_id', $animal->id)->get();
@@ -120,7 +164,7 @@ class AnimalController extends Controller
         $conservationLists = ConservationList::orderBy('short_name', 'asc')->get();
     
         $animal->load('conservationStatuses');
-    
+        
         return view('admin.animals.edit')->with([
             'animal'             => $animal,
             'genera'             => $genera,

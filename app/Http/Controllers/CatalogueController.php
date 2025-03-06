@@ -11,7 +11,7 @@ class CatalogueController extends Controller
 {
     public function index()
     {
-        $animals = Animal::orderBy('common_name', 'asc')->paginate(20);
+        $animals = Animal::orderBy('common_name', 'asc')->paginate(30);
 
         $animals->getCollection()->transform(function ($animal) {
             $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);

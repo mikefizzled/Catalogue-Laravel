@@ -7,7 +7,8 @@
                 <div class="self-center p-5">
                     <div class="dark:text-gray-100">
                         <x-h2>{{ $animal->common_name }} </x-h2><h3 class="italic">{{ $animal->scientific_name }}</h3>
-                     
+                        <br>
+                        <a href='https://ebird.org/species/{{ $animal->ebird_species_code}}' class="underline">eBird</a>
                     </div>
                 </div>
               <div class="flex-grow  self-center p-5">
@@ -44,50 +45,51 @@
             </div>
           </div>
           <div class="bg-white dark:bg-gray-800 px-6 py-3 shadow-sm sm:rounded-lg content-center">
-
-                @if($animal->conservationStatuses->isNotEmpty())
-                    <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-7 py-3 ">
-                        <div class="py-2 text-center">
-                            <x-h2>Conservation Status</x-h2>
-                        </div>
-                        @foreach($animal->conservationStatuses as $cs)
-                            @php
-                                $bgClass = '';
-                                switch ($cs->status) {
-                                    case 'green':
-                                        $bgClass = 'bg-green-100 dark:bg-green-900 text-gray-800 dark:text-gray-200';
-                                        break;
-                                    case 'amber':
-                                        $bgClass = 'bg-yellow-100 dark:bg-yellow-900 text-gray-800 dark:text-gray-200';
-                                        break;
-                                    case 'red':
-                                        $bgClass = 'bg-red-100 dark:bg-red-900 text-gray-800 dark:text-gray-200';
-                                        break;
-                                    case 'former breeder':
-                                        $bgClass = 'bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200';
-                                        break;
-                                    case 'not assessed':
-                                        $bgClass = 'bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200';
-                                        break;
-                                }
-                            @endphp
-                            <div class="p-2 border rounded-lg shadow-sm {{ $bgClass }}">
-                                <h4 class="text-md font-semibold">
-                                    {{ $cs->conservationList->short_name }} ({{ $cs->conservationList->year }})
-                                </h4>
-                                <p class="text-sm ">
-                                    Status: <span class="font-bold">{{ ucfirst($cs->status) }}</span>
-                                </p>
-                            </div>
-                        @endforeach
+            @if($animal->conservationStatuses->isNotEmpty())
+                <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-7 py-3 ">
+                    <div class="py-2 text-center">
+                        <x-h2>Conservation Status</x-h2>
                     </div>
-                @else
-                    <p class="text-gray-600 dark:text-gray-400">No conservation status available.</p>
-                @endif
-
+                    @foreach($animal->conservationStatuses as $cs)
+                        @php
+                            $bgClass = '';
+                            switch ($cs->status) {
+                                case 'green': $bgClass = 'bg-green-100 dark:bg-green-900'; break;
+                                case 'amber': $bgClass = 'bg-yellow-100 dark:bg-yellow-900'; break;
+                                case 'red': $bgClass = 'bg-red-100 dark:bg-red-900'; break;
+                                case 'former breeder': $bgClass = 'bg-gray-100 dark:bg-gray-900'; break;
+                                case 'not assessed': $bgClass = 'bg-gray-200 dark:bg-gray-800'; break;
+                            }
+                        @endphp
+                        <div class="p-2 border rounded-lg shadow-sm text-gray-800 dark:text-gray-200 {{ $bgClass }}">
+                            <h4 class="text-md font-semibold">
+                                {{ $cs->conservationList->short_name }} ({{ $cs->conservationList->year }})
+                            </h4>
+                            <p class="text-sm ">
+                                Status: <span class="font-bold">{{ ucfirst($cs->status) }}</span>
+                            </p>
+                            @if($cs->criteria->isNotEmpty())
+                                <details class="text-gray-800 dark:text-gray-200 mt-2">
+                                    <summary></summary>
+                                    <ul>
+                                        @foreach ($cs->criteria as $criterion)
+                                            <li class="text-sm p-1">{{ $criterion->boccCriteria->description }}.</li>
+                                        @endforeach
+                                    </ul>
+                                </details>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p class="text-gray-600 dark:text-gray-400">No conservation status available.</p>
+            @endif
         </div>
         
+        
 <!-- Flowbite Carousel -->
+@if(count($mediaItems))
+<div x-data="{ showMetadata: false, activeMetadata: null }" class="relative">
 <div id="gallery" class="relative w-full" data-carousel="static">
     <!-- Carousel wrapper -->
     <div class="relative h-[calc(100vw*9/16)] max-h-[600px] overflow-hidden rounded-lg border">
@@ -102,13 +104,19 @@
                         {{ $media->date_taken ? \Carbon\Carbon::parse($media->date_taken)->format('F j, Y g:i A') : 'Date Unknown' }}
                     </p>
                 </div>
-                <button type="button" class="absolute top-50 start-50 z-50 flex items-center justify-center px-4 cursor-pointer group focus:outline-none">EXIF</button>
+                <button @click="showMetadata = true; activeMetadata = {{ json_encode($media->metadata) }}" 
+                    class="absolute bottom-0 end-0 z-50 flex items-center justify-center px-2 cursor-pointer group focus:outline-none bg-black bg-opacity-50 text-white">
+                    EXIF
+                </button>
             </div>
             
         @endforeach
     </div>
+
     <!-- Slider controls -->
-    <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+    <button type="button" 
+        class="absolute top-1/2 left-0 z-30 flex items-center justify-center w-12 h-12 px-3 cursor-pointer group focus:outline-none transform -translate-y-1/2"
+        data-carousel-prev>
         <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-300 group-hover:bg-white/50 dark:group-hover:bg-gray-500 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
             <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
@@ -116,7 +124,8 @@
             <span class="sr-only">Previous</span>
         </span>
     </button>
-    <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+
+    <button type="button" class="absolute top-1/2 right-0 z-30 flex items-center justify-center w-12 h-12 px-3 cursor-pointer group focus:outline-none" data-carousel-next>
         <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-300 group-hover:bg-white/50 dark:group-hover:bg-gray-500 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
             <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
@@ -124,9 +133,31 @@
             <span class="sr-only">Next</span>
         </span>
     </button>
+
+</div>
+<div x-show="showMetadata" @click.away="showMetadata = false" class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-4 rounded-lg shadow-lg max-w-full z-50">
+    <h3 class="text-lg font-semibold">Metadata</h3>
+    <table class="w-full border-collapse text-left">
+        <tbody>
+            <template x-for="[key, value] in Object.entries(activeMetadata)">
+                <tr class="border-b border-gray-300 dark:border-gray-700">
+                    <th class="p-2 text-gray-700 dark:text-gray-200 font-medium">
+                        <span x-text="key"></span>:
+                    </th>
+                    <td class="p-2 text-gray-600 dark:text-gray-300">
+                        <span x-text="value"></span>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
 </div>
 
-        
-          </div>
+        @else
+            <div class="bg-white dark:bg-gray-800 px-6 py-3 overflow-hidden sm:rounded-lg">
+                <p class="text-center text-gray-500 dark:text-gray-400 col-span-full">No media found.</p>
+            </div>
+        @endif
         </div>
+    </div>
 </x-public-app-layout>
