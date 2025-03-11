@@ -58,7 +58,38 @@
                             <x-update-error class="mt-2">{{ $message }}</x-update-error>
                         @enderror
                     </div>
+                    {{-- eBird Species Code --}}
+                    <div class="py-2">
+                    <x-form-label for="slug">Slug</x-form-label>
 
+                        <x-text-input 
+                            id="slug" 
+                            name="slug" 
+                            class="w-full mt-2" 
+                            placeholder="eBird Code" 
+                            value="{{ old('slug', $animal->slug) }}" 
+                            readonly
+                        />
+                    @error('slug')
+                        <x-update-error class="mt-2">{{ $message }}</x-update-error>
+                    @enderror
+                </div>
+                    {{-- eBird Species Code --}}
+                    <div class="py-2">
+                        <x-form-label for="ebird_species_code">eBird Species Code</x-form-label>
+
+                            <x-text-input 
+                                id="ebird_species_code" 
+                                name="ebird_species_code" 
+                                class="w-full mt-2" 
+                                placeholder="eBird Code" 
+                                value="{{ old('ebird_species_code', $animal->ebird_species_code) }}" 
+                                readonly
+                            />
+                        @error('ebird_species_code')
+                            <x-update-error class="mt-2">{{ $message }}</x-update-error>
+                        @enderror
+                    </div>
                     <!-- Bird Thumbnail -->
                     <div class="py-2">
                         <x-form-label for="thumbnail">Bird Thumbnail</x-form-label>

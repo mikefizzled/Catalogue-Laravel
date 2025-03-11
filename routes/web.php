@@ -40,7 +40,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 });
 Route::get('/search-ebird', [EBirdTaxonomyController::class, 'search'])->middleware(['auth']);
 Route::get('/conservation-status', [EBirdTaxonomyController::class, 'fetchBoccData'])->middleware(['auth']);
-Route::get('/taxonomy-json', [EBirdTaxonomyController::class, 'taxonomyJson']);
+
+
+Route::get('/taxonomy-json-with-genera', [EBirdTaxonomyController::class, 'taxonomyJsonWithGenera']);
+Route::get('/taxonomy-json-without-genera', [EBirdTaxonomyController::class, 'taxonomyJsonWithoutGenera']);
+
 Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue.index');
 Route::get('/catalogue/{animal}', [CatalogueController::class, 'show'])->name('catalogue.show');
 
+Route::get('/taxonomy', function () {
+    return view('taxonomy');
+});
+Route::get('/conservation',[EBirdTaxonomyController::class, 'conservation']);

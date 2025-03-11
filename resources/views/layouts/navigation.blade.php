@@ -67,6 +67,9 @@
                     <x-nav-link :href="route('admin.locations.index')" :active="request()->routeIs('admin.locations.index')">
                         {{ __('Locations') }}
                     </x-nav-link>
+                    <x-nav-link :href="url('/')" :active="request()->routeIs('/')">
+                        {{ __('Frontend') }}
+                    </x-nav-link>
                 </div>
             </div>
             

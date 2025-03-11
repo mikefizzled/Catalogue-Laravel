@@ -7,7 +7,7 @@
     </x-slot>
     <x-crud-layout>
         <x-slot name="inside">
-            <form action="{{ route('families.store') }}" method="post">
+            <form action="{{ route('admin.families.store') }}" method="post">
                 @csrf
                 <div class="py-2">
                     <x-h3>Family Name</x-h3>
@@ -26,15 +26,23 @@
                     @enderror
                 </div>
                 <div class="py-2 gap-y-2">
-                    <x-h3>Parent Order</x-h3>    
-                    <x-select-dropdown name="order_id" class="w-full mt-2" :options="$orders" optionLabel="order_name" valueField="order_id"/>  
+                    <x-h3>Parent Order</x-h3>
+                    <x-select-dropdown 
+                        id="order_id" 
+                        name="order_id" 
+                        class="w-full mt-2" 
+                        :options="$orders" 
+                        optionLabel="order_name" 
+                        optionId="id"
+                        :selected="old('id')"
+                />
                     @error('order_id')
                     <x-update-error class="mt-2"> {{ $message }}</x-update-error>
                 @enderror
                 </div>
                 <div class="py-2 my-2 flex gap-4">
                     <x-primary-button class="mt-1">Save Order</x-primary-button>
-                    <x-link-button href="{{ route('families.index') }}">Go Back</x-link-button>
+                    <x-link-button href="{{ route('admin.families.index') }}">Go Back</x-link-button>
                 </div>
             </form>
         </x-slot>

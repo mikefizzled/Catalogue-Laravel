@@ -2,22 +2,58 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Str;
+use DateTime;
+use Illuminate\Support\Carbon;
+
 
 class FileHelper
 {
     /**
-     * Generate a formatted file name.
+     * Generate the media filename
      *
-     * @param string $slug The unique slug related to the file.
-     * @param string $suffix Optional suffix for differentiation.
-     * @param string $extension The file extension (e.g., jpg, png).
+     * @param string $slug - The unique animal slug
+     * @param string $mediaType - The type of media (image/video/audio)
+     * @param int $newTotal - The new number for the media item
+     * @param string $extension - The file extension (e.g., jpg, mp4)
+     * @param bool $thumb - Optional - Used for naming thumbnails of associated images and videos
      * @return string The generated file name.
      */
-    public static function generateFileName(string $slug, string $suffix = '', string $extension): string
+
+    public static function generateMediaFileName(string $slug, string $mediaType, int $newTotal, string $extension, bool $thumb = false): string
     {
+        // If its the thumbnail of media item, include thumb in the suffix
+        $suffix = $thumb ? "-{$mediaType}-thumb-{$newTotal}" : "-{$mediaType}-{$newTotal}";
+    
         return "{$slug}{$suffix}.{$extension}";
     }
+    
+    /**
+     * Generate the filename for the main bird thumbnail
+     *
+     * @param string $slug - The unique animal slug
+     * @param string $extension - The file extension e.g jpg or webp
+     * @return string The generated file name
+     */
+    public static function generateBirdThumbnailName(string $slug, string $extension): string
+    {
+        return "{$slug}-thumbnail.{$extension}";
+    }
+
+    public static function collectMetadata($fileInfo, $fileType)
+    {
+        switch ($fileType) {
+            case 'jpg':
+            case 'jpeg':
+                return self::collectImageMetadata($fileInfo);
+            case 'mp4':
+                return self::collectVideoMetadata($fileInfo);
+            case 'wav':
+                return self::collectAudioMetadata($fileInfo);
+            default:
+                return [];
+        }
+    }
+    
 
 
     /**
@@ -27,23 +63,67 @@ class FileHelper
      * @return array  
      */
 
-     public static function collectMetadata($exif)
+     public static function collectImageMetadata($fileInfo)
      {
-        $metadata = [
-            'Camera' => ucfirst($exif['Make']). ' '. $exif['Model'] ?? null,
-            'Lens' => $exif['UndefinedTag:0xA434'] ?? null,
-            'Focal Length' => self::formatFocalLength($exif['FocalLength']),
-            'F-stop' => $exif['COMPUTED']['ApertureFNumber'] ?? null,
-            'Exposure Time' => $exif['ExposureTime']. ' sec.' ?? null,
-            'ISO' => 'ISO-'.$exif['ISOSpeedRatings'] ?? null,
-            'Exposure Bias' => self::formatExposureBias($exif['ExposureBiasValue']),
-            'Dimensions' => $exif['COMPUTED']['Width']. 'x'. $exif['COMPUTED']['Height'] ?? null,
-            'Software' => $exif['Software'] ?? null,
-            'Filesize' => null
+        return [
+            'Camera' => ucfirst($fileInfo['jpg']['exif']['IFD0']['Make']). ' '. $fileInfo['jpg']['exif']['IFD0']['Make'] ?? null,
+            'Lens' => $fileInfo['jpg']['exif']['EXIF']['UndefinedTag:0xA434'] ?? null,
+            'Focal Length' => self::formatFocalLength($fileInfo['jpg']['exif']['EXIF']['FocalLength']),
+            'F-stop' => $fileInfo['jpg']['exif']['COMPUTED']['ApertureFNumber'] ?? null,
+            'Exposure Time' => self::formatExposureTime($fileInfo['jpg']['exif']['EXIF']['ExposureTime']) ?? null,
+            'ISO' => 'ISO-'.$fileInfo['jpg']['exif']['EXIF']['ISOSpeedRatings'] ?? null,
+            'Exposure Bias' => self::formatExposureBias($fileInfo['jpg']['exif']['EXIF']['ExposureBiasValue']),
+            'Dimensions' => $fileInfo['jpg']['exif']['COMPUTED']['Width']. 'x'. $fileInfo['jpg']['exif']['COMPUTED']['Height'] ?? null,
+            'Software' => $fileInfo['jpg']['exif']['IFD0']['Software'] ?? null,
+            'Created Date' => $fileInfo['jpg']['exif']['EXIF']['DateTimeOriginal'] ?? null,
         ];
- 
-         return $metadata;
      }
+        public static function collectVideoMetadata($fileInfo)
+        {
+            $createdDate = FileHelper::formatUnixDate($fileInfo['quicktime']['timestamps_unix']['create']['moov mvhd'] ?? null);
+            $modifiedDate = FileHelper::formatUnixDate($fileInfo['quicktime']['timestamps_unix']['modify']['moov mvhd'] ?? null);
+
+            return [
+                'File Format' => $fileInfo['fileformat'] ?? null,
+                'File Size' => FileHelper::formatFileSize($fileInfo['filesize']),
+                'Duration' => FileHelper::formatDuration($fileInfo['playtime_seconds']),
+                'Bitrate' => FileHelper::formatBitrate($fileInfo['bitrate']),
+                'Sample Rate' => $fileInfo['audio']['sample_rate'] ?? null,
+                'Channels' => $fileInfo['audio']['channels'] ?? null,
+                'Codec' => $fileInfo['audio']['codec'] ?? null,
+                'Bitrate Mode' => $fileInfo['audio']['bitrate_mode'] ?? null,
+                'Bits per Sample' => $fileInfo['audio']['bits_per_sample'] ?? null,
+                'Lossless' => $fileInfo['audio']['lossless'] ? 'Yes' : 'No',
+                'Mime Type' => $fileInfo['mime_type'] ?? null,
+                'Channel Mode' => $fileInfo['audio']['channelmode'] ?? null,
+                'Compression Ratio' => $fileInfo['audio']['compression_ratio'] ?? null,
+                'Created Date' => $createdDate,
+            ];
+        }
+
+
+     public static function collectAudioMetadata($fileInfo)
+     {
+         return [
+             'Duration' => self::formatDuration($fileInfo['playtime_seconds']),
+             'Bitrate' => self::formatBitrate($fileInfo['bitrate']),
+             'Sample Rate' => $fileInfo['audio']['sample_rate'] ?? null,
+             'Channels' => $fileInfo['audio']['channels'] ?? null,
+             'Bits per Sample' => $fileInfo['audio']['bits_per_sample'] ?? null,
+             'Channel Mode' => $fileInfo['audio']['channelmode'] ?? null,
+         ];
+     }
+
+     public static function formatDuration($seconds)
+    {
+        $hours = floor($seconds / 3600);
+        $minutes = floor(($seconds % 3600) / 60);
+        $seconds = $seconds % 60;
+
+        return ($hours > 0 ? $hours . 'h ' : '') .
+            ($minutes > 0 ? $minutes . 'm ' : '') .
+            round($seconds, 2) . 's';
+    }
 
     /**
      * Format the focal length 
@@ -88,6 +168,11 @@ class FileHelper
         }
         return null;
     }
+ 
+    public static function formatUnixDate($unixTimestamp)
+    {
+        return date('Y-m-d H:i:s', $unixTimestamp);
+    }
 
     /**
      * Format the DateTimeOriginal for MySQL DateTime format
@@ -124,5 +209,44 @@ class FileHelper
         }
     }
 
+    public static function formatBitrate($bitrate)
+    {
+        return round($bitrate / 1000) . ' kbps';
+    }
+    
+    public static function formatExposureTime($exposureTime)
+    {
+        if ($exposureTime < 1) {
+            $fraction = 1 / $exposureTime;
+            return '1/' . round($fraction) . ' sec.';
+        } else {
+            return round($exposureTime, 2) . ' sec.';
+        }
+    }
+
+    /**
+     * Generate SHA-256 hash of the file.
+     */
+    public static function generateFileHash($filePath)
+    {
+        return hash_file('sha256', $filePath);
+    }
+
+
+    /**
+     * Extract the Date from Merlin exported WAV files e.g., '2014-3-4 14_23.wav'
+     * Return either fixed date in MySQL format, or current time
+     */
+    public static function extractDateFromName($filename)
+    {
+        $dateTime = Carbon::createFromFormat('Y-m-d H_i', $filename);
+
+        // If extraction fails for some reason, just return current time
+        if ($dateTime === false) 
+            return Carbon::now()->format('Y-m-d H:i:s');
+        
+        
+        $fixed = $dateTime->format('Y-m-d H:i:s');
+        return $fixed;
+    }
 }
-?>

@@ -26,9 +26,11 @@ class Media extends Model
         'hash'
     ];
 
-    public static function nextMediaNumber($animalId) :int
+    public static function nextMediaNumber($animalId, $mediaType) :int
     {
-        $total = Media::where('animal_id', $animalId)->count();
+        $total = Media::where('animal_id', $animalId)
+                        ->where('media_type', $mediaType)
+                        ->count();
         $total++;
         return $total;
     }
@@ -45,6 +47,12 @@ class Media extends Model
         ['id' => 'Adult', 'label' => 'Adult'],
         ['id' => 'Unknown', 'label' => 'Unknown'],
     ];
+    
+    public static function defaultAudioThumbnail()
+    {
+        return asset('images/default-music-thumbnail.svg');
+    }
+
 
     public function animal()
     {

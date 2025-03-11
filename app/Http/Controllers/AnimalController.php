@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Log;
 use App\Models\Genus;
 use App\Models\Media;
 use App\Models\Animal;
 use App\Helpers\FileHelper;
 use Illuminate\Http\Request;
+use App\Services\MediaService;
 use App\Models\ConservationList;
 use App\Models\ConservationStatus;
+use Illuminate\Support\Facades\DB;
+use App\Services\ConservationService;
 use Intervention\Image\Facades\Image;
 use App\Models\BoccCriteriaDefinition;
 use Illuminate\Support\Facades\Storage;
@@ -53,41 +57,21 @@ class AnimalController extends Controller
      */
     public function store(Request $request)
     {  
-        $bocc5criteria = explode('; ', $request->bocc_5_criteria);
-        $bocc5acriteria = explode('; ', $request->bocc_5a_criteria);
-
         $bird = new Animal();
-        $bird->common_name = $request->common_name;
-        $bird->scientific_name = $request->scientific_name;
-        $bird->genus_id = $request->genus_id;
-        $bird->ebird_species_code = $request->ebird_species_code;
-        $thumbnail = $request->File('thumbnail');
-      
-        $extension = strtolower($thumbnail->getClientOriginalExtension());
+
+        $bird->fill($request->only(['common_name', 'scientific_name', 'genus_id', 'ebird_species_code']));
         $bird->generateSlug();
-        
-        $thumbnailName = FileHelper::generateFileName($bird->slug, '-thumbnail', $extension);
-        
-        $tempPath = $thumbnail->storeAs('temp', $thumbnailName, 'public');
 
-        $path = Storage::disk('public')->path($tempPath);
-        
-        FileHelper::compressAndRemoveMeta($path, $extension);
+        $thumbnail = $request->File('thumbnail');
 
-        $bird->thumbnail_url = $thumbnailName;
-        //$thumbnail->storeAs('thumbnails', $bird->thumbnail_url, 's3');
-
-        Storage::disk('s3')->put('thumbnails\\' . $thumbnailName, file_get_contents($path));
-        Storage::disk('public')->delete(['thumbnails\\' . $thumbnailName]);
+        $bird->thumbnail_url = MediaService::storeThumbnail($thumbnail, $bird->slug);
         $bird->save();
 
-        
         // for capturing the criteria
         $bocc5StatusId = null;
         $bocc5aStatusId = null;
         
         // Adding each of the 6 report statuses to the link table
-
         foreach ($request->statuses as $conservationListId => $status) {
             $conservationStatus = ConservationStatus::create([
                 'animal_id' => $bird->id,
@@ -95,6 +79,7 @@ class AnimalController extends Controller
                 'status' => $status,
             ]);
 
+            // Save status ID to match with criteria
             if ($conservationListId == 5) {
                 $bocc5StatusId = $conservationStatus->id;
             } elseif ($conservationListId == 6) {
@@ -102,35 +87,11 @@ class AnimalController extends Controller
             }
         }
 
-
-        if ($bocc5StatusId) {
-            foreach ($bocc5criteria as $criterionCode) {
-
-                $criterion = BoccCriteriaDefinition::where('code', trim($criterionCode))->first();
-                
-                if ($criterion) {
-                    ConservationStatusCriteria::create([
-                        'conservation_status_id' => $bocc5StatusId,
-                        'bocc_criteria_id' => $criterion->id,
-                    ]);
-                }
-            }
-        }
-
-        if ($bocc5aStatusId) {
-            foreach ($bocc5acriteria as $criterionCode) {
-                $criterion = BoccCriteriaDefinition::where('code', trim($criterionCode))->first();
-                if ($criterion) {
-                    ConservationStatusCriteria::create([
-                        'conservation_status_id' => $bocc5aStatusId,
-                        'bocc_criteria_id' => $criterion->id,
-                    ]);
-                }
-            }
-        }
+        // Use the service to attach BoCC criteria
+        ConservationService::attachBoccCriteria($bocc5StatusId, $request->bocc_5_criteria);
+        ConservationService::attachBoccCriteria($bocc5aStatusId, $request->bocc_5a_criteria);
 
         return redirect()->route('admin.animals.show', $bird)->with('success', 'Bird created successfully!');
-        
     }
 
     /**
@@ -139,6 +100,7 @@ class AnimalController extends Controller
     public function show(Animal $animal)
     {
         $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);
+        
         $animal->load('conservationStatuses.criteria.boccCriteria');
         
         // Fetch all media related to the animal
@@ -146,7 +108,11 @@ class AnimalController extends Controller
 
         // Transform media URLs to include full S3 paths
         $mediaItems->transform(function ($media) {
-            $media->thumbnail_url = Storage::disk('s3')->url('media/' . $media->thumbnail_url);
+            if ($media->media_type === 'audio') {
+                $media->thumbnail_url = Media::defaultAudioThumbnail(); 
+            } else {
+                $media->thumbnail_url = Storage::disk('s3')->url('media/' . $media->thumbnail_url);
+            }
             return $media;
         });
 
@@ -176,38 +142,43 @@ class AnimalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(AnimalUpdateRequest $request, Animal $animal)
+    public function update(Request $request, Animal $bird)
     {
         // Get all validated data.
-        $data = $request->validated();
-        unset($data['statuses']);
+        //$data = $request->validated();
 
+        $validatedData = $request->validate([
+            'common_name' => 'required|string|max:255',
+            'scientific_name' => 'required|string|max:255',
+            'genus_id' => 'required|exists:genera,id',
+            'ebird_species_code' => 'nullable|string|max:50',
+            'thumbnail' => 'nullable|file|mimes:jpg,jpeg,webp|max:5120',
+            'statuses' => 'nullable|array',
+            'slug' => 'required'
+        ]);
+
+
+        // Extract fields for the Animal model
+         $animalData = array_intersect_key($validatedData, array_flip([
+            'common_name', 'scientific_name', 'genus_id', 'ebird_species_code'
+        ]));
+         
         // Only if new thumbnail is provided
         if ($request->hasFile('thumbnail')) {
-            // Remove old thumbnail from s3
-            Storage::disk('s3')->delete('thumbnails/'.$animal->thumbnail_url);
-            
-            // Process new to conform to naming convention
-            $thumbnail = $request->file('thumbnail');
-            $animal->generateSlug();
-            $extension = $thumbnail->getClientOriginalExtension();
             // Add the new filename to Animal data
-            $data['thumbnail_url'] = FileHelper::generateFileName($extension, $animal->slug, '-thumbnail');
-
-            // Upload into thumbnails in s3 storage
-            $thumbnail->storeAs('thumbnails', $data['thumbnail_url'], 's3');
+            $data['thumbnail_url'] = MediaService::storeThumbnail($request->file('thumbnail'), $validatedData['slug'], $bird->thumbnail_url);
         }
 
         // Update pre-existing bird via eloquent
-        $animal->update($data);
+        $bird->update($animalData);
 
         foreach ($request->statuses as $conservationListId => $status) {
-            ConservationStatus::where('animal_id', $animal->id)
+            ConservationStatus::where('animal_id', $bird->id)
                 ->where('conservation_list_id', $conservationListId)
                 ->update(['status' => $status]);
         }
     
-        return redirect()->route('admin.animals.show', $animal)
+        return redirect()->route('admin.animals.index')
                          ->with('success', 'Bird updated successfully!');
     }
     
@@ -216,7 +187,24 @@ class AnimalController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Animal $animal)
-    {
-        //
+    {    
+        DB::transaction(function () use ($animal) {
+            if ($animal->thumbnail_url) {
+                MediaService::deleteFromS3('thumbnails', $animal->thumbnail_url);
+            }
+    
+            foreach ($animal->conservationStatuses as $status) {
+                ConservationService::deleteConservationStatus($status);
+            }
+    
+            // Need to create a function for deleting all associated media
+            /*foreach ($bird->media as $media) {
+                MediaService::deleteMedia($media);
+            }*/
+    
+            $animal->delete();
+        });
+    
+        return redirect()->route('admin.animals.index')->with('success', 'Animal deleted successfully!');
     }
 }

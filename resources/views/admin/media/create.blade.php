@@ -11,9 +11,7 @@
             {{-- Animal Select --}}
             <div class="py-2">
               <x-form-label for="animal_id">Animal</x-form-label>
-              <div id="app">
-                <search-component></search-component>
-              </div> 
+                <x-select-dropdown id="animal_id" name="animal_id" class="w-full mt-2" :options="$animals" optionLabel="common_name" optionId="id" :selected="old('animal_id')" /> 
               @error('animal_id') 
               <x-update-error class="mt-2">{{ $message }}</x-update-error> @enderror
             </div>

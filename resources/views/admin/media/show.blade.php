@@ -19,10 +19,19 @@
             <div class="bg-white dark:bg-gray-800 px-6 py-3 shadow-sm sm:rounded-lg text-center">
                 <div class="flex justify-center">
                     <div class="w-full">
+                        @if($media->media_type === 'image')
                         <img src="{{ $media->media_url }}" 
                              alt="Media Image" 
                              class="w-full h-auto object-cover rounded-md border border-gray-300 dark:border-gray-700">
-                    </div>
+                        @elseif ($media->media_type === 'audio')
+                        <div class="flex flex-col items-center my-5">
+                            <audio controls class="">
+                                <source src="{{ $media->media_url}}">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        @endif
+                        </div>
                 </div>
                 <!-- Next Button -->
                 <div class="flex justify-between py-2">

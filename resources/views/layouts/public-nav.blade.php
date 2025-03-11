@@ -7,7 +7,8 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ url('/') }}">
                         <!-- img src="{{ asset('images/logo.png') }}" alt="Site Logo" class="h-9 w-auto"-->
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-100" />
+                        <img src="{{ asset('logo.svg') }}" alt="Site Logo" class="h-9 w-9">
+                        
                     </a>
                 </div>
 
@@ -25,6 +26,9 @@
                     <a href="{{ url('/conservation') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
                         Conservation
                     </a>
+                    <a href="{{ url('/taxonomy') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
+                        Taxonomy
+                    </a>
                     <a href="{{ url('/about') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
                         About
                     </a>
@@ -35,7 +39,7 @@
             @if (Route::has('login'))
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-1 py-2 rounded-md text-sm font-medium">
+                        <a href="{{ url('admin/dashboard') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-1 py-2 rounded-md text-sm font-medium">
                             Dashboard
                         </a>
                     @else

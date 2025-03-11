@@ -7,7 +7,7 @@
     </x-slot>
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-2">
-          <!-- Header Info and Action Buttons -->
+
           <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center ">
             <div class="flex gap-2 opacity-70 dark:text-gray-400">
               <p>
@@ -19,7 +19,14 @@
             </div>
             <div class="flex gap-2">
               <x-link-button href="{{ route('admin.animals.edit', $animal) }}" class="ml-auto"> Edit Bird </x-link-button>
-              <x-link-button class="bg-red-400 hover:bg-red-600 focus:bg-red-600" onclick="return confirm('Move note to trash?')"> Delete Bird </x-link-button>
+              <form action="{{ route('admin.animals.destroy', $animal) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this bird?');">
+                @csrf
+                @method('DELETE')
+                <x-button type="submit">
+                    Delete Bird
+                </x-button>
+            </form>
+                    
             </div>
           </div>
           <div class="bg-white dark:bg-gray-800 px-6 py-3 overflow-hidden shadow-sm sm:rounded-lg">

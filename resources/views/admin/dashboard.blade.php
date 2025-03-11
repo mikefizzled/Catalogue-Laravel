@@ -4,12 +4,12 @@
         @section('title', 'Dashboard')
     </x-slot>
 
-    <div class="py-6">
+    <div class="py-3">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <!-- Stats Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <x-stat-card title="Total Birds" count="{{ $animalCount }}" />
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <x-stat-card title="Total Species" count="{{ $animalCount }}" />
                 <x-stat-card title="Total Media" count="{{ $mediaCount }}" />
                 <x-stat-card title="Locations" count="{{ $locationCount }}" />
                 <x-stat-card title="Orders" count="{{ $orderCount }}" />
@@ -17,7 +17,7 @@
                 <x-stat-card title="Genera" count="{{ $genusCount }}" />
             </div>
             <!-- Recent Animals -->
-            <div class="mt-6 bg-white dark:bg-gray-800 p-6 shadow-sm rounded-lg">
+            <div class="mt-3 bg-white dark:bg-gray-800 p-6 shadow-sm rounded-lg">
                 <h3 class="text-lg font-bold dark:text-gray-100 text-center">Recently Added Birds</h3>
                 <div class="flex gap-2 pt-2 justify-between">
                     @foreach ($recentAnimals as $animal)
@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <div class="mt-6 bg-white dark:bg-gray-800 p-6 shadow-sm rounded-lg">
+            <div class="mt-3 bg-white dark:bg-gray-800 p-6 shadow-sm rounded-lg">
                 <h3 class="text-lg font-bold dark:text-gray-100 text-center">Recent Media Uploads</h3>
                 <div class="flex gap-4 pt-2">
                     @foreach ($recentMedia as $media)

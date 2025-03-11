@@ -11,7 +11,7 @@ class Animal extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $fillable = ['genus_id', 'common_name', 'scientific_name', 'thumbnail_url', 'metadata', 'ebird_species_code'];
+    protected $fillable = ['genus_id', 'common_name', 'scientific_name', 'thumbnail_url', 'ebird_species_code'];
 
     public function genus()
     {

@@ -22,7 +22,7 @@ class AdminDashboardController extends Controller
             'genusCount' => Genus::count(),
             'locationCount' => Location::count(),
             
-            'recentMedia' => Media::orderBy('created_at', 'desc')->take(3)->get()->transform(function ($media) {
+            'recentMedia' => Media::Where('media_type', 'image')->orderBy('created_at', 'desc')->take(3)->get()->transform(function ($media) {
                 $media->thumbnail_url = Storage::disk('s3')->url('media/' . $media->thumbnail_url);
                 return $media;
             }),

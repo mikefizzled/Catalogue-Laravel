@@ -13,8 +13,6 @@ function initMap() {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    // console.log("Leaflet Map Initialized");
-
     // store global marker for pointing
     let marker = null;
 
@@ -42,12 +40,6 @@ function initMap() {
 
         console.log("Clicked at:", lat, lng);
 
-        /* Show coordinates in a popup
-        L.popup()
-            .setLatLng(e.latlng)
-            .setContent("Latitude: " + lat + "<br>Longitude: " + lng)
-            .openOn(map);
-        */
         // Auto-fill input fields
         var xInput = document.getElementById("latitude");
         var yInput = document.getElementById("longitude");
