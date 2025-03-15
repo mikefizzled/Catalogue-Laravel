@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function createChart(data) {
     const width = 1200;
     const root = d3.hierarchy(data);
-    const dx = 14;
+    const dx = 16;
     const dy = width / (root.height + 1);
     const tree = d3.cluster().nodeSize([dx, dy]);
     root.sort((a, b) => d3.ascending(a.data.name, b.data.name));
@@ -82,7 +82,7 @@ function createChart(data) {
         .attr("dy", "0.31em")
         .attr("x", d => d.children ? -6 : 6)
         .attr("text-anchor", d => d.children ? "end" : "start")
-        .text(d => d.data.name)
+        .html(d => d.data.name)
         .attr("stroke", "white")
         .attr("paint-order", "stroke")
         .style("cursor", "pointer");
