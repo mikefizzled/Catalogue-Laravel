@@ -162,7 +162,6 @@ class EBirdTaxonomyController extends Controller
                 ];
             })->toArray()
         ];
-
         return response()->json($jsonStructure);
     }
 }

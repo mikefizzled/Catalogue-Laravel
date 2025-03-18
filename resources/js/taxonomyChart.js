@@ -110,6 +110,7 @@ function createChart(data) {
             return
         }
     })
+    // Need to develop workaround for images on bottom half
     .on("mousemove", (event) => {
         tooltip.style("left", `${event.pageX + 15}px`)
             .style("top", `${event.pageY + 15}px`);

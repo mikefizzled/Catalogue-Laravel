@@ -1,3 +1,8 @@
+<head>
+    @vite(['resources/js/speciesMap.js'])
+</head>
+<script> window.existingLocations = @json($locations); </script>
+<script type="module" src="{{ asset('resources/js/speciesMap.js') }}"></script>
 <x-public-app-layout>
     @section('title', $animal->common_name)
     <div class="py-2">
@@ -184,5 +189,11 @@
         </div>
         </div>
     @endif
+    <div class="bg-white dark:bg-gray-800 px-6 py-6 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="flex flex-col md:flex-row gap-6">
+            <div class="flex-grow">
+                <div id="map" class="w-full h-[450px] mt-2 rounded-md shadow"></div>
+            </div>
+        </div>
     </div>
 </x-public-app-layout>

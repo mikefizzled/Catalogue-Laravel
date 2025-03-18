@@ -13,7 +13,7 @@ class Location extends Model
     
     protected $fillable = ['name', 'city', 'latitude', 'longitude', 'area_caption', 'image'];
 
-    public function images()
+    public function media()
     {
         return $this->hasMany(Media::class);
     }
@@ -28,5 +28,13 @@ class Location extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('name')    
             ->saveSlugsTo('slug');
+    }
+    
+    public static function getForAnimal($animalId)
+    {
+        return self::whereHas('media', function ($query) use ($animalId) {
+            $query->where('animal_id', $animalId);
+        })->get();
+
     }
 }

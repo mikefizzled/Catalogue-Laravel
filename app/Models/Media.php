@@ -68,4 +68,29 @@ class Media extends Model
     {
         return 'id';
     }
+    
+    /**
+     *  Scope: Filter media by type (image, audio, video)
+     *  https://laravel.com/docs/12.x/eloquent#dynamic-scopes
+     */
+    public function scopeOfType($query, $type)
+    {
+        return $query->where('media_type', $type)->orderBy('rating', 'desc');
+    }
+
+    /**
+     *  Get all images for a given animal
+     */
+    public static function getImagesForAnimal($animalId)
+    {
+        return self::where('animal_id', $animalId)->ofType('image')->get();
+    }
+
+    /**
+     *  Get all audio clips for a given animal
+     */
+    public static function getAudioForAnimal($animalId)
+    {
+        return self::where('animal_id', $animalId)->ofType('audio')->get();
+    }
 }

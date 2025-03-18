@@ -1,5 +1,4 @@
 <x-public-app-layout>
-
 @section('title', 'Bird Catalogue')
 <div class="p-4 px-8 text-center text-white bg-gray-800 flex flex-wrap justify-center border border-gray-700 dark:bg-gray-900">
     <!-- Title -->

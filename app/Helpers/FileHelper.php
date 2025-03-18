@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 use DateTime;
 use Illuminate\Support\Carbon;
-
+use Illuminate\Support\Facades\Storage;
 
 class FileHelper
 {
@@ -248,5 +248,25 @@ class FileHelper
         
         $fixed = $dateTime->format('Y-m-d H:i:s');
         return $fixed;
+    }
+
+    // Used in media page for collecting image and organising metadata
+    public static function processMediaCollection($mediaCollection)
+    {
+        foreach ($mediaCollection as $media) {
+            $media->media_url = Storage::disk('s3')->url('media/' . $media->media_url);
+            $media->metadata = json_decode($media->metadata);
+        }
+        return $mediaCollection;
+    }
+
+    public static function collectAnimalThumbnail($thumbnailName)
+    {
+        if ($thumbnailName) {
+            return Storage::disk('s3')->url("thumbnails/{$thumbnailName}");
+        }
+
+        // Default placeholder for missing thumbnails
+        return asset('images/default-thumbnail.jpg');
     }
 }

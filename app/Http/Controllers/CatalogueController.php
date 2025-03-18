@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Media;
 use App\Models\Animal;
+use App\Helpers\FileHelper;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,29 +29,18 @@ class CatalogueController extends Controller
     public function show($id)
     {
         $animal = Animal::findOrFail($id);
-        $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);
+        $animal->thumbnail_url = FileHelper::collectAnimalThumbnail($animal->thumbnail_url);
         $animal->load('conservationStatuses');
 
-        $images = Media::where('animal_id', $id)
-        ->where('media_type', 'image')
-        ->orderBy('rating', 'desc')
-        ->get();
-        $audioClips = Media::where('animal_id', $id)
-        ->where('media_type', 'audio')
-        ->orderBy('rating', 'desc')
-        ->get();
-        // Ensure media URLs are correct for S3 storage
-        foreach ($images as $media) {
-            $media->media_url = Storage::disk('s3')->url('media/' . $media->media_url);
-            $media->metadata = json_decode($media->metadata);
-        }
-        foreach ($audioClips as $media) {
-            $media->media_url = Storage::disk('s3')->url('media/' . $media->media_url);
-            $media->metadata = json_decode($media->metadata);
-        }
+        // Collect media
+        $images = Media::getImagesForAnimal($id);
+        $audioClips = Media::getAudioForAnimal($id);
 
-
-        return view('catalogue.show', ['animal' => $animal, 'images' => $images, 'audioClips' => $audioClips]);
+        // Organise media s3 links and metadata
+        $images = FileHelper::processMediaCollection($images);
+        $audioClips = FileHelper::processMediaCollection($audioClips);
+        $locations = Location::getForAnimal($id);
+        return view('catalogue.show', compact('animal', 'images', 'audioClips', 'locations'));
     }
 
 }

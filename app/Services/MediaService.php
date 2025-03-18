@@ -184,13 +184,16 @@ class MediaService
      */
     private static function processImage($processedFile)
     {
+
+
         $manager = new ImageManager(new ImagickDriver());
 
         // Make 16:9 thumbnail of the media
         $image = $manager->read(file_get_contents($processedFile['temp_path']))->resize(400, 225);
         
         $imageBinary = $image->encode(new JpegEncoder());
-
+        // Needs to be fixed to get dynamic file extension
+        FileHelper::compressAndRemoveMeta($processedFile['temp_path'], 'jpg');
         // Store original and thumbnail
         Storage::disk('s3')->put("media/{$processedFile['filename']}", file_get_contents($processedFile['temp_path']));
         Storage::disk('s3')->put("media/{$processedFile['thumbnail_name']}", (string) $imageBinary);

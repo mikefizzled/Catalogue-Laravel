@@ -6,9 +6,8 @@
         <x-h2>Add New Location</x-h2>
         @section('title', 'Create Location')
     </x-slot>
-    <script>
-        window.existingLocations = @json($locations);
-    </script>
+    <!-- Unsure why this has to be seperated -->
+    <script> window.existingLocations = @json($locations); </script>
     <script type="module" src="{{ asset('resources/js/map.js') }}"></script>
     
     <div class="py-2">
