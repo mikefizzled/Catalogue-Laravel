@@ -23,15 +23,15 @@ class Family extends Model
         return $this->hasMany(Genus::class);
     }
 
-    public function getRouteKeyName() 
-    { 
-        return 'slug'; 
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('family_name')    
+            ->generateSlugsFrom('family_name')
             ->saveSlugsTo('slug');
     }
 

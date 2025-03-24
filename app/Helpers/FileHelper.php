@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Storage;
 
 class FileHelper
 {
+    // Use for formatting dates rather than manually writing string
+    const MYSQL_DATE_FORMAT = 'Y-m-d H:i:s';
+
     /**
      * Generate the media filename
      *
@@ -60,7 +63,7 @@ class FileHelper
      * Collect JPEG metadata in JSON array
      *
      * @param array $metadata
-     * @return array  
+     * @return array
      */
 
      public static function collectImageMetadata($fileInfo)
@@ -126,10 +129,10 @@ class FileHelper
     }
 
     /**
-     * Format the focal length 
+     * Format the focal length
      *
      * @param string|null $value
-     * @return string|null 
+     * @return string|null
      */
     private static function formatFocalLength(?string $value): ?string
     {
@@ -144,7 +147,7 @@ class FileHelper
      * Format the exposure bias
      *
      * @param string|null $value
-     * @return string|null 
+     * @return string|null
      */
     private static function formatExposureBias(?string $value): ?string
     {
@@ -159,7 +162,7 @@ class FileHelper
      * Format file size from bytes to megabytes
      *
      * @param int|null $bytes
-     * @return string|null 
+     * @return string|null
      */
     public static function formatFilesize(?string $bytes): ?string
     {
@@ -171,7 +174,7 @@ class FileHelper
  
     public static function formatUnixDate($unixTimestamp)
     {
-        return date('Y-m-d H:i:s', $unixTimestamp);
+        return date(self::MYSQL_DATE_FORMAT, $unixTimestamp);
     }
 
     /**
@@ -182,19 +185,17 @@ class FileHelper
      */
     public static function formatDate(?string $date): ?string
     {
-        if($date === null)
+        if($date === null){
             return null;
-        
-        $formattedDate = str_replace(':', '-', substr($date, 0, 10)) . substr($date, 10);
-
-        return $formattedDate;
+        }
+        return str_replace(':', '-', substr($date, 0, 10)) . substr($date, 10);
     }
 
     /**
      * Temp compressing function that also strips the metadata
      *
-     * @param  
-     * @return 
+     * @param
+     * @return
      */
 
     public static function compressAndRemoveMeta(?string $filePath, ?string $format)
@@ -205,7 +206,8 @@ class FileHelper
             case "jpg":
             case "jpeg":
                 return shell_exec("jpegoptim -m95 --strip-all --all-progressive {$filePath}");
-                
+            default:
+                return null;
         }
     }
 
@@ -242,12 +244,11 @@ class FileHelper
         $dateTime = Carbon::createFromFormat('Y-m-d H_i', $filename);
 
         // If extraction fails for some reason, just return current time
-        if ($dateTime === false) 
-            return Carbon::now()->format('Y-m-d H:i:s');
-        
-        
-        $fixed = $dateTime->format('Y-m-d H:i:s');
-        return $fixed;
+        if (!$dateTime){
+            return Carbon::now()->format(self::MYSQL_DATE_FORMAT);
+        }
+
+        return $dateTime->format(self::MYSQL_DATE_FORMAT);
     }
 
     // Used in media page for collecting image and organising metadata

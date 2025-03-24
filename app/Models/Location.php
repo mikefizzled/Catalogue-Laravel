@@ -26,7 +26,7 @@ class Location extends Model
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('name')    
+            ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
     

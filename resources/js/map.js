@@ -5,7 +5,7 @@ window.L = L; // Make Leaflet available globally
 console.log("Leaflet Loaded:", L);
 
 function initMap() {
-    var map = L.map("map").setView([53.386111, -1.506000], 13);
+    const map = L.map("map").setView([53.386111, -1.506000], 13);
 
     // Add OpenStreetMap tiles
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -29,20 +29,19 @@ function initMap() {
         });
     }
 
-
     // Use map on click to set the values in the 
     map.on("click", function (e) {
 
-        var lat = e.latlng.lat;
-        var latRounded = parseFloat(lat.toFixed(4));
-        var lng = e.latlng.lng;
-        var lngRounded = parseFloat(lng.toFixed(4));
+        let lat = e.latlng.lat;
+        let latRounded = parseFloat(lat.toFixed(4));
+        let lng = e.latlng.lng;
+        let lngRounded = parseFloat(lng.toFixed(4));
 
         console.log("Clicked at:", lat, lng);
 
         // Auto-fill input fields
-        var xInput = document.getElementById("latitude");
-        var yInput = document.getElementById("longitude");
+        let xInput = document.getElementById("latitude");
+        let yInput = document.getElementById("longitude");
 
         if(marker)
             map.removeLayer(marker);

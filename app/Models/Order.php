@@ -18,9 +18,9 @@ class Order extends Model
         return $this->hasMany(Family::class);
     }
 
-    public function getRouteKeyName() 
-    { 
-        return 'slug'; 
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     /**
@@ -29,7 +29,7 @@ class Order extends Model
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('order_name')    
+            ->generateSlugsFrom('order_name')
             ->saveSlugsTo('slug');
     }
 

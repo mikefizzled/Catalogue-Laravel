@@ -3,8 +3,8 @@
         <div class="mb-6 text-center">
             <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">Conservation Lists Overview</h2>
             <p class="text-gray-600 dark:text-gray-300 mt-2">
-                This table presents key conservation lists relevant to our project. These documents track species conservation statuses 
-                across different years, helping us analyze trends and shifts in conservation priorities. By maintaining references to these lists, 
+                This table presents key conservation lists relevant to our project. These documents track species conservation statuses
+                across different years, helping us analyze trends and shifts in conservation priorities. By maintaining references to these lists,
                 we ensure accurate, historical data integration for better decision-making.
             </p>
         </div>
@@ -40,5 +40,4 @@
             </table>
         </div>
     </div>
-    
 </x-public-app-layout>

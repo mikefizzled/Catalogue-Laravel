@@ -1,10 +1,10 @@
 <head>
+    <title>Create Location</title>
     @vite(['resources/js/map.js'])
 </head>
 <x-app-layout>
     <x-slot name="header">
         <x-h2>Add New Location</x-h2>
-        @section('title', 'Create Location')
     </x-slot>
     <!-- Unsure why this has to be seperated -->
     <script> window.existingLocations = @json($locations); </script>
@@ -39,11 +39,11 @@
                             <!-- Town/City -->
                             <div>
                                 <x-form-label for="city">Town/City</x-form-label>
-                                <x-text-input 
-                                    id="city" 
+                                <x-text-input
+                                    id="city"
                                     name="city" 
-                                    class="w-full mt-2" 
-                                    placeholder="Town/City" 
+                                    class="w-full mt-2"
+                                    placeholder="Town/City"
                                     value="{{ old('city') }}" 
                                 />
                                 @error('city')
@@ -54,14 +54,14 @@
                             <!-- Latitude -->
                             <div>
                                 <x-form-label for="latitude">Latitude</x-form-label>
-                                <x-text-input 
-                                    id="latitude" 
+                                <x-text-input
+                                    id="latitude"
                                     name="latitude" 
                                     class="w-full mt-2"
                                     type="number"
                                     step="any"
-                                    placeholder="Latitude" 
-                                    value="{{ old('latitude') }}" 
+                                    placeholder="Latitude"
+                                    value="{{ old('latitude') }}"
                                 />
                                 @error('latitude')
                                     <x-update-error class="mt-2">{{ $message }}</x-update-error>
@@ -71,14 +71,14 @@
                             <!-- Longitude -->
                             <div>
                                 <x-form-label for="longitude">Longitude</x-form-label>
-                                <x-text-input 
-                                    id="longitude" 
+                                <x-text-input
+                                    id="longitude"
                                     name="longitude" 
                                     class="w-full mt-2"
                                     type="number"
                                     step="any"
-                                    placeholder="Longitude" 
-                                    value="{{ old('longitude') }}" 
+                                    placeholder="Longitude"
+                                    value="{{ old('longitude') }}"
                                 />
                                 @error('longitude')
                                     <x-update-error class="mt-2">{{ $message }}</x-update-error>
@@ -87,9 +87,9 @@
                             <!-- Area Image -->
                             <div>
                                 <x-form-label for="image">Area Image</x-form-label>
-                                <input 
+                                <input
                                     class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400"
-                                    id="image" 
+                                    id="image"
                                     name="image"
                                     type="file"
                                     aria-describedby="image-help">
@@ -107,12 +107,12 @@
                     <!-- Caption -->
                     <div class="py-2">
                         <x-form-label for="caption">Area Description</x-form-label>
-                        <x-text-area 
-                            id="caption" 
-                            name="caption" 
+                        <x-text-area
+                            id="caption"
+                            name="caption"
                             class="w-full mt-2" placeholder="Caption" value="{{ old('caption') }}" /> 
                           @error('caption') 
-                              <x-update-error class="mt-2">{{ $message }}</x-update-error> 
+                              <x-update-error class="mt-2">{{ $message }}</x-update-error>
                           @enderror
                       </div>
                     <!-- Form Buttons -->

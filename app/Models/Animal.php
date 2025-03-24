@@ -24,8 +24,8 @@ class Animal extends Model
     }
 
     public function getRouteKeyName() : string
-    { 
-        return 'slug'; 
+    {
+        return 'slug';
     }
 
     public function conservationStatuses()
@@ -36,7 +36,7 @@ class Animal extends Model
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('common_name')    
+            ->generateSlugsFrom('common_name')
             ->saveSlugsTo('slug');
     }
 

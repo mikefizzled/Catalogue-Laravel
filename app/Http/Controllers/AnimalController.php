@@ -56,7 +56,7 @@ class AnimalController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {  
+    {
         $bird = new Animal();
 
         $bird->fill($request->only(['common_name', 'scientific_name', 'genus_id', 'ebird_species_code']));
@@ -109,7 +109,7 @@ class AnimalController extends Controller
         // Transform media URLs to include full S3 paths
         $mediaItems->transform(function ($media) {
             if ($media->media_type === 'audio') {
-                $media->thumbnail_url = Media::defaultAudioThumbnail(); 
+                $media->thumbnail_url = Media::defaultAudioThumbnail();
             } else {
                 $media->thumbnail_url = Storage::disk('s3')->url('media/' . $media->thumbnail_url);
             }
@@ -187,7 +187,7 @@ class AnimalController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Animal $animal)
-    {    
+    {
         DB::transaction(function () use ($animal) {
             if ($animal->thumbnail_url) {
                 MediaService::deleteFromS3('thumbnails', $animal->thumbnail_url);

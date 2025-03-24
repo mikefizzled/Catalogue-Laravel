@@ -5,7 +5,7 @@ window.L = L; // Make Leaflet available globally
 console.log("Leaflet Loaded:", L);
 
 function initMap() {
-    var map = L.map("map").setView([53.386111, -1.506000], 13);
+    const map = L.map("map").setView([53.386111, -1.506000], 13);
 
     // Add OpenStreetMap tiles
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {

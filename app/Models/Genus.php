@@ -23,9 +23,9 @@ class Genus extends Model
         return $this->hasMany(Animal::class);
     }
     
-    public function getRouteKeyName() 
-    { 
-        return 'slug'; 
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
         /**
@@ -34,7 +34,7 @@ class Genus extends Model
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('genus_name')    
+            ->generateSlugsFrom('genus_name')
             ->saveSlugsTo('slug');
     }
 }

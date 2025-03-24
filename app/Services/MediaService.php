@@ -103,10 +103,13 @@ class MediaService
         // Create filenames
         $filename = FileHelper::generateMediaFileName($animalSlug, $mediaType, $newTotal, $extension);
        
-        if($mediaType === 'image' || $mediaType === 'video')
-            $thumbnailName = FileHelper::generateMediaFileName($animalSlug, $mediaType, $newTotal, $extension, $thumb = true);
-        else
+        if($mediaType === 'image' || $mediaType === 'video'){
+            $thumbnailName = FileHelper::generateMediaFileName($animalSlug, $mediaType, $newTotal, $extension, true);
+        }
+        else{
             $thumbnailName = null;
+        }
+            
 
         
         $tempPath = $file->storeAs('temp', $filename, 'public');
@@ -175,7 +178,7 @@ class MediaService
                 self::processAudio($processedFile);
                 break;
             default:
-                throw new \Exception("Unsupported media type: " . $processedFile['media_type']);
+                throw new \UnexpectedValueException("Unsupported media type: " . $processedFile['media_type']);
         }
     }
 

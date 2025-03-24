@@ -1,10 +1,10 @@
 <head>
+    <title>{{$animal->common_name}}</title>
     @vite(['resources/js/speciesMap.js'])
 </head>
 <script> window.existingLocations = @json($locations); </script>
 <script type="module" src="{{ asset('resources/js/speciesMap.js') }}"></script>
 <x-public-app-layout>
-    @section('title', $animal->common_name)
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-2">
           <div class="bg-white dark:bg-gray-800 px-6 py-6 overflow-hidden shadow-sm sm:rounded-lg">
@@ -113,7 +113,7 @@
                             {{ $media->date_taken ? \Carbon\Carbon::parse($media->date_taken)->format('F j, Y g:i A') : 'Date Unknown' }}
                         </p>
                     </div>
-                    <button @click="showMetadata = true; activeMetadata = {{ json_encode($media->metadata) }}" 
+                    <button @click="showMetadata = true; activeMetadata = {{ json_encode($media->metadata) }}"
                         class="absolute bottom-0 end-0 z-50 flex items-center justify-center px-2 cursor-pointer group focus:outline-none bg-black bg-opacity-50 text-white">
                         EXIF
                     </button>
@@ -123,7 +123,7 @@
     </div>
 
     <!-- Slider controls -->
-    <button type="button" 
+    <button type="button"
         class="absolute top-1/2 left-0 z-30 flex items-center justify-center w-12 h-12 px-3 cursor-pointer group focus:outline-none transform -translate-y-1/2"
         data-carousel-prev>
         <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-300 group-hover:bg-white/50 dark:group-hover:bg-gray-500 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
