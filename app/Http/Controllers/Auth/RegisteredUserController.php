@@ -17,9 +17,9 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create()
     {
-        return view('auth.register');
+        return redirect()->route('login')->with('error', 'Registration is currently closed.');
     }
 
     /**
@@ -27,6 +27,12 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+
+     public function store(Request $request)
+     {
+         return redirect()->route('login')->with('error', 'Registration is currently closed.');
+     }
+    /*
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
@@ -47,4 +53,5 @@ class RegisteredUserController extends Controller
 
         return redirect(route('dashboard', absolute: false));
     }
+    */
 }
