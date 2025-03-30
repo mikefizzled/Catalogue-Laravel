@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\GenusController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AnimalController;
@@ -51,4 +52,7 @@ Route::get('/catalogue/{animal}', [CatalogueController::class, 'show'])->name('c
 Route::get('/taxonomy', function () {
     return view('taxonomy');
 });
+Route::get('/map', function(){ return view('map');});
+Route::get('/map-data', [MapController::class, 'getCoordinatesAndAnimals'])->name('map.data');
+
 Route::get('/conservation',[EBirdTaxonomyController::class, 'conservation']);

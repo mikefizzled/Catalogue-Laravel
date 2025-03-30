@@ -42,5 +42,4 @@ class CatalogueController extends Controller
         $locations = Location::getForAnimal($id);
         return view('catalogue.show', compact('animal', 'images', 'audioClips', 'locations'));
     }
-
 }
