@@ -29,9 +29,6 @@
                     <a href="{{ url('/taxonomy') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
                         Taxonomy
                     </a>
-                    <a href="{{ url('/about') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
-                        About
-                    </a>
                 </div>
             </div>
 
@@ -46,11 +43,6 @@
                         <a href="{{ route('login') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-2 py-2 rounded-md text-sm font-medium">
                             Log in
                         </a>
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-2 py-2 rounded-md text-sm font-medium">
-                                Register
-                            </a>
-                        @endif
                     @endauth
                 </div>
             @endif

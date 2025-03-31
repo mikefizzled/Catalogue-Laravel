@@ -6,16 +6,16 @@
                 <div class="relative h-[85vh] overflow-hidden rounded-lg">
                     <!-- Item 1 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('cormorant.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant">
+                        <img src="{{ asset('kingfisher.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant">
                     </div>
                     <!-- Item 2 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('cormorant-2.webp') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant 2">
+                        <img src="{{ asset('turnstone-image-1.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant 2">
                     </div>
-                    <!-- Item 3 -->
+                    <!-- Item 3 
                     <div class="hidden duration-7000 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('grey-heron.webp') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant 2">
-                    </div>
+                        <img src="{{ asset('cormorant-2.webp') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant 2">
+                    </div>-->
                     <!-- Item 4 --> 
                     <div class="hidden duration-7000 ease-in-out" data-carousel-item>
                         <img src="{{ asset('starling-1.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant 2">

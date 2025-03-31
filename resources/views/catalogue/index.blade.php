@@ -3,7 +3,7 @@
 <div class="p-4 px-8 text-center text-white bg-gray-800 flex flex-wrap justify-center border border-gray-700 dark:bg-gray-900">
     <!-- Title -->
         <div>
- <x-h2>Animal Catalogue</x-h2>
+ <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">Animal Catalogue</h1>
     <!-- Filters -->
     <div class="flex flex-wrap justify-center gap-4 mb-6">
         <div class="min-w-[10rem] w-fit p-2">
