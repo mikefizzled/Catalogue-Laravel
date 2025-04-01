@@ -5,7 +5,7 @@
 <x-public-app-layout>
     <div class="max-w-7xl mx-auto py-2 px-4">
         <div class="text-center my-2">
-            <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">Sightings Map</h1>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Sightings Map</h1>
             <p class="mt-3 text-lg text-gray-700 dark:text-gray-300">
                 Explore the map to see where birds have media recorded. Click on a marker for more details.
             </p>

@@ -33,7 +33,7 @@ class CatalogueController extends Controller
         $animal->load('conservationStatuses');
 
         // Collect media
-        $images = Media::getImagesForAnimal($id);
+        $images = Media::getVisualMediaForAnimal($id);
         $audioClips = Media::getAudioForAnimal($id);
 
         // Organise media s3 links and metadata

@@ -79,11 +79,14 @@ class Media extends Model
     }
 
     /**
-     *  Get all images for a given animal
+     *  Get all images and videos for a given animal
      */
-    public static function getImagesForAnimal($animalId)
+    public static function getVisualMediaForAnimal($animalId)
     {
-        return self::where('animal_id', $animalId)->ofType('image')->get();
+        return self::where('animal_id', $animalId)
+            ->whereIn('media_type', ['image', 'video'])
+            ->orderBy('rating', 'desc')
+            ->get();
     }
 
     /**
