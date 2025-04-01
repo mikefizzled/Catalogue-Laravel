@@ -1,0 +1,1526 @@
+[
+    {
+        "familyCode": "struth1",
+        "familyComName": "Ostriches",
+        "familySciName": "Struthionidae",
+        "order": "Struthioniformes"
+    },
+    {
+        "familyCode": "casuar1",
+        "familyComName": "Cassowaries and Emu",
+        "familySciName": "Casuariidae",
+        "order": "Casuariiformes"
+    },
+    {
+        "familyCode": "aptery1",
+        "familyComName": "Kiwis",
+        "familySciName": "Apterygidae",
+        "order": "Apterygiformes"
+    },
+    {
+        "familyCode": "rheida1",
+        "familyComName": "Rheas",
+        "familySciName": "Rheidae",
+        "order": "Rheiformes"
+    },
+    {
+        "familyCode": "tinami1",
+        "familyComName": "Tinamous",
+        "familySciName": "Tinamidae",
+        "order": "Tinamiformes"
+    },
+    {
+        "familyCode": "anhimi1",
+        "familyComName": "Screamers",
+        "familySciName": "Anhimidae",
+        "order": "Anseriformes"
+    },
+    {
+        "familyCode": "ansera1",
+        "familyComName": "Magpie Goose",
+        "familySciName": "Anseranatidae",
+        "order": "Anseriformes"
+    },
+    {
+        "familyCode": "anatid1",
+        "familyComName": "Ducks, Geese, and Waterfowl",
+        "familySciName": "Anatidae",
+        "order": "Anseriformes"
+    },
+    {
+        "familyCode": "megapo1",
+        "familyComName": "Megapodes",
+        "familySciName": "Megapodiidae",
+        "order": "Galliformes"
+    },
+    {
+        "familyCode": "cracid2",
+        "familyComName": "Guans, Chachalacas, and Curassows",
+        "familySciName": "Cracidae",
+        "order": "Galliformes"
+    },
+    {
+        "familyCode": "numidi1",
+        "familyComName": "Guineafowl",
+        "familySciName": "Numididae",
+        "order": "Galliformes"
+    },
+    {
+        "familyCode": "odonto1",
+        "familyComName": "New World Quail",
+        "familySciName": "Odontophoridae",
+        "order": "Galliformes"
+    },
+    {
+        "familyCode": "phasia1",
+        "familyComName": "Pheasants, Grouse, and Allies",
+        "familySciName": "Phasianidae",
+        "order": "Galliformes"
+    },
+    {
+        "familyCode": "columb2",
+        "familyComName": "Pigeons and Doves",
+        "familySciName": "Columbidae",
+        "order": "Columbiformes"
+    },
+    {
+        "familyCode": "mesito1",
+        "familyComName": "Mesites",
+        "familySciName": "Mesitornithidae",
+        "order": "Mesitornithiformes"
+    },
+    {
+        "familyCode": "pteroc1",
+        "familyComName": "Sandgrouse",
+        "familySciName": "Pteroclidae",
+        "order": "Pterocliformes"
+    },
+    {
+        "familyCode": "otidid1",
+        "familyComName": "Bustards",
+        "familySciName": "Otididae",
+        "order": "Otidiformes"
+    },
+    {
+        "familyCode": "musoph1",
+        "familyComName": "Turacos",
+        "familySciName": "Musophagidae",
+        "order": "Musophagiformes"
+    },
+    {
+        "familyCode": "cuculi1",
+        "familyComName": "Cuckoos",
+        "familySciName": "Cuculidae",
+        "order": "Cuculiformes"
+    },
+    {
+        "familyCode": "caprim2",
+        "familyComName": "Nightjars and Allies",
+        "familySciName": "Caprimulgidae",
+        "order": "Caprimulgiformes"
+    },
+    {
+        "familyCode": "nyctib1",
+        "familyComName": "Potoos",
+        "familySciName": "Nyctibiidae",
+        "order": "Nyctibiiformes"
+    },
+    {
+        "familyCode": "steato1",
+        "familyComName": "Oilbird",
+        "familySciName": "Steatornithidae",
+        "order": "Steatornithiformes"
+    },
+    {
+        "familyCode": "podarg1",
+        "familyComName": "Frogmouths",
+        "familySciName": "Podargidae",
+        "order": "Podargiformes"
+    },
+    {
+        "familyCode": "aegoth1",
+        "familyComName": "Owlet-nightjars",
+        "familySciName": "Aegothelidae",
+        "order": "Aegotheliformes"
+    },
+    {
+        "familyCode": "apodid1",
+        "familyComName": "Swifts",
+        "familySciName": "Apodidae",
+        "order": "Apodiformes"
+    },
+    {
+        "familyCode": "hemipr1",
+        "familyComName": "Treeswifts",
+        "familySciName": "Hemiprocnidae",
+        "order": "Apodiformes"
+    },
+    {
+        "familyCode": "trochi1",
+        "familyComName": "Hummingbirds",
+        "familySciName": "Trochilidae",
+        "order": "Apodiformes"
+    },
+    {
+        "familyCode": "saroth1",
+        "familyComName": "Flufftails",
+        "familySciName": "Sarothruridae",
+        "order": "Gruiformes"
+    },
+    {
+        "familyCode": "rallid1",
+        "familyComName": "Rails, Gallinules, and Coots",
+        "familySciName": "Rallidae",
+        "order": "Gruiformes"
+    },
+    {
+        "familyCode": "helior1",
+        "familyComName": "Finfoots",
+        "familySciName": "Heliornithidae",
+        "order": "Gruiformes"
+    },
+    {
+        "familyCode": "aramid1",
+        "familyComName": "Limpkin",
+        "familySciName": "Aramidae",
+        "order": "Gruiformes"
+    },
+    {
+        "familyCode": "psophi1",
+        "familyComName": "Trumpeters",
+        "familySciName": "Psophiidae",
+        "order": "Gruiformes"
+    },
+    {
+        "familyCode": "gruida1",
+        "familyComName": "Cranes",
+        "familySciName": "Gruidae",
+        "order": "Gruiformes"
+    },
+    {
+        "familyCode": "pluvia2",
+        "familyComName": "Magellanic Plover",
+        "familySciName": "Pluvianellidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "chioni1",
+        "familyComName": "Sheathbills",
+        "familySciName": "Chionidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "burhin2",
+        "familyComName": "Thick-knees",
+        "familySciName": "Burhinidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "pluvia1",
+        "familyComName": "Egyptian Plover",
+        "familySciName": "Pluvianidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "recurv1",
+        "familyComName": "Stilts and Avocets",
+        "familySciName": "Recurvirostridae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "ibidor1",
+        "familyComName": "Ibisbill",
+        "familySciName": "Ibidorhynchidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "haemat1",
+        "familyComName": "Oystercatchers",
+        "familySciName": "Haematopodidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "charad1",
+        "familyComName": "Plovers and Lapwings",
+        "familySciName": "Charadriidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "pedion1",
+        "familyComName": "Plains-wanderer",
+        "familySciName": "Pedionomidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "thinoc1",
+        "familyComName": "Seedsnipes",
+        "familySciName": "Thinocoridae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "rostra1",
+        "familyComName": "Painted-Snipes",
+        "familySciName": "Rostratulidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "jacani1",
+        "familyComName": "Jacanas",
+        "familySciName": "Jacanidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "scolop2",
+        "familyComName": "Sandpipers and Allies",
+        "familySciName": "Scolopacidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "turnic1",
+        "familyComName": "Buttonquail",
+        "familySciName": "Turnicidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "dromad1",
+        "familyComName": "Crab-Plover",
+        "familySciName": "Dromadidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "glareo1",
+        "familyComName": "Pratincoles and Coursers",
+        "familySciName": "Glareolidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "sterco1",
+        "familyComName": "Skuas and Jaegers",
+        "familySciName": "Stercorariidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "alcida1",
+        "familyComName": "Auks, Murres, and Puffins",
+        "familySciName": "Alcidae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "larida1",
+        "familyComName": "Gulls, Terns, and Skimmers",
+        "familySciName": "Laridae",
+        "order": "Charadriiformes"
+    },
+    {
+        "familyCode": "phoeni1",
+        "familyComName": "Flamingos",
+        "familySciName": "Phoenicopteridae",
+        "order": "Phoenicopteriformes"
+    },
+    {
+        "familyCode": "podici1",
+        "familyComName": "Grebes",
+        "familySciName": "Podicipedidae",
+        "order": "Podicipediformes"
+    },
+    {
+        "familyCode": "opisth1",
+        "familyComName": "Hoatzin",
+        "familySciName": "Opisthocomidae",
+        "order": "Opisthocomiformes"
+    },
+    {
+        "familyCode": "rhynoc1",
+        "familyComName": "Kagu",
+        "familySciName": "Rhynochetidae",
+        "order": "Eurypygiformes"
+    },
+    {
+        "familyCode": "eurypy1",
+        "familyComName": "Sunbittern",
+        "familySciName": "Eurypygidae",
+        "order": "Eurypygiformes"
+    },
+    {
+        "familyCode": "phaeth1",
+        "familyComName": "Tropicbirds",
+        "familySciName": "Phaethontidae",
+        "order": "Phaethontiformes"
+    },
+    {
+        "familyCode": "gaviid1",
+        "familyComName": "Loons",
+        "familySciName": "Gaviidae",
+        "order": "Gaviiformes"
+    },
+    {
+        "familyCode": "spheni1",
+        "familyComName": "Penguins",
+        "familySciName": "Spheniscidae",
+        "order": "Sphenisciformes"
+    },
+    {
+        "familyCode": "diomed1",
+        "familyComName": "Albatrosses",
+        "familySciName": "Diomedeidae",
+        "order": "Procellariiformes"
+    },
+    {
+        "familyCode": "oceani2",
+        "familyComName": "Southern Storm-Petrels",
+        "familySciName": "Oceanitidae",
+        "order": "Procellariiformes"
+    },
+    {
+        "familyCode": "hydrob1",
+        "familyComName": "Northern Storm-Petrels",
+        "familySciName": "Hydrobatidae",
+        "order": "Procellariiformes"
+    },
+    {
+        "familyCode": "procel3",
+        "familyComName": "Shearwaters and Petrels",
+        "familySciName": "Procellariidae",
+        "order": "Procellariiformes"
+    },
+    {
+        "familyCode": "ciconi2",
+        "familyComName": "Storks",
+        "familySciName": "Ciconiidae",
+        "order": "Ciconiiformes"
+    },
+    {
+        "familyCode": "fregat1",
+        "familyComName": "Frigatebirds",
+        "familySciName": "Fregatidae",
+        "order": "Suliformes"
+    },
+    {
+        "familyCode": "sulida1",
+        "familyComName": "Boobies and Gannets",
+        "familySciName": "Sulidae",
+        "order": "Suliformes"
+    },
+    {
+        "familyCode": "anhing3",
+        "familyComName": "Anhingas",
+        "familySciName": "Anhingidae",
+        "order": "Suliformes"
+    },
+    {
+        "familyCode": "phalac1",
+        "familyComName": "Cormorants and Shags",
+        "familySciName": "Phalacrocoracidae",
+        "order": "Suliformes"
+    },
+    {
+        "familyCode": "thresk1",
+        "familyComName": "Ibises and Spoonbills",
+        "familySciName": "Threskiornithidae",
+        "order": "Pelecaniformes"
+    },
+    {
+        "familyCode": "ardeid1",
+        "familyComName": "Herons, Egrets, and Bitterns",
+        "familySciName": "Ardeidae",
+        "order": "Pelecaniformes"
+    },
+    {
+        "familyCode": "scopid1",
+        "familyComName": "Hamerkop",
+        "familySciName": "Scopidae",
+        "order": "Pelecaniformes"
+    },
+    {
+        "familyCode": "balaen1",
+        "familyComName": "Shoebill",
+        "familySciName": "Balaenicipitidae",
+        "order": "Pelecaniformes"
+    },
+    {
+        "familyCode": "peleca1",
+        "familyComName": "Pelicans",
+        "familySciName": "Pelecanidae",
+        "order": "Pelecaniformes"
+    },
+    {
+        "familyCode": "cathar2",
+        "familyComName": "New World Vultures",
+        "familySciName": "Cathartidae",
+        "order": "Cathartiformes"
+    },
+    {
+        "familyCode": "sagitt1",
+        "familyComName": "Secretarybird",
+        "familySciName": "Sagittariidae",
+        "order": "Accipitriformes"
+    },
+    {
+        "familyCode": "pandio1",
+        "familyComName": "Osprey",
+        "familySciName": "Pandionidae",
+        "order": "Accipitriformes"
+    },
+    {
+        "familyCode": "accipi1",
+        "familyComName": "Hawks, Eagles, and Kites",
+        "familySciName": "Accipitridae",
+        "order": "Accipitriformes"
+    },
+    {
+        "familyCode": "tytoni1",
+        "familyComName": "Barn-Owls",
+        "familySciName": "Tytonidae",
+        "order": "Strigiformes"
+    },
+    {
+        "familyCode": "strigi1",
+        "familyComName": "Owls",
+        "familySciName": "Strigidae",
+        "order": "Strigiformes"
+    },
+    {
+        "familyCode": "coliid1",
+        "familyComName": "Mousebirds",
+        "familySciName": "Coliidae",
+        "order": "Coliiformes"
+    },
+    {
+        "familyCode": "leptos1",
+        "familyComName": "Cuckoo-roller",
+        "familySciName": "Leptosomidae",
+        "order": "Leptosomiformes"
+    },
+    {
+        "familyCode": "trogon1",
+        "familyComName": "Trogons",
+        "familySciName": "Trogonidae",
+        "order": "Trogoniformes"
+    },
+    {
+        "familyCode": "upupid1",
+        "familyComName": "Hoopoes",
+        "familySciName": "Upupidae",
+        "order": "Bucerotiformes"
+    },
+    {
+        "familyCode": "phoeni2",
+        "familyComName": "Woodhoopoes and Scimitarbills",
+        "familySciName": "Phoeniculidae",
+        "order": "Bucerotiformes"
+    },
+    {
+        "familyCode": "bucorv1",
+        "familyComName": "Ground-Hornbills",
+        "familySciName": "Bucorvidae",
+        "order": "Bucerotiformes"
+    },
+    {
+        "familyCode": "bucero1",
+        "familyComName": "Hornbills",
+        "familySciName": "Bucerotidae",
+        "order": "Bucerotiformes"
+    },
+    {
+        "familyCode": "meropi1",
+        "familyComName": "Bee-eaters",
+        "familySciName": "Meropidae",
+        "order": "Coraciiformes"
+    },
+    {
+        "familyCode": "todida1",
+        "familyComName": "Todies",
+        "familySciName": "Todidae",
+        "order": "Coraciiformes"
+    },
+    {
+        "familyCode": "momoti1",
+        "familyComName": "Motmots",
+        "familySciName": "Momotidae",
+        "order": "Coraciiformes"
+    },
+    {
+        "familyCode": "alcedi1",
+        "familyComName": "Kingfishers",
+        "familySciName": "Alcedinidae",
+        "order": "Coraciiformes"
+    },
+    {
+        "familyCode": "coraci1",
+        "familyComName": "Rollers",
+        "familySciName": "Coraciidae",
+        "order": "Coraciiformes"
+    },
+    {
+        "familyCode": "brachy2",
+        "familyComName": "Ground-Rollers",
+        "familySciName": "Brachypteraciidae",
+        "order": "Coraciiformes"
+    },
+    {
+        "familyCode": "buccon2",
+        "familyComName": "Puffbirds",
+        "familySciName": "Bucconidae",
+        "order": "Galbuliformes"
+    },
+    {
+        "familyCode": "galbul2",
+        "familyComName": "Jacamars",
+        "familySciName": "Galbulidae",
+        "order": "Galbuliformes"
+    },
+    {
+        "familyCode": "lybiid1",
+        "familyComName": "African Barbets",
+        "familySciName": "Lybiidae",
+        "order": "Piciformes"
+    },
+    {
+        "familyCode": "megala2",
+        "familyComName": "Asian Barbets",
+        "familySciName": "Megalaimidae",
+        "order": "Piciformes"
+    },
+    {
+        "familyCode": "capito2",
+        "familyComName": "New World Barbets",
+        "familySciName": "Capitonidae",
+        "order": "Piciformes"
+    },
+    {
+        "familyCode": "semnor1",
+        "familyComName": "Toucan-Barbets",
+        "familySciName": "Semnornithidae",
+        "order": "Piciformes"
+    },
+    {
+        "familyCode": "rampha1",
+        "familyComName": "Toucans",
+        "familySciName": "Ramphastidae",
+        "order": "Piciformes"
+    },
+    {
+        "familyCode": "indica1",
+        "familyComName": "Honeyguides",
+        "familySciName": "Indicatoridae",
+        "order": "Piciformes"
+    },
+    {
+        "familyCode": "picida1",
+        "familyComName": "Woodpeckers",
+        "familySciName": "Picidae",
+        "order": "Piciformes"
+    },
+    {
+        "familyCode": "cariam1",
+        "familyComName": "Seriemas",
+        "familySciName": "Cariamidae",
+        "order": "Cariamiformes"
+    },
+    {
+        "familyCode": "falcon1",
+        "familyComName": "Falcons and Caracaras",
+        "familySciName": "Falconidae",
+        "order": "Falconiformes"
+    },
+    {
+        "familyCode": "strigo1",
+        "familyComName": "New Zealand Parrots",
+        "familySciName": "Strigopidae",
+        "order": "Psittaciformes"
+    },
+    {
+        "familyCode": "cacatu2",
+        "familyComName": "Cockatoos",
+        "familySciName": "Cacatuidae",
+        "order": "Psittaciformes"
+    },
+    {
+        "familyCode": "psitta4",
+        "familyComName": "Old World Parrots",
+        "familySciName": "Psittaculidae",
+        "order": "Psittaciformes"
+    },
+    {
+        "familyCode": "psitta3",
+        "familyComName": "New World and African Parrots",
+        "familySciName": "Psittacidae",
+        "order": "Psittaciformes"
+    },
+    {
+        "familyCode": "acanth1",
+        "familyComName": "New Zealand Wrens",
+        "familySciName": "Acanthisittidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "calypt1",
+        "familyComName": "African and Green Broadbills",
+        "familySciName": "Calyptomenidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "euryla1",
+        "familyComName": "Asian and Grauer's Broadbills",
+        "familySciName": "Eurylaimidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "sapayo2",
+        "familyComName": "Sapayoa",
+        "familySciName": "Sapayoidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "philep1",
+        "familyComName": "Asities",
+        "familySciName": "Philepittidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "pittid1",
+        "familyComName": "Pittas",
+        "familySciName": "Pittidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "thamno3",
+        "familyComName": "Typical Antbirds",
+        "familySciName": "Thamnophilidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "melano2",
+        "familyComName": "Crescentchests",
+        "familySciName": "Melanopareiidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "conopo1",
+        "familyComName": "Gnateaters",
+        "familySciName": "Conopophagidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "gralla2",
+        "familyComName": "Antpittas",
+        "familySciName": "Grallariidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "rhinoc1",
+        "familyComName": "Tapaculos",
+        "familySciName": "Rhinocryptidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "formic2",
+        "familyComName": "Antthrushes",
+        "familySciName": "Formicariidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "furnar2",
+        "familyComName": "Ovenbirds and Woodcreepers",
+        "familySciName": "Furnariidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "piprid1",
+        "familyComName": "Manakins",
+        "familySciName": "Pipridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "coting1",
+        "familyComName": "Cotingas",
+        "familySciName": "Cotingidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "tityri1",
+        "familyComName": "Tityras and Allies",
+        "familySciName": "Tityridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "oxyrun1",
+        "familyComName": "Sharpbill",
+        "familySciName": "Oxyruncidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "rfaall1",
+        "familyComName": "Royal Flycatchers and Allies",
+        "familySciName": "Onychorhynchidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "tyrann2",
+        "familyComName": "Tyrant Flycatchers",
+        "familySciName": "Tyrannidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "menuri1",
+        "familyComName": "Lyrebirds",
+        "familySciName": "Menuridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "atrich1",
+        "familyComName": "Scrub-birds",
+        "familySciName": "Atrichornithidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "ptilon1",
+        "familyComName": "Bowerbirds",
+        "familySciName": "Ptilonorhynchidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "climac1",
+        "familyComName": "Australasian Treecreepers",
+        "familySciName": "Climacteridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "maluri1",
+        "familyComName": "Fairywrens",
+        "familySciName": "Maluridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "meliph3",
+        "familyComName": "Honeyeaters",
+        "familySciName": "Meliphagidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "dasyor1",
+        "familyComName": "Bristlebirds",
+        "familySciName": "Dasyornithidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "pardal2",
+        "familyComName": "Pardalotes",
+        "familySciName": "Pardalotidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "acanth2",
+        "familyComName": "Thornbills and Allies",
+        "familySciName": "Acanthizidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "pomato2",
+        "familyComName": "Pseudo-Babblers",
+        "familySciName": "Pomatostomidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "orthon1",
+        "familyComName": "Logrunners",
+        "familySciName": "Orthonychidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "cinclo2",
+        "familyComName": "Quail-thrushes and Jewel-babblers",
+        "familySciName": "Cinclosomatidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "campep2",
+        "familyComName": "Cuckooshrikes",
+        "familySciName": "Campephagidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "mohoui1",
+        "familyComName": "Whiteheads",
+        "familySciName": "Mohouidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "neosit1",
+        "familyComName": "Sittellas",
+        "familySciName": "Neosittidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "psopho1",
+        "familyComName": "Whipbirds and Wedgebills",
+        "familySciName": "Psophodidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "eulace1",
+        "familyComName": "Ploughbill",
+        "familySciName": "Eulacestomatidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "oreoic1",
+        "familyComName": "Australo-Papuan Bellbirds",
+        "familySciName": "Oreoicidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "falcun1",
+        "familyComName": "Shrike-tits",
+        "familySciName": "Falcunculidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "paramy1",
+        "familyComName": "Tit Berrypecker and Crested Berrypecker",
+        "familySciName": "Paramythiidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "vireon1",
+        "familyComName": "Vireos, Shrike-Babblers, and Erpornis",
+        "familySciName": "Vireonidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "pachyc2",
+        "familyComName": "Whistlers and Allies",
+        "familySciName": "Pachycephalidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "orioli1",
+        "familyComName": "Old World Orioles",
+        "familySciName": "Oriolidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "machae1",
+        "familyComName": "Boatbills",
+        "familySciName": "Machaerirhynchidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "artami1",
+        "familyComName": "Woodswallows, Bellmagpies, and Allies",
+        "familySciName": "Artamidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "rhagol1",
+        "familyComName": "Mottled Berryhunter",
+        "familySciName": "Rhagologidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "platys1",
+        "familyComName": "Wattle-eyes and Batises",
+        "familySciName": "Platysteiridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "vangid2",
+        "familyComName": "Vangas, Helmetshrikes, and Allies",
+        "familySciName": "Vangidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "pityri1",
+        "familyComName": "Bristlehead",
+        "familySciName": "Pityriasidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "aegith1",
+        "familyComName": "Ioras",
+        "familySciName": "Aegithinidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "malaco2",
+        "familyComName": "Bushshrikes and Allies",
+        "familySciName": "Malaconotidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "rhipid1",
+        "familyComName": "Fantails",
+        "familySciName": "Rhipiduridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "dicrur1",
+        "familyComName": "Drongos",
+        "familySciName": "Dicruridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "paradi7",
+        "familyComName": "Birds-of-Paradise",
+        "familySciName": "Paradisaeidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "ifriti1",
+        "familyComName": "Ifrita",
+        "familySciName": "Ifritidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "monarc2",
+        "familyComName": "Monarch Flycatchers",
+        "familySciName": "Monarchidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "corcor1",
+        "familyComName": "White-winged Chough and Apostlebird",
+        "familySciName": "Corcoracidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "melamp1",
+        "familyComName": "Melampittas",
+        "familySciName": "Melampittidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "platyl1",
+        "familyComName": "Crested Jayshrike",
+        "familySciName": "Platylophidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "laniid1",
+        "familyComName": "Shrikes",
+        "familySciName": "Laniidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "corvid1",
+        "familyComName": "Crows, Jays, and Magpies",
+        "familySciName": "Corvidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "cnemop1",
+        "familyComName": "Satinbirds",
+        "familySciName": "Cnemophilidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "melano1",
+        "familyComName": "Berrypeckers and Longbills",
+        "familySciName": "Melanocharitidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "callae1",
+        "familyComName": "Wattlebirds",
+        "familySciName": "Callaeidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "notiom1",
+        "familyComName": "Stitchbird",
+        "familySciName": "Notiomystidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "petroi2",
+        "familyComName": "Australasian Robins",
+        "familySciName": "Petroicidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "picath1",
+        "familyComName": "Rockfowl",
+        "familySciName": "Picathartidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "chaeto2",
+        "familyComName": "Rockjumpers",
+        "familySciName": "Chaetopidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "eupeti1",
+        "familyComName": "Rail-babbler",
+        "familySciName": "Eupetidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "hyliot1",
+        "familyComName": "Hyliotas",
+        "familySciName": "Hyliotidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "stenos1",
+        "familyComName": "Fairy Flycatchers",
+        "familySciName": "Stenostiridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "parida1",
+        "familyComName": "Tits, Chickadees, and Titmice",
+        "familySciName": "Paridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "remizi1",
+        "familyComName": "Penduline-Tits",
+        "familySciName": "Remizidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "alaudi1",
+        "familyComName": "Larks",
+        "familySciName": "Alaudidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "panuri1",
+        "familyComName": "Bearded Reedling",
+        "familySciName": "Panuridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "nicato1",
+        "familyComName": "Nicators",
+        "familySciName": "Nicatoridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "macros1",
+        "familyComName": "African Warblers",
+        "familySciName": "Macrosphenidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "cistic2",
+        "familyComName": "Cisticolas and Allies",
+        "familySciName": "Cisticolidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "acroce2",
+        "familyComName": "Reed Warblers and Allies",
+        "familySciName": "Acrocephalidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "locust5",
+        "familyComName": "Grassbirds and Allies",
+        "familySciName": "Locustellidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "donaco1",
+        "familyComName": "Donacobius",
+        "familySciName": "Donacobiidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "bernie1",
+        "familyComName": "Malagasy Warblers",
+        "familySciName": "Bernieridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "pnoepy1",
+        "familyComName": "Cupwings",
+        "familySciName": "Pnoepygidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "hirund2",
+        "familyComName": "Swallows",
+        "familySciName": "Hirundinidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "pycnon4",
+        "familyComName": "Bulbuls",
+        "familySciName": "Pycnonotidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "phyllo4",
+        "familyComName": "Leaf Warblers",
+        "familySciName": "Phylloscopidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "hylias1",
+        "familyComName": "Hylias",
+        "familySciName": "Hyliidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "yelfly10",
+        "familyComName": "Yellow Flycatchers",
+        "familySciName": "Erythrocercidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "scotoc1",
+        "familyComName": "Bush Warblers and Allies",
+        "familySciName": "Scotocercidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "aegith2",
+        "familyComName": "Long-tailed Tits",
+        "familySciName": "Aegithalidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "sylvii1",
+        "familyComName": "Sylviid Warblers and Allies",
+        "familySciName": "Sylviidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "parado1",
+        "familyComName": "Parrotbills",
+        "familySciName": "Paradoxornithidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "zoster2",
+        "familyComName": "White-eyes, Yuhinas, and Allies",
+        "familySciName": "Zosteropidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "timali1",
+        "familyComName": "Tree-Babblers, Scimitar-Babblers, and Allies",
+        "familySciName": "Timaliidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "pellor2",
+        "familyComName": "Ground Babblers and Allies",
+        "familySciName": "Pellorneidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "leioth1",
+        "familyComName": "Laughingthrushes and Allies",
+        "familySciName": "Leiothrichidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "reguli1",
+        "familyComName": "Kinglets",
+        "familySciName": "Regulidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "tichod1",
+        "familyComName": "Wallcreeper",
+        "familySciName": "Tichodromidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "sittid1",
+        "familyComName": "Nuthatches",
+        "familySciName": "Sittidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "spocre4",
+        "familyComName": "Spotted Creepers",
+        "familySciName": "Salpornithidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "certhi2",
+        "familyComName": "Treecreepers",
+        "familySciName": "Certhiidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "poliop1",
+        "familyComName": "Gnatcatchers",
+        "familySciName": "Polioptilidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "troglo1",
+        "familyComName": "Wrens",
+        "familySciName": "Troglodytidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "elachu1",
+        "familyComName": "Spotted Elachura",
+        "familySciName": "Elachuridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "cincli1",
+        "familyComName": "Dippers",
+        "familySciName": "Cinclidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "buphag1",
+        "familyComName": "Oxpeckers",
+        "familySciName": "Buphagidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "sturni1",
+        "familyComName": "Starlings",
+        "familySciName": "Sturnidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "mimida2",
+        "familyComName": "Mockingbirds and Thrashers",
+        "familySciName": "Mimidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "turdid1",
+        "familyComName": "Thrushes and Allies",
+        "familySciName": "Turdidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "muscic3",
+        "familyComName": "Old World Flycatchers",
+        "familySciName": "Muscicapidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "bombyc1",
+        "familyComName": "Waxwings",
+        "familySciName": "Bombycillidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "mohoid1",
+        "familyComName": "Hawaiian Honeyeaters",
+        "familySciName": "Mohoidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "ptilio1",
+        "familyComName": "Silky-flycatchers",
+        "familySciName": "Ptiliogonatidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "dulida1",
+        "familyComName": "Palmchat",
+        "familySciName": "Dulidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "hyloci3",
+        "familyComName": "Hylocitrea",
+        "familySciName": "Hylocitreidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "hypoco2",
+        "familyComName": "Hypocolius",
+        "familySciName": "Hypocoliidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "promer1",
+        "familyComName": "Sugarbirds",
+        "familySciName": "Promeropidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "modula1",
+        "familyComName": "Dapple-throat and Allies",
+        "familySciName": "Modulatricidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "dicaei1",
+        "familyComName": "Flowerpeckers",
+        "familySciName": "Dicaeidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "nectar1",
+        "familyComName": "Sunbirds and Spiderhunters",
+        "familySciName": "Nectariniidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "irenid1",
+        "familyComName": "Fairy-bluebirds",
+        "familySciName": "Irenidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "chloro5",
+        "familyComName": "Leafbirds",
+        "familySciName": "Chloropseidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "peuced1",
+        "familyComName": "Olive Warbler",
+        "familySciName": "Peucedramidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "urocyn1",
+        "familyComName": "Przevalski's Pinktail",
+        "familySciName": "Urocynchramidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "plocei1",
+        "familyComName": "Weavers and Allies",
+        "familySciName": "Ploceidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "estril1",
+        "familyComName": "Waxbills and Allies",
+        "familySciName": "Estrildidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "viduid1",
+        "familyComName": "Indigobirds",
+        "familySciName": "Viduidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "prunel1",
+        "familyComName": "Accentors",
+        "familySciName": "Prunellidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "passer4",
+        "familyComName": "Old World Sparrows",
+        "familySciName": "Passeridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "motaci1",
+        "familyComName": "Wagtails and Pipits",
+        "familySciName": "Motacillidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "fringi1",
+        "familyComName": "Finches, Euphonias, and Allies",
+        "familySciName": "Fringillidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "calcar1",
+        "familyComName": "Longspurs and Snow Buntings",
+        "familySciName": "Calcariidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "rhodin1",
+        "familyComName": "Thrush-Tanager",
+        "familySciName": "Rhodinocichlidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "emberi2",
+        "familyComName": "Old World Buntings",
+        "familySciName": "Emberizidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "passer3",
+        "familyComName": "New World Sparrows",
+        "familySciName": "Passerellidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "calypt2",
+        "familyComName": "Chat-Tanagers",
+        "familySciName": "Calyptophilidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "phaeni1",
+        "familyComName": "Hispaniolan Tanagers",
+        "familySciName": "Phaenicophilidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "nesosp1",
+        "familyComName": "Puerto Rican Tanager",
+        "familySciName": "Nesospingidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "spinda1",
+        "familyComName": "Spindalises",
+        "familySciName": "Spindalidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "zeledo1",
+        "familyComName": "Wrenthrush",
+        "familySciName": "Zeledoniidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "tereti1",
+        "familyComName": "Cuban Warblers",
+        "familySciName": "Teretistridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "icteri2",
+        "familyComName": "Yellow-breasted Chat",
+        "familySciName": "Icteriidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "icteri1",
+        "familyComName": "Troupials and Allies",
+        "familySciName": "Icteridae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "paruli1",
+        "familyComName": "New World Warblers",
+        "familySciName": "Parulidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "mitros1",
+        "familyComName": "Mitrospingid Tanagers",
+        "familySciName": "Mitrospingidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "cardin1",
+        "familyComName": "Cardinals and Allies",
+        "familySciName": "Cardinalidae",
+        "order": "Passeriformes"
+    },
+    {
+        "familyCode": "thraup2",
+        "familyComName": "Tanagers and Allies",
+        "familySciName": "Thraupidae",
+        "order": "Passeriformes"
+    }
+]

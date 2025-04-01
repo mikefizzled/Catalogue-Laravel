@@ -1,0 +1,236 @@
+{
+   "Hydrobates pelagicus": {
+      "common_name": "European Storm-petrel",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Amber",
+      "bocc_5a_criteria": "BL"
+   },
+   "Oceannodroma leucorhous": {
+      "common_name": "Leach's Storm-petrel",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Red",
+      "bocc_5a_criteria": "IUCN; BDp; BL; BI"
+   },
+   "Fulmarus glacialis": {
+      "common_name": "Northern Fulmar",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Amber",
+      "bocc_5a_criteria": "ERLOB; BDMp"
+   },
+   "Puffinus puffinus": {
+      "common_name": "Manx Shearwater",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Amber",
+      "bocc_5a_criteria": "BDMr; BL; BI"
+   },
+   "Morus bassanus": {
+      "common_name": "Northern Gannet",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Amber",
+      "bocc_5a_criteria": "BL; BI"
+   },
+   "Phalacrocorax carbo": {
+      "common_name": "Great Cormorant",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5a": "Green",
+      "bocc_5a_criteria": ""
+   },
+   "Phalacrocorax aristotelis": {
+      "common_name": "European Shag",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5a": "Amber",
+      "bocc_5a_criteria": "BDMp; BI"
+   },
+   "Rissa tridactyla": {
+      "common_name": "Kittiwake",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5a": "Red",
+      "bocc_5a_criteria": "IUCN; BDp; ERLOB; BDMp; BL"
+   },
+   "Chroicocephalus ridibundus": {
+      "common_name": "Black-headed Gull",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Amber",
+      "bocc_5a_criteria": "BDMp; WDMp; WI"
+   },
+   "Ichthyactus melanocephalus": {
+      "common_name": "Mediterranean Gull",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Amber",
+      "bocc_5a_criteria": "BL"
+   },
+   "Larus canus": {
+      "common_name": "Common Gull",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Red",
+      "bocc_5a_criteria": "BDp; WI"
+   },
+   "Larus marinus": {
+      "common_name": "Great Black-backed Gull",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Red",
+      "bocc_5a_criteria": "BDp; BDMp; WDMp"
+   },
+   "Larus argentatus": {
+      "common_name": "Herring Gull",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5a": "Red",
+      "bocc_5a_criteria": "WDp; BI; WI"
+   },
+   "Larus michahellis": {
+      "common_name": "Yellow-legged Gull",
+      "bocc_1": "n",
+      "bocc_2": "n",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Amber",
+      "bocc_5a_criteria": "BR; WR"
+   },
+   "Larus fuscus": {
+      "common_name": "Lesser Black-backed Gull",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Amber",
+      "bocc_5a_criteria": "BI"
+   },
+   "Thalasseus sandvicensis": {
+      "common_name": "Sandwich Tern",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Amber",
+      "bocc_5a_criteria": "BDMr; WR; BL"
+   },
+   "Sternula albifrons": {
+      "common_name": "Little Tern",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Amber",
+      "bocc_5a_criteria": "BDMp; BDMr; BL"
+   },
+   "Sterna dougallii": {
+      "common_name": "Roseate Tern",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5a": "Red",
+      "bocc_5a_criteria": "BDp; BDr; BDMr; BR"
+   },
+   "Sterna hirundo": {
+      "common_name": "Common Tern",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Amber",
+      "bocc_5a_criteria": "BDMp"
+   },
+   "Sterna paradisaea": {
+      "common_name": "Arctic Tern",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Red",
+      "bocc_5a_criteria": "BDp; BDMp; BDMr"
+   },
+   "Stercorarius parasiticus": {
+      "common_name": "Arctic Skua",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5a": "Red",
+      "bocc_5a_criteria": "BDp; ERLOB; BDMp"
+   },
+   "Stercorarius skua": {
+      "common_name": "Great Skua",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Red",
+      "bocc_5a_criteria": "BDp; BL; BI"
+   },
+   "Fratercula arctica": {
+      "common_name": "Puffin",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5a": "Red",
+      "bocc_5a_criteria": "IUCN; ERLOB; BL"
+   },
+   "Cepphus grylle": {
+      "common_name": "Black Guillemot",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Green",
+      "bocc_5a_criteria": ""
+   },
+   "Alca torda": {
+      "common_name": "Razorbill",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Amber",
+      "bocc_5a_criteria": "BL; BI"
+   },
+   "Uria aalge": {
+      "common_name": "Common Guillemot",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5a": "Amber",
+      "bocc_5a_criteria": "BL; BI"
+   }
+}

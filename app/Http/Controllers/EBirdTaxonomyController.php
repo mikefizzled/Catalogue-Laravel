@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class EBirdTaxonomyController extends Controller
 {
+    static const notAsssed = 'Not Assessed';
     public function search(Request $request)
     {
         $query = trim($request->input('query'));
@@ -19,7 +20,7 @@ class EBirdTaxonomyController extends Controller
         }
 
         $data = json_decode(file_get_contents($filePath), true);
-        // Perform a case-insensitive "LIKE" search
+
         $matches = collect($data)->filter(function ($species) use ($query) {
             return stripos($species['comName'], $query) !== false;
         })->sortBy('comName')->values();

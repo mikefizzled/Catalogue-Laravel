@@ -1,0 +1,2452 @@
+{
+   "Coturnix coturnix": {
+      "common_name": "Common Quail",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "HDrec; BDMp",
+      "iucn_status": "EN"
+   },
+   "Perdix perdix": {
+      "common_name": "Grey Partridge",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMr",
+      "iucn_status": "VU"
+   },
+   "Lagopus lagopus": {
+      "common_name": "Red Grouse",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Lagopus muta": {
+      "common_name": "Ptarmigan",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp",
+      "iucn_status": "VU"
+   },
+   "Tetrao urogallus": {
+      "common_name": "Capercaillie",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BD; WDr; BDMp",
+      "iucn_status": "EN"
+   },
+   "Lyrurus tetrix": {
+      "common_name": "Black Grouse",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "HD; BDp; BDMp; BDMr",
+      "iucn_status": "VU"
+   },
+   "Cygnus olor": {
+      "common_name": "Mute Swan",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "G",
+      "bocc_4": "A",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Cygnus cygnus": {
+      "common_name": "Whooper Swan",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR; WL",
+      "iucn_status": "EN"
+   },
+   "Cygnus columbianus": {
+      "common_name": "Bewick s Swan",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "WDp; ERLOB; WDMp; WL; WI",
+      "iucn_status": "CR"
+   },
+   "Branta bernicla": {
+      "common_name": "Brent Goose",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WL; WI",
+      "iucn_status": "LC"
+   },
+   "Branta leucopsis": {
+      "common_name": "Barnacle Goose",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WL",
+      "iucn_status": "LC"
+   },
+   "Anser anser": {
+      "common_name": "Greylag Goose",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WL; WI",
+      "iucn_status": "LC"
+   },
+   "Anser fabalis": {
+      "common_name": "Bean Goose",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WDMp; WR",
+      "iucn_status": "EN"
+   },
+   "Anser brachyrhynchus": {
+      "common_name": "Pink-footed Goose",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WL; WI",
+      "iucn_status": "LC"
+   },
+   "Anser albifrons": {
+      "common_name": "White-fronted Goose",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "G",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "WDp",
+      "iucn_status": "EN"
+   },
+   "Clangula hyemalis": {
+      "common_name": "Long-tailed Duck",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "G",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "IUCN",
+      "iucn_status": "NT"
+   },
+   "Somateria mollissima": {
+      "common_name": "Common Eider",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "ERLOB; WDMp",
+      "iucn_status": "EN"
+   },
+   "Melanitta fusca": {
+      "common_name": "Velvet Scoter",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "IUCN; ERLOB; WL",
+      "iucn_status": "VU"
+   },
+   "Melanitta nigra": {
+      "common_name": "Common Scoter",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDr; BDMp; BR; WL",
+      "iucn_status": "CR"
+   },
+   "Bucephala clangula": {
+      "common_name": "Common Goldeneye",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "WDp; BR",
+      "iucn_status": "VU"
+   },
+   "Mergellus albellus": {
+      "common_name": "Smew",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "WDp; WDMp; WR",
+      "iucn_status": "CR"
+   },
+   "Mergus merganser": {
+      "common_name": "Goosander",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Mergus serrator": {
+      "common_name": "Red-breasted Merganser",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WDMp",
+      "iucn_status": "VU"
+   },
+   "Tadorna tadorna": {
+      "common_name": "Common Shelduck",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp; WDMp; WL",
+      "iucn_status": "EN"
+   },
+   "Aythya ferina": {
+      "common_name": "Common Pochard",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "IUCN; WDp; ERLOB; WDMp; BDMr",
+      "iucn_status": "EN"
+   },
+   "Aythya fuligula": {
+      "common_name": "Tufted Duck",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "VU"
+   },
+   "Aythya marila": {
+      "common_name": "Greater Scaup",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "WDp; WDMp; WL",
+      "iucn_status": "EN"
+   },
+   "Spatula querquedula": {
+      "common_name": "Garganey",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR",
+      "iucn_status": "EN"
+   },
+   "Spatula clypeata": {
+      "common_name": "Shoveler",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WI",
+      "iucn_status": "LC"
+   },
+   "Mareca strepera": {
+      "common_name": "Gadwall",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WI",
+      "iucn_status": "LC"
+   },
+   "Mareca penelope": {
+      "common_name": "Eurasian Wigeon",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WL; WI",
+      "iucn_status": "VU"
+   },
+   "Anas platyrhynchos": {
+      "common_name": "Mallard",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WDMp",
+      "iucn_status": "VU"
+   },
+   "Anas acuta": {
+      "common_name": "Pintail",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "ERLOB; BDMp; BDMr; BR; WL; WI",
+      "iucn_status": "CR"
+   },
+   "Anas crecca": {
+      "common_name": "Eurasian Teal",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WI",
+      "iucn_status": "LC"
+   },
+   "Tachybaptus ruficollis": {
+      "common_name": "Little Grebe",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Podiceps grisegena": {
+      "common_name": "Red-necked Grebe",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "WDp; ERLOB; WR",
+      "iucn_status": "CR"
+   },
+   "Podiceps cristatus": {
+      "common_name": "Great Crested Grebe",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Podiceps auritus": {
+      "common_name": "Slavonian Grebe",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "IUCN; BDp; BDMr; BR; WI",
+      "iucn_status": "CR"
+   },
+   "Podiceps nigricollis": {
+      "common_name": "Black-necked Grebe",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "ERLOB; BR; WR",
+      "iucn_status": "EN"
+   },
+   "Columba livia": {
+      "common_name": "Rock Dove/Feral Pigeon",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "NT"
+   },
+   "Columba oenas": {
+      "common_name": "Stock Dove",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BI",
+      "iucn_status": "LC"
+   },
+   "Columba palumbus": {
+      "common_name": "Wood Pigeon",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BI",
+      "iucn_status": "LC"
+   },
+   "Streptopelia turtur": {
+      "common_name": "Turtle Dove",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "IUCN; BDp; BDr; ERLOB; BDMr",
+      "iucn_status": "CR"
+   },
+   "Streptopelia decaocto": {
+      "common_name": "Collared Dove",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "NT"
+   },
+   "Caprimulgus europaeus": {
+      "common_name": "European Nightjar",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMr",
+      "iucn_status": "LC"
+   },
+   "Apus apus": {
+      "common_name": "Common Swift",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp",
+      "iucn_status": "EN"
+   },
+   "Cuculus canorus": {
+      "common_name": "Common Cuckoo",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMp",
+      "iucn_status": "LC"
+   },
+   "Rallus aquaticus": {
+      "common_name": "Water Rail",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Crex crex": {
+      "common_name": "Corn Crake",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDr; HDrec",
+      "iucn_status": "LC"
+   },
+   "Porzana porzana": {
+      "common_name": "Spotted Crake",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR",
+      "iucn_status": "CR"
+   },
+   "Gallinula chloropus": {
+      "common_name": "Moorhen",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp",
+      "iucn_status": "VU"
+   },
+   "Fulica atra": {
+      "common_name": "Common Coot",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "VU"
+   },
+   "Grus grus": {
+      "common_name": "Common Crane",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR; WR",
+      "iucn_status": "VU"
+   },
+   "Gavia stellata": {
+      "common_name": "Red-throated Diver",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "NT"
+   },
+   "Gavia arctica": {
+      "common_name": "Black-throated Diver",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR; WR",
+      "iucn_status": "VU"
+   },
+   "Gavia immer": {
+      "common_name": "Great Northern Diver",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WI",
+      "iucn_status": "LC"
+   },
+   "Hydrobates pelagicus": {
+      "common_name": "European Storm-petrel",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BL",
+      "iucn_status": "LC"
+   },
+   "Oceannodroma leucorhoa": {
+      "common_name": "Leach s Storm-petrel",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "IUCN; BDp; BL; BI",
+      "iucn_status": "CR"
+   },
+   "Fulmarus glacialis": {
+      "common_name": "Fulmar",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "ERLOB; BL",
+      "iucn_status": "LC"
+   },
+   "Ardenna grisea": {
+      "common_name": "Sooty Shearwater",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "NE"
+   },
+   "Ardenna gravis": {
+      "common_name": "Great Shearwater",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "NE"
+   },
+   "Puffinus puffinus": {
+      "common_name": "Manx Shearwater",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMPr; BL; BI",
+      "iucn_status": "LC"
+   },
+   "Puffinus mauretanicus": {
+      "common_name": "Balearic Shearwater",
+      "bocc_1": "n",
+      "bocc_2": "n",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "IUCN; ERLOB; WI",
+      "iucn_status": "VU"
+   },
+   "Platalea leucorodia": {
+      "common_name": "Eurasian Spoonbill",
+      "bocc_1": "n",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR; WR",
+      "iucn_status": "VU"
+   },
+   "Botaurus stellaris": {
+      "common_name": "Eurasian Bittern",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "HDrec; BR; WR",
+      "iucn_status": "VU"
+   },
+   "Ixobrychus minutus": {
+      "common_name": "Little Bittern",
+      "bocc_1": "n",
+      "bocc_2": "n",
+      "bocc_3": "n",
+      "bocc_4": "n",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR",
+      "iucn_status": "CR"
+   },
+   "Bubulcus ibis": {
+      "common_name": "Cattle Egret",
+      "bocc_1": "n",
+      "bocc_2": "n",
+      "bocc_3": "n",
+      "bocc_4": "n",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR",
+      "iucn_status": "VU"
+   },
+   "Ardea cinerea": {
+      "common_name": "Grey Heron",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "VU"
+   },
+   "Ardea alba": {
+      "common_name": "Great White Egret",
+      "bocc_1": "n",
+      "bocc_2": "n",
+      "bocc_3": "n",
+      "bocc_4": "n",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR; WR",
+      "iucn_status": "EN"
+   },
+   "Egretta garzetta": {
+      "common_name": "Little Egret",
+      "bocc_1": "n",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Morus bassanus": {
+      "common_name": "Northern Gannet",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BL; BI",
+      "iucn_status": "LC"
+   },
+   "Phalacrocorax aristotelis": {
+      "common_name": "Shag",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMp; BI",
+      "iucn_status": "EN"
+   },
+   "Phalacrocorax carbo": {
+      "common_name": "Great Cormorant",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "NT"
+   },
+   "Burhinus oedicnemus": {
+      "common_name": "Stone-curlew",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMr; BL",
+      "iucn_status": "VU"
+   },
+   "Haematopus ostralegus": {
+      "common_name": "Oystercatcher",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "ERLOB; WL; WI; BI",
+      "iucn_status": "VU"
+   },
+   "Recurvirostra avosetta": {
+      "common_name": "Avocet",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BL; WL",
+      "iucn_status": "LC"
+   },
+   "Himantopus himantopus": {
+      "common_name": "Black-winged Stilt",
+      "bocc_1": "A",
+      "bocc_2": "n",
+      "bocc_3": "n",
+      "bocc_4": "n",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR",
+      "iucn_status": "NE"
+   },
+   "Pluvialis squatarola": {
+      "common_name": "Grey Plover",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WDMp; WL",
+      "iucn_status": "VU"
+   },
+   "Pluvialis apricaria": {
+      "common_name": "European Golden Plover",
+      "bocc_1": "A",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Charadrius morinellus": {
+      "common_name": "Dotterel",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp",
+      "iucn_status": "VU"
+   },
+   "Charadrius hiaticula": {
+      "common_name": "Ringed Plover",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "WDp; BDMp; WDMp; WI",
+      "iucn_status": "VU"
+   },
+   "Charadrius dubius": {
+      "common_name": "Little Ringed Plover",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Vanellus vanellus": {
+      "common_name": "Northern Lapwing",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; ERLOB; BDMp; WDMp",
+      "iucn_status": "VU"
+   },
+   "Numenius phaeopus": {
+      "common_name": "Whimbrel",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDr; BDMr; WR",
+      "iucn_status": "EN"
+   },
+   "Numenius arquata": {
+      "common_name": "Eurasian Curlew",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMp; WDMp; BL",
+      "iucn_status": "EN"
+   },
+   "Limosa lapponica": {
+      "common_name": "Bar-tailed Godwit",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WL; WI",
+      "iucn_status": "VU"
+   },
+   "Limosa limosa": {
+      "common_name": "Black-tailed Godwit",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "HD; BDMr; BR; WL",
+      "iucn_status": "EN"
+   },
+   "Arenaria interpres": {
+      "common_name": "Turnstone",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WDMp",
+      "iucn_status": "VU"
+   },
+   "Calidris canutus": {
+      "common_name": "Red Knot",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WL; WI",
+      "iucn_status": "LC"
+   },
+   "Calidris pugnax": {
+      "common_name": "Ruff",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDr; BDMp; BR",
+      "iucn_status": "CR"
+   },
+   "Calidris ferruginea": {
+      "common_name": "Curlew Sandpiper",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "ERLOB",
+      "iucn_status": "NE"
+   },
+   "Calidris alba": {
+      "common_name": "Sanderling",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WL",
+      "iucn_status": "LC"
+   },
+   "Calidris alpina": {
+      "common_name": "Dunlin",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "WDp; WDMp; BDMr; BL; WL",
+      "iucn_status": "VU"
+   },
+   "Calidris maritima": {
+      "common_name": "Purple Sandpiper",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; WDMp; BDMr; BR",
+      "iucn_status": "CR"
+   },
+   "Calidris minuta": {
+      "common_name": "Little Stint",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "NE"
+   },
+   "Scolopax rusticola": {
+      "common_name": "Woodcock",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMr",
+      "iucn_status": "VU"
+   },
+   "Gallinago gallinago": {
+      "common_name": "Common Snipe",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "ERLOB; WDMp; BDMr",
+      "iucn_status": "VU"
+   },
+   "Lymnocryptes minimus": {
+      "common_name": "Jack Snipe",
+      "bocc_1": "A",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Phalaropus lobatus": {
+      "common_name": "Red-necked Phalarope",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "HD; BR",
+      "iucn_status": "EN"
+   },
+   "Actitis hypoleucos": {
+      "common_name": "Common Sandpiper",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp; WR",
+      "iucn_status": "NT"
+   },
+   "Tringa ochropus": {
+      "common_name": "Green Sandpiper",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMr; BR; WR",
+      "iucn_status": "CR"
+   },
+   "Tringa erythropus": {
+      "common_name": "Spotted Redshank",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WR",
+      "iucn_status": "EN"
+   },
+   "Tringa nebularia": {
+      "common_name": "Greenshank",
+      "bocc_1": "A",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BL",
+      "iucn_status": "LC"
+   },
+   "Tringa totanus": {
+      "common_name": "Common Redshank",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "ERLOB; BDMp; BDMr; WI",
+      "iucn_status": "VU"
+   },
+   "Tringa glareola": {
+      "common_name": "Wood Sandpiper",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR; WR",
+      "iucn_status": "EN"
+   },
+   "Hydrocoloeus minutus": {
+      "common_name": "Little Gull",
+      "bocc_1": "A",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "NE"
+   },
+   "Rissa tridactyla": {
+      "common_name": "Kittiwake",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; ERLOB",
+      "iucn_status": "CR"
+   },
+   "Chroicocephalus ridibundus": {
+      "common_name": "Black-headed Gull",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WDMp; WI",
+      "iucn_status": "VU"
+   },
+   "Ichthyactus melanocephalus": {
+      "common_name": "Mediterranean Gull",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BL",
+      "iucn_status": "LC"
+   },
+   "Larus canus": {
+      "common_name": "Common Gull",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WI",
+      "iucn_status": "LC"
+   },
+   "Larus fuscus": {
+      "common_name": "Lesser Black-backed Gull",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BL; BI",
+      "iucn_status": "DD"
+   },
+   "Larus argentatus": {
+      "common_name": "Herring Gull",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; WDp; BI; WI",
+      "iucn_status": "EN"
+   },
+   "Larus michahellis": {
+      "common_name": "Yellow-legged Gull",
+      "bocc_1": "n",
+      "bocc_2": "n",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR",
+      "iucn_status": "EN"
+   },
+   "Larus cachinnans": {
+      "common_name": "Caspian Gull",
+      "bocc_1": "n",
+      "bocc_2": "n",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WR",
+      "iucn_status": "VU"
+   },
+   "Larus glaucoides": {
+      "common_name": "Iceland Gull",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WR",
+      "iucn_status": "NT"
+   },
+   "Larus hyperboreus": {
+      "common_name": "Glaucous Gull",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WR",
+      "iucn_status": "VU"
+   },
+   "Larus marinus": {
+      "common_name": "Great Black-backed Gull",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp; WDMp",
+      "iucn_status": "EN"
+   },
+   "Sternula albifrons": {
+      "common_name": "Little Tern",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp; BL",
+      "iucn_status": "VU"
+   },
+   "Chlidonias niger": {
+      "common_name": "Black Tern",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "NE"
+   },
+   "Sterna dougallii": {
+      "common_name": "Roseate Tern",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDr; BDMr; BR",
+      "iucn_status": "EN"
+   },
+   "Sterna hirundo": {
+      "common_name": "Common Tern",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BL",
+      "iucn_status": "NT"
+   },
+   "Sterna paradisaea": {
+      "common_name": "Arctic Tern",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp; BDMr",
+      "iucn_status": "VU"
+   },
+   "Thalasseus sandvicensis": {
+      "common_name": "Sandwich Tern",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp; BL",
+      "iucn_status": "LC"
+   },
+   "Stercorarius longicaudus": {
+      "common_name": "Long-tailed Skua",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "NE"
+   },
+   "Stercorarius parasiticus": {
+      "common_name": "Arctic Skua",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMp",
+      "iucn_status": "CR"
+   },
+   "Stercorarius pomarinus": {
+      "common_name": "Pomarine Skua",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "NE"
+   },
+   "Stercorarius skua": {
+      "common_name": "Great Skua",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BL; BI",
+      "iucn_status": "LC"
+   },
+   "Fratercula arctica": {
+      "common_name": "Puffin",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "IUCN; ERLOB; BDMr; BL",
+      "iucn_status": "LC"
+   },
+   "Cepphus grylle": {
+      "common_name": "Black Guillemot",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMr",
+      "iucn_status": "LC"
+   },
+   "Alca torda": {
+      "common_name": "Razorbill",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BL; BI",
+      "iucn_status": "LC"
+   },
+   "Alle alle": {
+      "common_name": "Little Auk",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "DD"
+   },
+   "Uria aalge": {
+      "common_name": "Common Guillemot",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BL; BI",
+      "iucn_status": "LC"
+   },
+   "Tyto alba": {
+      "common_name": "Barn Owl",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Asio otus": {
+      "common_name": "Long-eared Owl",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Asio flammeus": {
+      "common_name": "Short-eared Owl",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMr",
+      "iucn_status": "EN"
+   },
+   "Strix aluco": {
+      "common_name": "Tawny Owl",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp",
+      "iucn_status": "NT"
+   },
+   "Pandion haliaetus": {
+      "common_name": "Osprey",
+      "bocc_1": "R",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "HDrec; BR",
+      "iucn_status": "NT"
+   },
+   "Pernis apivorus": {
+      "common_name": "Honey-buzzard",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR",
+      "iucn_status": "EN"
+   },
+   "Aquila chrysaetos": {
+      "common_name": "Golden Eagle",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "NT"
+   },
+   "Circus aeruginosus": {
+      "common_name": "Marsh Harrier",
+      "bocc_1": "R",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BL",
+      "iucn_status": "LC"
+   },
+   "Circus cyaneus": {
+      "common_name": "Hen Harrier",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "HD; BDMp",
+      "iucn_status": "EN"
+   },
+   "Circus pygargus": {
+      "common_name": "Montagu s Harrier",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMr; BR",
+      "iucn_status": "CR"
+   },
+   "Accipiter nisus": {
+      "common_name": "Eurasian Sparrowhawk",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp",
+      "iucn_status": "VU"
+   },
+   "Accipiter gentilis": {
+      "common_name": "Northern Goshawk",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "NT"
+   },
+   "Haliaeetus albicilla": {
+      "common_name": "White-tailed Eagle",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "HDrec; BR",
+      "iucn_status": "EN"
+   },
+   "Milvus milvus": {
+      "common_name": "Red Kite",
+      "bocc_1": "R",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Buteo buteo": {
+      "common_name": "Common Buzzard",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Alcedo atthis": {
+      "common_name": "Common Kingfisher",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "VU"
+   },
+   "Picus viridis": {
+      "common_name": "Green Woodpecker",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "NT"
+   },
+   "Dryobates minor": {
+      "common_name": "Lesser Spotted Woodpecker",
+      "bocc_1": "G",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMr",
+      "iucn_status": "EN"
+   },
+   "Dendrocopos major": {
+      "common_name": "Great Spotted Woodpecker",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Falco tinnunculus": {
+      "common_name": "Common Kestrel",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp",
+      "iucn_status": "VU"
+   },
+   "Falco columbarius": {
+      "common_name": "Merlin",
+      "bocc_1": "R",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "HD; ERLOB",
+      "iucn_status": "EN"
+   },
+   "Falco subbuteo": {
+      "common_name": "Hobby",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "NT"
+   },
+   "Falco peregrinus": {
+      "common_name": "Peregrine Falcon",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Lanius collurio": {
+      "common_name": "Red-backed Shrike",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "HD; BDp; BDr; BR",
+      "iucn_status": "CR"
+   },
+   "Pyrrhocorax pyrrhocorax": {
+      "common_name": "Red-billed Chough",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "VU"
+   },
+   "Garrulus glandarius": {
+      "common_name": "Eurasian Jay",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Pica pica": {
+      "common_name": "Magpie",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Coloeus monedula": {
+      "common_name": "Jackdaw",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Corvus frugilegus": {
+      "common_name": "Rook",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "ERLOB",
+      "iucn_status": "NT"
+   },
+   "Corvus corax": {
+      "common_name": "Common Raven",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Corvus corone": {
+      "common_name": "Carrion Crow",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Periparus ater": {
+      "common_name": "Coal Tit",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Lophophanes cristatus": {
+      "common_name": "Crested Tit",
+      "bocc_1": "A",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Poecile palustris": {
+      "common_name": "Marsh Tit",
+      "bocc_1": "A",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMp",
+      "iucn_status": "NT"
+   },
+   "Poecile montanus": {
+      "common_name": "Willow Tit",
+      "bocc_1": "A",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDr; BDMr; WDMr",
+      "iucn_status": "EN"
+   },
+   "Cyanistes caeruleus": {
+      "common_name": "Blue Tit",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Parus major": {
+      "common_name": "Great Tit",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Eremophila alpestris": {
+      "common_name": "Shore Lark",
+      "bocc_1": "n",
+      "bocc_2": "n",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WR",
+      "iucn_status": "EN"
+   },
+   "Lullula arborea": {
+      "common_name": "Woodlark",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Alauda arvensis": {
+      "common_name": "Skylark",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp",
+      "iucn_status": "LC"
+   },
+   "Panurus biarmicus": {
+      "common_name": "Bearded Tit",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Acrocephalus schoenobaenus": {
+      "common_name": "Sedge Warbler",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp",
+      "iucn_status": "NT"
+   },
+   "Acrocephalus palustris": {
+      "common_name": "Marsh Warbler",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BR",
+      "iucn_status": "CR"
+   },
+   "Acrocephalus scirpaceus": {
+      "common_name": "Reed Warbler",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Locustella luscinioides": {
+      "common_name": "Savi s Warbler",
+      "bocc_1": "A",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMr; BR",
+      "iucn_status": "CR"
+   },
+   "Locustella naevia": {
+      "common_name": "Grasshopper Warbler",
+      "bocc_1": "A",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp",
+      "iucn_status": "LC"
+   },
+   "Delichon urbicum": {
+      "common_name": "House Martin",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp",
+      "iucn_status": "NT"
+   },
+   "Hirundo rustica": {
+      "common_name": "Barn Swallow",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "VU"
+   },
+   "Riparia riparia": {
+      "common_name": "Sand Martin",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Phylloscopus sibilatrix": {
+      "common_name": "Wood Warbler",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMr",
+      "iucn_status": "VU"
+   },
+   "Phylloscopus inornatus": {
+      "common_name": "Yellow-browed Warbler",
+      "bocc_1": "n",
+      "bocc_2": "n",
+      "bocc_3": "n",
+      "bocc_4": "n",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WR",
+      "iucn_status": "EN"
+   },
+   "Phylloscopus trochilus": {
+      "common_name": "Willow Warbler",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp",
+      "iucn_status": "LC"
+   },
+   "Phylloscopus collybita": {
+      "common_name": "Common Chiffchaff",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Cettia cetti": {
+      "common_name": "Cetti s Warbler",
+      "bocc_1": "A",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Aegithalos caudatus": {
+      "common_name": "Long-tailed Tit",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Sylvia atricapilla": {
+      "common_name": "Blackcap",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Sylvia borin": {
+      "common_name": "Garden Warbler",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Curruca curruca": {
+      "common_name": "Lesser Whitethroat",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Curruca communis": {
+      "common_name": "Common Whitethroat",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp",
+      "iucn_status": "LC"
+   },
+   "Curruca undata": {
+      "common_name": "Dartford Warbler",
+      "bocc_1": "R",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "HDrec; BL",
+      "iucn_status": "LC"
+   },
+   "Certhia brachydactyla": {
+      "common_name": "Short-toed Treecreeper",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR",
+      "iucn_status": "NE"
+   },
+   "Certhia familiaris": {
+      "common_name": "Eurasian Treecreeper",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Sitta europaea": {
+      "common_name": "Eurasian Nuthatch",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Troglodytes troglodytes": {
+      "common_name": "Wren",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BI",
+      "iucn_status": "LC"
+   },
+   "Cinclus cinclus": {
+      "common_name": "Dipper",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp",
+      "iucn_status": "LC"
+   },
+   "Sturnus vulgaris": {
+      "common_name": "Common Starling",
+      "bocc_1": "A",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp",
+      "iucn_status": "VU"
+   },
+   "Turdus viscivorus": {
+      "common_name": "Mistle Thrush",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMp",
+      "iucn_status": "NT"
+   },
+   "Turdus philomelos": {
+      "common_name": "Song Thrush",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp",
+      "iucn_status": "LC"
+   },
+   "Turdus iliacus": {
+      "common_name": "Redwing",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMr; BR",
+      "iucn_status": "CR"
+   },
+   "Turdus merula": {
+      "common_name": "Blackbird",
+      "bocc_1": "A",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Turdus pilaris": {
+      "common_name": "Fieldfare",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDr; BDMr; BR",
+      "iucn_status": "CR"
+   },
+   "Turdus torquatus": {
+      "common_name": "Ring Ouzel",
+      "bocc_1": "A",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMr",
+      "iucn_status": "NT"
+   },
+   "Muscicapa striata": {
+      "common_name": "Spotted Flycatcher",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp",
+      "iucn_status": "NT"
+   },
+   "Erithacus rubecula": {
+      "common_name": "Robin",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Luscinia megarhynchos": {
+      "common_name": "Common Nightingale",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMr",
+      "iucn_status": "VU"
+   },
+   "Ficedula hypoleuca": {
+      "common_name": "Pied Flycatcher",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp; BDMr",
+      "iucn_status": "NT"
+   },
+   "Phoenicurus ochruros": {
+      "common_name": "Black Redstart",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR; WR",
+      "iucn_status": "VU"
+   },
+   "Phoenicurus phoenicurus": {
+      "common_name": "Common Redstart",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMr",
+      "iucn_status": "LC"
+   },
+   "Saxicola rubetra": {
+      "common_name": "Whinchat",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMr",
+      "iucn_status": "NT"
+   },
+   "Saxicola rubicola": {
+      "common_name": "European Stonechat",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Oenanthe oenanthe": {
+      "common_name": "Northern Wheatear",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp",
+      "iucn_status": "EN"
+   },
+   "Regulus regulus": {
+      "common_name": "Goldcrest",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Regulus ignicapilla": {
+      "common_name": "Firecrest",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Bombycilla garrulus": {
+      "common_name": "Waxwing",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Prunella modularis": {
+      "common_name": "Dunnock",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp",
+      "iucn_status": "LC"
+   },
+   "Passer domesticus": {
+      "common_name": "House Sparrow",
+      "bocc_1": "G",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp",
+      "iucn_status": "LC"
+   },
+   "Passer montanus": {
+      "common_name": "Tree Sparrow",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMr",
+      "iucn_status": "VU"
+   },
+   "Anthus trivialis": {
+      "common_name": "Tree Pipit",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMr",
+      "iucn_status": "LC"
+   },
+   "Anthus pratensis": {
+      "common_name": "Meadow Pipit",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp",
+      "iucn_status": "LC"
+   },
+   "Anthus spinoletta": {
+      "common_name": "Water Pipit",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WR",
+      "iucn_status": "EN"
+   },
+   "Anthus petrosus": {
+      "common_name": "Rock Pipit",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Motacilla flava": {
+      "common_name": "Yellow Wagtail",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMp; BDMr",
+      "iucn_status": "NT"
+   },
+   "Motacilla cinerea": {
+      "common_name": "Grey Wagtail",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "R",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp",
+      "iucn_status": "NT"
+   },
+   "Motacilla alba": {
+      "common_name": "White/Pied Wagtail",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Fringilla coelebs": {
+      "common_name": "Common Chaffinch",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "EN"
+   },
+   "Fringilla montifringilla": {
+      "common_name": "Brambling",
+      "bocc_1": "A",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Coccothraustes coccothraustes": {
+      "common_name": "Hawfinch",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDr",
+      "iucn_status": "EN"
+   },
+   "Pyrrhula pyrrhula": {
+      "common_name": "Bullfinch",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp",
+      "iucn_status": "LC"
+   },
+   "Chloris chloris": {
+      "common_name": "Greenfinch",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp",
+      "iucn_status": "EN"
+   },
+   "Linaria flavirostris": {
+      "common_name": "Twite",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "HD; BDp",
+      "iucn_status": "EN"
+   },
+   "Linaria cannabina": {
+      "common_name": "Linnet",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp",
+      "iucn_status": "LC"
+   },
+   "Acanthis flammea": {
+      "common_name": "Redpoll",
+      "bocc_1": "G",
+      "bocc_2": "A",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp",
+      "iucn_status": "LC"
+   },
+   "Loxia pytyopsittacus": {
+      "common_name": "Parrot Crossbill",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR",
+      "iucn_status": "EN"
+   },
+   "Loxia scotica": {
+      "common_name": "Scottish Crossbill",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BI",
+      "iucn_status": "LC"
+   },
+   "Loxia curvirostra": {
+      "common_name": "Common Crossbill",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Carduelis carduelis": {
+      "common_name": "Goldfinch",
+      "bocc_1": "A",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Spinus spinus": {
+      "common_name": "Siskin",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "G",
+      "bocc_4": "G",
+      "bocc_5": "Green",
+      "bocc_5_criteria": "",
+      "iucn_status": "LC"
+   },
+   "Calcarius lapponicus": {
+      "common_name": "Lapland Bunting",
+      "bocc_1": "G",
+      "bocc_2": "G",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "WR",
+      "iucn_status": "VU"
+   },
+   "Plectrophenax nivalis": {
+      "common_name": "Snow Bunting",
+      "bocc_1": "A",
+      "bocc_2": "A",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BR",
+      "iucn_status": "EN"
+   },
+   "Emberiza calandra": {
+      "common_name": "Corn Bunting",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "HD; BDp; BDr; BDMp; BDMr; WDMr",
+      "iucn_status": "NT"
+   },
+   "Emberiza cirlus": {
+      "common_name": "Cirl Bunting",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp",
+      "iucn_status": "LC"
+   },
+   "Emberiza citrinella": {
+      "common_name": "Yellowhammer",
+      "bocc_1": "G",
+      "bocc_2": "R",
+      "bocc_3": "R",
+      "bocc_4": "R",
+      "bocc_5": "Red",
+      "bocc_5_criteria": "BDp; BDMp",
+      "iucn_status": "LC"
+   },
+   "Emberiza schoeniclus": {
+      "common_name": "Reed Bunting",
+      "bocc_1": "R",
+      "bocc_2": "R",
+      "bocc_3": "A",
+      "bocc_4": "A",
+      "bocc_5": "Amber",
+      "bocc_5_criteria": "BDMp",
+      "iucn_status": "LC"
+   }
+}
