@@ -48,6 +48,12 @@ Route::get('/taxonomy-json-without-genera', [EBirdTaxonomyController::class, 'ta
 
 Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue.index');
 Route::get('/catalogue/{animal}', [CatalogueController::class, 'show'])->name('catalogue.show');
+Route::get('/filtered-birds', [CatalogueController:: class, 'getFilteredBirds']);
+
+Route::get('/get_orders', [CatalogueController::class, 'getOrders']);
+Route::get('/get_families', [CatalogueController::class, 'getFamilies']);
+Route::get('/animals', [CatalogueController::class, 'getAnimals']);
+
 
 Route::get('/taxonomy', function () {
     return view('taxonomy');

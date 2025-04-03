@@ -1,26 +1,72 @@
 <x-public-app-layout>
 @section('title', 'Bird Catalogue')
 <div class="p-4 px-8 text-center text-white bg-gray-800 flex flex-wrap justify-center border border-gray-700 dark:bg-gray-900">
-    <!-- Title -->
-        <div>
- <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Animal Catalogue</h1>
-    <!-- Filters -->
-    <div class="flex flex-wrap justify-center gap-4 mb-6">
-        <div class="min-w-[10rem] w-fit p-2">
-            <label for="orders" class="block ">Order</label>
-            <select id="orders" class="mt-1 block w-full px-3 py-2 bg-white text-gray-900 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-                <option value="">All</option>
-                <!-- Options here -->
-            </select>
+       <div>
+        <div class="max-w-7xl mx-aut p-6 bg-white dark:bg-gray-800 rounded-lg shadow">
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Animal Catalogue</h1>
+            <div class="mb-4 text-center">
+                <p class="mt-2 text-gray-600 dark:text-gray-300">
+                    Select an Order and/or Family to filter
+                </p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-6">
+                <div class="w-full sm:w-1/2 md:w-1/3">
+                    <label for="orders" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Order</label>
+                    <select id="orders" class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                        <option value="">All</option>
+
+                        @foreach ($orders as $order)
+                            <option value="{{ $order->id }}" {{ request('order') == $order->id ? 'selected' : '' }}>{{ $order->order_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="w-full sm:w-1/2 md:w-1/3">
+                    <label for="families" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Family</label>
+                    <select id="families" class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                        <option value="">All</option>
+
+                        @foreach ($families as $family)
+                            <option value="{{ $family->id }}" {{ request('family') == $family->id ? 'selected' : '' }}>{{ $family->family_name }} - {{$family->common_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const ordersSelect = document.getElementById("orders");
+                const familiesSelect = document.getElementById("families");
+            
+                ordersSelect.addEventListener("change", applyFilters);
+                familiesSelect.addEventListener("change", applyFilters);
+            
+
+                
+                function applyFilters() {
+                    const order = ordersSelect.value;
+                    const family = familiesSelect.value;
+            
+                    let url = new URL(window.location.href);
+                    if (order) {
+                        url.searchParams.set("order", order);
+                    } else {
+                        url.searchParams.delete("order");
+                    }
+                    if (family) {
+                        url.searchParams.set("family", family);
+                    } else {
+                        url.searchParams.delete("family");
+                    }
+
+                    window.location.href = url.toString();
+                }
+                
+            
+            });
+
+            
+        </script>
         </div>
-        <div class="min-w-[10rem] w-fit p-2 overflow-hidden text-ellipsis">
-            <label for="families" class="block  ">Family</label>
-            <select id="families" class="mt-1 block w-full px-3 py-2 bg-white text-gray-900 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-                <option value="">All</option>
-                <!-- Options here -->
-            </select>
-        </div>
-    </div>
+        
 
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
@@ -38,8 +84,6 @@
                     <p class="text-center text-gray-500 dark:text-gray-400 col-span-full">No animals found.</p>
                 @endforelse
             </div>
-        
-        
             {{ $animals->links() }}
             
         </div>

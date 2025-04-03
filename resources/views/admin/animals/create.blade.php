@@ -65,7 +65,7 @@
     function fetchEbirdCode() {
         let commonName = document.getElementById("common_name").value.trim();
         let resultsDiv = document.getElementById("results");
-        resultsDiv.innerHTML = "";  
+        resultsDiv.innerHTML = "";
     
         if (commonName.length < 3) return;
     

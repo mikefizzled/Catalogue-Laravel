@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class EBirdTaxonomyController extends Controller
 {
-    static const notAsssed = 'Not Assessed';
     public function search(Request $request)
     {
         $query = trim($request->input('query'));
