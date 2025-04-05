@@ -1,7 +1,7 @@
 <x-public-app-layout>
-    <div class="max-w-7xl min-h-[85vh] mx-auto p-6 bg-white dark:bg-gray-900 shadow-lg rounded-lg">
+    <div class="max-w-7xl min-h-[85vh] mx-auto p-2 bg-white dark:bg-gray-900 shadow-lg rounded-lg">
         <div class="mb-6 text-center">
-            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">Conservation Lists Overview</h2>
+            <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">Conservation Lists Overview</h1>
             <p class="text-gray-600 dark:text-gray-300 mt-2">
                 This table presents key conservation lists relevant to our project. These documents track species conservation statuses
                 across different years, helping us analyze trends and shifts in conservation priorities. By maintaining references to these lists,
@@ -10,7 +10,7 @@
         </div>
 
         <div class="overflow-x-auto rounded-lg shadow">
-            <table class="w-full text-sm text-left text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700">
+            <table class="w-full text-sm text-left text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700" aria-label="Table of Birds of Conservation Concern by the British Birds Journal">
                 <thead class="text-xs uppercase bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-300">
                     <tr>
                         <th class="px-6 py-3">Short Name</th>
@@ -29,9 +29,8 @@
                             <td class="px-6 py-4">{{ $list->authors }}</td>
                             <td class="px-6 py-4">
                                 @if($list->filename)
-                                    <a href="{{ asset('storage/' . $list->filename) }}" target="_blank" class="text-blue-600 hover:underline">View PDF</a>
-                                @else
-                                    <span class="text-gray-500 italic">N/A</span>
+                                    <a href="{{ asset('storage/' . $list->filename) }}" class="text-blue-300 hover:underline">View PDF</a>                                @else
+                                    <span class="text-gray-200 italic">N/A</span>
                                 @endif
                             </td>
                         </tr>

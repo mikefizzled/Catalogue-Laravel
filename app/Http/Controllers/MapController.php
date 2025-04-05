@@ -37,7 +37,7 @@ class MapController extends Controller
             foreach ($animals as $animal) {
                 // Create a link to the animal's detail page. Adjust route/path as needed.
                 $link = route('catalogue.show', $animal->id);
-                $animalListHtml .= "<li><a href='{$link}' class='text-blue-500 hover:underline' target='#'>{$animal->common_name}</a></li>";
+                $animalListHtml .= "<li><a href='{$link}' class='text-blue-500 hover:underline'>{$animal->common_name}</a></li>";
             }
             $animalListHtml .= '</ul>';
             

@@ -1,8 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <x-h2>
-            Media
-        </x-h2>
+        <h1 class="font-bold text-2xl text-gray-800 dark:text-gray-100">Media</h1>
         @section('title', 'Manage Media')
     </x-slot>
 
@@ -15,17 +13,17 @@
                     
                     <div class="flex-shrink-0 w-40 h-22 sm:w-40 sm:h-22 rounded-md p-1">
 
-                        <img src="{{ $media->thumbnail_url }}" alt="{{ $media->thumbnail_url }}" class="w-full h-full object-cover rounded-md">
+                        <img src="{{ $media->thumbnail_url }}" alt="{{ $media->caption }}" class="w-full h-full object-cover rounded-md">
                     </div>
                     <div class="flex-1 max-w-xl">
                         <span class="mb-2 text-xs dark:text-gray-500 italic">
-                            {{$media->location->name}} - {{ \Carbon\Carbon::parse($media->date_taken)->format('F j, Y g:i A') }}
+                            {{$media->location->name}} - {{ \Carbon\Carbon::parse($media->date_taken)->format('F j, Y') }}
                         </span>
-                        <h2 class="font-bold text-xl dark:text-gray-100">
+                        <p class="font-bold text-xl dark:text-gray-100">
                             <a href="{{ route('admin.media.show', ['media' => $media->id]) }}">
                                 {{ $media->animal->common_name }}
                             </a>
-                        </h2>
+                        </p>
                     </div>
                     <div class="ml-auto text-right">
                         <span class="block mt-4 pr-6 text-sm opacity-70 text-gray-600 dark:text-gray-400">

@@ -12,17 +12,17 @@
           <div class="flex flex-col md:flex-row gap-6">
             <div class="self-center p-5">
               <div class="dark:text-gray-100">
-                <x-h2>{{ $animal->common_name }} </x-h2>
-                <h3 class="italic">{{ $animal->scientific_name }}</h3>
+                <h1 class="text-3xl">{{ $animal->common_name }} </h1>
+                <h2 class="text-xl italic">{{ $animal->scientific_name }}</h2>
                 <br>
-                <a href='https://ebird.org/species/{{ $animal->ebird_species_code}}' class="underline" target="#">eBird</a>
+                <a href='https://ebird.org/species/{{ $animal->ebird_species_code}}' class="underline">eBird</a>
               </div>
             </div>
             <div class="flex-grow self-center px-5 mx-5">
-              <table class="w-full table-auto border-collapse dark:text-gray-100">
+              <table class="w-full table-auto border-collapse dark:text-gray-100" title="Bird Info">
                 <tbody>
                   <tr class="border-b">
-                    <th class=" py-2 px-4">Class</th>
+                    <th class="py-2 px-4">Class</th>
                     <td class="py-2 px-4">Aves</td>
                   </tr>
                   <tr class="border-b">
@@ -51,7 +51,8 @@
             </div>
           </div>
         </div>
-        <div class="bg-white dark:bg-gray-800 px-6 py-3 shadow-sm sm:rounded-lg content-center"> @if ($animal->conservationStatuses->isNotEmpty())
+        <div class="bg-white dark:bg-gray-800 px-6 py-3 shadow-sm sm:rounded-lg content-center"> 
+          @if ($animal->conservationStatuses->isNotEmpty())
           <!-- Title -->
           <div class="text-center">
             <x-h2>Conservation Status - Birds of Conservation Concern</x-h2>
@@ -63,11 +64,11 @@
                     $bgClass = \App\Helpers\CatalogueHelper::getStatusBgClass($cs->status);
                 @endphp
                 <div class="p-4 border rounded-lg shadow-sm text-gray-800 dark:text-gray-200 {{ $bgClass }}">
-                    <h4 class="text-md font-semibold text-center">
+                    <h3 class="text-md text-center">
                         {{ $cs->conservationList->short_name }} - {{ $cs->conservationList->year }}
-                    </h4>
+                    </h3>
                     <p class="text-sm text-center">
-                        <span class="font-bold">{{ ucfirst($cs->status) }}</span>
+                        <span >{{ ucfirst($cs->status) }}</span>
                     </p>
                     @if ($cs->criteria->isNotEmpty())
                         <details class="text-gray-800 dark:text-gray-200 mt-2">
@@ -95,23 +96,20 @@
                 @foreach ($images as $media)
                     <div class="hidden ease-in-out w-full h-full flex justify-center items-center" data-carousel-item>
                         @if ($media->media_type === 'image')
-                            <img src="{{ $media->media_url }}" class="w-full h-full object-cover rounded-md" alt="{{$media->caption}}">
+                            <img src="{{ $media->media_url }}" class="w-full h-full object-cover rounded-md" alt={{ $media->caption }}>
+                            <div class="absolute bottom-5 left-5 bg-black bg-opacity-50 text-white p-3 rounded-lg shadow-lg w-auto text-center">
                         @elseif ($media->media_type === 'video')
                             <video controls class="w-full h-full object-cover rounded-md">
                                 <source src="{{ $media->media_url }}" type="video/mp4">
-                                Your browser does not support the video element.
+                                <p class="text-gray-600 dark:text-gray-300"> Your browser does not support the video element </p>
                             </video>
-                        @endif
-                        @if ($media->media_type === 'image')
-                        <div class="absolute bottom-5 left-5 bg-black bg-opacity-50 text-white p-3 rounded-lg shadow-lg w-auto text-center">
-                        @elseif ($media->media_type === 'video')
-                        <div class="absolute top-5 left-5 bg-black bg-opacity-50 text-white p-3 rounded-lg shadow-lg w-auto text-center">
+                            <div class="absolute top-5 left-5 bg-black bg-opacity-50 text-white p-3 rounded-lg shadow-lg w-auto text-center">
                         @endif
                             <h2 class="text-lg font-semibold">
                                 {{ $media->location->name. ', '.$media->location->city ?? 'Unknown Location' }}
                             </h2>
                         <p class="text-sm">
-                            {{ $media->date_taken ? \Carbon\Carbon::parse($media->date_taken)->format('F j, Y g:i A') : 'Date Unknown' }}
+                            {{ $media->date_taken ? \Carbon\Carbon::parse($media->date_taken)->format('F j, Y') : 'Date Unknown' }}
                         </p>
                         </div>
                         <button @click="showMetadata = true; activeMetadata = {{ json_encode($media->metadata) }}" class="absolute bottom-0 end-0 z-50 flex items-center justify-center px-2 cursor-pointer group focus:outline-none bg-black bg-opacity-50 text-white"> EXIF </button>
@@ -154,9 +152,7 @@
             </table>
           </div>
           @else
-          <div class="bg-white dark:bg-gray-800 px-6 py-3 overflow-hidden sm:rounded-lg">
-            <p class="text-center text-gray-500 dark:text-gray-400 col-span-full">No media found.</p>
-          </div>
+
           @endif
         </div>
         @if (count($audioClips))
@@ -179,10 +175,10 @@
         </div>
         @endif
         <!-- Map -->
-        <div class="bg-white dark:bg-gray-800 px-6 py-6 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="bg-white dark:bg-gray-800 px-6 py-6 shadow-sm sm:rounded-lg">
           <div class="flex flex-col md:flex-row gap-6">
             <div class="flex-grow">
-              <div id="map" class="w-full h-[450px] mt-2 rounded-md shadow"></div>
+              <div id="map" class="w-full h-[450px] mt-2 rounded-md shadow" ></div>
             </div>
           </div>
         </div>

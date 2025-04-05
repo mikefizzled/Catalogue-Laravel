@@ -1,24 +1,21 @@
+@section('title', 'Home')
+
 <x-public-app-layout>
-        @section('title', 'Home')
-        <div class="  mx-auto">
+        <div class="mx-auto">
             <div id="animation-carousel" class="relative overflow-hidden w-full mx-auto bg-black" data-carousel="slide">
                 <!-- Carousel wrapper -->
                 <div class="relative h-[85vh] overflow-hidden rounded-lg">
                     <!-- Item 1 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('kingfisher.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant">
+                    <div class="hidden ease-in-out" data-carousel-item>
+                        <img src="{{ asset('kingfisher.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="A Kingfisher perched in a tree">
                     </div>
                     <!-- Item 2 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('turnstone-image-1.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant 2">
+                    <div class="hidden ease-in-out" data-carousel-item>
+                        <img src="{{ asset('turnstone-image-1.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="A Turnstone standing on a harbour wall">
                     </div>
-                    <!-- Item 3 
-                    <div class="hidden duration-7000 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('cormorant-2.webp') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant 2">
-                    </div>-->
-                    <!-- Item 4 --> 
-                    <div class="hidden duration-7000 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('starling-1.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="Cormorant 2">
+                    <!-- Item 3 -->
+                    <div class="hidden ease-in-out" data-carousel-item>
+                        <img src="{{ asset('starling-1.jpg') }}" class="absolute w-full h-full object-cover object-center" alt="A Starling perched in a cherry tree">
                     </div>
                 </div>
                 <!-- Slider controls -->
@@ -40,66 +37,4 @@
                 </button>
             </div>
         </div>
-
-    
-    
-        
-<script>
-import { Carousel } from 'flowbite';
-
-const carousel = new Carousel(carouselElement, items, options, instanceOptions);
-
-document.addEventListener('DOMContentLoaded', () => {
-    const carouselElement = document.getElementById('default-carousel');
-
-    const items = [
-        {
-            position: 0,
-            el: document.getElementById('carousel-item-1'),
-        },
-        {
-            position: 1,
-            el: document.getElementById('carousel-item-2'),
-        },
-        {
-            position: 2,
-            el: document.getElementById('carousel-item-3'),
-        },
-        {
-            position: 3,
-            el: document.getElementById('carousel-item-4'),
-        }
-    ];
-
-    const options = {
-        defaultPosition: 0,
-        interval: 8000, // Slide interval in ms
-        indicators: {
-            activeClasses: 'bg-white dark:bg-gray-800',
-            inactiveClasses: 'bg-gray-300 dark:bg-gray-800 hover:bg-gray-400',
-            items: [
-                {
-                    position: 0,
-                    el: document.getElementById('carousel-indicator-1'),
-                },
-                {
-                    position: 1,
-                    el: document.getElementById('carousel-indicator-2'),
-                },
-                {
-                    position: 2,
-                    el: document.getElementById('carousel-indicator-3'),
-                },
-                {
-                    position: 3,
-                    el: document.getElementById('carousel-indicator-4'),
-                },
-            ],
-        },
-    };
-
-    const carousel = new Carousel(carouselElement, options);
-    console.log('Carousel initialized:', carousel);
-});
-</script>
 </x-public-layout>

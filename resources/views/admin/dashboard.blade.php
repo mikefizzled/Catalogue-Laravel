@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <x-h2>Dashboard</x-h2>
+        <h1 class="font-bold text-2xl text-gray-800 dark:text-gray-100">Admin Dashboard</h1>
         @section('title', 'Dashboard')
     </x-slot>
 
@@ -17,24 +17,23 @@
                 <x-stat-card title="Genera" count="{{ $genusCount }}" />
             </div>
             <!-- Recent Animals -->
-            <div class="mt-3 bg-white dark:bg-gray-800 p-6 shadow-sm rounded-lg">
+            <div class="mt-3 bg-white dark:bg-gray-700 p-6 shadow-sm rounded-lg">
                 <h3 class="text-lg font-bold dark:text-gray-100 text-center">Recently Added Birds</h3>
                 <div class="flex gap-2 pt-2 justify-between">
                     @foreach ($recentAnimals as $animal)
                         <div class="lg:w-[160px] lg:h-[160px] w-[128px] h-[128px] rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden">
-                            <img src="{{ $animal->thumbnail_url }}" class="w-full h-full object-cover">
-                            <p class="text-center font-semibold mt-2">{{ $animal->common_name }}</p>
+                            <img src="{{ $animal->thumbnail_url }}" class="w-full h-full object-cover"  alt="Thumbnail of {{$animal->common_name }}">
                         </div>
                     @endforeach
                 </div>
             </div>
 
-            <div class="mt-3 bg-white dark:bg-gray-800 p-6 shadow-sm rounded-lg">
+            <div class="mt-3 bg-white dark:bg-gray-700 p-6 shadow-sm rounded-lg">
                 <h3 class="text-lg font-bold dark:text-gray-100 text-center">Recent Media Uploads</h3>
                 <div class="flex gap-4 pt-2">
                     @foreach ($recentMedia as $media)
                         <div class="w-[400px] h-[225px] rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden">
-                            <img src="{{ $media->thumbnail_url }}" class="w-full h-full object-cover">
+                            <img src="{{ $media->thumbnail_url }}" alt="{{$animal->caption}}" class="w-full h-full object-cover">
                         </div>
                     @endforeach
                 </div>

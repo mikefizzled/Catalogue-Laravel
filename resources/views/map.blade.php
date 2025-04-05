@@ -12,7 +12,7 @@
         </div>
 
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4">
-            <div id="map" style="height:800px;" class="rounded-md shadow"></div>
+            <div id="map" style="height:800px;" class="rounded-md shadow" title="Map of recorded species at locations" aria-label="Interactive map showing species by location"></div>
         </div>
     </div>
 </x-public-app-layout>

@@ -15,20 +15,25 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
+        <!-- Skip to main content link -->
+        <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-white text-black px-4 py-2 rounded shadow">
+            Skip to main content
+        </a>
+
         <div class="bg-gray-100 dark:bg-gray-900">
             @include('layouts.public-nav')
 
             <!-- Page Heading -->
             @isset($header)
-            <header class="bg-white dark:bg-gray-800 shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <header class="bg-white dark:bg-gray-800 shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
             @endisset
 
             <!-- Page Content -->
-            <main>
+            <main id="main-content" role="main" tabindex="-1">
                 {{ $slot }}
             </main>
         </div>

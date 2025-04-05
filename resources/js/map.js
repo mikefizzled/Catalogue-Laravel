@@ -2,7 +2,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 window.L = L; // Make Leaflet available globally
-console.log("Leaflet Loaded:", L);
+//console.log("Leaflet Loaded:", L);
 
 function initMap() {
     const map = L.map("map").setView([53.386111, -1.506000], 13);

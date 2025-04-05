@@ -18,13 +18,6 @@ class CatalogueController extends Controller
         // Start with the Animal query
         $query = Animal::query();
     
-        // If an order filter is provided, filter using the relationship (assuming Animal->genus->family->order exists)
-        if ($request->filled('order')) {
-            $query->whereHas('genus.family.order', function ($q) use ($request) {
-                $q->where('id', $request->order);
-            });
-        }
-    
         // If a family filter is provided, filter by that
         if ($request->filled('family')) {
             $query->whereHas('genus.family', function ($q) use ($request) {
@@ -43,7 +36,15 @@ class CatalogueController extends Controller
     
         // Also load orders and families for the filters
         $orders = Order::orderBy('order_name')->get();
-        $families = Family::orderBy('family_name')->get();
+        $families = Family::select('families.*')
+        ->join('orders', 'families.order_id', '=', 'orders.id')
+        ->with('order')
+        ->orderBy('orders.order_name')
+        ->orderBy('families.common_name')
+        ->get();
+    
+    
+
     
         return view('catalogue.index', compact('orders', 'families', 'animals'));
     }
@@ -75,16 +76,10 @@ class CatalogueController extends Controller
      */
     public function getFilteredBirds(Request $request)
     {
-        $orderId = $request->query('order');
+
         $familyId = $request->query('family');
 
         $query = Animal::query();
-
-        if ($orderId) {
-            $query->whereHas('genus.family.order', function ($q) use ($orderId) {
-                $q->where('id', $orderId);
-            });
-        }
 
         if ($familyId) {
             $query->whereHas('genus.family', function ($q) use ($familyId) {

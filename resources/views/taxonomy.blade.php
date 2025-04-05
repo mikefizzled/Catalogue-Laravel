@@ -7,9 +7,9 @@
     <div class="max-w-7xl mx-auto p-3 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
         <!-- Explanation -->
         <div class="mb-3 text-center">
-            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">Taxonomic Tree</h2>
+            <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">Taxonomic Tree</h1>
             <p class="text-gray-600 dark:text-gray-300 mt-2">
-                To help visualise the taxonomic relationship between the species featured, a <a href="https://observablehq.com/@d3/cluster/2" class="underline" target="#">D3 cluster tree </a> is used to dynamically create a visual representation of the birds in the database.
+                To help visualise the taxonomic relationship between the species featured, a <a href="https://observablehq.com/@d3/cluster/2" class="underline">D3 cluster tree </a> is used to dynamically create a visual representation of the birds in the database.
                 While it does not represent the evolutionary relationships seen in a phylogentic tree, the dendrogram can help establish the similarities within taxonomic classifications.
                 <br>
                 Class → Orders → Families → Genera → Species

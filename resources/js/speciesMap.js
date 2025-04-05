@@ -2,7 +2,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 window.L = L; // Make Leaflet available globally
-console.log("Leaflet Loaded:", L);
+//console.log("Leaflet Loaded:", L);
 
 function initMap() {
     const map = L.map("map").setView([53.386111, -1.506000], 13);
@@ -18,9 +18,7 @@ function initMap() {
         window.existingLocations.forEach(location => {
             if (location.latitude && location.longitude) {
                 let content = `<b>${location.name}, ${location.city}</b>`;
-                if (location.image) {
-                    //content += `<img src="../images/locations/${location.image}" class="location-picture">`;
-                }
+ 
                 if (location.area_caption) {
                     content += `<p><i>${location.area_caption}</i></p>`;
                 }

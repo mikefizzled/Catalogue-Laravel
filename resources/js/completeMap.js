@@ -34,8 +34,7 @@ async function loadCoordinates() {
         const data = await res.json();
         data.forEach((location) => {
             let content = `
-            
-                <h3 class="text-lg font-bold text-gray-900 mb-2">${location.location_name}</h3>`;
+                <h2 class="text-lg font-bold text-gray-900 mb-2">${location.location_name}</h2>`;
             if (location.image) {
                 content += `<img src="${location.image}" class="location-picture" alt="${location.location_name}">`;
             }
