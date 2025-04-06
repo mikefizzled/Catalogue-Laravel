@@ -45,7 +45,11 @@ async function loadCoordinates() {
             //content += '</div>';
             L.marker([location.latitude, location.longitude]).addTo(map)
                 .bindPopup(content);
+
+
+            
         });
+        
     } catch (error) {
         console.error('Error fetching coordinates:', error);
     }
