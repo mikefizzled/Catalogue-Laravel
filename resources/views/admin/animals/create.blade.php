@@ -268,7 +268,6 @@ alert("Conservation status updated successfully!");
     
         } catch (error) {
             console.error("Error fetching conservation data:", error);
-            alert("Could not retrieve conservation data.");
         }
     }
     </script>

@@ -33,7 +33,7 @@
             @endisset
 
             <!-- Page Content -->
-            <main id="main-content" role="main" tabindex="-1">
+            <main>
                 {{ $slot }}
             </main>
         </div>

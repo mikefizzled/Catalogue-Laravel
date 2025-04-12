@@ -69,7 +69,7 @@ class FileHelper
      public static function collectImageMetadata($fileInfo)
      {
         return [
-            'Camera' => ucfirst($fileInfo['jpg']['exif']['IFD0']['Make']). ' '. $fileInfo['jpg']['exif']['IFD0']['Make'] ?? null,
+            'Camera' => ucfirst($fileInfo['jpg']['exif']['IFD0']['Make']). ' '. $fileInfo['jpg']['exif']['IFD0']['Model'] ?? null,
             'Lens' => $fileInfo['jpg']['exif']['EXIF']['UndefinedTag:0xA434'] ?? null,
             'Focal Length' => self::formatFocalLength($fileInfo['jpg']['exif']['EXIF']['FocalLength']),
             'F-stop' => $fileInfo['jpg']['exif']['COMPUTED']['ApertureFNumber'] ?? null,

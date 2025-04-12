@@ -19,7 +19,7 @@
         <div class="absolute inset-0 bg-black opacity-10"></div>
         <div class="absolute inset-y-0 right-0 w-2/3 flex items-center px-8 justify-end lg:text-right sm:text-center">
             <div class="bg-black bg-opacity-60 p-8 rounded">
-              <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">What is this project</h2>
+              <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">What is the project</h2>
               <p class="text-lg md:text-xl text-white">
                 A full-stack web application for cataloguing bird species and integrating conservation data from British Birds' journal reports.
               </p>
@@ -33,7 +33,7 @@
         <div class="absolute inset-0 bg-black opacity-10"></div>
         <div class="absolute inset-y-0 left-0 w-2/3 flex items-center px-8 lg:text-left sm:text-center">
             <div class="bg-black bg-opacity-60 p-8 rounded">
-              <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">What Does It Contain</h2>
+              <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">What Features Does It Contain</h2>
               <p class="text-lg md:text-xl text-white">
                 Six editions of conservation assessments, an interactive taxonomy diagram, and generalised maps to highlight shared habitats.
               </p>
@@ -47,7 +47,7 @@
         <div class="absolute inset-0 bg-black opacity-5"></div>
         <div class="absolute inset-y-0 right-0 w-2/3 flex items-center px-8 justify-end lg:text-right sm:text-center">
             <div class="bg-black bg-opacity-60 p-8 rounded">
-              <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Project Aim</h2>
+              <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">What Is The Core Goal</h2>
               <p class="text-lg md:text-xl text-white">
                 To improve accessibility to conservation data and provide interactive tools for exploring species information.
               </p>
