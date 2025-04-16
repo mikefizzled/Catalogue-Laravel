@@ -46,6 +46,13 @@ class MediaService
         // Validate and extract the uploaded file
         $file = $request->file('media');
 
+        $rawHash = hash_file('sha256', $file->getRealPath());
+
+        // If hash already exists in DB, stop process
+        if (Media::where('hash', $rawHash)->exists()) {
+            throw new \Exception("Duplicate media detected. This file has already been uploaded.");
+        }
+
         $processedFile = self::processFile($file, $request->animal_id);
 
         // Extract metadata
@@ -81,7 +88,7 @@ class MediaService
             'age'          => $request->age ?? null,
             'gender'       => $request->gender ?? null,
             'metadata'     => json_encode($metadata),
-            'hash'         => FileHelper::generateFileHash($processedFile['temp_path']),
+            'hash'         => $rawHash,
         ]);
         
         // Cleanup temporary files
