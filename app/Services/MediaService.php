@@ -24,7 +24,6 @@ class MediaService
             self::deleteFromS3('thumbnails', $existingThumbnail);
         }
 
-
         // Store in temporary local storage
         $tempPath = $file->storeAs('temp', $filename, 'public');
         $path = Storage::disk('public')->path($tempPath);
@@ -46,14 +45,15 @@ class MediaService
         // Validate and extract the uploaded file
         $file = $request->file('media');
 
+        $processedFile = self::processFile($file, $request->animal_id);
+
+        // Hash original version of the file
         $rawHash = hash_file('sha256', $file->getRealPath());
 
-        // If hash already exists in DB, stop process
+        // Check if this hash already exists in the database
         if (Media::where('hash', $rawHash)->exists()) {
             throw new \Exception("Duplicate media detected. This file has already been uploaded.");
         }
-
-        $processedFile = self::processFile($file, $request->animal_id);
 
         // Extract metadata
         $metadata = self::extractMetadata($processedFile['temp_path'], $processedFile['extension']);
@@ -64,16 +64,14 @@ class MediaService
             // Drop the extension and only collect the filename to pass to extractor
             $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $dateTaken = FileHelper::extractDateFromName($fileName);
-        }
-        else{
+            }
+            else{
             $dateTaken = self::getDateTaken($metadata);
         }
-              
+
         
         // Store in S3
         self::storeInS3($processedFile);
-
-
 
         // Create media entry in database
         $media = Media::create([
@@ -112,13 +110,11 @@ class MediaService
        
         if($mediaType === 'image' || $mediaType === 'video'){
             $thumbnailName = FileHelper::generateMediaFileName($animalSlug, $mediaType, $newTotal, $extension, true);
-        }
-        else{
+            }
+            else{
             $thumbnailName = null;
         }
             
-
-        
         $tempPath = $file->storeAs('temp', $filename, 'public');
 
         return [
@@ -194,8 +190,6 @@ class MediaService
      */
     private static function processImage($processedFile)
     {
-
-
         $manager = new ImageManager(new ImagickDriver());
 
         // Make 16:9 thumbnail of the media

@@ -57,8 +57,6 @@ class FileHelper
         }
     }
     
-
-
     /**
      * Collect JPEG metadata in JSON array
      *
