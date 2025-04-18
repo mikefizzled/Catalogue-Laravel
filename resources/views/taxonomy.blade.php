@@ -4,7 +4,7 @@
 @vite(['resources/js/taxonomyChart.js'])
 
 <x-public-app-layout>
-    <div class="max-w-7xl mx-auto p-3 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
+    <div class="max-w-7xl mx-auto p-3 bg-gray-200 dark:bg-gray-900 shadow-lg">
         <!-- Explanation -->
         <div class="mb-3 text-center">
             <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">Taxonomic Tree</h1>

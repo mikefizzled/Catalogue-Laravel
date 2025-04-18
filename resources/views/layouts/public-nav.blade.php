@@ -73,6 +73,9 @@
             <a href="{{ url('/conservation') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
                 Conservation
             </a>
+            <a href="{{ url('/taxonomy') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
+                Taxonomy
+            </a>
         </div>
 
         @if (Route::has('login'))

@@ -11,10 +11,9 @@
         <div class="bg-white dark:bg-gray-800 px-6 py-6 overflow-hidden shadow-sm sm:rounded-lg">
           <div class="flex flex-col md:flex-row gap-6">
             <div class="self-center p-5">
-              <div class="dark:text-gray-100">
+              <div class="dark:text-gray-100 text-center md:text-left">
                 <h1 class="text-3xl">{{ $animal->common_name }} </h1>
-                <h2 class="text-xl italic">{{ $animal->scientific_name }}</h2>
-                <br>
+                <h2 class="text-xl italic mb-2">{{ $animal->scientific_name }}</h2>
                 <a href='https://ebird.org/species/{{ $animal->ebird_species_code}}' class="underline">eBird</a>
               </div>
             </div>
@@ -71,9 +70,9 @@
                         <span >{{ ucfirst($cs->status) }}</span>
                     </p>
                     @if ($cs->criteria->isNotEmpty())
-                        <details class="text-gray-800 dark:text-gray-200 mt-2">
+                        <details class="text-gray-800 dark:text-gray-200 mt-2 text-center">
                             <summary class="cursor-pointer text-sm font-semibold">View Criteria</summary>
-                            <ul class="mt-1 space-y-1">
+                            <ul class="mt-1 space-y-1 text-left">
                                 @foreach ($cs->criteria as $criterion)
                                     <li class="text-sm p-1">{{ $criterion->boccCriteria->description }}.</li>
                                 @endforeach
@@ -84,7 +83,7 @@
             @endforeach
         </div>
         @else
-        <p class="text-gray-600 dark:text-gray-400 text-center">No conservation status available.</p> 
+        <p class="text-gray-600 dark:text-gray-400 text-center">No conservation status available.</p>
         @endif
         </div>
         <!-- Flowbite Carousel -->
@@ -92,7 +91,16 @@
         <div x-data="{ showMetadata: false, activeMetadata: null }" class="relative">
           <div id="gallery" class="relative w-full" data-carousel="static">
             <!-- Carousel wrapper -->
-            <div class="relative h-[calc(100vw*9/16)] max-h-[600px] overflow-hidden rounded-lg border">
+            <div
+  class="
+    relative w-full 
+    h-[60vh]                     /* mobile tall version */
+    sm:h-[calc(100vw*9/16)]      /* tablet 16:9 */
+    md:h-[600px]                 /* desktop fixed */
+    overflow-hidden rounded-lg border
+  "
+  data-carousel="static"
+>
                 @foreach ($images as $media)
                     <div class="hidden ease-in-out w-full h-full flex justify-center items-center" data-carousel-item>
                         @if ($media->media_type === 'image')
@@ -105,10 +113,10 @@
                             </video>
                             <div class="absolute top-5 left-5 bg-black bg-opacity-50 text-white p-3 rounded-lg shadow-lg w-auto text-center">
                         @endif
-                            <h2 class="text-lg font-semibold">
+                            <h2 class="text-sm sm:text-lg font-semibold">
                                 {{ $media->location->name. ', '.$media->location->city ?? 'Unknown Location' }}
                             </h2>
-                        <p class="text-sm">
+                        <p class="text-xs sm:text-sm">
                             {{ $media->date_taken ? \Carbon\Carbon::parse($media->date_taken)->format('F j, Y') : 'Date Unknown' }}
                         </p>
                         </div>
@@ -167,21 +175,25 @@
                     <source src="{{ $audio->media_url }}"> Your browser does not support the audio element.
                 </audio>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                    {{ $audio->location->name }} - {{ $media->date_taken ? \Carbon\Carbon::parse($media->date_taken)->format('F j, Y g:i A') : 'Date Unknown' }}
+                    {{ $audio->location->name }} - {{ $audio->date_taken ? \Carbon\Carbon::parse($media->date_taken)->format('F j, Y g:i A') : 'Date Unknown' }}
                 </p>
                 </div>
                 @endforeach
             </div>
         </div>
         @endif
-        <!-- Map -->
+        @if(count($images))
+        <!-- Map container -->
         <div class="bg-white dark:bg-gray-800 px-6 py-6 shadow-sm sm:rounded-lg">
           <div class="flex flex-col md:flex-row gap-6">
             <div class="flex-grow">
-              <div id="map" class="w-full h-[450px] mt-2 rounded-md shadow" ></div>
+              <div id="map" 
+                  class="w-full h-64 sm:h-80 md:h-[450px] mt-2 rounded-md shadow">
+              </div>
             </div>
           </div>
         </div>
+      @endif
       </div>
     </div>
   </x-public-app-layout>

@@ -3,7 +3,7 @@
 @vite(['resources/js/completeMap.js'])
 
 <x-public-app-layout>
-    <div class="max-w-7xl mx-auto py-2 px-4">
+    <div class="max-w-7xl mx-auto py-2 px-4  bg-gray-200 dark:bg-gray-900">
         <div class="text-center my-2">
             <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Sightings Map</h1>
             <p class="mt-3 text-lg text-gray-700 dark:text-gray-300">
