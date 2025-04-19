@@ -2,8 +2,8 @@
     @section('title', 'Bird Catalogue')
 
     <div class="min-h-[85vh] bg-gray-200 dark:bg-gray-900">
-        <div class="px-4 sm:px-8 py-6 max-w-7xl mx-auto">
-            <div class="max-w-7xl  mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="px-2 sm:px-4 py-2 max-w-7xl mx-auto">
+            <div class="max-w-7xl  mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow text-center ">
                 <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Bird Catalogue</h1>
                 <label for="taxon" id="taxon-label" class="block text-sm font-medium text-gray-700 dark:text-gray-200 my-2">
                     Filter by Family (grouped by Order)

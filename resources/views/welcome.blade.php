@@ -6,7 +6,7 @@
       <!-- Section 1 -->
       <section class="relative h-[65vh] overflow-hidden group">
         <img src="{{ asset('turnstone-2.jpg') }}" alt="A Turnstone stood on a harbour wall" class="w-full h-full object-cover object-[80%] md:object-center  transition-transform duration-[5s] group-hover:scale-105 ">
-        <div class="absolute left-0 top-[5%] w-full md:inset-y-0 md:left-0 md:w-2/3 md:flex md:items-center">
+        <div class="absolute left-0 top-0 w-full md:inset-y-0 md:left-0 md:w-2/3 md:flex md:items-center">
           <div class="bg-black bg-opacity-70 p-4 rounded-t-lg md:p-8 md:rounded-none ">
             <h1 class="text-2xl md:text-5xl font-bold">Documenting UK Bird Species and Conservation Status</h1>
           </div>

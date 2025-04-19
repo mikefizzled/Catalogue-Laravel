@@ -7,30 +7,30 @@
   <script type="module" src="{{ asset('resources/js/speciesMap.js') }}"></script>
   <x-public-app-layout>
     <div class="py-2">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-2">
+      <div class="max-w-7xl mx-auto sm:px-2 lg:px-2 space-y-2">
         <div class="bg-white dark:bg-gray-800 px-6 py-6 overflow-hidden shadow-sm sm:rounded-lg">
-          <div class="flex flex-col md:flex-row gap-6">
-            <div class="self-center p-5">
+          <div class="flex flex-col md:flex-row gap-2">
+            <div class="self-center px-5">
               <div class="dark:text-gray-100 text-center md:text-left">
                 <h1 class="text-3xl">{{ $animal->common_name }} </h1>
                 <h2 class="text-xl italic mb-2">{{ $animal->scientific_name }}</h2>
                 <a href='https://ebird.org/species/{{ $animal->ebird_species_code}}' class="underline">eBird</a>
               </div>
             </div>
-            <div class="flex-grow self-center px-5 mx-5">
-              <table class="w-full table-auto border-collapse dark:text-gray-100" title="Bird Info">
+            <div class="flex-grow self-center px-2">
+              <table class="mx-auto w-[75%] table-auto border-collapse dark:text-gray-100" title="Bird Info">
                 <tbody>
                   <tr class="border-b">
-                    <th class="py-2 px-4">Class</th>
-                    <td class="py-2 px-4">Aves</td>
+                    <th class="py-2 px-2">Class</th>
+                    <td class="py-2 px-2">Aves</td>
                   </tr>
                   <tr class="border-b">
-                    <th class="py-2 px-4">Order</th>
-                    <td class="py-2 px-4">{{ $animal->genus->family->order->order_name }}</td>
+                    <th class="py-2 px-2">Order</th>
+                    <td class="py-2 px-2">{{ $animal->genus->family->order->order_name }}</td>
                   </tr>
                   <tr class="border-b">
-                    <th class="py-2 px-4">Family</th>
-                    <td class="py-2 px-4">
+                    <th class="py-2 px-2">Family</th>
+                    <td class="py-2 px-2">
                       {{ $animal->genus->family->family_name }}
                       <span class="italic"> - {{ $animal->genus->family->common_name }}</span>
                     </td>
@@ -44,7 +44,7 @@
             </div>
             <!-- Bird Thumbnail -->
             <div class="flex-shrink-0 self-center">
-              <div class="w-48 h-48 rounded-md  border border-gray-200 dark:border-gray-700">
+              <div class="w-64 md:w-48 w-64 md:h-48 rounded-md  border border-gray-200 dark:border-gray-700">
                 <img src="{{ $animal->thumbnail_url }}" alt="{{ $animal->common_name }}" class="w-full h-full object-cover rounded-md">
               </div>
             </div>
@@ -92,15 +92,7 @@
           <div id="gallery" class="relative w-full" data-carousel="static">
             <!-- Carousel wrapper -->
             <div
-  class="
-    relative w-full 
-    h-[60vh]                     /* mobile tall version */
-    sm:h-[calc(100vw*9/16)]      /* tablet 16:9 */
-    md:h-[600px]                 /* desktop fixed */
-    overflow-hidden rounded-lg border
-  "
-  data-carousel="static"
->
+  class="relative w-full h-[60vh] sm:h-[calc(100vw*9/16)] md:h-[600px] overflow-hidden rounded-lg border" data-carousel="static">
                 @foreach ($images as $media)
                     <div class="hidden ease-in-out w-full h-full flex justify-center items-center" data-carousel-item>
                         @if ($media->media_type === 'image')
@@ -187,7 +179,7 @@
         <div class="bg-white dark:bg-gray-800 px-6 py-6 shadow-sm sm:rounded-lg">
           <div class="flex flex-col md:flex-row gap-6">
             <div class="flex-grow">
-              <div id="map" 
+              <div id="map"
                   class="w-full h-64 sm:h-80 md:h-[450px] mt-2 rounded-md shadow">
               </div>
             </div>
