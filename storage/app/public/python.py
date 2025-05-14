@@ -1,6 +1,6 @@
 import json
 
-# Load the full JSON file
+# Name of complete eBird API export
 with open("ebird_taxonomy.json", "r") as f:
     data = json.load(f)
 

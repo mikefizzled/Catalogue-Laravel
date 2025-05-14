@@ -1,18 +1,18 @@
 import { defineConfig } from 'vite';
-//import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
-    /*server: {
-        host: '192.168.0.206',
-        port: 8000,
-        cors: true,
-    },*/
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: [
+                'resources/css/app.css',
+                'resources/js/app.js',
+                'resources/js/completeMap.js',
+                'resources/js/map.js',
+                'resources/js/speciesMap.js',
+                'resources/js/taxonomyChart.js',
+            ],
             refresh: true,
         }),
-        //vue(),
     ],
 });

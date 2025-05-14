@@ -11,12 +11,33 @@ export default {
         "./resources/**/*.vue",
         "./node_modules/flowbite/**/*.js"
     ],
-
+    safelist:[
+        'bg-conservationAmber',
+        'dark:bg-conservationAmber-dark',
+        'bg-conservationGreen',
+        'dark:bg-conservationGreen-dark',
+        'bg-conservationRed',
+        'dark:bg-conservationRed-dark',
+    ],
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                conservationAmber: {
+                  DEFAULT: '#f4960c',
+                  dark:    '#b77209',
+                },
+                conservationGreen: {
+                  DEFAULT: '#38a169',
+                  dark:    '#08712b',
+                },
+                conservationRed: {
+                  DEFAULT: '#e53e3e',
+                  dark:    '#b80f19',
+                },
+              },
         },
     },
 

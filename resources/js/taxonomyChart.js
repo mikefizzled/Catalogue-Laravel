@@ -100,8 +100,8 @@ function createChart(data) {
         else if(d.data.image){
         tooltip.style("display", "block")
             .html(`
-                <img src="${d.data.image}" class="w-64 h-64 object-cover rounded-md">
-                <p class="text-center">${d.data.details}</p>
+                <img src="${d.data.image}" class="w-16 h-16 md:w-64 md:h-64 object-cover rounded-md">
+                <p class="text-center hidden lg:block">${d.data.details}</p>
             `) 
             .style("box-shadow", "0 2px 10px rgba(0,0,0,0.2)");
         }
