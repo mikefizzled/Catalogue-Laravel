@@ -62,15 +62,15 @@
                 @php
                     $bgClass = \App\Helpers\CatalogueHelper::getStatusBgClass($cs->status);
                 @endphp
-                <div class="p-4 border rounded-lg shadow-sm text-gray-800 dark:text-gray-200 {{ $bgClass }}">
-                    <h3 class="text-md text-center">
+                <div class="p-4 border rounded-lg shadow-sm text-gray-800 {{ $bgClass }}">
+                    <h3 class="text-md text-center dark:text-white ">
                         {{ $cs->conservationList->short_name }} - {{ $cs->conservationList->year }}
                     </h3>
-                    <p class="text-sm text-center">
+                    <p class="text-m text-center dark:text-white ">
                         <span >{{ ucfirst($cs->status) }}</span>
                     </p>
                     @if ($cs->criteria->isNotEmpty())
-                        <details class="text-gray-800 dark:text-gray-200 mt-2 text-center">
+                        <details class="text-gray-800 dark:text-white mt-2 text-center">
                             <summary class="cursor-pointer text-sm font-semibold">View Criteria</summary>
                             <ul class="mt-1 space-y-1 text-left">
                                 @foreach ($cs->criteria as $criterion)

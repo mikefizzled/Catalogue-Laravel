@@ -1,7 +1,7 @@
 <x-public-app-layout>
     <div class="min-h-[85vh] bg-gray-200 dark:bg-gray-900">
         <div class="px-2 sm:px-4 py-2 max-w-7xl mx-auto">
-            <div class="max-w-7xl  mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow text-center ">
+            <div class="max-w-7xl mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow text-center">
             <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">Conservation Overview</h1>
             <p class="text-gray-600 dark:text-gray-300 mt-2 p-2">
                 This table contains the reports used for conservation data throughout the project. The inclusion of these was to help better reflect conservation efforts and trends over time.
@@ -10,7 +10,7 @@
             </p>
         </div>
         </div>
-        <div class="overflow-x-auto max-w-7xl mx-auto md:p-6">
+        <div class="overflow-x-auto max-w-7xl mx-auto md:px-6">
             <table class="w-full text-xs md:text-sm text-left text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700" aria-label="Table of Birds of Conservation Concern by the British Birds Journal">
                 <thead class="uppercase bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-300">
                     <tr>

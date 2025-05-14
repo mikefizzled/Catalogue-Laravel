@@ -6,7 +6,7 @@
 <x-public-app-layout>
     <div class="min-h-[85vh] bg-gray-200 dark:bg-gray-900">
         <div class="px-2 sm:px-4 py-2 max-w-7xl mx-auto">
-        <div class="text-center my-2 mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="text-center pb-2 mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow">
             <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">Taxonomic Tree</h1>
             <p class="text-gray-600 dark:text-gray-300 mt-2">
                 To help visualise the taxonomic relationship between the species featured, a <a href="https://observablehq.com/@d3/cluster/2" class="underline">D3 cluster tree </a> is used to dynamically create a visual representation of the birds in the database.
