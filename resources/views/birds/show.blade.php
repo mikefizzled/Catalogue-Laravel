@@ -185,31 +185,26 @@
             </div>
           </div>
         </div>
-<<<<<<< Updated upstream:resources/views/catalogue/show.blade.php
       @endif
-=======
         @if($animal->resources->isNotEmpty())
-  <div class="bg-white dark:bg-gray-800 px-6 py-6 overflow-hidden shadow-sm sm:rounded-lg">
-    <div class="self-center p-5 dark:text-gray-100">
-      <h2 class="text-2xl mb-4">Additional Resources</h2>
-      <ul class="list-disc list-inside space-y-2">
-        @foreach($animal->resources as $resource)
-          <li>
-            <a href="{{ $resource->url }}" class="underline text-blue-600 dark:text-blue-400" target="_blank" rel="noopener">
-              {{ $resource->title }}
-              @if(!empty($resource->type))
-                ({{ $resource->type }})
-              @endif
-            </a>
-          </li>
-        @endforeach
-      </ul>
-    </div>
-  </div>
-@endif
-
-
->>>>>>> Stashed changes:resources/views/birds/show.blade.php
+        <div class="bg-white dark:bg-gray-800 px-6 py-6 overflow-hidden shadow-sm sm:rounded-lg">
+          <div class="self-center p-5 dark:text-gray-100">
+            <h2 class="text-2xl mb-4">Additional Resources</h2>
+            <ul class="list-disc list-inside space-y-2">
+              @foreach($animal->resources as $resource)
+                <li>
+                  <a href="{{ $resource->url }}" class="underline text-blue-600 dark:text-blue-400" target="_blank" rel="noopener">
+                    {{ $resource->title }}
+                    @if(!empty($resource->type))
+                      ({{ $resource->type }})
+                    @endif
+                  </a>
+                </li>
+              @endforeach
+            </ul>
+          </div>
+        </div>
+        @endif
       </div>
     </div>
   </x-public-app-layout>
