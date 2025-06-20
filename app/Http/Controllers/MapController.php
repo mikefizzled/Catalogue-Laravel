@@ -30,13 +30,17 @@ class MapController extends Controller
                 ->pluck('animal_id');
 
             // Retrieve the animals (only id and common_name are needed).
-            $animals = Animal::whereIn('id', $animalIds)->get(['id', 'common_name'])->sortBy('common_name');
+            $animals = Animal::whereIn('id', $animalIds)
+                ->orderBy('common_name')
+                ->get(['common_name', 'slug']);
+
 
             // Generate an HTML list of animal links.
             $animalListHtml = '<ul class="max-w-md space-y-1 list-inside">';
             foreach ($animals as $animal) {
                 // Create a link to the animal's detail page. Adjust route/path as needed.
-                $link = route('catalogue.show', $animal->id);
+                $link = route('birds.show', ['animal' => $animal]);
+
                 $animalListHtml .= "<li><a href='{$link}' class='text-blue-500 hover:underline'>{$animal->common_name}</a></li>";
             }
             $animalListHtml .= '</ul>';

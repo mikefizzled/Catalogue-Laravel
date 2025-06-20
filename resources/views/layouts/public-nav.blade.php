@@ -13,8 +13,8 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:items-center sm:-my-px sm:ml-10 sm:flex">
-                    <a href="{{ url('/catalogue') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
-                        Catalogue
+                    <a href="{{ url('/birds') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
+                        Birds
                     </a>
                     <a href="{{ url('/map') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
                         Map
@@ -65,8 +65,8 @@
             <a href="{{ url('/') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
                 Home
             </a>
-            <a href="{{ url('/catalogue') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
-                Catalogue
+            <a href="{{ url('/birds') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
+                Birds
             </a>
             <a href="{{ url('/map') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
                 Map

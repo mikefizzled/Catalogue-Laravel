@@ -34,7 +34,7 @@
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4" id="results">
                         @forelse ($animals as $bird)
-                            <a href="{{ route('catalogue.show', ['animal' => $bird->id]) }}">
+                            <a href="{{ route('birds.show', $bird) }}">
                                 <div class="card bg-white dark:bg-gray-800 shadow-md rounded-lg border border-gray-600 hover:scale-105 transition-transform">
                                     <!-- Thumbnail -->
                                     <img src="{{ $bird->thumbnail_url }}" alt="Thumbnail of {{ $bird->common_name }}" class="w-full object-cover rounded-md">

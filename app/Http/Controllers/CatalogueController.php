@@ -43,32 +43,30 @@ class CatalogueController extends Controller
         ->orderBy('families.common_name')
         ->get();
     
-    
-
-    
-        return view('catalogue.index', compact('orders', 'families', 'animals'));
+        return view('birds.index', compact('orders', 'families', 'animals'));
     }
     
     
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Animal $animal)
     {
-        $animal = Animal::findOrFail($id);
         $animal->thumbnail_url = FileHelper::collectAnimalThumbnail($animal->thumbnail_url);
-        $animal->load('conservationStatuses');
+        $animal->load(['conservationStatuses', 'resources']);
 
         // Collect media
-        $images = Media::getVisualMediaForAnimal($id);
-        $audioClips = Media::getAudioForAnimal($id);
-
+        $images = Media::getVisualMediaForAnimal($animal->id);
+        $audioClips = Media::getAudioForAnimal($animal->id);
+        
         // Organise media s3 links and metadata
         $images = FileHelper::processMediaCollection($images);
         $audioClips = FileHelper::processMediaCollection($audioClips);
-        $locations = Location::getForAnimal($id);
-        return view('catalogue.show', compact('animal', 'images', 'audioClips', 'locations'));
+        $locations = Location::getForAnimal($animal->id);
+        
+        return view('birds.show', compact('animal', 'images', 'audioClips', 'locations'));
     }
+
 
     /**
      *

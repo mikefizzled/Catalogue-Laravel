@@ -5,7 +5,22 @@ window.L = L; // Make Leaflet available globally
 //console.log("Leaflet Loaded:", L);
 
 function initMap() {
-    const map = L.map("map").setView([53.386111, -1.506000], 13);
+    
+    // Default center (Sheffield)
+    let initialLat = 53.386111;
+    let initialLng = -1.506000;
+    let zoomLevel = 11;
+
+        // If a valid location exists, center on that instead
+    if (window.existingLocations && Array.isArray(window.existingLocations)) {
+        const firstValid = window.existingLocations.find(loc => loc.latitude && loc.longitude);
+        if (firstValid) {
+            initialLat = firstValid.latitude;
+            initialLng = firstValid.longitude;
+        }
+    }
+
+    const map = L.map("map").setView([initialLat, initialLng], zoomLevel);
 
     // Add OpenStreetMap tiles
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
