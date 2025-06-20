@@ -63,3 +63,4 @@ Route::get('/map', function(){ return view('map');});
 Route::get('/map-data', [MapController::class, 'getCoordinatesAndAnimals'])->name('map.data');
 
 Route::get('/conservation',[EBirdTaxonomyController::class, 'conservation']);
+Route::view('/changelog', 'changelog')->name('changelog');
