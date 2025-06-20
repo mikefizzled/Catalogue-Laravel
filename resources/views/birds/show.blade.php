@@ -185,7 +185,7 @@
             </div>
           </div>
         </div>
-      @endif
+        @endif
         @if($animal->resources->isNotEmpty())
         <div class="bg-white dark:bg-gray-800 px-6 py-6 overflow-hidden shadow-sm sm:rounded-lg">
           <div class="self-center p-5 dark:text-gray-100">
@@ -204,8 +204,8 @@
             </ul>
           </div>
         </div>
-        @endif
-      </div>
+      @endif
+    </div>
     </div>
   </x-public-app-layout>
   
