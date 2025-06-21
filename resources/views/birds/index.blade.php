@@ -18,7 +18,7 @@
                     @foreach ($orders as $order)
                         <optgroup label="{{ $order['order_name'] }}">
                             @foreach ($order['families'] as $family)
-                                <option value="{{ $family['id'] }}" {{ request('family') == $family['id'] ? 'selected' : '' }}>
+                                <option value="{{ $family['slug'] }}" {{ request('family') == $family['slug'] ? 'selected' : '' }}>
                                     {{ $family['common_name'] }}
                                 </option>
                             @endforeach
@@ -52,23 +52,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const familySelect = document.getElementById("taxon");
-
-            familySelect.addEventListener("change", () => {
-                const selectedFamily = familySelect.value;
-                const url = new URL(window.location.href);
-
-                if (selectedFamily) {
-                    url.searchParams.set("family", selectedFamily);
-                } else {
-                    url.searchParams.delete("family");
-                }
-
-                window.location.href = url.toString();
-            });
-        });
-    </script>
 </x-public-app-layout>

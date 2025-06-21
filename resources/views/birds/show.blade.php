@@ -36,8 +36,8 @@
                     </td>
                   </tr>
                   <tr>
-                    <th class="py-2 px-4">Genus</th>
-                    <td class="py-2 px-4">{{ $animal->genus->genus_name }}</td>
+                    <th class="py-2 px-2">Genus</th>
+                    <td class="py-2 px-2">{{ $animal->genus->genus_name }}</td>
                   </tr>
                 </tbody>
               </table>

@@ -21,7 +21,7 @@ class CatalogueController extends Controller
         // If a family filter is provided, filter by that
         if ($request->filled('family')) {
             $query->whereHas('genus.family', function ($q) use ($request) {
-                $q->where('id', $request->family);
+                $q->where('slug', $request->family);
             });
         }
     
@@ -37,11 +37,11 @@ class CatalogueController extends Controller
         // Also load orders and families for the filters
         $orders = Order::orderBy('order_name')->get();
         $families = Family::select('families.*')
-        ->join('orders', 'families.order_id', '=', 'orders.id')
-        ->with('order')
-        ->orderBy('orders.order_name')
-        ->orderBy('families.common_name')
-        ->get();
+            ->join('orders', 'families.order_id', '=', 'orders.id')
+            ->with('order')
+            ->orderBy('orders.order_name')
+            ->orderBy('families.common_name')
+            ->get();
     
         return view('birds.index', compact('orders', 'families', 'animals'));
     }
@@ -74,21 +74,22 @@ class CatalogueController extends Controller
      */
     public function getFilteredBirds(Request $request)
     {
-
-        $familyId = $request->query('family');
+        $familySlug = $request->query('family');
 
         $query = Animal::query();
 
-        if ($familyId) {
-            $query->whereHas('genus.family', function ($q) use ($familyId) {
-                $q->where('id', $familyId);
+        if ($familySlug) {
+            $query->whereHas('genus.family', function ($q) use ($familySlug) {
+                $q->where('slug', $familySlug);
             });
         }
 
-        $animals = $query->orderBy('common_name')->get(['id', 'common_name']);
+        $animals = $query->orderBy('common_name')->get(['id', 'common_name', 'slug']);
 
         return response()->json($animals);
     }
+
+
 
     public function getFamilies(Request $request)
     {
