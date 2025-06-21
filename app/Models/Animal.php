@@ -40,6 +40,11 @@ class Animal extends Model
             ->saveSlugsTo('slug');
     }
 
+    public function resources()
+    {
+        return $this->belongsToMany(Resource::class);
+    }
+
     public static function getSlug($animalId)
     {
         return self::where('id', $animalId)->value('slug') ?? 'Unknown';

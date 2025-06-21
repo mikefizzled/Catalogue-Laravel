@@ -1,28 +1,26 @@
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700" aria-label="Primary site navigation">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <!-- Logo -->
+        <div class="flex justify-between h-20">
             <div class="flex">
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ url('/') }}">
-                        <!-- img src="{{ asset('images/logo.png') }}" alt="Site Logo" class="h-9 w-auto"-->
-                        <img aria-label="Site Logo" src="{{ asset('logo.svg') }}" alt="Site Logo" class="h-9 w-9">
+                    <a href="{{ url('/') }}" class="flex items-center space-x-2 group">
+                        <x-application-logo class="w-12 h-12 " />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:items-center sm:-my-px sm:ml-10 sm:flex">
-                    <a href="{{ url('/catalogue') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
-                        Catalogue
+                    <a href="{{ url('/birds') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 py-2 rounded-md text-md font-medium">
+                        Birds
                     </a>
-                    <a href="{{ url('/map') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
+                    <a href="{{ url('/map') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 py-2 rounded-md text-md font-medium">
                         Map
                     </a>
-                    <a href="{{ url('/conservation') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
+                    <a href="{{ url('/conservation') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 py-2 rounded-md text-md font-medium">
                         Conservation
                     </a>
-                    <a href="{{ url('/taxonomy') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 py-2 rounded-md text-sm font-medium">
+                    <a href="{{ url('/taxonomy') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 py-2 rounded-md text-md font-medium">
                         Taxonomy
                     </a>
                 </div>
@@ -65,8 +63,8 @@
             <a href="{{ url('/') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
                 Home
             </a>
-            <a href="{{ url('/catalogue') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
-                Catalogue
+            <a href="{{ url('/birds') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
+                Birds
             </a>
             <a href="{{ url('/map') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
                 Map

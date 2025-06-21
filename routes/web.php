@@ -46,8 +46,9 @@ Route::get('/conservation-status', [EBirdTaxonomyController::class, 'fetchBoccDa
 Route::get('/taxonomy-json-with-genera', [EBirdTaxonomyController::class, 'taxonomyJsonWithGenera']);
 Route::get('/taxonomy-json-without-genera', [EBirdTaxonomyController::class, 'taxonomyJsonWithoutGenera']);
 
-Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue.index');
-Route::get('/catalogue/{animal}', [CatalogueController::class, 'show'])->name('catalogue.show');
+Route::get('/birds', [CatalogueController::class, 'index'])->name('birds.index');
+Route::get('/birds/{animal:slug}', [CatalogueController::class, 'show'])->name('birds.show');
+
 Route::get('/filtered-birds', [CatalogueController:: class, 'getFilteredBirds']);
 
 Route::get('/get_orders', [CatalogueController::class, 'getOrders']);
@@ -62,3 +63,4 @@ Route::get('/map', function(){ return view('map');});
 Route::get('/map-data', [MapController::class, 'getCoordinatesAndAnimals'])->name('map.data');
 
 Route::get('/conservation',[EBirdTaxonomyController::class, 'conservation']);
+Route::view('/changelog', 'changelog')->name('changelog');

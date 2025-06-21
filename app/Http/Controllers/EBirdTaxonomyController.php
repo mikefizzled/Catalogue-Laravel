@@ -108,7 +108,7 @@ class EBirdTaxonomyController extends Controller
                             "children" => $family->genera->flatMap(function ($genus) {
                                 return $genus->animals->map(function ($animal) {
                                     return [
-                                        "name" => '<a href="' . route('catalogue.show', ['animal' => $animal->id]) . '">' . $animal->common_name . '</a>',
+                                        "name" => '<a href="' . route('birds.show', $animal) . '">' . $animal->common_name . '</a>',
                                         "image" => Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url),
                                         "details" => $animal->scientific_name
                                     ];
@@ -150,7 +150,7 @@ class EBirdTaxonomyController extends Controller
                                     "name" => $genus->genus_name,
                                     "children" => $genus->animals->map(function ($animal) {
                                         return [
-                                            "name" => '<a href="' . route('catalogue.show', ['animal' => $animal->id]) . '">' . $animal->common_name . '</a>',
+                                            "name" => '<a href="' . route('birds.show', $animal) . '">' . $animal->common_name . '</a>',
                                             "image" => Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url),
                                             "details" => $animal->scientific_name,
                                         ];
