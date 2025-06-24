@@ -1,20 +1,23 @@
 <head>
-    <title>{{$animal->common_name}}</title> @vite(['resources/js/speciesMap.js'])
-  </head>
-  <script>
-    window.existingLocations = @json($locations);
-  </script>
-  <script type="module" src="{{ asset('resources/js/speciesMap.js') }}"></script>
+    @section('title', $animal->common_name)
+    @vite(['resources/js/speciesMap.js'])
+</head>
+
+<script>
+  window.existingLocations = @json($locations);
+</script>
+
+<script type="module" src="{{ asset('resources/js/speciesMap.js') }}"\></script>
+
   <x-public-app-layout>
-    <div class="py-2">
-      <div class="max-w-7xl mx-auto sm:px-2 lg:px-2 space-y-2">
-        <div class="bg-white dark:bg-gray-800 px-6 py-6 overflow-hidden shadow-sm sm:rounded-lg">
-          <div class="flex flex-col md:flex-row gap-2">
+    <div class="max-w-screen-xl mx-auto px-4 space-y-2">
+      <div class="bg-white dark:bg-gray-800/90 backdrop-blur-sm shadow-xl px-6 py-6">
+        <div class="flex flex-col md:flex-row gap-2">
             <div class="self-center px-5">
-              <div class="dark:text-gray-100 text-center md:text-left">
-                <h1 class="text-3xl">{{ $animal->common_name }} </h1>
-                <h2 class="text-xl italic mb-2">{{ $animal->scientific_name }}</h2>
-                <a href='https://ebird.org/species/{{ $animal->ebird_species_code}}' class="underline">eBird</a>
+              <div class="flex-1 text-center md:text-left space-y-2">
+                <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">{{ $animal->common_name }} </h1>
+                <h2 class="text-xl italic text-gray-600 dark:text-gray-300">{{ $animal->scientific_name }}</h2>
+                <a href='https://ebird.org/species/{{ $animal->ebird_species_code}}' class="inline-block mt-2 text-sm text-blue-600 dark:text-blue-400 hover:underline">View on eBird</a>
               </div>
             </div>
             <div class="flex-grow self-center px-2">
@@ -44,13 +47,13 @@
             </div>
             <!-- Bird Thumbnail -->
             <div class="flex-shrink-0 self-center">
-              <div class="w-64 md:w-48 w-64 md:h-48 rounded-md  border border-gray-200 dark:border-gray-700">
-                <img src="{{ $animal->thumbnail_url }}" alt="{{ $animal->common_name }}" class="w-full h-full object-cover rounded-md">
+              <div class="w-64 md:w-48 w-64 md:h-48 border border-gray-200 dark:border-gray-700">
+                <img src="{{ $animal->thumbnail_url }}" alt="{{ $animal->common_name }}" class="w-full h-full object-cover">
               </div>
             </div>
           </div>
         </div>
-        <div class="bg-white dark:bg-gray-800 px-6 py-3 shadow-sm sm:rounded-lg content-center"> 
+        <div class="bg-white dark:bg-gray-800 backdrop-blur-sm shadow-xl px-6 py-6"> 
           @if ($animal->conservationStatuses->isNotEmpty())
           <!-- Title -->
           <div class="text-center">
@@ -92,11 +95,11 @@
           <div id="gallery" class="relative w-full" data-carousel="static">
             <!-- Carousel wrapper -->
             <div
-  class="relative w-full h-[60vh] sm:h-[calc(100vw*9/16)] md:h-[600px] overflow-hidden rounded-lg border" data-carousel="static">
+  class="relative w-full h-[60vh] sm:h-[calc(100vw*9/16)] md:h-[600px] overflow-hidden border" data-carousel="static">
                 @foreach ($images as $media)
                     <div class="hidden ease-in-out w-full h-full flex justify-center items-center" data-carousel-item>
                         @if ($media->media_type === 'image')
-                            <img src="{{ $media->media_url }}" class="w-full h-full object-cover rounded-md" alt={{ $media->caption }}>
+                            <img src="{{ $media->media_url }}" class="w-full h-full object-cover " alt={{ $media->caption }}>
                             <div class="absolute bottom-5 left-5 bg-black bg-opacity-50 text-white p-3 rounded-lg shadow-lg w-auto text-center">
                         @elseif ($media->media_type === 'video')
                             <video controls class="w-full h-full object-cover rounded-md">
@@ -134,7 +137,7 @@
               </span>
             </button>
           </div>
-          <div x-show="showMetadata" @click.away="showMetadata = false" class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-4 rounded-lg shadow-lg max-w-full z-50">
+          <div x-show="showMetadata" @click.away="showMetadata = false" class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-4 shadow-lg max-w-full z-50">
             <h3 class="text-lg font-semibold">Metadata</h3>
             <table class="w-full border-collapse text-left">
               <tbody>
@@ -176,11 +179,11 @@
         @endif
         @if(count($images))
         <!-- Map container -->
-        <div class="bg-white dark:bg-gray-800 px-6 py-6 shadow-sm sm:rounded-lg">
+        <div class="bg-white dark:bg-gray-800  shadow-sm ">
           <div class="flex flex-col md:flex-row gap-6">
             <div class="flex-grow">
               <div id="map"
-                  class="w-full h-64 sm:h-80 md:h-[450px] mt-2 rounded-md shadow">
+                  class="w-full h-64 sm:h-80 md:h-[450px]  shadow">
               </div>
             </div>
           </div>

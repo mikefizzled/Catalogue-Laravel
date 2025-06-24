@@ -1,8 +1,9 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700" aria-label="Primary site navigation">
+<nav    x-data="{ open: false }" 
+        class="bg-white dark:bg-gray-800 border-b border-gray-300" aria-label="Primary site navigation">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20">
-            <div class="flex">
+
                 <div class="shrink-0 flex items-center">
                     <a href="{{ url('/') }}" class="flex items-center space-x-2 group">
                         <x-application-logo class="w-12 h-12 " />
@@ -10,37 +11,33 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:items-center sm:-my-px sm:ml-10 sm:flex">
-                    <a href="{{ url('/birds') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 py-2 rounded-md text-md font-medium">
+                <div class="hidden space-x-8 sm:items-center sm:ml-6 sm:flex">
+                    <a href="{{ url('/birds') }}"           class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 text-xl">
                         Birds
                     </a>
-                    <a href="{{ url('/map') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 py-2 rounded-md text-md font-medium">
+                    <a href="{{ url('/map') }}"             class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 text-xl">
                         Map
                     </a>
-                    <a href="{{ url('/conservation') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 py-2 rounded-md text-md font-medium">
+                    <a href="{{ url('/conservation') }}"    class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 text-xl">
                         Conservation
                     </a>
-                    <a href="{{ url('/taxonomy') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 py-2 rounded-md text-md font-medium">
+                    <a href="{{ url('/taxonomy') }}"        class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 text-xl">
                         Taxonomy
                     </a>
-                </div>
-            </div>
 
-            <!-- Login/Register -->
-            @if (Route::has('login'))
-                <div class="hidden sm:flex sm:items-center sm:ml-6">
-                    @auth
-                        <a href="{{ url('admin/dashboard') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-1 py-2 rounded-md text-sm font-medium">
-                            Dashboard
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-2 py-2 rounded-md text-sm font-medium">
-                            Log in
-                        </a>
-                    @endauth
+                    <!-- Login/Register -->
+                    @if (Route::has('login'))
+                        @auth
+                            <a href="{{ url('admin/dashboard') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 text-xl">
+                                Dashboard
+                            </a>
+                        @else
+                            <a href="{{ route('login') }}" class="hidden text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 text-xl">
+                                Log in
+                            </a>
+                        @endauth
+                    @endif
                 </div>
-            @endif
-
             <!-- Hamburger Menu (Mobile) -->
             <div class=" flex items-center sm:hidden">
                 <button @click="open = ! open" type="button" :aria-expanded="open.toString()"

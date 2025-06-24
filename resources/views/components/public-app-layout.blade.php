@@ -34,21 +34,21 @@
         <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-white text-black px-4 py-2 rounded shadow">
             Skip to main content
         </a>
-        <div class=" bg-gray-400 dark:bg-gray-900">
+        <div class=" bg-gray-300 dark:bg-gray-600">
             @include('layouts.public-nav')
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
+                <header class="bg-white dark:bg-gray-700">
                     <div class="mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
             @endisset
-
             <!-- Page Content -->
             <main id="main-content">
                 {{ $slot }}
+                @stack('scripts')
             </main>
         </div>
     </body>
