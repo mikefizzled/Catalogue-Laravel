@@ -28,14 +28,20 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @stack('preload')
     </head>
     <body class="font-sans antialiased">
-        <!-- Skip to main content link -->
+        <!-- Skip to main content link 
         <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-white text-black px-4 py-2 rounded shadow">
             Skip to main content
-        </a>
+        </a>-->
         <div class=" bg-gray-300 dark:bg-gray-600">
-            @include('layouts.public-nav')
+            <!-- Admin/Public Navbar choosing -->
+           @if ( request()->is('admin*') )
+                @include('layouts.admin-nav')
+            @else
+                @include('layouts.public-nav')
+            @endif
 
             <!-- Page Heading -->
             @isset($header)
@@ -48,9 +54,9 @@
             <!-- Page Content -->
             <main id="main-content">
                 {{ $slot }}
-                @stack('scripts')
             </main>
         </div>
+          @stack('scripts')
     </body>
     <x-footer />
 </html>

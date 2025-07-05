@@ -49,6 +49,41 @@ class Animal extends Model
     {
         return self::where('id', $animalId)->value('slug') ?? 'Unknown';
     }
-    
 
+    // Functions for admin cfg
+    public function getTitleAttribute(): string
+    {
+        return $this->common_name;
+    }
+
+    public function getSubtitleAttribute(): string
+    {
+        return $this->scientific_name;
+    }
+
+    public function getThumbnailAttribute(): string
+    {
+        return $this->thumbnail_url;
+    }
+
+    public function bocCriteriaCodes(int $listId): string
+    {
+        $cs = $this->conservationStatuses
+            ->firstWhere('conservation_list_id', $listId);
+
+        if (! $cs) {
+            return '';
+        }
+
+        return $cs->criteria
+            ->map(fn($c) => $c->boccCriteria->code)
+            ->implode('; ');
+    }
+    public function getStatusMapAttribute(): array
+    {
+        // Assumes you’ve eager-loaded conservationStatuses
+        return $this->conservationStatuses
+                    ->pluck('status', 'conservation_list_id')
+                    ->toArray();
+    }
 }

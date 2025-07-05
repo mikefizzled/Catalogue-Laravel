@@ -42,4 +42,21 @@ class Family extends Model
     {
         return $query->orderBy('family_name', 'asc');
     }
+
+    // Functions for admin cfg
+    public function getTitleAttribute(): string
+    {
+        $familyName = $this->family_name;
+        $commonName = $this->common_name;
+        return "{$familyName} ({$commonName})";
+    }
+
+    public function getSubtitleAttribute(): string
+    {
+        $orderName  = $this->order->order_name;
+        $familyName = $this->family_name;
+        $commonName = $this->common_name;
+
+        return "{$orderName} → {$familyName}";
+    }
 }

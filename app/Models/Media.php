@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Media extends Model
 {
@@ -95,5 +96,24 @@ class Media extends Model
     public static function getAudioForAnimal($animalId)
     {
         return self::where('animal_id', $animalId)->ofType('audio')->get();
+    }
+
+    // Functions for admin cfg
+    public function getTitleAttribute(): string
+    {
+        return $this->animal->common_name;
+    }
+
+    public function getSubtitleAttribute(): string
+    {
+        $location = $this->location->name;
+        $date     = Carbon::parse($this->date_taken)->format('F j, Y');
+
+        return "{$location} – {$date}";
+    }
+
+    public function getThumbnailAttribute(): string
+    {
+        return $this->thumbnail_url;
     }
 }

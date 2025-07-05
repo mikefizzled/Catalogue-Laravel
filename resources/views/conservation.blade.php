@@ -12,7 +12,7 @@
         </div>
 
         <!-- Data Table -->
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto mx-1">
             <table class="w-full text-sm text-left text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700" aria-label="Birds of Conservation Concern Reports">
                 <thead class="uppercase bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-300">
                     <tr>

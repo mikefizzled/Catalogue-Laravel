@@ -1,44 +1,63 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h1 class="font-bold text-2xl text-gray-800 dark:text-gray-100">Admin Dashboard</h1>
-        @section('title', 'Dashboard')
-    </x-slot>
+<x-public-app-layout>
+  <div class="min-h-[85vh] max-w-screen-xl mx-auto space-y-2">
 
-    <div class="py-3">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    {{-- Header --}}
+    <header class="bg-white dark:bg-gray-800/90 backdrop-blur-sm shadow mb-2">
+      <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+          Admin Dashboard
+        </h1>
+      </div>
+    </header>
 
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                <x-stat-card title="Total Species" count="{{ $animalCount }}" />
-                <x-stat-card title="Total Media" count="{{ $mediaCount }}" />
-                <x-stat-card title="Locations" count="{{ $locationCount }}" />
-                <x-stat-card title="Orders" count="{{ $orderCount }}" />
-                <x-stat-card title="Families" count="{{ $familyCount }}" />
-                <x-stat-card title="Genera" count="{{ $genusCount }}" />
-            </div>
-            <!-- Recent Animals -->
-            <div class="mt-3 bg-white dark:bg-gray-700 p-6 shadow-sm rounded-lg">
-                <h3 class="text-lg font-bold dark:text-gray-100 text-center">Recently Added Birds</h3>
-                <div class="flex gap-2 pt-2 justify-between">
-                    @foreach ($recentAnimals as $animal)
-                        <div class="lg:w-[160px] lg:h-[160px] w-[128px] h-[128px] rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden">
-                            <img src="{{ $animal->thumbnail_url }}" class="w-full h-full object-cover"  alt="Thumbnail of {{$animal->common_name }}">
-                        </div>
-                    @endforeach
-                </div>
-            </div>
+    {{-- Stats grid --}}
+    <section class="bg-white dark:bg-gray-800/90 backdrop-blur-sm shadow px-6 py-6 mx-1">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <x-stat-card title="Total Species" count="{{ $animalCount }}" />
+        <x-stat-card title="Total Media"   count="{{ $mediaCount }}" />
+        <x-stat-card title="Locations"     count="{{ $locationCount }}" />
+        <x-stat-card title="Orders"        count="{{ $orderCount }}" />
+        <x-stat-card title="Families"      count="{{ $familyCount }}" />
+        <x-stat-card title="Genera"        count="{{ $genusCount }}" />
+      </div>
+    </section>
 
-            <div class="mt-3 bg-white dark:bg-gray-700 p-6 shadow-sm rounded-lg">
-                <h3 class="text-lg font-bold dark:text-gray-100 text-center">Recent Media Uploads</h3>
-                <div class="flex gap-4 pt-2">
-                    @foreach ($recentMedia as $media)
-                        <div class="w-[400px] h-[225px] rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden">
-                            <img src="{{ $media->thumbnail_url }}" alt="{{$animal->caption}}" class="w-full h-full object-cover">
-                        </div>
-                    @endforeach
-                </div>
-            </div>
+    {{-- Recently Added Birds --}}
+    <section class="bg-white dark:bg-gray-800/90 backdrop-blur-sm shadow px-6 py-6 mx-1">
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-white text-center mb-4">
+        Recently Added Birds
+      </h2>
+      <div class="flex flex-wrap justify-center gap-4">
+        @foreach ($recentAnimals as $animal)
+          <a href="{{ route('admin.animals.show', $animal) }}"
+             class="block w-40 h-40 border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow">
+            <img
+              src="{{ $animal->thumbnail_url }}"
+              alt="Thumbnail of {{ $animal->common_name }}"
+              class="w-full h-full object-cover"
+            />
+          </a>
+        @endforeach
+      </div>
+    </section>
 
-        </div>
-    </div>
-</x-app-layout>
+    {{-- Recent Media Uploads --}}
+    <section class="bg-white dark:bg-gray-800/90 backdrop-blur-sm shadow px-6 py-6 mx-1">
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-white text-center mb-4">
+        Recent Media Uploads
+      </h2>
+      <div class="flex flex-wrap justify-center gap-6">
+        @foreach ($recentMedia as $media)
+          <div class="w-[350px] aspect-w-16 aspect-h-9 border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-shadow">
+            <img
+              src="{{ $media->thumbnail_url }}"
+              alt="{{ $media->caption }}"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        @endforeach
+      </div>
+    </section>
+
+  </div>
+</x-public-app-layout>

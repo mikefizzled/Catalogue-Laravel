@@ -25,9 +25,9 @@
             </select>
 
         </div>
-        <div class="bg-white dark:bg-gray-800/90 backdrop-blur-sm shadow-xl px-6 py-6">
+        <div class="bg-white dark:bg-gray-800/90 backdrop-blur-sm shadow-xl px-6 py-6 mx-1">
             <div class="px-2 space-y-6">
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-4" id="results">
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-4" id="results">
                     @forelse ($animals as $bird)
                         <x-bird-card
                             :url="route('birds.show', $bird)"

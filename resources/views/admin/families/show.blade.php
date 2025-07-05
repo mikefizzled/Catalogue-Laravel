@@ -1,56 +1,43 @@
-<x-app-layout>
-    <x-slot name="header">
-        <x-h2>
-            Families
-        </x-h2>
-        @section('title', $family->family_name)
-    </x-slot>
+<x-admin-resource-show
+  heading="Family – {{ $family->family_name }}"
+  pageTitle="{{ $family->family_name }}"
+>
+<x-slot name="actions">
+    <x-action-buttons
+      :edit-url="route('admin.families.edit',  $family)"
+      :delete-url="route('admin.families.destroy', $family)"
+      resource-name="family"
+    />
+</x-slot>
+  <div class="flex flex-col sm:flex-row sm:justify-between text-sm text-gray-600 dark:text-gray-400">
+    <div class="space-x-4">
+      <span><strong>Created:</strong> {{ $family->created_at->diffForHumans() }}</span>
+      <span><strong>Updated:</strong> {{ $family->updated_at->diffForHumans() }}</span>
+    </div>
+  </div>
 
-    <x-crud-layout>
-        <x-slot name="outside">
-            <div class="flex gap-2 py-1">
-                <p class="opacity-70 dark:text-gray-400 "><strong>Created: </strong>{{ $family->created_at->diffForHumans() }}</p>
-                <p class="opacity-70 dark:text-gray-400"><strong>Last Changed: </strong>{{ $family->updated_at->diffForHumans() }}</p>
-            </div>
-            <div class="flex gap-2 py-2">
-                <x-link-button href="{{ route('admin.families.edit', $family)}}" class="ml-auto">Edit Family</x-link-button>
-                <x-link-button class="bg-red-400 hover:bg-red-600 focus:bg-red-600" 
-                    onclick="return confirm('Move note to trash?')">
-                        Delete Family</x-link-button>
-                {{-- 
-                <form action="{{ route('admin.notes.destroy', $note) }}" method="post">
-                    @method('delete')
-                    @csrf
-                    <x-primary-button class="bg-red-400 hover:bg-red-600 focus:bg-red-600" onclick="return confirm('Move note to trash?')">
-                        Trash Note
-                    </x-primary-button>
-                </form>--}}
-            </div>
-        </x-slot>
-        <x-slot name="inside">
-            <div class="pb-2">
-                <x-h2>
-                    {{ $family->family_name }}
-                </x-h2>
-            </div>
-            <div class="py-2">
-                <x-h3>Common Names</x-h3>
-                <p class="opacity-70 dark:text-gray-400">{{ $family->common_name}}</p>
-            </div>
-            <div class="py-2">
-                <x-h3>Parent Order</x-h3>
-                <p class="opacity-70 dark:text-gray-400"><a href="{{route('admin.orders.show', $family->order)}}">{{ $family->order->order_name}}</a></p>
-            </div>
-            <div class="py-2"> 
-                <x-h3>Associated Genera</x-h3> 
-                <ul class="list-disc list-inside"> 
-                    @forelse($family->genera as $genus) 
-                        <li class="opacity-70 dark:text-gray-400"><a href="{{route('admin.genera.show', $genus)}}">{{ $genus->genus_name }}</a></li> 
-                    @empty 
-                        <li class="opacity-70 dark:text-gray-400">No genera found.</li> 
-                    @endforelse 
-                </ul> 
-            </div>
-        </x-slot>
-    </x-crud-layout>
-</x-app-layout>
+  <div class="grid grid-cols-1 md:grid-cols-2">
+    <div class="space-y-2 text-gray-900 dark:text-white">
+        <h2 class="text-lg font-semibold">Details</h2>
+        <p><strong>Class:</strong> Aves</p>
+        <p><strong>Parent Order: </strong> <a href="{{route('admin.orders.show', $family->order)}}" class="hover:underline">{{ $family->order->order_name  }}</a>
+        <p><strong>Family Name: </strong> {{ $family->family_name }}</p>
+        <p><strong>Family Common Names: </strong> {{ $family->common_name }}</p>
+    </div>
+
+    <div class="space-y-2">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Genera in this Order</h2>
+      <ul class="list-disc list-inside text-gray-700 dark:text-gray-300">
+        @forelse($family->genera as $genus) 
+          <li>
+            <a href="{{ route('admin.genera.show',$genus) }}" class="hover:underline">
+              {{ $genus->genus_name }}
+            </a>
+          </li>
+        @empty
+          <li>No genera yet.</li>
+        @endforelse
+      </ul>
+    </div>
+  </div>
+</x-admin-resource-show>

@@ -1,38 +1,36 @@
-<nav    x-data="{ open: false }" 
-        class="bg-white dark:bg-gray-800 border-b border-gray-300" aria-label="Primary site navigation">
+<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-300" aria-label="Primary site navigation">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20">
-
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ url('/') }}" class="flex items-center space-x-2 group">
-                        <x-application-logo class="w-12 h-12 " />
-                    </a>
-                </div>
+            <div class="shrink-0 flex items-center">
+                <a href="{{ url('/') }}" class="flex items-center space-x-2 group">
+                    <x-application-logo class="w-12 h-12 " />
+                </a>
+            </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:items-center sm:ml-6 sm:flex">
-                    <a href="{{ url('/birds') }}"           class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 text-xl">
+                    <a href="{{ url('/birds') }}" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:scale-110 text-lg">
                         Birds
                     </a>
-                    <a href="{{ url('/map') }}"             class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 text-xl">
-                        Map
-                    </a>
-                    <a href="{{ url('/conservation') }}"    class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 text-xl">
+                    <x-nav-link :href="route('map')" :active="request()->routeIs('map')">
+                    {{ __('Map') }}
+                    </x-nav-link>
+                    <a href="{{ url('/conservation') }}" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:scale-110 text-lg">
                         Conservation
                     </a>
-                    <a href="{{ url('/taxonomy') }}"        class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 text-xl">
+                    <a href="{{ url('/taxonomy') }}" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:scale-110 text-lg">
                         Taxonomy
                     </a>
 
                     <!-- Login/Register -->
                     @if (Route::has('login'))
                         @auth
-                            <a href="{{ url('admin/dashboard') }}" class="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 text-xl">
+                            <a href="{{ url('admin/dashboard') }}" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:scale-110 text-lg">
                                 Dashboard
                             </a>
                         @else
-                            <a href="{{ route('login') }}" class="hidden text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 hover:scale-110 text-xl">
+                            <a href="{{ route('login') }}" class="hidden text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:scale-110 text-lg">
                                 Log in
                             </a>
                         @endauth

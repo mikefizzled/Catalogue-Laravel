@@ -29,10 +29,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans antialiased">
-    <!-- Skip to main content link -->
+    <!-- Skip to main content link 
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-white text-black px-4 py-2 rounded shadow">
         Skip to main content
-    </a>
+    </a>-->
 
     @php
         // Automatically detect if current route is admin

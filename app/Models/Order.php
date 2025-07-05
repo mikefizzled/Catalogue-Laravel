@@ -33,4 +33,10 @@ class Order extends Model
             ->saveSlugsTo('slug');
     }
 
+    // Functions for admin cfg
+    public function getTitleAttribute(): string
+    {
+        return $this->order_name;
+    }
+
 }

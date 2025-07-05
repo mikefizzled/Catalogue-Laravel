@@ -2,14 +2,6 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 window.L = L; // Make Leaflet available globally
-//console.log("Leaflet Loaded:", L);
-
-
-
-// these imports tell Vite to copy the assets into your build
-import iconUrl       from 'leaflet/dist/images/marker-icon.png';
-import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
-import shadowUrl     from 'leaflet/dist/images/marker-shadow.png';
 
 // override the defaults so every map on every route picks up the right paths
 delete L.Icon.Default.prototype._getIconUrl;

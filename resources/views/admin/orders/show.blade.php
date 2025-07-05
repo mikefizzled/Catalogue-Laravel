@@ -1,52 +1,41 @@
-<x-app-layout>
-    <x-slot name="header">
-        <x-h2>
-            Orders
-        </x-h2>
-        @section('title', $order->order_name.' - View Order')
-    </x-slot>
+<x-admin-resource-show
+  heading="Order – {{ $order->order_name }}"
+  pageTitle="{{ $order->order_name }}"
+>
+<x-slot name="actions">
+    <x-action-buttons
+      :edit-url="route('admin.orders.edit',  $order)"
+      :delete-url="route('admin.orders.destroy', $order)"
+      resource-name="order"
+    />
+</x-slot>
+  <div class="flex flex-col sm:flex-row sm:justify-between text-sm text-gray-600 dark:text-gray-400">
+    <div class="space-x-4">
+      <span><strong>Created:</strong> {{ $order->created_at->diffForHumans() }}</span>
+      <span><strong>Updated:</strong> {{ $order->updated_at->diffForHumans() }}</span>
+    </div>
+  </div>
 
-    <x-crud-layout>
-        <x-slot name="outside">
-            <div class="flex gap-2 opacity-70 dark:text-gray-400">
-                <p><strong>Created: </strong>{{ $order->created_at->diffForHumans() }}</p>
-                <p><strong>Last Changed: </strong>{{ $order->updated_at->diffForHumans() }}</p>
-            </div>
-            <div class="flex gap-2">
-                <x-link-button href="{{ route('admin.orders.edit', $order)}}" class="ml-auto">Edit Order</x-link-button>
-                <x-link-button class="bg-red-400 hover:bg-red-600 focus:bg-red-600" 
-                    onclick="return confirm('Move note to trash?')">
-                        Delete Order</x-link-button>
-                {{-- 
-                <form action="{{ route('admin.notes.destroy', $note) }}" method="post">
-                    @method('delete')
-                    @csrf
-                    <x-primary-button class="bg-red-400 hover:bg-red-600 focus:bg-red-600" onclick="return confirm('Move note to trash?')">
-                        Trash Note
-                    </x-primary-button>
-                </form>--}}
-            </div>
-        </x-slot>
-        <x-slot name="inside">
-            <div class="pb-2">
-                <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-100 ">
-                    {{ $order->order_name }}
-                </h2>
-            </div>
-            <div class="py-2">
-                <x-h3>Parent Class</x-h3>
-                <p class="opacity-70 dark:text-gray-400">Aves</p>
-            </div>
-            <div class="py-2"> 
-                <x-h3>Associated Families</x-h3> 
-                <ul class="list-disc list-inside"> 
-                    @forelse($order->families as $family) 
-                        <li class="opacity-70 dark:text-gray-400"><a href="{{route('admin.families.show', $family)}}">{{ $family->family_name }}</a></li> 
-                    @empty 
-                        <li class="opacity-70 dark:text-gray-400">No families found.</li> 
-                    @endforelse 
-                </ul> 
-            </div>
-        </x-slot>
-    </x-crud-layout>
-</x-app-layout>
+  <div class="grid grid-cols-1 md:grid-cols-2">
+    <div class="space-y-2 text-gray-900 dark:text-white">
+      <h2 class="text-lg font-semibold">Details</h2>
+      <p><strong>Class:</strong> Aves</p>
+      <p><strong>Order Name:</strong> {{ $order->order_name }}</p>
+    </div>
+
+    <div class="space-y-2">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Families in this Order</h2>
+      <ul class="list-disc list-inside text-gray-700 dark:text-gray-300">
+        @forelse($order->families as $family)
+          <li>
+            <a href="{{ route('admin.families.show',$family) }}" class="hover:underline">
+              {{ $family->family_name }}
+            </a>
+          </li>
+        @empty
+          <li>No families yet.</li>
+        @endforelse
+      </ul>
+    </div>
+  </div>
+</x-admin-resource-show>

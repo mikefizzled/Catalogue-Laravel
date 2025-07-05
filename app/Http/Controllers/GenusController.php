@@ -16,7 +16,8 @@ class GenusController extends Controller
     {
         $genera = Genus::orderBy('genus_name', 'asc')->paginate(20);
 
-        return view('admin.taxonomy.index', ['taxa' => $genera, 'taxonType' => 'genera']);
+        return view('admin.genera.index', ['taxa' => $genera]);
+      //return view('admin.taxonomy.index', ['taxa' => $genera, 'taxonType' => 'genera']);
     }
 
     /**
@@ -24,8 +25,13 @@ class GenusController extends Controller
      */
     public function create()
     {
-        $families = Family::orderBy('family_name', 'asc')->get();
-        return view('admin.genera.create', ['families' => $families]);
+        $genus = new Genus;
+
+        $families = Family::orderBy('family_name')
+                    ->pluck('family_name','id')
+                    ->toArray();
+
+        return view('admin.genera.create', compact('genus','families'));
     }
 
     /**
@@ -58,8 +64,11 @@ class GenusController extends Controller
      */
     public function edit(Genus $genus)
     {
-        $families = Family::orderedByName()->get(['id','family_name']);
-        return view('admin.genera.edit', ['genus' => $genus, 'families' => $families]);
+        $families = Family::orderBy('family_name')
+                    ->pluck('family_name','id')
+                    ->toArray();
+
+        return view('admin.genera.edit', compact('genus','families'));
     }
 
     /**
@@ -76,6 +85,16 @@ class GenusController extends Controller
      */
     public function destroy(Genus $genus)
     {
-        //
+        if ($genus->animals()->count()) {
+            return redirect()
+                ->route('admin.genera.index')
+                ->with('error', 'Cannot delete a genus that still has birds.');
+        }
+
+        $genus->delete(); 
+        
+        return redirect()
+            ->route('admin.genera.index')
+            ->with('success', 'Genus deleted successfully.');
     }
 }

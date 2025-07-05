@@ -125,16 +125,25 @@ class AnimalController extends Controller
      */
     public function edit(Animal $animal)
     {
-        $genera = Genus::orderBy('genus_name', 'asc')->get();
+        $genera = Genus::orderBy('genus_name','asc')
+               ->pluck('genus_name','id')
+               ->toArray();
+
     
         $conservationLists = ConservationList::orderBy('short_name', 'asc')->get();
     
-        $animal->load('conservationStatuses');
+        $existingStatuses = $animal
+        ->conservationStatuses
+        ->pluck('status','conservation_list_id')
+        ->toArray();
         
+        $animal->load('conservationStatuses.criteria.boccCriteria');
+
         return view('admin.animals.edit')->with([
             'animal'             => $animal,
             'genera'             => $genera,
             'conservationLists'  => $conservationLists,
+            'existingStatuses'   => $existingStatuses,
         ]);
     }
     

@@ -10,7 +10,7 @@
 <script type="module" src="{{ asset('resources/js/speciesMap.js') }}"\></script>
 
   <x-public-app-layout>
-    <div class="max-w-screen-xl mx-auto px-4 space-y-2">
+    <div class="min-h-[85vh] max-w-screen-xl mx-auto space-y-2">
       <div class="bg-white dark:bg-gray-800/90 backdrop-blur-sm shadow-xl px-6 py-6">
         <div class="flex flex-col md:flex-row gap-2">
             <div class="self-center px-5">
@@ -159,7 +159,7 @@
           @endif
         </div>
         @if (count($audioClips))
-        <div class="bg-white dark:bg-gray-800 px-6 py-3 shadow-sm sm:rounded-lg">
+        <div class="bg-white dark:bg-gray-800 px-6 py-3 shadow-sm">
             <div class="text-center">
                 <x-h2>Calls and Songs</x-h2>
             </div>
@@ -179,12 +179,10 @@
         @endif
         @if(count($images))
         <!-- Map container -->
-        <div class="bg-white dark:bg-gray-800  shadow-sm ">
-          <div class="flex flex-col md:flex-row gap-6">
-            <div class="flex-grow">
-              <div id="map"
-                  class="w-full h-64 sm:h-80 md:h-[450px]  shadow">
-              </div>
+        <div class="shadow-sm pb-2">
+          <div class="flex flex-col md:flex-row gap-6 border">
+            <div id="map"
+                class="w-full h-64 sm:h-80 md:h-[450px] shadow">
             </div>
           </div>
         </div>

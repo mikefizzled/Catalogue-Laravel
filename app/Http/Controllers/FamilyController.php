@@ -15,15 +15,20 @@ class FamilyController extends Controller
     {
         $families = Family::orderBy('family_name', 'asc')->paginate(20);
 
-        return view('admin.taxonomy.index', ['taxa' => $families, 'taxonType' => 'families']);
+        //return view('admin.taxonomy.index', ['taxa' => $families, 'taxonType' => 'families']);
+        return view('admin.families.index', ['taxa' => $families]);
     }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        $orders = Order::get();
-        return view('admin.families.create')->with('orders', $orders);
+        $family = new Family;
+        $orders = Order::orderBy('order_name')
+                    ->pluck('order_name','id')
+                    ->toArray();
+
+        return view('admin.families.create', compact('family','orders'));
     }
 
     /**
@@ -55,8 +60,11 @@ class FamilyController extends Controller
      */
     public function edit(Family $family)
     {
-        $orders = Order::select('id', 'order_name')->get();
-        return view('admin.families.edit', ['family' => $family, 'orders' => $orders]);
+        $orders = Order::orderBy('order_name')
+                    ->pluck('order_name','id')
+                    ->toArray();
+
+        return view('admin.families.edit', compact('family','orders'));
     }
 
     /**
@@ -79,6 +87,16 @@ class FamilyController extends Controller
      */
     public function destroy(Family $family)
     {
-        //
+        if ($family->genera()->count()) {
+            return redirect()
+                ->route('admin.families.index')
+                ->with('error', 'Cannot delete a family that still has genera.');
+        }
+
+        $family->delete(); 
+
+        return redirect()
+            ->route('admin.families.index')
+            ->with('success', 'Family deleted successfully.');
     }
 }
