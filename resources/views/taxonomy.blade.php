@@ -25,7 +25,7 @@
         <!-- Chart -->
         <div class="relative">
             <div id="tooltip" class="absolute hidden bg-white border border-gray-300 "></div>
-            <div id="chart" class="bg-gray-100 shadow-lg  overflow-auto"></div>
+            <div id="chart"  class="bg-gray-100 shadow-lg overflow-auto pb-40"></div>
         </div>
 
     </div>

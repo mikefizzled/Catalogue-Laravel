@@ -133,12 +133,12 @@ class AnimalController extends Controller
         $conservationLists = ConservationList::orderBy('short_name', 'asc')->get();
     
         $existingStatuses = $animal
-        ->conservationStatuses
-        ->pluck('status','conservation_list_id')
-        ->toArray();
-        
+            ->conservationStatuses
+            ->pluck('status','conservation_list_id')
+            ->toArray();
+        $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);
         $animal->load('conservationStatuses.criteria.boccCriteria');
-
+        
         return view('admin.animals.edit')->with([
             'animal'             => $animal,
             'genera'             => $genera,
@@ -153,43 +153,57 @@ class AnimalController extends Controller
      */
     public function update(Request $request, Animal $bird)
     {
-        // Get all validated data.
-        //$data = $request->validated();
-
-        $validatedData = $request->validate([
-            'common_name' => 'required|string|max:255',
-            'scientific_name' => 'required|string|max:255',
-            'genus_id' => 'required|exists:genera,id',
-            'ebird_species_code' => 'nullable|string|max:50',
-            'thumbnail' => 'nullable|file|mimes:jpg,jpeg,webp|max:5120',
-            'statuses' => 'nullable|array',
-            'slug' => 'required'
+        $validated = $request->validate([
+            'common_name'       => 'required|string|max:255',
+            'scientific_name'   => 'required|string|max:255',
+            'genus_id'          => 'required|exists:genera,id',
+            'ebird_species_code'=> 'nullable|string|max:50',
+            'thumbnail'         => 'nullable|file|mimes:jpg,jpeg,webp|max:5120',
+            'statuses'          => 'required|array',
+            'statuses.*'        => 'required|string',
+            'bocc_5_criteria'   => 'nullable|string',
+            'bocc_5a_criteria'  => 'nullable|string',
         ]);
 
-
-        // Extract fields for the Animal model
-         $animalData = array_intersect_key($validatedData, array_flip([
-            'common_name', 'scientific_name', 'genus_id', 'ebird_species_code'
-        ]));
-         
-        // Only if new thumbnail is provided
+        // Update core bird fields
+        $bird->update([
+            'common_name'        => $validated['common_name'],
+            'scientific_name'    => $validated['scientific_name'],
+            'genus_id'           => $validated['genus_id'],
+            'ebird_species_code' => $validated['ebird_species_code'] ?? $bird->ebird_species_code,
+        ]);
+        
+        // Handle thumbnail replacement
         if ($request->hasFile('thumbnail')) {
-            // Add the new filename to Animal data
-            $data['thumbnail_url'] = MediaService::storeThumbnail($request->file('thumbnail'), $validatedData['slug'], $bird->thumbnail_url);
+            $bird->thumbnail_url = MediaService::storeThumbnail(
+                $request->file('thumbnail'),
+                $request->slug,
+            );
+            $bird->update();
         }
 
-        // Update pre-existing bird via eloquent
-        $bird->update($animalData);
+        /* Update statuses & criteria exactly as in store()
+        $bocc5Id  = null;
+        $bocc5aId = null;
 
-        foreach ($request->statuses as $conservationListId => $status) {
-            ConservationStatus::where('animal_id', $bird->id)
-                ->where('conservation_list_id', $conservationListId)
-                ->update(['status' => $status]);
+        foreach ($validated['statuses'] as $listId => $status) {
+            $cs = ConservationStatus::updateOrCreate(
+                ['animal_id' => $bird->id, 'conservation_list_id' => $listId],
+                ['status'    => $status]
+            );
+            if ($listId == 5)  $bocc5Id  = $cs->id;
+            if ($listId == 6)  $bocc5aId = $cs->id;
         }
-    
-        return redirect()->route('admin.animals.index')
-                         ->with('success', 'Bird updated successfully!');
+
+        ConservationService::attachBoccCriteria($bocc5Id,  $validated['bocc_5_criteria']  ?? '');
+        ConservationService::attachBoccCriteria($bocc5aId, $validated['bocc_5a_criteria'] ?? '');
+        */
+        return redirect()
+            ->route('admin.animals.show', $bird)
+            ->with('success','Bird updated successfully!');
     }
+
+
     
 
     /**

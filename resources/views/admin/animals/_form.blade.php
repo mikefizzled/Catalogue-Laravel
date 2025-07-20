@@ -69,17 +69,23 @@
       label="Bird Thumbnail"
       help="JPG or WebP – 512×512"
       accept="image/jpeg,image/webp"
-      {{ $isEdit ? '' : 'required' }}
     />
   </div>
-@if($isEdit && $animal->thumbnail_url)
-  <div class="py-2">
-    <label class="block text-sm text-gray-700 dark:text-gray-300">Current Thumbnail</label>
-    <img src="{{ asset('storage/'.$animal->thumbnail_url) }}"
-         alt="{{ $animal->common_name }} thumbnail"
-         class="w-24 h-24 object-cover rounded mt-1"/>
-  </div>
-@endif
+  @if($isEdit && $animal->thumbnail_url)
+      <x-form.text
+        name="slug"
+        label="Slug"
+        :value="old('slug', $animal->slug)"
+        readonly
+        required
+    />
+    <div class="py-2">
+      <label class="block text-sm text-gray-700 dark:text-gray-300">Current Thumbnail</label>
+      <img src="{{ $animal->thumbnail_url }}"
+          alt="{{ $animal->common_name }} thumbnail"
+          class="w-24 h-24 object-cover rounded mt-1"/>
+    </div>
+  @endif
 
   {{-- Conservation Status --}}
   <div class="space-y-4 px-2">

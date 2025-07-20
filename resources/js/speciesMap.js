@@ -1,8 +1,19 @@
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-window.L = L; // Make Leaflet available globally
-//console.log("Leaflet Loaded:", L);
+import iconUrl        from 'leaflet/dist/images/marker-icon.png';
+import iconRetinaUrl  from 'leaflet/dist/images/marker-icon-2x.png';
+import shadowUrl      from 'leaflet/dist/images/marker-shadow.png';
+
+// Override the defaults so Leaflet can find the images in our build
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl,
+  iconUrl,
+  shadowUrl,
+});
+
+window.L = L;
 
 function initMap() {
     

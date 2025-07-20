@@ -53,20 +53,23 @@
             </div>
           </div>
         </div>
-        <div class="bg-white dark:bg-gray-800 backdrop-blur-sm shadow-xl px-6 py-6"> 
+        <div class="bg-white dark:bg-gray-800/90 backdrop-blur-sm shadow-md p-6">
           @if ($animal->conservationStatuses->isNotEmpty())
           <!-- Title -->
           <div class="text-center">
-            <x-h2>Conservation Status - Birds of Conservation Concern</x-h2>
+            <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+              Conservation Status - Birds of Conservation Concern
+            </h2>
           </div>
           <!-- Grid Layout for Conservation Status -->
-          <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 py-3">
+ 
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 pt-2">
             @foreach ($animal->conservationStatuses as $cs)
                 @php
                     $bgClass = \App\Helpers\CatalogueHelper::getStatusBgClass($cs->status);
-                @endphp
-                <div class="p-4 border rounded-lg shadow-sm text-gray-800 {{ $bgClass }}">
-                    <h3 class="text-md text-center dark:text-white ">
+                @endphp 
+                <div class="p-4 border text-gray-800 {{ $bgClass }}">
+                    <h3 class="text-lg font-semibold text-center dark:text-white ">
                         {{ $cs->conservationList->short_name }} - {{ $cs->conservationList->year }}
                     </h3>
                     <p class="text-m text-center dark:text-white ">
@@ -94,8 +97,7 @@
         <div x-data="{ showMetadata: false, activeMetadata: null }" class="relative">
           <div id="gallery" class="relative w-full" data-carousel="static">
             <!-- Carousel wrapper -->
-            <div
-  class="relative w-full h-[60vh] sm:h-[calc(100vw*9/16)] md:h-[600px] overflow-hidden border" data-carousel="static">
+            <div class="relative w-full h-[60vh] sm:h-[calc(100vw*9/16)] md:h-[600px] overflow-hidden border" data-carousel="static">
                 @foreach ($images as $media)
                     <div class="hidden ease-in-out w-full h-full flex justify-center items-center" data-carousel-item>
                         @if ($media->media_type === 'image')
@@ -163,14 +165,19 @@
             <div class="text-center">
                 <x-h2>Calls and Songs</x-h2>
             </div>
-            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($audioClips as $audio)
-                <div class="flex flex-col items-center p-3 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
-                <audio controls class="w-full rounded-md bg-gray-100 dark:bg-gray-800 p-2">
+                <div class="p-2 flex flex-col items-center">
+                <audio controls class="w-full">
                     <source src="{{ $audio->media_url }}"> Your browser does not support the audio element.
                 </audio>
-                <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                    {{ $audio->location->name }} - {{ $audio->date_taken ? \Carbon\Carbon::parse($media->date_taken)->format('F j, Y g:i A') : 'Date Unknown' }}
+                <p class="mt-4 text-base font-semibold text-gray-900 dark:text-gray-100 text-center">
+                  {{ $audio->location->name }}
+                </p>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400 text-center">
+                  {{ $audio->date_taken
+                      ? \Carbon\Carbon::parse($audio->date_taken)->format('F j, Y g:i A')
+                      : 'Date Unknown' }}
                 </p>
                 </div>
                 @endforeach
@@ -188,10 +195,10 @@
         </div>
         @endif
         @if($animal->resources->isNotEmpty())
-        <div class="bg-white dark:bg-gray-800 px-6 py-6 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="bg-white dark:bg-gray-800 px-6 py-6 overflow-hidden">
           <div class="self-center p-5 dark:text-gray-100">
-            <h2 class="text-2xl mb-4">Additional Resources</h2>
-            <ul class="list-disc list-inside space-y-2">
+            <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">Additional Resources</h2>
+            <ul class="list-disc list-inside space-y-2 mt-2">
               @foreach($animal->resources as $resource)
                 <li>
                   <a href="{{ $resource->url }}" class="underline text-blue-600 dark:text-blue-400" target="_blank" rel="noopener">
