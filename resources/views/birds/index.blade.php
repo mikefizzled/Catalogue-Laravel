@@ -1,6 +1,6 @@
 <x-public-app-layout>
-    <div class="min-h-[85vh] max-w-screen-xl mx-auto space-y-2">
-        <div class="bg-white dark:bg-gray-800/90 backdrop-blur-sm shadow-xl px-6 py-6">
+    <div class="min-h-[85vh] max-w-screen-xl mx-auto">
+        <div class="bg-white dark:bg-gray-800/90 backdrop-blur-sm shadow-xl px-6 py-6 mb-2">
             <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">Birds List</h1>
             <p class="text-md text-gray-600 dark:text-gray-300 mb-4">
                 Filter by Family (grouped by Order)

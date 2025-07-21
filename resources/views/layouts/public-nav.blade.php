@@ -30,9 +30,9 @@
                                 Dashboard
                             </a>
                         @else
-                            <a href="{{ route('login') }}" class="hidden text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:scale-110 text-lg">
+                            <!--a href="{{ route('login') }}" class="hidden text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:scale-110 text-lg">
                                 Log in
-                            </a>
+                            </a-->
                         @endauth
                     @endif
                 </div>
@@ -73,15 +73,19 @@
         </div>
 
         @if (Route::has('login'))
-            <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+            
                 @auth
+                <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
                     <a href="{{ url('/admin/dashboard') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
                         Dashboard
                     </a>
+                </div>
                 @else
+                <!--div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
                     <a href="{{ route('login') }}" class="block text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-300 px-4 py-2 text-base font-medium">
                         Log in
                     </a>
+                </div-->
                 @endauth
             </div>
         @endif
