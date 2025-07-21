@@ -37,4 +37,21 @@ class Location extends Model
         })->get();
 
     }
+    
+    // Functions for admin cfg
+    public function getTitleAttribute(): string
+    {
+        return $this->name;
+    }
+
+    public function getSubtitleAttribute(): string
+    {
+        return $this->city;
+    }
+
+    public function getThumbnailAttribute(): string
+    {
+        return $this->image;
+    }
+
 }

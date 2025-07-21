@@ -28,8 +28,8 @@ class LocationController extends Controller
      */
     public function create()
     {
-        $locations = Location::select('name', 'latitude', 'longitude')->get();
-        return view('admin.locations.create', compact('locations'));
+        $allLocations = Location::all();
+        return view('admin.locations.create', compact('allLocations'));
     }
     
 
@@ -68,17 +68,18 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        //
+        return view('admin.locations.show', compact('location'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Location $location)
     {
-        //
+        $allLocations = Location::all();
+        return view('admin.locations.edit', compact('location','allLocations'));
     }
-
     /**
      * Update the specified resource in storage.
      */
@@ -92,6 +93,16 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        if ($location->media()->count()) {
+            return redirect()
+                ->route('admin.locations.index')
+                ->with('error', 'Cannot delete a location that still has media associated.');
+        }
+
+        $location->delete(); 
+
+        return redirect()
+            ->route('admin.locations.index')
+            ->with('success', 'Location deleted successfully.');
     }
 }

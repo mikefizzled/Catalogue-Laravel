@@ -37,4 +37,19 @@ class Genus extends Model
             ->generateSlugsFrom('genus_name')
             ->saveSlugsTo('slug');
     }
+
+    // Functions for admin cfg
+    public function getTitleAttribute(): string
+    {
+        return $this->genus_name;
+    }
+
+    public function getSubtitleAttribute(): string
+    {
+        $orderName  = $this->family->order->order_name;
+        $familyName = $this->family->family_name;
+        $genusName  = $this->genus_name;
+
+        return "{$orderName} → {$familyName} → {$genusName}";
+    }
 }

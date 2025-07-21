@@ -16,7 +16,7 @@ use App\Http\Controllers\AdminDashboardController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 
 require __DIR__.'/auth.php';
@@ -56,11 +56,10 @@ Route::get('/get_families', [CatalogueController::class, 'getFamilies']);
 Route::get('/animals', [CatalogueController::class, 'getAnimals']);
 
 
-Route::get('/taxonomy', function () {
-    return view('taxonomy');
-});
-Route::get('/map', function(){ return view('map');});
+Route::get('/taxonomy', function () { return view('taxonomy');})->name('taxonomy');
+Route::get('/map', function () { return view('map'); })->name('map');
+
 Route::get('/map-data', [MapController::class, 'getCoordinatesAndAnimals'])->name('map.data');
 
-Route::get('/conservation',[EBirdTaxonomyController::class, 'conservation']);
+Route::get('/conservation',[EBirdTaxonomyController::class, 'conservation'])->name('conservation');
 Route::view('/changelog', 'changelog')->name('changelog');

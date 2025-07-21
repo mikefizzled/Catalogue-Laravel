@@ -12,9 +12,10 @@ class AdminOrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::orderBy('order_name', 'asc')->paginate(10);
+        $orders = Order::orderBy('order_name', 'asc')->paginate(20);
 
-        return view('admin.taxonomy.index', ['taxa' => $orders, 'taxonType' => 'orders']);
+        return view('admin.orders.index', ['taxa' => $orders]);
+      //return view('admin.orders.index', ['taxa' => $orders, 'taxonType' => 'orders']);
     }
 
     /**
@@ -22,7 +23,8 @@ class AdminOrderController extends Controller
      */
     public function create()
     {
-        return view('admin.orders.create');
+        $order = new Order;
+        return view('admin.orders.create', compact('order'));
     }
 
     /**
@@ -70,6 +72,16 @@ class AdminOrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        if ($order->families()->count()) {
+            return redirect()
+                ->route('admin.orders.index')
+                ->with('error', 'Cannot delete an order that still has families.');
+        }
+
+        $order->delete();
+
+        return redirect()
+            ->route('admin.orders.index')
+            ->with('success', 'Order deleted successfully.');
     }
 }

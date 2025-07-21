@@ -22,7 +22,7 @@ class GenusRequest extends FormRequest
     public function rules(): array
     {
         $genusId = optional($this->route('genus'))->id;
-    
+        
         return [
             'genus_name' => [
                 'required',
@@ -36,5 +36,4 @@ class GenusRequest extends FormRequest
             ]
         ];
     }
-    
 }

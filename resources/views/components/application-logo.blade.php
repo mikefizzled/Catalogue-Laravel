@@ -14,7 +14,7 @@
             id="path5" />
     </g>
 </svg>
-<div class="flex flex-col hover:scale-105 transition-transform duration-200">
+<div class="flex flex-col hover:scale-110 transition-transform duration-200">
     <span class="text-lg font-medium text-gray-700 dark:text-gray-100">British</span>
     <span class="text-lg font-medium text-gray-700 dark:text-gray-100">Birds</span>
 </div>

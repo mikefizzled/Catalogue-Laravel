@@ -1,18 +1,22 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const familySelect = document.getElementById("taxon");
 
+  document.addEventListener("DOMContentLoaded", () => {
+    const familySelect = document.getElementById("taxon");
     if (!familySelect) return;
 
-    familySelect.addEventListener("change", () => {
-        const selectedFamilySlug = familySelect.value;
-        const url = new URL(window.location.href);
+    familySelect.addEventListener("change", function() {
+      const selectedFamily = this.value;
+      const url = new URL(window.location.href);
 
-        if (selectedFamilySlug) {
-            url.searchParams.set("family", selectedFamilySlug); // assuming you're passing slugs
-        } else {
-            url.searchParams.delete("family");
-        }
+      // Reset to the first page
+      url.searchParams.delete("page");
 
-        window.location.href = url.toString();
+      if (selectedFamily) {
+        url.searchParams.set("family", selectedFamily);
+      } else {
+        url.searchParams.delete("family");
+      }
+
+      // Navigate
+      window.location.href = url.toString();
     });
-});
+  });

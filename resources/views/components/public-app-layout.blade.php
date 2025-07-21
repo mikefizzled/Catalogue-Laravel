@@ -27,30 +27,40 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
+
+        <meta property="csp-nonce" content="{{ csp_nonce() }}">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
+        @stack('preload')
     </head>
     <body class="font-sans antialiased">
-        <!-- Skip to main content link -->
+        <!-- Skip to main content link 
         <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-white text-black px-4 py-2 rounded shadow">
             Skip to main content
-        </a>
-        <div class=" bg-gray-400 dark:bg-gray-900">
-            @include('layouts.public-nav')
+        </a>-->
+        <div class=" bg-gray-300 dark:bg-gray-600">
+            <!-- Admin/Public Navbar choosing -->
+           @if ( request()->is('admin*') )
+                @include('layouts.admin-nav')
+            @else
+                @include('layouts.public-nav')
+            @endif
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
+                <header class="bg-white dark:bg-gray-700">
                     <div class="mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
             @endisset
-
             <!-- Page Content -->
-            <main id="main-content">
+            <main id="main-content" class="bg-gray-200 dark:bg-gray-600">
                 {{ $slot }}
             </main>
         </div>
+          @stack('scripts')
     </body>
     <x-footer />
 </html>

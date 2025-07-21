@@ -1,23 +1,21 @@
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-window.L = L; // Make Leaflet available globally
-//console.log("Leaflet Loaded:", L);
+import iconUrl        from 'leaflet/dist/images/marker-icon.png';
+import iconRetinaUrl  from 'leaflet/dist/images/marker-icon-2x.png';
+import shadowUrl      from 'leaflet/dist/images/marker-shadow.png';
 
-
-
-// these imports tell Vite to copy the assets into your build
-import iconUrl       from 'leaflet/dist/images/marker-icon.png';
-import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
-import shadowUrl     from 'leaflet/dist/images/marker-shadow.png';
-
-// override the defaults so every map on every route picks up the right paths
+// Override the defaults so Leaflet can find the images in our build
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl,
   iconUrl,
   shadowUrl,
 });
+
+window.L = L;
+
+
 
 function initMap() {
     const map = L.map("map").setView([53.386111, -1.506000], 13);
