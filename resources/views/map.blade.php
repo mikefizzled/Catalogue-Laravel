@@ -1,6 +1,6 @@
 @section('title', 'Sightings Map')
 
-@vite(['resources/js/completeMap.js'])
+@vite(['resources/js/app.js','resources/js/completeMap.js'])
 
 <x-public-app-layout>
     <div class="max-w-screen-xl mx-auto pb-2 space-y-2">

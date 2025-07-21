@@ -1,13 +1,15 @@
 <head>
     @section('title', $animal->common_name)
-    @vite(['resources/js/speciesMap.js'])
+
+    <script>
+      window.existingLocations = @json($locations);
+    </script>
+    @vite(['resources/js/app.js','resources/js/speciesMap.js'])
+
 </head>
 
-<script>
-  window.existingLocations = @json($locations);
-</script>
 
-<script type="module" src="{{ asset('resources/js/speciesMap.js') }}"\></script>
+
 
   <x-public-app-layout>
     <div class="min-h-[85vh] max-w-screen-xl mx-auto space-y-2">
@@ -94,7 +96,7 @@
         </div>
         <!-- Flowbite Carousel -->
         @if(count($images))
-        <div x-data="{ showMetadata: false, activeMetadata: null }" class="relative">
+        <div x-data="{ showMetadata: false, activeMetadata: null || {}}" class="relative">
           <div id="gallery" class="relative w-full" data-carousel="static">
             <!-- Carousel wrapper -->
             <div class="relative w-full h-[60vh] sm:h-[calc(100vw*9/16)] md:h-[600px] overflow-hidden border" data-carousel="static">
