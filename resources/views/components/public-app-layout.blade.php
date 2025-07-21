@@ -52,7 +52,7 @@
                 </header>
             @endisset
             <!-- Page Content -->
-            <main id="main-content">
+            <main id="main-content" class="bg-gray-200 dark:bg-gray-600">
                 {{ $slot }}
             </main>
         </div>
