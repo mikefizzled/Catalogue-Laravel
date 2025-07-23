@@ -8,6 +8,14 @@
         </div>
       <div class="space-y-6">
         <div class="bg-gray-200 dark:bg-gray-700 shadow p-5">
+          <h2 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">v1.02 – July 2025</h2>
+          <ul class="list-disc list-inside text-gray-800 dark:text-gray-200">
+            <li>Large rework of page templating</li>
+            <li>Fix navigation bar, footer, map JavaScript</li>
+            <li>Added custom error pages</li>
+          </ul>
+        </div>
+        <div class="bg-gray-200 dark:bg-gray-700 shadow p-5">
           <h2 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">v1.01 – June 2025</h2>
           <ul class="list-disc list-inside text-gray-800 dark:text-gray-200">
             <li>Added external resources for individual birds (e.g. articles, livestreams, etc.)</li>
