@@ -1,4 +1,4 @@
-<footer class="bg-white dark:bg-gray-900 pt-6 pb-6 px-6 border-t border-gray-300">
+<footer class="bg-white dark:bg-gray-900 pt-6 pb-6 px-6 border-t border-gray-300 sticky top-[100vh]">
     <div class="max-w-7xl mx-auto px-4">
       <div class="flex flex-col md:flex-row items-center justify-between">
         {{-- DISCLAIMER --}}
