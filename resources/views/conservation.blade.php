@@ -6,7 +6,7 @@
             <p class="text-md text-gray-600 dark:text-gray-300 mt-2">
                 Conservation status information on this site is based on the official <em>Birds of Conservation Concern</em> reports published by <em>British Birds</em>.
                 <br>
-                All documents are used with permission from the journal <em>British Birds</em>.
+                Used with permission, these data show how species` conservation listings have changed over time.
             </p>
         </div>
 
@@ -31,9 +31,9 @@
                             <td class="p-3">{{ $list->authors }}</td>
                             <td class="px-1 py-3 md:p-3">
                                 @if($list->filename)
-                                    <a href="{{ asset('storage/' . $list->filename) }}"
-                                       class="text-blue-700 hover:underline inline-flex items-center gap-1"
-                                       target="_blank" rel="noopener">
+                                    <a href="{{ $list->filename }}"
+                                    class="text-blue-700 hover:underline inline-flex items-center gap-1"
+                                    target="_blank" rel="noopener">
                                         <span>View PDF</span>
                                     </a>
                                 @else
