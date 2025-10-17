@@ -4,8 +4,7 @@
         <div class="bg-white dark:bg-gray-800/90 shadow-xl px-6 py-6">
             <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">Conservation Data Sourcing</h1>
             <p class="text-md text-gray-600 dark:text-gray-300 mt-2">
-                This page provides an overview of the official <strong>Birds of Conservation Concern</strong> reports referenced across the platform.
-                These reports were used to track conservation status changes over time and support data-driven insights.
+                Conservation status information on this site is based on the official <em>Birds of Conservation Concern</em> reports published by <em>British Birds</em>.
                 <br>
                 All documents are used with permission from the journal <em>British Birds</em>.
             </p>

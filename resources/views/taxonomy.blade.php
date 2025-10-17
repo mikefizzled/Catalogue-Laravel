@@ -8,10 +8,9 @@
             <div class="bg-white dark:bg-gray-800/90 backdrop-blur-sm shadow-xl px-6 py-6">
             <h1 class="text-2xl font-extrabold text-gray-900 dark:text-white">Taxonomic Tree</h1>
             <p class="text-gray-600 dark:text-gray-300 mt-2">
-                To help visualise the taxonomic relationship between the species featured, a <a href="https://observablehq.com/@d3/cluster/2" class="underline">D3 cluster tree </a> is used to dynamically create a visual representation of the birds in the database.
-                While it does not represent the evolutionary relationships seen in a phylogentic tree, the dendrogram can help establish the similarities within taxonomic classifications.
-                <br>
-                Class → Orders → Families → Genera → Species
+                The taxonomic tree shows how species in the database are grouped within their scientific hierarchy.
+                It`s a simplified view built from Class → Order → Family → Genus → Species, leaving out intermediate ranks such as infraorders or superfamilies.
+                The diagram is generated dynamically to explore relationships across groups, rather than depict evolutionary ancestry.
             </p>
         <!-- Genera Toggle -->
         <div class="flex justify-center mt-2">
