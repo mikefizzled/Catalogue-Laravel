@@ -19,7 +19,7 @@
                         <th scope="col" class="px-1 py-3 md:p-3">Year</th>
                         <th scope="col" class="p-3">Full Report Name</th>
                         <th scope="col" class="p-3">Authors</th>
-                        <th scope="col" class="px-1 py-3 md:p-3">File</th>
+                        <th scope="col" class="px-1 py-3 md:p-3">Link</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,7 +34,7 @@
                                     <a href="{{ $list->filename }}"
                                     class="text-blue-700 hover:underline inline-flex items-center gap-1"
                                     target="_blank" rel="noopener">
-                                        <span>View PDF</span>
+                                        <span>Link to report</span>
                                     </a>
                                 @else
                                     <span class="italic text-gray-500 dark:text-gray-400">N/A</span>

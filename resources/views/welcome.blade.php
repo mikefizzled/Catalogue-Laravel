@@ -1,7 +1,7 @@
 <x-public-app-layout>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    @section('title', 'British Birds')
+    @section('title', 'The Bird Project')
     <div class="text-white text-center md:text-left">
       <!-- Section 1 -->
       <section class="relative h-[65vh] overflow-hidden group">
