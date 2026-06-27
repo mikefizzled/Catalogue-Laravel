@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Family extends Model
 {
@@ -48,12 +48,13 @@ class Family extends Model
     {
         $familyName = $this->family_name;
         $commonName = $this->common_name;
+
         return "{$familyName} ({$commonName})";
     }
 
     public function getSubtitleAttribute(): string
     {
-        $orderName  = $this->order->order_name;
+        $orderName = $this->order->order_name;
         $familyName = $this->family_name;
         $commonName = $this->common_name;
 

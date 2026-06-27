@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+// All default methods are from Laravel Breeze
+
 class ProfileController extends Controller
 {
     /**

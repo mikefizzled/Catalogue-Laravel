@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\ConservationStatusCriteria;
 
 class BoccCriteriaDefinition extends Model
 {
@@ -11,5 +10,4 @@ class BoccCriteriaDefinition extends Model
     {
         return $this->hasMany(ConservationStatusCriteria::class);
     }
-
 }

@@ -1,18 +1,19 @@
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 
 window.L = L; // Make Leaflet available globally
 console.log("Leaflet Loaded:", L);
 
-    const map = L.map("map").setView([53.386111, -1.506000], 13);
+const map = L.map("map").setView([53.386111, -1.506], 13);
 
-    // Add OpenStreetMap tiles
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 18,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+// Add OpenStreetMap tiles
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18,
+    attribution:
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+}).addTo(map);
 
-    /* Add markers for existing locations
+/* Add markers for existing locations
     if (window.existingLocations && Array.isArray(window.existingLocations)) {
         window.existingLocations.forEach(location => {
             if (location.latitude && location.longitude) {
@@ -24,13 +25,12 @@ console.log("Leaflet Loaded:", L);
         });
     }*/
 
-
 /**
  * Fetch and display markers for all locations and attach animals for each.
  */
 async function loadCoordinates() {
     try {
-        const res = await fetch('/map-data'); // Our new unified endpoint
+        const res = await fetch("/map-data"); // Our new unified endpoint
         const data = await res.json();
         data.forEach((location) => {
             let content = `
@@ -43,15 +43,12 @@ async function loadCoordinates() {
             }
             content += location.animal_list_html; // HTML list of animals
             //content += '</div>';
-            L.marker([location.latitude, location.longitude]).addTo(map)
+            L.marker([location.latitude, location.longitude])
+                .addTo(map)
                 .bindPopup(content);
-
-
-            
         });
-        
     } catch (error) {
-        console.error('Error fetching coordinates:', error);
+        console.error("Error fetching coordinates:", error);
     }
 }
 

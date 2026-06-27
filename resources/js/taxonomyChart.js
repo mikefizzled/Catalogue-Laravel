@@ -4,11 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const checkbox = document.getElementById("toggleGenera");
 
     function loadChart(includeGenera) {
-        const url = includeGenera ? "/taxonomy-json-with-genera" : "/taxonomy-json-without-genera";
-        
+        const url = includeGenera
+            ? "/taxonomy-json-with-genera"
+            : "/taxonomy-json-without-genera";
+
         fetch(url)
-            .then(response => response.json())
-            .then(data => {
+            .then((response) => response.json())
+            .then((data) => {
                 // Use to clear old chart before replace
                 document.getElementById("chart").innerHTML = "";
                 const chart = createChart(data);
@@ -20,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         loadChart(this.checked);
     });
 
-    loadChart(false); 
+    loadChart(false);
 });
 
 function createChart(data) {
@@ -32,22 +34,34 @@ function createChart(data) {
     root.sort((a, b) => d3.ascending(a.data.name, b.data.name));
     tree(root);
 
-    let x0 = Infinity, x1 = -x0;
-    root.each(d => { x0 = Math.min(x0, d.x); x1 = Math.max(x1, d.x); });
+    let x0 = Infinity,
+        x1 = -x0;
+    root.each((d) => {
+        x0 = Math.min(x0, d.x);
+        x1 = Math.max(x1, d.x);
+    });
 
     const height = x1 - x0 + dx * 2;
 
-    const svg = d3.create("svg")
+    const svg = d3
+        .create("svg")
         .attr("width", width)
         .attr("height", height)
         .attr("viewBox", [-dy / 3, x0 - dx, width, height])
-        .attr("style", "max-width: 100%; height: auto; font: 0.8em sans-serif;");
+        .attr(
+            "style",
+            "max-width: 100%; height: auto; font: 0.8em sans-serif;",
+        );
 
     // Tooltip setup
-    const tooltip = d3.select("body")
+    const tooltip = d3
+        .select("body")
         .append("div")
         .attr("id", "tooltip")
-        .attr("class", "absolute hidden bg-white border border-gray-300 p-2 shadow-md rounded-md")
+        .attr(
+            "class",
+            "absolute hidden bg-white border border-gray-300 p-2 shadow-md rounded-md",
+        )
         .style("position", "absolute")
         .style("z-index", "10")
         .style("display", "none");
@@ -61,28 +75,33 @@ function createChart(data) {
         .selectAll()
         .data(root.links())
         .join("path")
-        .attr("d", d3.linkHorizontal()
-            .x(d => d.y)
-            .y(d => d.x));
+        .attr(
+            "d",
+            d3
+                .linkHorizontal()
+                .x((d) => d.y)
+                .y((d) => d.x),
+        );
 
     // Draw nodes
-    const node = svg.append("g")
+    const node = svg
+        .append("g")
         .attr("stroke-linejoin", "round")
         .attr("stroke-width", 3)
         .selectAll()
         .data(root.descendants())
         .join("g")
-        .attr("transform", d => `translate(${d.y},${d.x})`);
+        .attr("transform", (d) => `translate(${d.y},${d.x})`);
 
     node.append("circle")
-        .attr("fill", d => d.children ? "#555" : "#999")
+        .attr("fill", (d) => (d.children ? "#555" : "#999"))
         .attr("r", 4);
 
     node.append("text")
         .attr("dy", "0.31em")
-        .attr("x", d => d.children ? -6 : 6)
-        .attr("text-anchor", d => d.children ? "end" : "start")
-        .html(d => d.data.name)
+        .attr("x", (d) => (d.children ? -6 : 6))
+        .attr("text-anchor", (d) => (d.children ? "end" : "start"))
+        .html((d) => d.data.name)
         .attr("stroke", "white")
         .attr("paint-order", "stroke")
         .style("cursor", "pointer");
@@ -90,34 +109,42 @@ function createChart(data) {
     // Add tooltip event handlers
     node.on("mouseover", (event, d) => {
         // Allow families common name
-        if (!d.data.image && d.data.details) 
-        { tooltip.style("display", "block")
-            .html(`
+        if (!d.data.image && d.data.details) {
+            tooltip
+                .style("display", "block")
+                .html(
+                    `
                 <p>${d.data.details}</p>
-            `) 
-            .style("box-shadow", "0 2px 10px rgba(0,0,0,0.2)");}
+            `,
+                )
+                .style("box-shadow", "0 2px 10px rgba(0,0,0,0.2)");
+        }
         // Allow species thumbnail and scientific name
-        else if(d.data.image){
-        tooltip.style("display", "block")
-            .html(`
+        else if (d.data.image) {
+            tooltip
+                .style("display", "block")
+                .html(
+                    `
                 <img src="${d.data.image}" class="w-16 h-16 md:w-64 md:h-64 object-cover rounded-md">
                 <p class="text-center hidden lg:block">${d.data.details}</p>
-            `) 
-            .style("box-shadow", "0 2px 10px rgba(0,0,0,0.2)");
+            `,
+                )
+                .style("box-shadow", "0 2px 10px rgba(0,0,0,0.2)");
         }
         // Dont show anything (/Orders/Genera)
-        else{
-            return
+        else {
+            return;
         }
     })
-    // Need to develop workaround for images on bottom half
-    .on("mousemove", (event) => {
-        tooltip.style("left", `${event.pageX + 15}px`)
-            .style("top", `${event.pageY + 15}px`);
-    })
-    .on("mouseleave", () => {
-        tooltip.style("display", "none");
-    });
+        // Need to develop workaround for images on bottom half
+        .on("mousemove", (event) => {
+            tooltip
+                .style("left", `${event.pageX + 15}px`)
+                .style("top", `${event.pageY + 15}px`);
+        })
+        .on("mouseleave", () => {
+            tooltip.style("display", "none");
+        });
 
     return svg.node();
 }

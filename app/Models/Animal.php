@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Animal extends Model
 {
@@ -23,7 +23,7 @@ class Animal extends Model
         return $this->hasMany(Media::class);
     }
 
-    public function getRouteKeyName() : string
+    public function getRouteKeyName(): string
     {
         return 'slug';
     }
@@ -76,14 +76,14 @@ class Animal extends Model
         }
 
         return $cs->criteria
-            ->map(fn($c) => $c->boccCriteria->code)
+            ->map(fn ($c) => $c->boccCriteria->code)
             ->implode('; ');
     }
+
     public function getStatusMapAttribute(): array
     {
-        // Assumes you’ve eager-loaded conservationStatuses
         return $this->conservationStatuses
-                    ->pluck('status', 'conservation_list_id')
-                    ->toArray();
+            ->pluck('status', 'conservation_list_id')
+            ->toArray();
     }
 }

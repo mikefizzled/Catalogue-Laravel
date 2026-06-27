@@ -15,9 +15,9 @@ class FamilyController extends Controller
     {
         $families = Family::orderBy('family_name', 'asc')->paginate(20);
 
-        //return view('admin.taxonomy.index', ['taxa' => $families, 'taxonType' => 'families']);
         return view('admin.families.index', ['taxa' => $families]);
     }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -25,10 +25,10 @@ class FamilyController extends Controller
     {
         $family = new Family;
         $orders = Order::orderBy('order_name')
-                    ->pluck('order_name','id')
-                    ->toArray();
+            ->pluck('order_name', 'id')
+            ->toArray();
 
-        return view('admin.families.create', compact('family','orders'));
+        return view('admin.families.create', compact('family', 'orders'));
     }
 
     /**
@@ -38,8 +38,8 @@ class FamilyController extends Controller
     {
         $data = $request->validated();
         $family = Family::create([
-            'family_name' => $data['family_name'], 
-            'common_name' => $data['common_name'], 
+            'family_name' => $data['family_name'],
+            'common_name' => $data['common_name'],
             'order_id' => $data['order_id'],
         ]);
 
@@ -52,6 +52,7 @@ class FamilyController extends Controller
     public function show(Family $family)
     {
         $family->load('genera');
+
         return view('admin.families.show', ['family' => $family]);
     }
 
@@ -61,10 +62,10 @@ class FamilyController extends Controller
     public function edit(Family $family)
     {
         $orders = Order::orderBy('order_name')
-                    ->pluck('order_name','id')
-                    ->toArray();
+            ->pluck('order_name', 'id')
+            ->toArray();
 
-        return view('admin.families.edit', compact('family','orders'));
+        return view('admin.families.edit', compact('family', 'orders'));
     }
 
     /**
@@ -75,8 +76,8 @@ class FamilyController extends Controller
         $data = $request->validated();
         $family->update([
             'order_id' => $data['order_id'],
-            'family_name' => $data['family_name'], 
-            'common_name' => $data['common_name'], 
+            'family_name' => $data['family_name'],
+            'common_name' => $data['common_name'],
         ]);
 
         return redirect()->route('admin.families.show', $family)->with('success', 'Family updated successfully!');
@@ -93,7 +94,7 @@ class FamilyController extends Controller
                 ->with('error', 'Cannot delete a family that still has genera.');
         }
 
-        $family->delete(); 
+        $family->delete();
 
         return redirect()
             ->route('admin.families.index')

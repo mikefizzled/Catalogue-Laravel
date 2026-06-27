@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Animal;
 use App\Models\Location;
 use App\Models\Media;
-use App\Models\Animal;
+use Illuminate\Http\Request;
 
 class MapController extends Controller
 {
@@ -13,16 +13,15 @@ class MapController extends Controller
      * Return JSON data for all locations that have media,
      * including an HTML snippet of animals at that location.
      *
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function getCoordinatesAndAnimals(Request $request)
     {
         // Get all locations that have at least one media record.
         $locations = Location::whereHas('media')->get();
-        
+
         $data = [];
-        
+
         foreach ($locations as $location) {
             // Get distinct animal IDs for media at this location.
             $animalIds = Media::where('location_id', $location->id)
@@ -34,7 +33,6 @@ class MapController extends Controller
                 ->orderBy('common_name')
                 ->get(['common_name', 'slug']);
 
-
             // Generate an HTML list of animal links.
             $animalListHtml = '<ul class="max-w-md space-y-1 list-inside">';
             foreach ($animals as $animal) {
@@ -44,15 +42,14 @@ class MapController extends Controller
                 $animalListHtml .= "<li><a href='{$link}' class='text-blue-500 hover:underline'>{$animal->common_name}</a></li>";
             }
             $animalListHtml .= '</ul>';
-            
 
             $data[] = [
-                'location_id'    => $location->id,
-                'location_name'  => $location->name,
-                'image'          => $location->image, // You might want to use asset() if this is a public file.
-                'area_caption'   => $location->area_caption,
-                'latitude'       => $location->latitude,
-                'longitude'      => $location->longitude,
+                'location_id' => $location->id,
+                'location_name' => $location->name,
+                'image' => $location->image,
+                'area_caption' => $location->area_caption,
+                'latitude' => $location->latitude,
+                'longitude' => $location->longitude,
                 'animal_list_html' => $animalListHtml,
             ];
         }

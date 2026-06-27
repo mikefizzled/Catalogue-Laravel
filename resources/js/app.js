@@ -1,9 +1,9 @@
-import './bootstrap';
-import 'flowbite';
-import './filterBirds';
-import './conservation';
+import "./bootstrap";
+import "flowbite";
+import "./filterBirds";
+import "./conservation";
 
-import Alpine from 'alpinejs';
+import Alpine from "alpinejs";
 
 window.Alpine = Alpine;
 

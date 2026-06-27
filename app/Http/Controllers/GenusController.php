@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\GenusRequest;
-use App\Models\Genus;
 use App\Models\Family;
-use Illuminate\Http\Request;
+use App\Models\Genus;
 
 class GenusController extends Controller
 {
@@ -17,7 +16,6 @@ class GenusController extends Controller
         $genera = Genus::orderBy('genus_name', 'asc')->paginate(20);
 
         return view('admin.genera.index', ['taxa' => $genera]);
-      //return view('admin.taxonomy.index', ['taxa' => $genera, 'taxonType' => 'genera']);
     }
 
     /**
@@ -28,10 +26,10 @@ class GenusController extends Controller
         $genus = new Genus;
 
         $families = Family::orderBy('family_name')
-                    ->pluck('family_name','id')
-                    ->toArray();
+            ->pluck('family_name', 'id')
+            ->toArray();
 
-        return view('admin.genera.create', compact('genus','families'));
+        return view('admin.genera.create', compact('genus', 'families'));
     }
 
     /**
@@ -56,6 +54,7 @@ class GenusController extends Controller
     {
         $genus->load('family');
         $genus->load('animals');
+
         return view('admin.genera.show', ['genus' => $genus]);
     }
 
@@ -65,10 +64,10 @@ class GenusController extends Controller
     public function edit(Genus $genus)
     {
         $families = Family::orderBy('family_name')
-                    ->pluck('family_name','id')
-                    ->toArray();
+            ->pluck('family_name', 'id')
+            ->toArray();
 
-        return view('admin.genera.edit', compact('genus','families'));
+        return view('admin.genera.edit', compact('genus', 'families'));
     }
 
     /**
@@ -77,6 +76,7 @@ class GenusController extends Controller
     public function update(GenusRequest $request, Genus $genus)
     {
         $genus->update($request->validated());
+
         return redirect()->route('admin.genera.show', $genus)->with('success', 'Genus update successfully!');
     }
 
@@ -91,8 +91,8 @@ class GenusController extends Controller
                 ->with('error', 'Cannot delete a genus that still has birds.');
         }
 
-        $genus->delete(); 
-        
+        $genus->delete();
+
         return redirect()
             ->route('admin.genera.index')
             ->with('success', 'Genus deleted successfully.');

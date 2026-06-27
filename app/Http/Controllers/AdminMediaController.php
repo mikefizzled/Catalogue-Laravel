@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Media;
 use App\Models\Animal;
 use App\Models\Location;
-use App\Helpers\FileHelper;
-use Illuminate\Http\Request;
+use App\Models\Media;
 use App\Services\MediaService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
 
 class AdminMediaController extends Controller
 {
@@ -20,7 +18,6 @@ class AdminMediaController extends Controller
         $this->mediaService = $mediaService;
     }
 
-
     /**
      * Display a listing of the resource.
      */
@@ -28,19 +25,19 @@ class AdminMediaController extends Controller
     {
 
         $mediaItems = Media::orderBy('id', 'desc')->paginate(10);
-    
-        $mediaItems->getCollection()->transform(function ($media)  {
+
+        $mediaItems->getCollection()->transform(function ($media) {
             if ($media->media_type === 'audio') {
-                $media->thumbnail_url = Media::defaultAudioThumbnail(); 
+                $media->thumbnail_url = Media::defaultAudioThumbnail();
             } else {
-                $media->thumbnail_url = Storage::disk('s3')->url('media/' . $media->thumbnail_url);
+                $media->thumbnail_url = Storage::disk('s3')->url('media/'.$media->thumbnail_url);
             }
+
             return $media;
         });
-    
+
         return view('admin.media.index', ['mediaItems' => $mediaItems]);
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -61,9 +58,9 @@ class AdminMediaController extends Controller
     public function store(Request $request)
     {
         $media = MediaService::storeMedia($request);
-       
+
         return redirect()->route('admin.media.show', $media)->with('success', 'Bird created successfully!');
-        
+
     }
 
     /**
@@ -75,13 +72,13 @@ class AdminMediaController extends Controller
         $previous = Media::where('id', '<', $media->id)->orderBy('id', 'desc')->first();
         $next = Media::where('id', '>', $media->id)->orderBy('id', 'asc')->first();
 
-        $media->media_url = Storage::disk('s3')->url('media/' . $media->media_url);
-
+        $media->media_url = Storage::disk('s3')->url('media/'.$media->media_url);
 
         $metadata = json_decode($media->metadata);
 
         return view('admin.media.show', compact('media', 'metadata', 'previous', 'next'));
     }
+
     /**
      * Show the form for editing the specified resource.
      */
