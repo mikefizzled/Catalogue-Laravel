@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Resource extends Model
 {
     public function animals()
-{
-    return $this->belongsToMany(Animal::class);
-}
-
+    {
+        return $this->belongsToMany(Animal::class);
+    }
 }

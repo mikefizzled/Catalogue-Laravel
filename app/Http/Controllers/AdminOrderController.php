@@ -15,7 +15,6 @@ class AdminOrderController extends Controller
         $orders = Order::orderBy('order_name', 'asc')->paginate(20);
 
         return view('admin.orders.index', ['taxa' => $orders]);
-      //return view('admin.orders.index', ['taxa' => $orders, 'taxonType' => 'orders']);
     }
 
     /**
@@ -24,6 +23,7 @@ class AdminOrderController extends Controller
     public function create()
     {
         $order = new Order;
+
         return view('admin.orders.create', compact('order'));
     }
 
@@ -47,6 +47,7 @@ class AdminOrderController extends Controller
     public function show(Order $order)
     {
         $order->load('families');
+
         return view('admin.orders.show', ['order' => $order]);
     }
 
@@ -64,6 +65,7 @@ class AdminOrderController extends Controller
     public function update(OrderRequest $request, Order $order)
     {
         $order->update($request->validated());
+
         return redirect()->route('admin.orders.show', $order)->with('success', 'Order updated successfully!');
     }
 

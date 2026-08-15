@@ -2,23 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Log;
-use App\Models\Genus;
-use App\Models\Media;
 use App\Models\Animal;
-use App\Helpers\FileHelper;
-use Illuminate\Http\Request;
-use App\Services\MediaService;
 use App\Models\ConservationList;
 use App\Models\ConservationStatus;
-use Illuminate\Support\Facades\DB;
+use App\Models\Genus;
+use App\Models\Media;
 use App\Services\ConservationService;
-use Intervention\Image\Facades\Image;
-use App\Models\BoccCriteriaDefinition;
+use App\Services\MediaService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\AnimalCreateRequest;
-use App\Http\Requests\AnimalUpdateRequest;
-use App\Models\ConservationStatusCriteria;
 
 class AnimalController extends Controller
 {
@@ -30,7 +23,8 @@ class AnimalController extends Controller
         $animals = Animal::orderBy('common_name', 'asc')->paginate(20);
 
         $animals->getCollection()->transform(function ($animal) {
-            $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);
+            $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/'.$animal->thumbnail_url);
+
             return $animal;
         });
 
@@ -44,20 +38,19 @@ class AnimalController extends Controller
     {
         $genera = Genus::orderBy('genus_name', 'asc')->get();
         $conservationLists = ConservationList::orderBy('short_name', 'asc')->get();
-        
+
         return view('admin.animals.create')->with([
             'genera' => $genera,
-            'conservationLists' => $conservationLists
+            'conservationLists' => $conservationLists,
         ]);
     }
-    
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $bird = new Animal();
+        $bird = new Animal;
 
         $bird->fill($request->only(['common_name', 'scientific_name', 'genus_id', 'ebird_species_code']));
         $bird->generateSlug();
@@ -70,7 +63,7 @@ class AnimalController extends Controller
         // for capturing the criteria
         $bocc5StatusId = null;
         $bocc5aStatusId = null;
-        
+
         // Adding each of the 6 report statuses to the link table
         foreach ($request->statuses as $conservationListId => $status) {
             $conservationStatus = ConservationStatus::create([
@@ -99,54 +92,53 @@ class AnimalController extends Controller
      */
     public function show(Animal $animal)
     {
-        $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);
-        
+        $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/'.$animal->thumbnail_url);
+
         $animal->load('conservationStatuses.criteria.boccCriteria');
-        
+
         // Fetch all media related to the animal
-         $mediaItems = Media::where('animal_id', $animal->id)->get();
+        $mediaItems = Media::where('animal_id', $animal->id)->get();
 
         // Transform media URLs to include full S3 paths
         $mediaItems->transform(function ($media) {
             if ($media->media_type === 'audio') {
                 $media->thumbnail_url = Media::defaultAudioThumbnail();
             } else {
-                $media->thumbnail_url = Storage::disk('s3')->url('media/' . $media->thumbnail_url);
+                $media->thumbnail_url = Storage::disk('s3')->url('media/'.$media->thumbnail_url);
             }
+
             return $media;
         });
 
         return view('admin.animals.show', compact('animal', 'mediaItems'));
 
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Animal $animal)
     {
-        $genera = Genus::orderBy('genus_name','asc')
-               ->pluck('genus_name','id')
-               ->toArray();
+        $genera = Genus::orderBy('genus_name', 'asc')
+            ->pluck('genus_name', 'id')
+            ->toArray();
 
-    
         $conservationLists = ConservationList::orderBy('short_name', 'asc')->get();
-    
+
         $existingStatuses = $animal
             ->conservationStatuses
-            ->pluck('status','conservation_list_id')
+            ->pluck('status', 'conservation_list_id')
             ->toArray();
-        $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url);
+        $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/'.$animal->thumbnail_url);
         $animal->load('conservationStatuses.criteria.boccCriteria');
-        
+
         return view('admin.animals.edit')->with([
-            'animal'             => $animal,
-            'genera'             => $genera,
-            'conservationLists'  => $conservationLists,
-            'existingStatuses'   => $existingStatuses,
+            'animal' => $animal,
+            'genera' => $genera,
+            'conservationLists' => $conservationLists,
+            'existingStatuses' => $existingStatuses,
         ]);
     }
-    
 
     /**
      * Update the specified resource in storage.
@@ -154,25 +146,25 @@ class AnimalController extends Controller
     public function update(Request $request, Animal $bird)
     {
         $validated = $request->validate([
-            'common_name'       => 'required|string|max:255',
-            'scientific_name'   => 'required|string|max:255',
-            'genus_id'          => 'required|exists:genera,id',
-            'ebird_species_code'=> 'nullable|string|max:50',
-            'thumbnail'         => 'nullable|file|mimes:jpg,jpeg,webp|max:5120',
-            'statuses'          => 'required|array',
-            'statuses.*'        => 'required|string',
-            'bocc_5_criteria'   => 'nullable|string',
-            'bocc_5a_criteria'  => 'nullable|string',
+            'common_name' => 'required|string|max:255',
+            'scientific_name' => 'required|string|max:255',
+            'genus_id' => 'required|exists:genera,id',
+            'ebird_species_code' => 'nullable|string|max:50',
+            'thumbnail' => 'nullable|file|mimes:jpg,jpeg,webp|max:5120',
+            'statuses' => 'required|array',
+            'statuses.*' => 'required|string',
+            'bocc_5_criteria' => 'nullable|string',
+            'bocc_5a_criteria' => 'nullable|string',
         ]);
 
         // Update core bird fields
         $bird->update([
-            'common_name'        => $validated['common_name'],
-            'scientific_name'    => $validated['scientific_name'],
-            'genus_id'           => $validated['genus_id'],
+            'common_name' => $validated['common_name'],
+            'scientific_name' => $validated['scientific_name'],
+            'genus_id' => $validated['genus_id'],
             'ebird_species_code' => $validated['ebird_species_code'] ?? $bird->ebird_species_code,
         ]);
-        
+
         // Handle thumbnail replacement
         if ($request->hasFile('thumbnail')) {
             $bird->thumbnail_url = MediaService::storeThumbnail(
@@ -200,11 +192,8 @@ class AnimalController extends Controller
         */
         return redirect()
             ->route('admin.animals.show', $bird)
-            ->with('success','Bird updated successfully!');
+            ->with('success', 'Bird updated successfully!');
     }
-
-
-    
 
     /**
      * Remove the specified resource from storage.
@@ -215,19 +204,19 @@ class AnimalController extends Controller
             if ($animal->thumbnail_url) {
                 MediaService::deleteFromS3('thumbnails', $animal->thumbnail_url);
             }
-    
+
             foreach ($animal->conservationStatuses as $status) {
                 ConservationService::deleteConservationStatus($status);
             }
-    
+
             // Need to create a function for deleting all associated media
             /*foreach ($bird->media as $media) {
                 MediaService::deleteMedia($media);
             }*/
-    
+
             $animal->delete();
         });
-    
+
         return redirect()->route('admin.animals.index')->with('success', 'Animal deleted successfully!');
     }
 }

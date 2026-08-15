@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\ConservationStatus;
 use App\Models\BoccCriteriaDefinition;
+use App\Models\ConservationStatus;
 use App\Models\ConservationStatusCriteria;
 
 class ConservationService
@@ -11,12 +11,12 @@ class ConservationService
     /**
      * Attach BoCC criteria to conservation statuses.
      *
-     * @param int|null $statusId
-     * @param string|null $criteriaString
+     * @param  int|null  $statusId
+     * @param  string|null  $criteriaString
      */
     public static function attachBoccCriteria($statusId, $criteriaString)
     {
-        if ($statusId && !empty($criteriaString)) {
+        if ($statusId && ! empty($criteriaString)) {
             $criteriaCodes = explode('; ', $criteriaString);
 
             // Fetch all matching criteria in one query
@@ -35,7 +35,7 @@ class ConservationService
     {
         // Delete each of the criteria first
         ConservationStatusCriteria::where('conservation_status_id', $status->id)->delete();
-        
+
         // Delete the conservation status
         $status->delete();
     }

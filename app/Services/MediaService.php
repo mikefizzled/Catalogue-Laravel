@@ -2,95 +2,86 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Drivers\Imagick\Driver as ImagickDriver;
-use Intervention\Image\ImageManager;
-use Intervention\Image\Encoders\JpegEncoder;
-use getID3;
 use App\Helpers\FileHelper;
 use App\Models\Animal;
 use App\Models\Media;
+use getID3;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Imagick\Driver as ImagickDriver;
+use Intervention\Image\Encoders\JpegEncoder;
+use Intervention\Image\ImageManager;
 
 class MediaService
 {
     public static function storeThumbnail($file, $animalSlug, $existingThumbnail = null)
     {
         $extension = strtolower($file->getClientOriginalExtension());
-         
+
         $filename = FileHelper::generateBirdThumbnailName($animalSlug, $extension);
-    
+
         // If an old thumbnail exists, delete it from S3
         if ($existingThumbnail) {
             self::deleteFromS3('thumbnails', $existingThumbnail);
         }
 
-        // Store in temporary local storage
         $tempPath = $file->storeAs('temp', $filename, 'public');
         $path = Storage::disk('public')->path($tempPath);
-    
-        // Compress and strip metadata
+
         FileHelper::compressAndRemoveMeta($path, $extension);
-    
-        // Move to S3
+
         Storage::disk('s3')->put("thumbnails/{$filename}", file_get_contents($path));
-    
+
         // Remove local temp file
         Storage::disk('public')->delete([$tempPath]);
-    
+
         return $filename;
     }
-    
+
     public static function storeMedia($request)
     {
-        // Validate and extract the uploaded file
         $file = $request->file('media');
 
         $processedFile = self::processFile($file, $request->animal_id);
 
-        // Hash original version of the file
+        // Hash original version of the file to avoid discrepancies via compression
         $rawHash = hash_file('sha256', $file->getRealPath());
 
-        // Check if this hash already exists in the database
+        // Check if this hash already exists in the database - Exception not returned to frontend
         if (Media::where('hash', $rawHash)->exists()) {
-            throw new \Exception("Duplicate media detected. This file has already been uploaded.");
+            throw new \Exception('Duplicate media detected. This file has already been uploaded.');
         }
 
-        // Extract metadata
         $metadata = self::extractMetadata($processedFile['temp_path'], $processedFile['extension']);
 
         // Workaround for Merlin WAV files only having date stored in filename
-        if($processedFile['extension'] === 'wav')
-        {
+        if ($processedFile['extension'] === 'wav') {
             // Drop the extension and only collect the filename to pass to extractor
             $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $dateTaken = FileHelper::extractDateFromName($fileName);
-            }
-            else{
+        } else {
             $dateTaken = self::getDateTaken($metadata);
         }
 
-        
-        // Store in S3
         self::storeInS3($processedFile);
 
-        // Create media entry in database
         $media = Media::create([
-            'animal_id'    => $request->animal_id,
-            'location_id'  => $request->location_id ?? null,
-            'media_url'    => $processedFile['filename'],
-            'thumbnail_url'=> $processedFile['thumbnail_name'],
-            'media_type'   => $processedFile['media_type'],
-            'rating'       => $request->rating ?? null,
-            'date_taken'   => $dateTaken,
-            'caption'      => $request->caption ?? null,
-            'age'          => $request->age ?? null,
-            'gender'       => $request->gender ?? null,
-            'metadata'     => json_encode($metadata),
-            'hash'         => $rawHash,
+            'animal_id' => $request->animal_id,
+            'location_id' => $request->location_id ?? null,
+            'media_url' => $processedFile['filename'],
+            'thumbnail_url' => $processedFile['thumbnail_name'],
+            'media_type' => $processedFile['media_type'],
+            'rating' => $request->rating ?? null,
+            'date_taken' => $dateTaken,
+            'caption' => $request->caption ?? null,
+            'age' => $request->age ?? null,
+            'gender' => $request->gender ?? null,
+            'metadata' => json_encode($metadata),
+            'hash' => $rawHash,
         ]);
-        
-        // Cleanup temporary files
+
+        // Cleanup temporary files - not reliable, needs review
         Storage::disk('public')->delete([$processedFile['temp_path']]);
+
         return $media;
     }
 
@@ -105,29 +96,25 @@ class MediaService
         $mediaType = self::determineFileType($extension);
         $newTotal = Media::nextMediaNumber($animalId, $mediaType);
 
-        // Create filenames
         $filename = FileHelper::generateMediaFileName($animalSlug, $mediaType, $newTotal, $extension);
-       
-        if($mediaType === 'image' || $mediaType === 'video'){
+
+        if ($mediaType === 'image' || $mediaType === 'video') {
             $thumbnailName = FileHelper::generateMediaFileName($animalSlug, $mediaType, $newTotal, $extension, true);
-            }
-            else{
+        } else {
             $thumbnailName = null;
         }
-            
+
         $tempPath = $file->storeAs('temp', $filename, 'public');
 
         return [
-            'filename'       => $filename,
+            'filename' => $filename,
             'thumbnail_name' => $thumbnailName,
-            'temp_path'      => Storage::disk('public')->path($tempPath),
-            'extension'      => $extension,
-            'media_type'     => $mediaType,
+            'temp_path' => Storage::disk('public')->path($tempPath),
+            'extension' => $extension,
+            'media_type' => $mediaType,
         ];
     }
 
-    
-    
     /**
      * Determine if the file is an image, video, or audio.
      * Only expand when metadata is more reliably managed
@@ -152,8 +139,9 @@ class MediaService
      */
     public static function extractMetadata($filePath, $extension)
     {
-        $getID3 = new getID3();
+        $getID3 = new getID3;
         $fileInfo = $getID3->analyze($filePath);
+
         return FileHelper::collectMetadata($fileInfo, $extension);
     }
 
@@ -165,7 +153,7 @@ class MediaService
         return FileHelper::formatDate($metadata['Created Date'] ?? null);
     }
 
-/**
+    /**
      * Store files in S3 for JPG, MP4, and WAV.
      */
     public static function storeInS3($processedFile)
@@ -175,13 +163,13 @@ class MediaService
                 self::processImage($processedFile);
                 break;
             case 'video':
-                //self::processVideo($processedFile);
+                // self::processVideo($processedFile);
                 break;
             case 'audio':
                 self::processAudio($processedFile);
                 break;
             default:
-                throw new \UnexpectedValueException("Unsupported media type: " . $processedFile['media_type']);
+                throw new \UnexpectedValueException('Unsupported media type: '.$processedFile['media_type']);
         }
     }
 
@@ -190,12 +178,12 @@ class MediaService
      */
     private static function processImage($processedFile)
     {
-        $manager = new ImageManager(new ImagickDriver());
+        $manager = new ImageManager(new ImagickDriver);
 
         // Make 16:9 thumbnail of the media
         $image = $manager->read(file_get_contents($processedFile['temp_path']))->resize(400, 225);
-        
-        $imageBinary = $image->encode(new JpegEncoder());
+
+        $imageBinary = $image->encode(new JpegEncoder);
         // Needs to be fixed to get dynamic file extension
         FileHelper::compressAndRemoveMeta($processedFile['temp_path'], 'jpg');
         // Store original and thumbnail
@@ -211,7 +199,6 @@ class MediaService
         Storage::disk('s3')->put("media/{$processedFile['filename']}", file_get_contents($processedFile['temp_path']));
     }
 
-
     public static function deleteFromS3($folder, $filename)
     {
         $path = "{$folder}/{$filename}";
@@ -219,20 +206,20 @@ class MediaService
         // Check if file exists before deleting
         if (Storage::disk('s3')->exists($path)) {
             Storage::disk('s3')->delete($path);
+
             return true;
         }
+
         return false;
     }
 
     public static function saveToS3($folder, $filename, $filePath)
     {
         $path = "{$folder}/{$filename}";
-    
+
         // Upload file to S3
         Storage::disk('s3')->put($path, file_get_contents($filePath));
-    
+
         return $path;
     }
-    
-
 }

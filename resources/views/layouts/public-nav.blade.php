@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20">
             <div class="shrink-0 flex items-center">
-                <a href="{{ url('/') }}" class="flex items-center space-x-2 group">
+                <a href="{{ url('/') }}" class="flex items-center space-x-2 group hover:scale-105 transition-transform duration-200">
                     <x-application-logo class="w-12 h-12 " />
                 </a>
             </div>
@@ -30,7 +30,11 @@
                         :active="request()->routeIs('taxonomy')">
                         {{ __('Taxonomy') }}
                     </x-nav-link>
-
+                    <x-nav-link 
+                        :href="route('about')"
+                        :active="request()->routeIs('about')">
+                        {{ __('About') }}
+                    </x-nav-link>
                     <!-- Login/Register -->
                     @if (Route::has('login'))
                         @auth
@@ -93,6 +97,11 @@
                 :href="route('taxonomy')"
                 :active="request()->routeIs('taxonomy')">
                 {{ __('Taxonomy') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link 
+                :href="route('about')"
+                :active="request()->routeIs('about')">
+                {{ __('About') }}
             </x-responsive-nav-link>
         </div>
 

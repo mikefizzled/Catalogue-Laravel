@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Animal;
-use App\Models\ConservationList;
 use Illuminate\Database\Eloquent\Model;
 
 class ConservationStatus extends Model
@@ -24,5 +22,4 @@ class ConservationStatus extends Model
     {
         return $this->hasMany(ConservationStatusCriteria::class);
     }
-
 }

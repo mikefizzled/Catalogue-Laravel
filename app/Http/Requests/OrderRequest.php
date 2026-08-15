@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class OrderRequest extends FormRequest
 {
@@ -35,7 +35,7 @@ class OrderRequest extends FormRequest
 
         if ($orderId) {
             // Update scenario: exclude this record's ID from the unique check
-            $rules['order_name'][] = 'unique:orders,order_name,' . $orderId;
+            $rules['order_name'][] = 'unique:orders,order_name,'.$orderId;
         } else {
             // Store scenario: no ID to exclude, so standard unique rule
             $rules['order_name'][] = 'unique:orders,order_name';

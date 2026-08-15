@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Media extends Model
 {
-
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
@@ -24,19 +23,19 @@ class Media extends Model
         'gender',
         'age',
         'metadata',
-        'hash'
+        'hash',
     ];
 
-    public static function nextMediaNumber($animalId, $mediaType) :int
+    public static function nextMediaNumber($animalId, $mediaType): int
     {
         $total = Media::where('animal_id', $animalId)
-                        ->where('media_type', $mediaType)
-                        ->count();
+            ->where('media_type', $mediaType)
+            ->count();
         $total++;
+
         return $total;
     }
 
-    
     const GENDERS = [
         ['id' => 'Male', 'label' => 'Male'],
         ['id' => 'Female', 'label' => 'Female'],
@@ -48,12 +47,11 @@ class Media extends Model
         ['id' => 'Adult', 'label' => 'Adult'],
         ['id' => 'Unknown', 'label' => 'Unknown'],
     ];
-    
+
     public static function defaultAudioThumbnail()
     {
         return asset('images/default-music-thumbnail.svg');
     }
-
 
     public function animal()
     {
@@ -69,7 +67,7 @@ class Media extends Model
     {
         return 'id';
     }
-    
+
     /**
      *  Scope: Filter media by type (image, audio, video)
      *  https://laravel.com/docs/12.x/eloquent#dynamic-scopes
@@ -107,7 +105,7 @@ class Media extends Model
     public function getSubtitleAttribute(): string
     {
         $location = $this->location->name;
-        $date     = Carbon::parse($this->date_taken)->format('F j, Y');
+        $date = Carbon::parse($this->date_taken)->format('F j, Y');
 
         return "{$location} – {$date}";
     }

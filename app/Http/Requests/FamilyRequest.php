@@ -25,24 +25,26 @@ class FamilyRequest extends FormRequest
             'family_name' => [
                 'required',
                 'string',
-                'max:255'
+                'max:255',
             ],
             'common_name' => [
                 'required',
                 'string',
-                'max:255'
+                'max:255',
             ],
             'order_id' => [
                 'required',
-                'exists:orders,id'
+                'exists:orders,id',
             ]];
-        
+
         $familyId = optional($this->route('family'))->id;
+
         // Performing the unique check against with or without checking against itself
-        if($familyId)
+        if ($familyId) {
             $rules['family_name'][] = 'unique:families,family_name,'.$familyId;
-        else
+        } else {
             $rules['family_name'][] = 'unique:families,family_name';
+        }
 
         return $rules;
     }

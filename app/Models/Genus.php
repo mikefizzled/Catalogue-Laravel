@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Genus extends Model
 {
@@ -22,13 +22,13 @@ class Genus extends Model
     {
         return $this->hasMany(Animal::class);
     }
-    
+
     public function getRouteKeyName()
     {
         return 'slug';
     }
 
-        /**
+    /**
      * Configure the SlugOptions for this model.
      */
     public function getSlugOptions(): SlugOptions
@@ -46,9 +46,9 @@ class Genus extends Model
 
     public function getSubtitleAttribute(): string
     {
-        $orderName  = $this->family->order->order_name;
+        $orderName = $this->family->order->order_name;
         $familyName = $this->family->family_name;
-        $genusName  = $this->genus_name;
+        $genusName = $this->genus_name;
 
         return "{$orderName} → {$familyName} → {$genusName}";
     }

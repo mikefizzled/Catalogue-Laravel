@@ -4,7 +4,7 @@
 
 @section('content')
   <x-error-page
-    image="{{ asset('jackdaw-error.jpg') }}"
+    image="{{ Storage::disk('s3')->url('site/images/jackdaw-error.webp') }}"
     title="503 – We’ll be right back"
     message="The birds have gone for a brief migration and will return shortly."
     button-text="Check Again Later"

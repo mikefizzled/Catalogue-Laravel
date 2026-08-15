@@ -14,7 +14,7 @@ class EBirdTaxonomyController extends Controller
         $query = trim($request->input('query'));
         $filePath = storage_path('app/public/ebird_taxonomy.json');
 
-        if (!file_exists($filePath)) {
+        if (! file_exists($filePath)) {
             return response()->json(['error' => 'eBird data not found'], 404);
         }
 
@@ -35,7 +35,7 @@ class EBirdTaxonomyController extends Controller
     {
         $scientificName = $request->query('scientific_name');
 
-        if (!$scientificName) {
+        if (! $scientificName) {
             return response()->json(['error' => 'Scientific name is required'], 400);
         }
 
@@ -51,117 +51,117 @@ class EBirdTaxonomyController extends Controller
         $birdData5a = $boccData5a[$scientificName] ?? null;
 
         $defaultBirdData = [
-            "bocc_1" => "Not Assessed",
-            "bocc_2" => "Not Assessed",
-            "bocc_3" => "Not Assessed",
-            "bocc_4" => "Not Assessed",
-            "bocc_5" => "Not Assessed",
-            "bocc_5a" => "Not Assessed",
-            "bocc_5_criteria" => "",
-            "bocc_5a_criteria" => "",
-            "iucn_status" => "Not Assessed",
+            'bocc_1' => 'Not Assessed',
+            'bocc_2' => 'Not Assessed',
+            'bocc_3' => 'Not Assessed',
+            'bocc_4' => 'Not Assessed',
+            'bocc_5' => 'Not Assessed',
+            'bocc_5a' => 'Not Assessed',
+            'bocc_5_criteria' => '',
+            'bocc_5a_criteria' => '',
+            'iucn_status' => 'Not Assessed',
         ];
 
         $statusMapping = [
-            "G" => "Green",
-            "A" => "Amber",
-            "R" => "Red",
-            "n" => "Not Assessed",
-            "N"  => "Not Assessed",
-            null => "Not Assessed"
+            'G' => 'Green',
+            'A' => 'Amber',
+            'R' => 'Red',
+            'n' => 'Not Assessed',
+            'N' => 'Not Assessed',
+            null => 'Not Assessed',
         ];
         // Apply mapping for BoCC main dataset
         if ($birdDataMain) {
-            $defaultBirdData['bocc_1'] = $statusMapping[$birdDataMain['bocc_1']] ?? "Not Assessed";
-            $defaultBirdData['bocc_2'] = $statusMapping[$birdDataMain['bocc_2']] ?? "Not Assessed";
-            $defaultBirdData['bocc_3'] = $statusMapping[$birdDataMain['bocc_3']] ?? "Not Assessed";
-            $defaultBirdData['bocc_4'] = $statusMapping[$birdDataMain['bocc_4']] ?? "Not Assessed";
-            $defaultBirdData['bocc_5'] = $birdDataMain['bocc_5'] ?? "Not Assessed";
-            $defaultBirdData['bocc_5_criteria'] = $birdDataMain['bocc_5_criteria'] ?? "";
-            $defaultBirdData['iucn_status'] = $birdDataMain['iucn_status'] ?? "Not Assessed";
+            $defaultBirdData['bocc_1'] = $statusMapping[$birdDataMain['bocc_1']] ?? 'Not Assessed';
+            $defaultBirdData['bocc_2'] = $statusMapping[$birdDataMain['bocc_2']] ?? 'Not Assessed';
+            $defaultBirdData['bocc_3'] = $statusMapping[$birdDataMain['bocc_3']] ?? 'Not Assessed';
+            $defaultBirdData['bocc_4'] = $statusMapping[$birdDataMain['bocc_4']] ?? 'Not Assessed';
+            $defaultBirdData['bocc_5'] = $birdDataMain['bocc_5'] ?? 'Not Assessed';
+            $defaultBirdData['bocc_5_criteria'] = $birdDataMain['bocc_5_criteria'] ?? '';
+            $defaultBirdData['iucn_status'] = $birdDataMain['iucn_status'] ?? 'Not Assessed';
         }
 
         // Apply mapping for BoCC5a dataset
         if ($birdData5a) {
-            $defaultBirdData['bocc_5a'] = $birdData5a['bocc_5a'] ?? "Not Assessed";
-            $defaultBirdData['bocc_5a_criteria'] = $birdData5a['bocc_5a_criteria'] ?? "";
-            $defaultBirdData['iucn_status'] = $birdData5a['iucn_status'] ?? "Not Assessed";
+            $defaultBirdData['bocc_5a'] = $birdData5a['bocc_5a'] ?? 'Not Assessed';
+            $defaultBirdData['bocc_5a_criteria'] = $birdData5a['bocc_5a_criteria'] ?? '';
+            $defaultBirdData['iucn_status'] = $birdData5a['iucn_status'] ?? 'Not Assessed';
         }
 
         return response()->json($defaultBirdData);
     }
-    
+
     public function taxonomyJsonWithoutGenera()
     {
         $taxonomy = Order::with('families.genera.animals')->get();
-        
+
         $jsonStructure = [
-            "name" => "Aves",
-            "details" => "Birds",
-            "children" => $taxonomy->map(function ($order) {
+            'name' => 'Aves',
+            'details' => 'Birds',
+            'children' => $taxonomy->map(function ($order) {
                 return [
-                    "name" => $order->order_name,
-                    "children" => $order->families->map(function ($family) {
+                    'name' => $order->order_name,
+                    'children' => $order->families->map(function ($family) {
                         return [
-                            "name" => $family->family_name,
-                            "details" => $family->common_name,
-                            "children" => $family->genera->flatMap(function ($genus) {
+                            'name' => $family->family_name,
+                            'details' => $family->common_name,
+                            'children' => $family->genera->flatMap(function ($genus) {
                                 return $genus->animals->map(function ($animal) {
                                     return [
-                                        "name" => '<a href="' . route('birds.show', $animal) . '">' . $animal->common_name . '</a>',
-                                        "image" => Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url),
-                                        "details" => $animal->scientific_name
+                                        'name' => '<a href="'.route('birds.show', $animal).'">'.$animal->common_name.'</a>',
+                                        'image' => Storage::disk('s3')->url('thumbnails/'.$animal->thumbnail_url),
+                                        'details' => $animal->scientific_name,
                                     ];
                                 });
-                            })->toArray()
+                            })->toArray(),
                         ];
-                    })->toArray()
+                    })->toArray(),
                 ];
-            })->toArray()
+            })->toArray(),
         ];
-    
+
         return response()->json($jsonStructure);
     }
-    
-    
-    
-    public function conservation(){
+
+    public function conservation()
+    {
         $conservationLists = ConservationList::get();
 
         return view('conservation', ['conservationLists' => $conservationLists]);
     }
-   
+
     public function taxonomyJsonWithGenera()
     {
         $taxonomy = Order::with('families.genera.animals')->get();
 
         $jsonStructure = [
-            "name" => "Aves",
-            "details" => "Birds",
-            "children" => $taxonomy->map(function ($order) {
+            'name' => 'Aves',
+            'details' => 'Birds',
+            'children' => $taxonomy->map(function ($order) {
                 return [
-                    "name" => $order->order_name,
-                    "children" => $order->families->map(function ($family) {
+                    'name' => $order->order_name,
+                    'children' => $order->families->map(function ($family) {
                         return [
-                            "name" => $family->family_name,
-                            "details" => $family->common_name,
-                            "children" => $family->genera->map(function ($genus) {
+                            'name' => $family->family_name,
+                            'details' => $family->common_name,
+                            'children' => $family->genera->map(function ($genus) {
                                 return [
-                                    "name" => $genus->genus_name,
-                                    "children" => $genus->animals->map(function ($animal) {
+                                    'name' => $genus->genus_name,
+                                    'children' => $genus->animals->map(function ($animal) {
                                         return [
-                                            "name" => '<a href="' . route('birds.show', $animal) . '">' . $animal->common_name . '</a>',
-                                            "image" => Storage::disk('s3')->url('thumbnails/' . $animal->thumbnail_url),
-                                            "details" => $animal->scientific_name,
+                                            'name' => '<a href="'.route('birds.show', $animal).'">'.$animal->common_name.'</a>',
+                                            'image' => Storage::disk('s3')->url('thumbnails/'.$animal->thumbnail_url),
+                                            'details' => $animal->scientific_name,
                                         ];
-                                    })->toArray()
+                                    })->toArray(),
                                 ];
-                            })->toArray()
+                            })->toArray(),
                         ];
-                    })->toArray()
+                    })->toArray(),
                 ];
-            })->toArray()
+            })->toArray(),
         ];
+
         return response()->json($jsonStructure);
     }
 }

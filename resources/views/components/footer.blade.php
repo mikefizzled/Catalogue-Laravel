@@ -16,9 +16,13 @@
         </div-->
   
         <!-- Developer Info & Social Links Section -->
-    <div class="text-center md:text-right text-sm text-gray-600 dark:text-gray-300">
-      <p><strong>Michael Reaney</strong> – <strong>32027281</strong></p>
-      <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Development Project 55-608850</p>
+    <div class="text-center md:text-right text-sm text-gray-600 dark:text-gray-300">                    <x-nav-link 
+                        :href="route('about')"
+                        :active="request()->routeIs('about')">
+                        {{ __('Michael Reaney') }}
+                    </x-nav-link>
+      <p></p>
+      <p class="mt-1 text-s text-gray-500 dark:text-gray-400">Development Project 55-608850</p>
     </div>
       </div>
     </div>
