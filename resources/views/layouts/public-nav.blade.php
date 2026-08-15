@@ -30,7 +30,11 @@
                         :active="request()->routeIs('taxonomy')">
                         {{ __('Taxonomy') }}
                     </x-nav-link>
-
+                    <x-nav-link 
+                        :href="route('about')"
+                        :active="request()->routeIs('about')">
+                        {{ __('About') }}
+                    </x-nav-link>
                     <!-- Login/Register -->
                     @if (Route::has('login'))
                         @auth
@@ -93,6 +97,11 @@
                 :href="route('taxonomy')"
                 :active="request()->routeIs('taxonomy')">
                 {{ __('Taxonomy') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link 
+                :href="route('about')"
+                :active="request()->routeIs('about')">
+                {{ __('About') }}
             </x-responsive-nav-link>
         </div>
 
