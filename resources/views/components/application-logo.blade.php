@@ -14,7 +14,7 @@
             id="path5" />
     </g>
 </svg>
-<div class="flex flex-col leading-10 hover:scale-105 transition-transform duration-200">
+<div class="flex flex-col leading-10 ">
     <span class="text-lg font-medium tracking-tight text-gray-700 dark:text-gray-100">The Bird</span>
     <span class="text-lg font-medium tracking-tight text-gray-700 dark:text-gray-100">Project</span>
 </div>
