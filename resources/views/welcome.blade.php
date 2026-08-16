@@ -5,7 +5,7 @@
     <div class="text-white text-center md:text-left">
       <!-- Section 1 -->
       <section class="relative h-[65vh] overflow-hidden group">
-        <img src="{{ Storage::disk('s3')->url('site/images/starling.webp') }}" alt="Starling sat in a cherry tree" class="w-full h-full object-cover object-[80%] md:object-center  transition-transform duration-[5s] group-hover:scale-105 ">
+        <img src="{{ Storage::disk('s3')->url('site/images/starling.webp') }}" fetchpriority="high" alt="Starling sat in a cherry tree" class="w-full h-full object-cover object-[80%] md:object-center  transition-transform duration-[5s] group-hover:scale-105 ">
         <div class="absolute left-0 top-0 w-full md:inset-y-0 md:left-0 md:w-2/3 md:flex md:items-center">
           <div class="bg-black bg-opacity-70 p-4 md:p-8 md:rounded-none ">
             <h1 class="text-2xl md:text-5xl font-bold">Documenting UK Bird Species and Conservation Status</h1>
@@ -14,7 +14,7 @@
       </section>
       <!-- Section 2 -->
       <section class="relative h-[65vh] overflow-hidden group">
-        <img src="{{ Storage::disk('s3')->url('site/images/kingfisher.webp') }}" alt="Kingfisher sat above the water" class="w-full h-full object-cover object-[8%] md:object-center transition-transform duration-[5s] group-hover:scale-105">
+        <img src="{{ Storage::disk('s3')->url('site/images/kingfisher.webp') }}" fetchpriority="high" alt="Kingfisher sat above the water" class="w-full h-full object-cover object-[8%] md:object-center transition-transform duration-[5s] group-hover:scale-105">
         <div class="absolute inset-0 bg-black opacity-10"></div>
         <div class="absolute right-0 top-0 w-full md:inset-y-0 md:right-0 md:w-2/3 md:flex md:items-center md:justify-end">
           <div class="bg-black bg-opacity-70 p-4">

@@ -5,7 +5,7 @@
 
     <div class="text-white">
         <div class="bg-black/70 p-5 text-center">
-            <h1 class="text-4xl font-bold md:text-5xl">
+            <h1 class="text-4xl font-semibold md:text-5xl">
                 About The Project
             </h1>
         </div>
@@ -18,29 +18,29 @@
             <div class="absolute inset-0 z-10 bg-black/20"></div>
 
             <div class="relative z-20 flex w-full justify-end px-4 md:px-8">
-                <div class="w-full space-y-4 rounded bg-black/80 p-6 shadow-2xl md:w-[60vw] md:p-8">
-                    <p class="text-xl font-semibold md:text-2xl">
+                <div class="w-full space-y-4 rounded bg-black/80 p-6 shadow-2xl lg:w-[60vw] lg:p-8">
+                    <p class="text-xl font-semibold md:text-3xl">
                         Hello! I'm Mike, a full-stack developer based in Sheffield.
                     </p>
 
-                    <p class="text-lg font-light text-gray-200 md:text-xl">
+                    <p class="text-lg font-light text-gray-200 md:text-2xl">
                         This project was developed as part of my final year dissertation while studying Computer Science at
                         Sheffield Hallam University, where I graduated with First Class Honours.
                     </p>
 
-                    <p class="text-lg font-light text-gray-200 md:text-xl">
+                    <p class="text-lg font-light text-gray-200 md:text-2xl">
                         Using data from the British Birds journal, the aim was to bridge the gap between their reports
                         and mainstream wildlife platforms such as the RSPB and BirdGuides. One of the main reasons for
                         this is that conservation can be narrative, with success stories and declines often being
                         reduced to singular assessments that lack historical context or criteria.
                     </p>
 
-                    <p class="text-lg font-light leading-relaxed text-gray-200 md:text-xl">
+                    <p class="text-lg font-light text-gray-200 md:text-2xl">
                         I also explored other areas of data visualisation, such as mapping and interactive taxonomy. All
                         media was collected or created by myself - for better or worse!
                     </p>
 
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 py-2">
                         {{-- GitHub Button --}}
                         <!-- GitHub SVG from https://www.svgrepo.com/svg/512317/github-142 -->
                     
@@ -85,20 +85,20 @@
             <div class="absolute inset-0 z-10 bg-black/20"></div>
 
             <div class="relative z-20 flex w-full justify-start px-4 md:px-8">
-                <div class="w-full space-y-4 rounded bg-black/80 p-6 shadow-2xl md:w-[60vw] md:p-8">
+                <div class="w-full space-y-4 rounded bg-black/80 p-6 shadow-2xl lg:w-[60vw] lg:p-8">
                     <div>
-                        <h2 class="text-2xl font-bold tracking-tight md:text-4xl">
+                        <h2 class="text-2xl font-semibold tracking-tight md:text-4xl">
                             Documenting UK Bird Species and Conservation Status
                         </h2>
                     </div>
 
-                    <div class="grid grid-cols-1 gap-8 text-left text-sm md:grid-cols-2 md:text-base">
+                    <div class="grid grid-cols-1 gap-8 text-left text-sm lg:grid-cols-2 md:text-base">
                         <div class="space-y-3">
-                            <h3 class="border-b border-gray-600 pb-1 text-lg font-bold">
+                            <h3 class="border-b border-gray-600 pb-1 text-xl md:text-2xl space-y-2">
                                 Tech Stack
                             </h3>
 
-                            <ul class="space-y-2 text-gray-200">
+                            <ul class="font-light text-gray-200 text-lg md:text-xl space-y-4">
                                 <li>
                                     <strong>Backend Framework:</strong>
                                     Laravel (PHP)
@@ -108,24 +108,23 @@
                                     <strong>Database Engine:</strong>
                                     MySQL
                                 </li>
-
                                 <li>
                                     <strong>Frontend Architecture:</strong>
                                     Blade templates, Tailwind CSS, Leaflet.js for interactive mapping, and a D3.js
                                     cluster tree for the taxonomical graph.
                                 </li>
-                                <li><strong>
-                                  Deployed via Laravel Forge</strong>
+                                <li>
+                                    <strong>Deployed via Laravel Forge</strong>
                                 </li>
                             </ul>
                         </div>
 
                         <div class="space-y-3">
-                            <h3 class="border-b border-gray-600 pb-1 text-lg font-bold">
+                            <h3 class="border-b border-gray-600 pb-1 text-xl md:text-2xl space-y-2">
                                 Key Engineering Features
                             </h3>
 
-                            <ul class="space-y-2 text-gray-200">
+                            <ul class="font-light text-gray-200 text-lg md:text-xl space-y-4">
                                 <li>
                                     <strong>Relational Architecture:</strong>
                                     A full relational database of taxonomy, species, conservation data and criteria. Controlled via 
@@ -141,8 +140,8 @@
                         </div>
                     </div>
 
-                    <div class="rounded-r border-t-2 border-grey-500 bg-white/5 p-4 text-md">
-                        <span class="mb-1 block font-bold">
+                    <div class="rounded-r border-t-2 border-grey-500 bg-white/5 p-4 font-light text-gray-200 text-lg md:text-xl space-y-2">
+                        <span class="mb-1 block font-semibold">
                             Bird Safety & Privacy Architecture
                         </span>
 
