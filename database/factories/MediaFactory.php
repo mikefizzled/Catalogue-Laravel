@@ -23,7 +23,7 @@ class MediaFactory extends Factory
             'location_id' => Location::factory(),
             'media_url' => fake()->unique()->slug().'.webp',
             'thumbnail_url' => fake()->unique()->slug().'-thumbnail.webp',
-            'media_type' => fake()->randomElement(['image', 'video', 'audio']),
+            'media_type' => fake()->randomElement(['image', 'video']),
             'rating' => fake()->numberBetween(1, 10),
             'date_taken' => fake()->dateTimeBetween('-5 years', 'now'),
             'caption' => fake()->words(6, true),

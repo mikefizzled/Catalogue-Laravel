@@ -53,18 +53,16 @@ class CatalogueController extends Controller
     public function show(Animal $animal)
     {
         $animal->thumbnail_url = FileHelper::collectAnimalThumbnail($animal->thumbnail_url);
-        $animal->load(['conservationStatuses', 'resources']);
+        $animal->load(['conservationStatuses']);
 
         // Collect media
         $images = Media::getVisualMediaForAnimal($animal->id);
-        $audioClips = Media::getAudioForAnimal($animal->id);
 
         // Organise media s3 links and metadata
         $images = FileHelper::processMediaCollection($images);
-        $audioClips = FileHelper::processMediaCollection($audioClips);
         $locations = Location::getForAnimal($animal->id);
 
-        return view('birds.show', compact('animal', 'images', 'audioClips', 'locations'));
+        return view('birds.show', compact('animal', 'images', 'locations'));
     }
 
     /**

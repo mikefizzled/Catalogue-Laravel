@@ -101,11 +101,8 @@ class AnimalController extends Controller
 
         // Transform media URLs to include full S3 paths
         $mediaItems->transform(function ($media) {
-            if ($media->media_type === 'audio') {
-                $media->thumbnail_url = Media::defaultAudioThumbnail();
-            } else {
-                $media->thumbnail_url = Storage::disk('s3')->url('media/'.$media->thumbnail_url);
-            }
+
+            $media->thumbnail_url = Storage::disk('s3')->url('media/'.$media->thumbnail_url);
 
             return $media;
         });

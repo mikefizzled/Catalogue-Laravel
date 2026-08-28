@@ -67,8 +67,8 @@
       name="media"
       id="media"
       label="Media File"
-      help="Upload an image or audio file"
-      accept="image/*,audio/*"
+      help="Upload an image or video file"
+      accept="image/*,video/*"
       required
     />
 

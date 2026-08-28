@@ -15,7 +15,7 @@ class FileHelper
      * Generate the media filename
      *
      * @param  string  $slug  - The unique animal slug
-     * @param  string  $mediaType  - The type of media (image/video/audio)
+     * @param  string  $mediaType  - The type of media (image/video)
      * @param  int  $newTotal  - The new number for the media item
      * @param  string  $extension  - The file extension (e.g., jpg, mp4)
      * @param  bool  $thumb  - Optional - Used for naming thumbnails of associated images and videos
@@ -49,8 +49,6 @@ class FileHelper
                 return self::collectImageMetadata($fileInfo);
             case 'mp4':
                 return self::collectVideoMetadata($fileInfo);
-            case 'wav':
-                return self::collectAudioMetadata($fileInfo);
             default:
                 return [];
         }
@@ -98,18 +96,6 @@ class FileHelper
             'Channel Mode' => $fileInfo['audio']['channelmode'] ?? null,
             'Compression Ratio' => $fileInfo['audio']['compression_ratio'] ?? null,
             'Created Date' => $createdDate,
-        ];
-    }
-
-    public static function collectAudioMetadata($fileInfo)
-    {
-        return [
-            'Duration' => self::formatDuration($fileInfo['playtime_seconds']),
-            'Bitrate' => self::formatBitrate($fileInfo['bitrate']),
-            'Sample Rate' => $fileInfo['audio']['sample_rate'] ?? null,
-            'Channels' => $fileInfo['audio']['channels'] ?? null,
-            'Bits per Sample' => $fileInfo['audio']['bits_per_sample'] ?? null,
-            'Channel Mode' => $fileInfo['audio']['channelmode'] ?? null,
         ];
     }
 

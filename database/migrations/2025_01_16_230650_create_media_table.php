@@ -2,9 +2,9 @@
 
 use App\Models\Animal;
 use App\Models\Location;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Location::class)->constrained()->onDelete('cascade');
             $table->string('media_url');
             $table->string('thumbnail_url')->nullable();
-            $table->enum('media_type', ['image', 'video','audio'])->index();
+            $table->enum('media_type', ['image', 'video'])->index();
             $table->tinyInteger('rating')->nullable();
             $table->timestamp('date_taken');
             $table->string('caption')->nullable();
@@ -37,7 +37,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('media', function (Blueprint $table){
+        Schema::table('media', function (Blueprint $table) {
             $table->dropForeign(['animal_id']);
             $table->dropForeign(['location_id']);
         });

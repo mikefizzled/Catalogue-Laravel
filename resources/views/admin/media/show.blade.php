@@ -22,13 +22,6 @@
                         <img src="{{ $media->media_url }}" 
                             alt="{{ $media->caption }}" 
                             class="w-full h-auto object-cover">
-                        @elseif ($media->media_type === 'audio')
-                        <div class="flex flex-col items-center">
-                            <audio controls class="">
-                                <source src="{{ $media->media_url}}">
-                                Your browser does not support the audio element.
-                            </audio>
-                        </div>
                     @endif
                 </div>
                     <!-- Next Button -->

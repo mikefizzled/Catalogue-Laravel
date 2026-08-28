@@ -27,11 +27,8 @@ class AdminMediaController extends Controller
         $mediaItems = Media::orderBy('id', 'desc')->paginate(10);
 
         $mediaItems->getCollection()->transform(function ($media) {
-            if ($media->media_type === 'audio') {
-                $media->thumbnail_url = Media::defaultAudioThumbnail();
-            } else {
-                $media->thumbnail_url = Storage::disk('s3')->url('media/'.$media->thumbnail_url);
-            }
+
+            $media->thumbnail_url = Storage::disk('s3')->url('media/'.$media->thumbnail_url);
 
             return $media;
         });
