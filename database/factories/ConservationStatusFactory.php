@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Animal;
+use App\Models\ConservationList;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -27,5 +28,12 @@ class ConservationStatusFactory extends Factory
                 'not assessed',
             ]),
         ];
+    }
+
+    public function forConservationList(ConservationList $list): static
+    {
+        return $this->state([
+            'conservation_list_id' => $list->id,
+        ]);
     }
 }

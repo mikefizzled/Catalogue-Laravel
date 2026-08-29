@@ -8,6 +8,9 @@ class BoccCriteriaDefinition extends Model
 {
     public function conservationStatuses()
     {
-        return $this->hasMany(ConservationStatusCriteria::class);
+        return $this->hasMany(
+            ConservationStatusCriteria::class,
+            'bocc_criteria_id'
+        );
     }
 }

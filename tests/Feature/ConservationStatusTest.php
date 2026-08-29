@@ -3,8 +3,10 @@
 namespace Tests\Feature;
 
 use App\Models\Animal;
+use App\Models\BoccCriteriaDefinition;
 use App\Models\ConservationList;
 use App\Models\ConservationStatus;
+use App\Models\ConservationStatusCriteria;
 use Database\Seeders\ConservationListSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -50,5 +52,30 @@ class ConservationStatusTest extends TestCase
 
         $this->assertTrue($status->conservationList->is($bocc5a));
 
+    }
+
+    public function test_conservation_status_has_many_status_criteria(): void
+    {
+        $list = ConservationList::query()->firstOrFail();
+
+        $criteriaDefinitions = BoccCriteriaDefinition::query()
+            ->take(2)
+            ->get();
+
+        $status = ConservationStatus::factory()
+            ->forConservationList($list)
+            ->create();
+
+        $criteria = $criteriaDefinitions->map(
+            fn (BoccCriteriaDefinition $definition) => ConservationStatusCriteria::factory()->create([
+                'conservation_status_id' => $status->id,
+                'bocc_criteria_id' => $definition->id,
+            ])
+        );
+
+        $this->assertEqualsCanonicalizing(
+            $criteria->pluck('id')->all(),
+            $status->criteria->pluck('id')->all()
+        );
     }
 }
