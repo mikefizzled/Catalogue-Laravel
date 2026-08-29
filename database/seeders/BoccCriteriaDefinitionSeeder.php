@@ -4,9 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class BoccCriteriaDefinition extends Seeder
+class BoccCriteriaDefinitionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -33,6 +32,6 @@ class BoccCriteriaDefinition extends Seeder
             ['code' => 'BI', 'description' => 'Breeding international importance'],
             ['code' => 'WI', 'description' => 'Non-breeding international importance'],
         ]);
-        
+
     }
 }
