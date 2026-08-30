@@ -65,9 +65,9 @@ class CatalogueController extends Controller
         return view('birds.show', compact('animal', 'images', 'locations'));
     }
 
-    /**
+    /*
      * Filter by selected family or order
-     */
+
     public function getFilteredBirds(Request $request)
     {
         $familySlug = $request->query('family');
@@ -94,5 +94,5 @@ class CatalogueController extends Controller
         $families = $query->get();
 
         return response()->json($families);
-    }
+    }*/
 }
