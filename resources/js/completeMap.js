@@ -41,8 +41,13 @@ async function loadCoordinates() {
             if (location.area_caption) {
                 content += `<p class="text-gray-700 mb-2"><em>${location.area_caption}</em></p>`;
             }
-            content += location.animal_list_html; // HTML list of animals
-            //content += '</div>';
+            content += '<ul class="max-w-md space-y-1 list-inside">';
+            location.animals.forEach((animal) => {
+                content += `<li><a href='${animal.url}' class='text-blue-500 hover:underline'>${animal.common_name}</a></li>`;
+            });
+
+            content += "</ul>";
+
             L.marker([location.latitude, location.longitude])
                 .addTo(map)
                 .bindPopup(content);
