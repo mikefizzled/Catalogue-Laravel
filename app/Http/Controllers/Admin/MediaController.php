@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Animal;
 use App\Models\Location;
 use App\Models\Media;
@@ -9,7 +10,7 @@ use App\Services\MediaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class AdminMediaController extends Controller
+class MediaController extends Controller
 {
     protected $mediaService;
 
