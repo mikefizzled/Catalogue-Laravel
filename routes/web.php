@@ -1,53 +1,52 @@
 <?php
 
-use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\AdminMediaController;
-use App\Http\Controllers\AdminOrderController;
-use App\Http\Controllers\AnimalController;
-use App\Http\Controllers\CatalogueController;
-use App\Http\Controllers\EBirdTaxonomyController;
-use App\Http\Controllers\FamilyController;
-use App\Http\Controllers\GenusController;
-use App\Http\Controllers\LocationController;
+use App\Http\Controllers\Admin\AnimalController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FamilyController;
+use App\Http\Controllers\Admin\GenusController;
+use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\SpeciesLookupController;
+use App\Http\Controllers\BirdController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaxonomyController;
 use Illuminate\Support\Facades\Route;
+
+require __DIR__.'/auth.php';
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-
-require __DIR__.'/auth.php';
-
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
-    Route::resource('orders', AdminOrderController::class);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('orders', OrderController::class);
     Route::resource('families', FamilyController::class);
     Route::resource('genera', GenusController::class);
     Route::resource('animals', AnimalController::class);
     Route::resource('locations', LocationController::class);
-    Route::resource('media', AdminMediaController::class)->parameters([
+    Route::resource('media', MediaController::class)->parameters([
         'media' => 'media',
     ]);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('search-species', [AdminMediaController::class, 'searchSpecies']);
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-
+    Route::get('search-species', [MediaController::class, 'searchSpecies']);
 });
-Route::get('/search-ebird', [EBirdTaxonomyController::class, 'search'])->middleware(['auth']);
-Route::get('/conservation-status', [EBirdTaxonomyController::class, 'fetchBoccData'])->middleware(['auth']);
+Route::get('/search-ebird', [SpeciesLookupController::class, 'search'])->middleware(['auth']);
+Route::get('/conservation-status', [SpeciesLookupController::class, 'fetchBoccData'])->middleware(['auth']);
 
-Route::get('/taxonomy-json-with-genera', [EBirdTaxonomyController::class, 'taxonomyJsonWithGenera']);
-Route::get('/taxonomy-json-without-genera', [EBirdTaxonomyController::class, 'taxonomyJsonWithoutGenera']);
+Route::get('/taxonomy-json-with-genera', [TaxonomyController::class, 'taxonomyJsonWithGenera']);
+Route::get('/taxonomy-json-without-genera', [TaxonomyController::class, 'taxonomyJsonWithoutGenera']);
 
-Route::get('/birds', [CatalogueController::class, 'index'])->name('birds.index');
-Route::get('/birds/{animal:slug}', [CatalogueController::class, 'show'])->name('birds.show');
+Route::get('/birds', [BirdController::class, 'index'])->name('birds.index');
+Route::get('/birds/{animal:slug}', [BirdController::class, 'show'])->name('birds.show');
 
-Route::get('/get_orders', [CatalogueController::class, 'getOrders']);
-Route::get('/get_families', [CatalogueController::class, 'getFamilies']);
-Route::get('/animals', [CatalogueController::class, 'getAnimals']);
+Route::get('/get_orders', [BirdController::class, 'getOrders']);
+Route::get('/get_families', [BirdController::class, 'getFamilies']);
+Route::get('/animals', [BirdController::class, 'getAnimals']);
 
 Route::get('/taxonomy', function () {
     return view('taxonomy');
@@ -58,7 +57,8 @@ Route::get('/map', function () {
 
 Route::get('/map-data', [MapController::class, 'getCoordinatesAndAnimals'])->name('map.data');
 
-Route::get('/conservation', [EBirdTaxonomyController::class, 'conservation'])->name('conservation');
+Route::get('/conservation', [TaxonomyController::class, 'conservation'])->name('conservation');
+
 Route::view('/changelog', 'changelog')->name('changelog');
 
 Route::view('/about', 'about')->name('about');

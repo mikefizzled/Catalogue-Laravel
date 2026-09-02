@@ -11,7 +11,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class CatalogueController extends Controller
+class BirdController extends Controller
 {
     public function index(Request $request)
     {
@@ -36,12 +36,11 @@ class CatalogueController extends Controller
         });
 
         // Also load orders and families for the filters
-        $orders = Order::orderBy('order_name')->get();
+        $orders = Order::orderBy('order_name', 'asc')->get();
         $families = Family::select('families.*')
             ->join('orders', 'families.order_id', '=', 'orders.id')
             ->with('order')
-            ->orderBy('orders.order_name')
-            ->orderBy('families.common_name')
+            ->orderBy('families.common_name', 'asc')
             ->get();
 
         return view('birds.index', compact('orders', 'families', 'animals'));
