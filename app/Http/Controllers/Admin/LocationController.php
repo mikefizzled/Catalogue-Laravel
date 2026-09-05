@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LocationRequest;
 use App\Models\Location;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class LocationController extends Controller
@@ -38,31 +38,25 @@ class LocationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(LocationRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'city' => 'nullable|string|max:255',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
-            'caption' => 'nullable|string|max:500',
-            'image' => 'nullable|image|mimes:jpg,webp',
-        ]);
+        $validated = $request->validated();
 
         // Just ignoring the images for now
         $imagePath = null;
 
-        $location = Location::create([
+        Location::create([
             'name' => $validated['name'],
-            'city' => $validated['city'] ?? null,
-            'latitude' => $validated['latitude'],
-            'longitude' => $validated['longitude'],
-            'area_caption' => $validated['caption'] ?? null,
+            'city' => $validated['city'],
+            'latitude' => $validated['latitude'] ?? null,
+            'longitude' => $validated['longitude'] ?? null,
+            'area_caption' => $validated['area_caption'] ?? null,
             'image' => $imagePath,
         ]);
 
-        return redirect()->route('admin.locations.index')->with('success', 'Location added successfully!');
-
+        return redirect()
+            ->route('admin.locations.show', Location::latest()->first())
+            ->with('success', 'Location added successfully!');
     }
 
     /**
@@ -86,9 +80,21 @@ class LocationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Location $location)
+    public function update(LocationRequest $request, Location $location)
     {
-        //
+        $validated = $request->validated();
+
+        $location->update([
+            'name' => $validated['name'],
+            'city' => $validated['city'],
+            'latitude' => $validated['latitude'] ?? null,
+            'longitude' => $validated['longitude'] ?? null,
+            'area_caption' => $validated['area_caption'] ?? null,
+        ]);
+
+        return redirect()
+            ->route('admin.locations.show', $location)
+            ->with('success', 'Location updated successfully!');
     }
 
     /**

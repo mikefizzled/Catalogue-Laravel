@@ -39,10 +39,10 @@
 
   {{-- Description --}}
     <x-form.textarea
-    name="caption"
+    name="area_caption"
     label="Area Description"
     rows="6"
-    :value="old('caption', $location->area_caption ?? '')"
+    :value="old('area_caption', $location->area_caption ?? '')"
     placeholder="Enter a description…"
     />
 
