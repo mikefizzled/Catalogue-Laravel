@@ -56,7 +56,7 @@ class AdminOrderTest extends TestCase
         $response = $this->get('/admin/orders/create');
 
         $response->assertOk();
-        $response->assertViewHas('order');
+        $response->assertViewIs('admin.orders.create');
     }
 
     public function test_order_can_be_created_from_admin_form(): void
