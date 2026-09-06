@@ -116,7 +116,7 @@ class MediaService
     }
 
     /**
-     * Determine if the file is an image, video, or audio.
+     * Determine if the file is an image, video.
      * Only expand when metadata is more reliably managed
      */
     public static function determineFileType($extension)
@@ -127,8 +127,6 @@ class MediaService
                 return 'image';
             case 'mp4':
                 return 'video';
-            case 'wav':
-                return 'audio';
             default:
                 return 'unknown';
         }
@@ -165,9 +163,6 @@ class MediaService
             case 'video':
                 // self::processVideo($processedFile);
                 break;
-            case 'audio':
-                self::processAudio($processedFile);
-                break;
             default:
                 throw new \UnexpectedValueException('Unsupported media type: '.$processedFile['media_type']);
         }
@@ -189,14 +184,6 @@ class MediaService
         // Store original and thumbnail
         Storage::disk('s3')->put("media/{$processedFile['filename']}", file_get_contents($processedFile['temp_path']));
         Storage::disk('s3')->put("media/{$processedFile['thumbnail_name']}", (string) $imageBinary);
-    }
-
-    /**
-     * Process and store WAV files (mp3 not tested)
-     */
-    private static function processAudio($processedFile)
-    {
-        Storage::disk('s3')->put("media/{$processedFile['filename']}", file_get_contents($processedFile['temp_path']));
     }
 
     public static function deleteFromS3($folder, $filename)

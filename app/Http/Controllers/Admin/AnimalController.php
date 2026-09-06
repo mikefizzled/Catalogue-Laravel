@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Animal;
 use App\Models\ConservationList;
 use App\Models\ConservationStatus;
@@ -101,11 +102,8 @@ class AnimalController extends Controller
 
         // Transform media URLs to include full S3 paths
         $mediaItems->transform(function ($media) {
-            if ($media->media_type === 'audio') {
-                $media->thumbnail_url = Media::defaultAudioThumbnail();
-            } else {
-                $media->thumbnail_url = Storage::disk('s3')->url('media/'.$media->thumbnail_url);
-            }
+
+            $media->thumbnail_url = Storage::disk('s3')->url('media/'.$media->thumbnail_url);
 
             return $media;
         });

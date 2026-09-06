@@ -97,14 +97,23 @@ function createChart(data) {
         .attr("fill", (d) => (d.children ? "#555" : "#999"))
         .attr("r", 4);
 
-    node.append("text")
+    const text = node
+        .append("text")
         .attr("dy", "0.31em")
         .attr("x", (d) => (d.children ? -6 : 6))
         .attr("text-anchor", (d) => (d.children ? "end" : "start"))
-        .html((d) => d.data.name)
         .attr("stroke", "white")
-        .attr("paint-order", "stroke")
-        .style("cursor", "pointer");
+        .attr("paint-order", "stroke");
+
+    text.each(function (d) {
+        const element = d3.select(this);
+
+        if (d.data.url) {
+            element.append("a").attr("href", d.data.url).text(d.data.name);
+        } else {
+            element.text(d.data.name);
+        }
+    });
 
     // Add tooltip event handlers
     node.on("mouseover", (event, d) => {

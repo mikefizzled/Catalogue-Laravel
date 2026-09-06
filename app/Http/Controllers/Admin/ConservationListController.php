@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\ConservationStatus;
+use App\Http\Controllers\Controller;
+use App\Models\ConservationList;
 use Illuminate\Http\Request;
 
-class ConservationStatusController extends Controller
+class ConservationListController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class ConservationStatusController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ConservationStatus $conservationStatus)
+    public function show(ConservationList $conservationList)
     {
         //
     }
@@ -42,7 +43,7 @@ class ConservationStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ConservationStatus $conservationStatus)
+    public function edit(ConservationList $conservationList)
     {
         //
     }
@@ -50,7 +51,7 @@ class ConservationStatusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ConservationStatus $conservationStatus)
+    public function update(Request $request, ConservationList $conservationList)
     {
         //
     }
@@ -58,7 +59,7 @@ class ConservationStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ConservationStatus $conservationStatus)
+    public function destroy(ConservationList $conservationList)
     {
         //
     }

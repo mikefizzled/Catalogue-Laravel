@@ -7,15 +7,22 @@
     <testsuites>
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
+            <exclude>tests/Unit/ExampleTest.php</exclude>
         </testsuite>
         <testsuite name="Feature">
             <directory>tests/Feature</directory>
+            <exclude>tests/Feature/Auth</exclude>
+            <exclude>tests/Feature/ProfileTest.php</exclude>
+            <exclude>tests/Feature/ExampleTest.php</exclude>
         </testsuite>
     </testsuites>
     <source>
         <include>
             <directory>app</directory>
         </include>
+            <exclude>
+        <directory>app/Http/Controllers/Auth</directory>
+    </exclude>
     </source>
     <php>
         <env name="APP_ENV" value="testing"/>

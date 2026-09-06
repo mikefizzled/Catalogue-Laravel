@@ -48,11 +48,6 @@ class Media extends Model
         ['id' => 'Unknown', 'label' => 'Unknown'],
     ];
 
-    public static function defaultAudioThumbnail()
-    {
-        return asset('images/default-music-thumbnail.svg');
-    }
-
     public function animal()
     {
         return $this->belongsTo(Animal::class);
@@ -69,15 +64,6 @@ class Media extends Model
     }
 
     /**
-     *  Scope: Filter media by type (image, audio, video)
-     *  https://laravel.com/docs/12.x/eloquent#dynamic-scopes
-     */
-    public function scopeOfType($query, $type)
-    {
-        return $query->where('media_type', $type)->orderBy('rating', 'desc');
-    }
-
-    /**
      *  Get all images and videos for a given animal
      */
     public static function getVisualMediaForAnimal($animalId)
@@ -86,14 +72,6 @@ class Media extends Model
             ->whereIn('media_type', ['image', 'video'])
             ->orderBy('rating', 'desc')
             ->get();
-    }
-
-    /**
-     *  Get all audio clips for a given animal
-     */
-    public static function getAudioForAnimal($animalId)
-    {
-        return self::where('animal_id', $animalId)->ofType('audio')->get();
     }
 
     // Functions for admin cfg

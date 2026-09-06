@@ -11,7 +11,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class CatalogueController extends Controller
+class BirdController extends Controller
 {
     public function index(Request $request)
     {
@@ -36,12 +36,11 @@ class CatalogueController extends Controller
         });
 
         // Also load orders and families for the filters
-        $orders = Order::orderBy('order_name')->get();
+        $orders = Order::orderBy('order_name', 'asc')->get();
         $families = Family::select('families.*')
             ->join('orders', 'families.order_id', '=', 'orders.id')
             ->with('order')
-            ->orderBy('orders.order_name')
-            ->orderBy('families.common_name')
+            ->orderBy('families.common_name', 'asc')
             ->get();
 
         return view('birds.index', compact('orders', 'families', 'animals'));
@@ -53,23 +52,21 @@ class CatalogueController extends Controller
     public function show(Animal $animal)
     {
         $animal->thumbnail_url = FileHelper::collectAnimalThumbnail($animal->thumbnail_url);
-        $animal->load(['conservationStatuses', 'resources']);
+        $animal->load(['conservationStatuses']);
 
         // Collect media
         $images = Media::getVisualMediaForAnimal($animal->id);
-        $audioClips = Media::getAudioForAnimal($animal->id);
 
         // Organise media s3 links and metadata
         $images = FileHelper::processMediaCollection($images);
-        $audioClips = FileHelper::processMediaCollection($audioClips);
         $locations = Location::getForAnimal($animal->id);
 
-        return view('birds.show', compact('animal', 'images', 'audioClips', 'locations'));
+        return view('birds.show', compact('animal', 'images', 'locations'));
     }
 
-    /**
+    /*
      * Filter by selected family or order
-     */
+
     public function getFilteredBirds(Request $request)
     {
         $familySlug = $request->query('family');
@@ -96,5 +93,5 @@ class CatalogueController extends Controller
         $families = $query->get();
 
         return response()->json($families);
-    }
+    }*/
 }

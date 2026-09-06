@@ -11,10 +11,11 @@
                         <p><strong>Created:</strong> {{ $media->created_at->format('F j, Y g:i A') }}</p>
                         <p><strong>Last Changed:</strong> {{ $media->updated_at->diffForHumans() }}</p>
                     </div>
-                    <div class="flex gap-x-2 py-2">
-                        <x-link-button href="{{ route('admin.media.edit', $media) }}" class="ml-auto">Edit Media</x-link-button>
-                        <x-link-button class="bg-red-400 hover:bg-red-600 focus:bg-red-600" onclick="return confirm('Move note to trash?')">Delete Media</x-link-button>
-                    </div>
+                    <div class="flex gap-x-2 py-2">    <x-action-buttons
+      :edit-url="route('admin.media.edit',   $media)"
+      :delete-url="route('admin.media.destroy',$media)"
+      resource-name="media item}"
+    /></div>
                 </div>
     
                 <div class="flex justify-center w-full">
@@ -22,13 +23,6 @@
                         <img src="{{ $media->media_url }}" 
                             alt="{{ $media->caption }}" 
                             class="w-full h-auto object-cover">
-                        @elseif ($media->media_type === 'audio')
-                        <div class="flex flex-col items-center">
-                            <audio controls class="">
-                                <source src="{{ $media->media_url}}">
-                                Your browser does not support the audio element.
-                            </audio>
-                        </div>
                     @endif
                 </div>
                     <!-- Next Button -->

@@ -33,15 +33,12 @@ class MapController extends Controller
                 ->orderBy('common_name')
                 ->get(['common_name', 'slug']);
 
-            // Generate an HTML list of animal links.
-            $animalListHtml = '<ul class="max-w-md space-y-1 list-inside">';
-            foreach ($animals as $animal) {
-                // Create a link to the animal's detail page. Adjust route/path as needed.
-                $link = route('birds.show', ['animal' => $animal]);
+            // Add the URLs to the collections of birds
+            $animals = $animals->map(function ($s) {
+                $s->url = route('birds.show', $s);
 
-                $animalListHtml .= "<li><a href='{$link}' class='text-blue-500 hover:underline'>{$animal->common_name}</a></li>";
-            }
-            $animalListHtml .= '</ul>';
+                return $s;
+            });
 
             $data[] = [
                 'location_id' => $location->id,
@@ -50,7 +47,7 @@ class MapController extends Controller
                 'area_caption' => $location->area_caption,
                 'latitude' => $location->latitude,
                 'longitude' => $location->longitude,
-                'animal_list_html' => $animalListHtml,
+                'animals' => $animals,
             ];
         }
 

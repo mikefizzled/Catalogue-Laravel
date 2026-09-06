@@ -162,30 +162,6 @@
 
           @endif
         </div>
-        @if (count($audioClips))
-        <div class="bg-white dark:bg-gray-800 px-6 py-3 shadow-sm">
-            <div class="text-center">
-                <x-h2>Calls and Songs</x-h2>
-            </div>
-            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                @foreach ($audioClips as $audio)
-                <div class="p-2 flex flex-col items-center">
-                <audio controls class="w-full">
-                    <source src="{{ $audio->media_url }}"> Your browser does not support the audio element.
-                </audio>
-                <p class="mt-4 text-base font-semibold text-gray-900 dark:text-gray-100 text-center">
-                  {{ $audio->location->name }}
-                </p>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400 text-center">
-                  {{ $audio->date_taken
-                      ? \Carbon\Carbon::parse($audio->date_taken)->format('F j, Y g:i A')
-                      : 'Date Unknown' }}
-                </p>
-                </div>
-                @endforeach
-            </div>
-        </div>
-        @endif
         @if(count($images))
         <!-- Map container -->
         <div class="shadow-sm pb-2">
@@ -196,25 +172,6 @@
           </div>
         </div>
         @endif
-        @if($animal->resources->isNotEmpty())
-        <div class="bg-white dark:bg-gray-800 px-6 py-6 overflow-hidden">
-          <div class="self-center p-5 dark:text-gray-100">
-            <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">Additional Resources</h2>
-            <ul class="list-disc list-inside space-y-2 mt-2">
-              @foreach($animal->resources as $resource)
-                <li>
-                  <a href="{{ $resource->url }}" class="underline text-blue-600 dark:text-blue-400" target="_blank" rel="noopener">
-                    {{ $resource->title }}
-                    @if(!empty($resource->type))
-                      ({{ $resource->type }})
-                    @endif
-                  </a>
-                </li>
-              @endforeach
-            </ul>
-          </div>
-        </div>
-      @endif
     </div>
     </div>
   </x-public-app-layout>
