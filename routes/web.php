@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\SpeciesLookupController;
 use App\Http\Controllers\BirdController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TaxonomyController;
+use App\Http\Controllers\ConservationController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/auth.php';
@@ -38,9 +38,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 Route::get('/search-ebird', [SpeciesLookupController::class, 'search'])->middleware(['auth']);
 Route::get('/conservation-status', [SpeciesLookupController::class, 'fetchBoccData'])->middleware(['auth']);
 
-Route::get('/taxonomy-json-with-genera', [TaxonomyController::class, 'taxonomyJsonWithGenera']);
-Route::get('/taxonomy-json-without-genera', [TaxonomyController::class, 'taxonomyJsonWithoutGenera']);
-
 Route::get('/birds', [BirdController::class, 'index'])->name('birds.index');
 Route::get('/birds/{animal:slug}', [BirdController::class, 'show'])->name('birds.show');
 
@@ -57,7 +54,7 @@ Route::get('/map', function () {
 
 Route::get('/map-data', [MapController::class, 'getCoordinatesAndAnimals'])->name('map.data');
 
-Route::get('/conservation', [TaxonomyController::class, 'conservation'])->name('conservation');
+Route::get('/conservation', [ConservationController::class, 'conservation'])->name('conservation');
 
 Route::view('/changelog', 'changelog')->name('changelog');
 

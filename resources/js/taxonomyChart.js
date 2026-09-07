@@ -4,16 +4,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const checkbox = document.getElementById("toggleGenera");
 
     function loadChart(includeGenera) {
-        const url = includeGenera
-            ? "/taxonomy-json-with-genera"
-            : "/taxonomy-json-without-genera";
+    const url = includeGenera
+        ? "/api/taxonomy?include_genera=true"
+        : "/api/taxonomy";
 
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
                 // Use to clear old chart before replace
                 document.getElementById("chart").innerHTML = "";
-                const chart = createChart(data);
+                const chart = createChart(data.data);
                 document.getElementById("chart").appendChild(chart);
             });
     }

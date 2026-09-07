@@ -24,34 +24,39 @@ class TaxonomyPageTest extends TestCase
 
         Animal::factory()->create(['common_name' => 'Test Bird', 'scientific_name' => 'Testus birdus', 'genus_id' => $genus->id]);
 
-        $response = $this->get('/taxonomy-json-without-genera');
+        $response = $this->get('/api/taxonomy');
         $response->assertStatus(200);
 
         $response->assertJson([
-            'name' => 'Aves',
-            'details' => 'Birds',
-            'children' => [
-                [
-                    'name' => 'Test Order',
-                    'children' => [
-                        [
-                            'name' => 'Test Family',
-                            'details' => 'Test Common Name',
-                            'children' => [
-                                [
-                                    'name' => 'Test Bird',
-                                    'url' => '/birds/test-bird',
-                                    'details' => 'Testus birdus',
+            'data' => [
+                'name' => 'Aves',
+                'details' => 'Birds',
+                'children' => [
+                    [
+                        'name' => 'Test Order',
+                        'children' => [
+                            [
+                                'name' => 'Test Family',
+                                'details' => 'Test Common Name',
+                                'children' => [
+                                    [
+                                        'name' => 'Test Bird',
+                                        'url' => '/birds/test-bird',
+                                        'details' => 'Testus birdus',
+                                    ],
                                 ],
                             ],
                         ],
                     ],
                 ],
             ],
+            'meta' => [
+                'include_genera' => false,
+            ],
         ]);
     }
 
-    public function test_json_response_with_genera(): void
+    public function test_taxonomy_returns_animals_with_genera(): void
     {
         $order = Order::factory()->create(['order_name' => 'Test Order']);
         $family = Family::factory()->create([
@@ -62,27 +67,29 @@ class TaxonomyPageTest extends TestCase
 
         Animal::factory()->create(['common_name' => 'Test Bird', 'scientific_name' => 'Testus birdus', 'genus_id' => $genus->id]);
 
-        $response = $this->get('/taxonomy-json-with-genera');
+        $response = $this->getJson('/api/taxonomy?include_genera=true');
         $response->assertStatus(200);
 
         $response->assertJson([
-            'name' => 'Aves',
-            'details' => 'Birds',
-            'children' => [
-                [
-                    'name' => 'Test Order',
-                    'children' => [
-                        [
-                            'name' => 'Test Family',
-                            'details' => 'Test Common Name',
-                            'children' => [
-                                [
-                                    'name' => 'Test Genus',
-                                    'children' => [
-                                        [
-                                            'name' => 'Test Bird',
-                                            'url' => '/birds/test-bird',
-                                            'details' => 'Testus birdus',
+            'data' => [
+                'name' => 'Aves',
+                'details' => 'Birds',
+                'children' => [
+                    [
+                        'name' => 'Test Order',
+                        'children' => [
+                            [
+                                'name' => 'Test Family',
+                                'details' => 'Test Common Name',
+                                'children' => [
+                                    [
+                                        'name' => 'Test Genus',
+                                        'children' => [
+                                            [
+                                                'name' => 'Test Bird',
+                                                'url' => '/birds/test-bird',
+                                                'details' => 'Testus birdus',
+                                            ],
                                         ],
                                     ],
                                 ],
@@ -91,32 +98,59 @@ class TaxonomyPageTest extends TestCase
                     ],
                 ],
             ],
+            'meta' => [
+                'include_genera' => true,
+            ],
         ]);
     }
 
-    public function test_taxonomy_without_genera_returns_default_json(): void
+    public function test_taxonomy_returns_empty_tree_by_default(): void
     {
-
-        $response = $this->get('/taxonomy-json-without-genera');
+        $response = $this->getJson('/api/taxonomy');
 
         $response->assertStatus(200);
+
         $response->assertJson([
-            'name' => 'Aves',
-            'details' => 'Birds',
-            'children' => [],
+            'data' => [
+                'name' => 'Aves',
+                'details' => 'Birds',
+                'children' => [],
+            ],
+            'meta' => [
+                'include_genera' => false,
+            ],
         ]);
     }
 
-    public function test_taxonomy_with_genera_returns_default_json(): void
-    {
 
-        $response = $this->get('/taxonomy-json-with-genera');
+    public function test_taxonomy_returns_empty_tree_with_genera(): void
+    {
+        $response = $this->getJson('/api/taxonomy?include_genera=true');
 
         $response->assertStatus(200);
+
         $response->assertJson([
-            'name' => 'Aves',
-            'details' => 'Birds',
-            'children' => [],
+            'data' => [
+                'name' => 'Aves',
+                'details' => 'Birds',
+                'children' => [],
+            ],
+            'meta' => [
+                'include_genera' => true,
+            ],
         ]);
     }
+
+
+    public function test_taxonomy_rejects_invalid_include_genera(): void
+    {
+        $response = $this->getJson('/api/taxonomy?include_genera=laravel');
+
+        $response->assertStatus(422);
+
+        $response->assertJsonValidationErrors([
+            'include_genera',
+        ]);
+    }
+
 }
