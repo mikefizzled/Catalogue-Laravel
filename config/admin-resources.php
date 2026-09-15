@@ -3,11 +3,10 @@ return [
   'animals'   => [
     'label'           => 'Bird',
     'route'           => 'admin.animals',
-    'thumbnail_field' => 'thumbnail_url',
+    'thumbnail_field' => 'thumbnail',
     'subtitle_field'  => 'scientific_name',
     'title_field'     => 'common_name',
     'thumb_wrapper'   => 'w-20 h-20',
-    'thumb_ratio'     =>  null,
    ],
   'locations' => [
     'label'             => 'Location',
@@ -16,16 +15,14 @@ return [
     'subtitle_field'    => 'city',
     'title_field'       => 'name',
     'thumb_wrapper'     => 'w-40 h-24',
-    'thumb_ratio'       =>  null,
     ],
   'media' => [
     'label'             => 'Media',
     'route'             => 'admin.media',
-    'thumbnail_field'   => 'thumbnail_url',
+    'thumbnail_field'   => 'thumbnail',
     'subtitle_field'    => 'subtitle',
     'title_field'       => 'title', 
     'thumb_wrapper'     => 'w-40 h-24',
-    'thumb_ratio'       =>  null,
     ],
   'orders' => [
     'label'             => 'Order',
@@ -34,7 +31,6 @@ return [
     'subtitle_field'    =>  null,
     'title_field'       => 'title', 
     'thumb_wrapper'     =>  null,
-    'thumb_ratio'       =>  null,
     ],
   'families' => [
     'label'             => 'Family',
@@ -43,7 +39,6 @@ return [
     'subtitle_field'    => 'subtitle',
     'title_field'       => 'title', 
     'thumb_wrapper'     =>  null,
-    'thumb_ratio'       =>  null,
     ],    
   'genera' => [
     'label'             => 'Genus',
@@ -52,6 +47,5 @@ return [
     'subtitle_field'    => 'subtitle',
     'title_field'       => 'title', 
     'thumb_wrapper'     =>  null,
-    'thumb_ratio'       =>  null,
     ],
 ];

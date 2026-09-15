@@ -12,6 +12,8 @@
       </div>
     </header>
 
+    <x-admin-flash-message />
+
     <div class="bg-white dark:bg-gray-800/90 backdrop-blur-sm shadow-md px-6 py-4 space-y-6 mx-1">
       {{ $slot }}
     </div>
