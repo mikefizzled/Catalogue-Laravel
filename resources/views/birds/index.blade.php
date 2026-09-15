@@ -31,7 +31,7 @@
                     @forelse ($animals as $bird)
                         <x-bird-card
                             :url="route('birds.show', $bird)"
-                            :thumbnail="$bird->thumbnail_url"
+                            :thumbnail="$bird->thumbnail"
                             :name="$bird->common_name"
                         />
                     @empty

@@ -30,14 +30,6 @@ class Location extends Model
             ->saveSlugsTo('slug');
     }
 
-    public static function getForAnimal(int $animalId)
-    {
-        return self::whereHas('media', function ($query) use ($animalId) {
-            $query->where('animal_id', $animalId);
-        })->get();
-
-    }
-
     // Functions for admin cfg
     public function getTitleAttribute(): string
     {

@@ -7,7 +7,7 @@
     {{-- Media Preview --}}
     @if ($media->media_type === 'image')
         <div class="flex justify-center w-full">
-            <img src="{{ $media->media_url }}" alt="{{ $media->caption }}"
+            <img src="{{ $media->media }}" alt="{{ $media->caption }}"
                 class="max-h-96 w-auto object-contain rounded-lg shadow-sm">
         </div>
     @endif

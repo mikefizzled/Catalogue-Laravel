@@ -4,7 +4,8 @@
             <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">Media #{{ $media->id }}</h1>
             @section('title', 'Media ' . $media->id)
         </div>
-        <div class="space-y-2 mx-1 ">
+        <div class="space-y-2">
+            <x-admin-flash-message/>
             <div class="bg-white dark:bg-gray-800 shadow p-5 space-y-2">
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center ">
                     <div class="flex gap-x-2 py-2 opacity-80 dark:text-gray-400">
@@ -12,10 +13,10 @@
                         <p><strong>Last Changed:</strong> {{ $media->updated_at->diffForHumans() }}</p>
                     </div>
                     <div class="flex gap-x-2 py-2">    <x-action-buttons
-      :edit-url="route('admin.media.edit',   $media)"
-      :delete-url="route('admin.media.destroy',$media)"
-      resource-name="media item}"
-    /></div>
+                        :edit-url="route('admin.media.edit',   $media)"
+                        :delete-url="route('admin.media.destroy',$media)"
+                        resource-name="media item}"
+                        /></div>
                 </div>
     
                 <div class="flex justify-center w-full">
@@ -23,6 +24,11 @@
                         <img src="{{ $media->media_url }}" 
                             alt="{{ $media->caption }}" 
                             class="w-full h-auto object-cover">
+                    @elseif ($media->media_type === 'video')
+                        <video controls class="w-full h-full object-cover rounded-md">
+                            <source src="{{ $media->media_url }}" type="video/mp4">
+                            <p class="text-gray-600 dark:text-gray-300"> Your browser does not support the video element </p>
+                        </video>
                     @endif
                 </div>
                     <!-- Next Button -->
@@ -105,7 +111,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (json_decode($media->metadata, true) as $key => $value)
+                            @foreach ($media->metadata as $key => $value)
                                 <tr>
                                     <th class="pr-4 p-2">{{ ucfirst(str_replace('_', ' ', $key)) }}:</th>
                                     <td class="p-2">{{ $value ?? 'N/A' }}</td>

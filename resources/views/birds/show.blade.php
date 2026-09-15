@@ -50,7 +50,7 @@
             <!-- Bird Thumbnail -->
             <div class="flex-shrink-0 self-center">
               <div class="w-64 md:w-48 w-64 md:h-48 border border-gray-200 dark:border-gray-700">
-                <img src="{{ $animal->thumbnail_url }}" alt="{{ $animal->common_name }}" class="w-full h-full object-cover">
+                <img src="{{ $animal->thumbnail }}" alt="{{ $animal->common_name }}" class="w-full h-full object-cover">
               </div>
             </div>
           </div>
@@ -95,31 +95,31 @@
         @endif
         </div>
         <!-- Flowbite Carousel -->
-        @if(count($images))
+        @if($media->isNotEmpty())
         <div x-data="{ showMetadata: false, activeMetadata: null || {}}" class="relative">
           <div id="gallery" class="relative w-full" data-carousel="static">
             <!-- Carousel wrapper -->
             <div class="relative w-full h-[60vh] sm:h-[calc(100vw*9/16)] md:h-[600px] overflow-hidden border" data-carousel="static">
-                @foreach ($images as $media)
+                @foreach ($media as $item)
                     <div class="hidden ease-in-out w-full h-full flex justify-center items-center" data-carousel-item>
-                        @if ($media->media_type === 'image')
-                            <img src="{{ $media->media_url }}" class="w-full h-full object-cover " alt={{ $media->caption }}>
+                        @if ($item->media_type === 'image')
+                            <img src="{{ $item->media_url }}" class="w-full h-full object-cover " alt={{ $item->caption }}>
                             <div class="absolute bottom-5 left-5 bg-black bg-opacity-50 text-white p-3 rounded-lg shadow-lg w-auto text-center">
-                        @elseif ($media->media_type === 'video')
+                        @elseif ($item->media_type === 'video')
                             <video controls class="w-full h-full object-cover rounded-md">
-                                <source src="{{ $media->media_url }}" type="video/mp4">
+                                <source src="{{ $item->media_url }}" type="video/mp4">
                                 <p class="text-gray-600 dark:text-gray-300"> Your browser does not support the video element </p>
                             </video>
                             <div class="absolute top-5 left-5 bg-black bg-opacity-50 text-white p-3 rounded-lg shadow-lg w-auto text-center">
                         @endif
                             <h2 class="text-sm sm:text-lg font-semibold">
-                                {{ $media->location->name. ', '.$media->location->city ?? 'Unknown Location' }}
+                                {{ $item->location ? $item->location->name . ', ' . $item->location->city : 'Unknown Location' }}
                             </h2>
                         <p class="text-xs sm:text-sm">
-                            {{ $media->date_taken ? \Carbon\Carbon::parse($media->date_taken)->format('F j, Y') : 'Date Unknown' }}
+                            {{ $item->date_taken ? \Carbon\Carbon::parse($item->date_taken)->format('F j, Y') : 'Date Unknown' }}
                         </p>
                         </div>
-                        <button @click="showMetadata = true; activeMetadata = {{ json_encode($media->metadata) }}" class="absolute bottom-0 end-0 z-50 flex items-center justify-center px-2 cursor-pointer group focus:outline-none bg-black bg-opacity-50 text-white"> EXIF </button>
+                        <button @click="showMetadata = true; activeMetadata = @js($item->metadata)" class="absolute bottom-0 end-0 z-50 flex items-center justify-center px-2 cursor-pointer group focus:outline-none bg-black bg-opacity-50 text-white"> EXIF </button>
                     </div>
               @endforeach
             </div>
@@ -162,7 +162,7 @@
 
           @endif
         </div>
-        @if(count($images))
+        @if($media->isNotEmpty())
         <!-- Map container -->
         <div class="shadow-sm pb-2">
           <div class="flex flex-col md:flex-row gap-6 border">

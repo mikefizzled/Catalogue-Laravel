@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -18,10 +19,19 @@ class Animal extends Model
         return $this->belongsTo(Genus::class);
     }
 
-    public function images()
+    public function media()
     {
         return $this->hasMany(Media::class);
     }
+
+    // Not an eloquent relationship, but for ease of access
+    public function locations()
+    {
+        return Location::whereHas('media', function ($query) {
+            $query->where('animal_id', $this->id);
+        })->get();
+    }
+
 
     public function getRouteKeyName(): string
     {
@@ -58,7 +68,13 @@ class Animal extends Model
 
     public function getThumbnailAttribute(): string
     {
-        return $this->thumbnail_url;
+        if (! $this->thumbnail_url) {
+            return asset('images/placeholder-image.svg');
+        }
+
+        return Storage::disk('s3')->url(
+            'thumbnails/' . $this->thumbnail_url
+        );
     }
 
     public function bocCriteriaCodes(int $listId): string
@@ -80,5 +96,10 @@ class Animal extends Model
         return $this->conservationStatuses
             ->pluck('status', 'conservation_list_id')
             ->toArray();
+    }
+
+    public function mediaOrderedByRating()
+    {
+        return $this->media()->orderByDesc('rating');
     }
 }

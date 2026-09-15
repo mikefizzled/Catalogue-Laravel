@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Media extends Model
 {
@@ -25,6 +26,11 @@ class Media extends Model
         'metadata',
         'hash',
     ];
+
+    // Allow the metadato be cast as an array rather the string its effectively stored as
+    protected $casts = [
+        'metadata' => 'array', ];
+
 
     public static function nextMediaNumber($animalId, $mediaType): int
     {
@@ -63,17 +69,6 @@ class Media extends Model
         return 'id';
     }
 
-    /**
-     *  Get all images and videos for a given animal
-     */
-    public static function getVisualMediaForAnimal($animalId)
-    {
-        return self::where('animal_id', $animalId)
-            ->whereIn('media_type', ['image', 'video'])
-            ->orderBy('rating', 'desc')
-            ->get();
-    }
-
     // Functions for admin cfg
     public function getTitleAttribute(): string
     {
@@ -90,6 +85,28 @@ class Media extends Model
 
     public function getThumbnailAttribute(): string
     {
-        return $this->thumbnail_url;
+        if ($this->media_type === 'video') {
+            return asset('images/placeholder-video.svg');
+        }
+
+        if (! $this->thumbnail_url) {
+            return asset('images/placeholder-image.svg');
+        }
+
+        return Storage::disk('s3')->url(
+            'media/' . $this->thumbnail_url
+        );
     }
+
+    public function getMediaUrlAttribute(): ?string
+    {
+        if (! $this->attributes['media_url']) {
+            return null;
+        }
+
+        return Storage::disk('s3')->url(
+            'media/' . $this->attributes['media_url']
+        );
+    }
+
 }
