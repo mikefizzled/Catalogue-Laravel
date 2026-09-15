@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\FileHelper;
 use App\Models\Animal;
 use App\Models\Family;
 use App\Models\Location;
-use App\Models\Media;
 use App\Models\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class BirdController extends Controller
 {
@@ -26,24 +23,15 @@ class BirdController extends Controller
         }
 
         // Order the animals and paginate them
-        $animals = $query->orderBy('common_name', 'asc')->paginate(30);
+        $animals = $query
+            ->orderBy('common_name', 'asc')
+            ->paginate(30);
 
-        // Transform thumbnails from S3 URL if needed
-        $animals->getCollection()->transform(function ($animal) {
-            $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/'.$animal->thumbnail_url);
-
-            return $animal;
-        });
-
-        // Also load orders and families for the filters
-        $orders = Order::orderBy('order_name', 'asc')->get();
-        $families = Family::select('families.*')
-            ->join('orders', 'families.order_id', '=', 'orders.id')
-            ->with('order')
-            ->orderBy('families.common_name', 'asc')
+        $orders = Order::with('families')
+            ->orderBy('order_name')
             ->get();
 
-        return view('birds.index', compact('orders', 'families', 'animals'));
+        return view('birds.index', compact('orders', 'animals'));
     }
 
     /**
@@ -51,47 +39,17 @@ class BirdController extends Controller
      */
     public function show(Animal $animal)
     {
-        $animal->thumbnail_url = FileHelper::collectAnimalThumbnail($animal->thumbnail_url);
-        $animal->load(['conservationStatuses']);
+        $animal->load([
+            'genus.family.order',
+            'conservationStatuses.conservationList',
+            'conservationStatuses.criteria.boccCriteria',
+        ]);
 
         // Collect media
-        $images = Media::getVisualMediaForAnimal($animal->id);
+        $media = $animal->mediaOrderedByRating()->get();
 
-        // Organise media s3 links and metadata
-        $images = FileHelper::processMediaCollection($images);
-        $locations = Location::getForAnimal($animal->id);
+        $locations = $animal->locations();
 
-        return view('birds.show', compact('animal', 'images', 'locations'));
+        return view('birds.show', compact('animal', 'media', 'locations'));
     }
-
-    /*
-     * Filter by selected family or order
-
-    public function getFilteredBirds(Request $request)
-    {
-        $familySlug = $request->query('family');
-
-        $query = Animal::query();
-
-        if ($familySlug) {
-            $query->whereHas('genus.family', function ($q) use ($familySlug) {
-                $q->where('slug', $familySlug);
-            });
-        }
-
-        $animals = $query->orderBy('common_name')->get(['id', 'common_name', 'slug']);
-
-        return response()->json($animals);
-    }
-
-    public function getFamilies(Request $request)
-    {
-        $query = Family::orderBy('family_name');
-        if ($request->filled('order_id')) {
-            $query->where('order_id', $request->order_id);
-        }
-        $families = $query->get();
-
-        return response()->json($families);
-    }*/
 }

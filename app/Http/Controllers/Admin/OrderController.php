@@ -77,7 +77,7 @@ class OrderController extends Controller
     {
         if ($order->families()->count()) {
             return redirect()
-                ->route('admin.orders.index')
+                ->route('admin.orders.show', $order)
                 ->with('error', 'Cannot delete an order that still has families.');
         }
 

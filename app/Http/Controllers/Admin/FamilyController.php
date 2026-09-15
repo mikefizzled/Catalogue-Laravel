@@ -91,7 +91,7 @@ class FamilyController extends Controller
     {
         if ($family->genera()->count()) {
             return redirect()
-                ->route('admin.families.index')
+                ->route('admin.families.show', $family)
                 ->with('error', 'Cannot delete a family that still has genera.');
         }
 

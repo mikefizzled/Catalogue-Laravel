@@ -43,7 +43,7 @@ class TaxonomyController extends Controller
                             'name' => $family->family_name,
                             'details' => $family->common_name,
 
-                           // Include genus nodes, or flatten their animals directly into the family
+                           // Include genus nodes, or flatten the animal models directly into the family
                             'children' => $includeGenera
                                 ? $family->genera->map(function ($genus) {
                                     return [

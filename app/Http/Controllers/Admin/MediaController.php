@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MediaRequest;
 use App\Models\Animal;
 use App\Models\Location;
 use App\Models\Media;
@@ -24,15 +25,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-
         $mediaItems = Media::orderBy('id', 'desc')->paginate(10);
-
-        $mediaItems->getCollection()->transform(function ($media) {
-
-            $media->thumbnail_url = Storage::disk('s3')->url('media/'.$media->thumbnail_url);
-
-            return $media;
-        });
 
         return view('admin.media.index', ['mediaItems' => $mediaItems]);
     }
@@ -57,7 +50,7 @@ class MediaController extends Controller
     {
         $media = MediaService::storeMedia($request);
 
-        return redirect()->route('admin.media.show', $media)->with('success', 'Bird created successfully!');
+        return redirect()->route('admin.media.show', $media)->with('success', 'Media #'.$media->id.' added successfully!');
 
     }
 
@@ -66,15 +59,10 @@ class MediaController extends Controller
      */
     public function show(Media $media)
     {
-
         $previous = Media::where('id', '<', $media->id)->orderBy('id', 'desc')->first();
         $next = Media::where('id', '>', $media->id)->orderBy('id', 'asc')->first();
 
-        $media->media_url = Storage::disk('s3')->url('media/'.$media->media_url);
-
-        $metadata = json_decode($media->metadata, true) ?? [];
-
-        return view('admin.media.show', compact('media', 'metadata', 'previous', 'next'));
+        return view('admin.media.show', compact('media', 'previous', 'next'));
     }
 
     /**
@@ -83,7 +71,7 @@ class MediaController extends Controller
     public function edit(Media $media)
     {
         $media->media_url = Storage::disk('s3')->url('media/'.$media->media_url);
-        $metadata = json_decode($media->metadata);
+        $metadata = $media->metadata;
 
         return view('admin.media.edit', ['media' => $media,
             'animals' => Animal::orderBy('common_name', 'asc')->get(),
@@ -97,8 +85,10 @@ class MediaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Media $media)
+    public function update(MediaRequest $request, Media $media)
     {
+        $validated = $request->validated();
+
         $keys = $request->input('meta_keys', []);
         $values = $request->input('meta_values', []);
 
@@ -113,27 +103,15 @@ class MediaController extends Controller
 
             $metadata[$trimmedKey] = $values[$index] ?? '';
         }
-        $metadataJson = json_encode($metadata);
-
-        $request->validate([
-            'animal_id' => 'required|exists:animals,id',
-            'location_id' => 'nullable|exists:locations,id',
-            'gender' => 'nullable|in:male,female,unknown',
-            'age' => 'nullable|in:juvenile,adult,unknown',
-            'caption' => 'nullable|string|max:1000',
-            'hash' => 'nullable|string|max:255',
-            'metadata' => 'nullable|json',
-        ]);
 
         $media->update([
-            'animal_id' => $request->input('animal_id'),
-            'location_id' => $request->input('location_id'),
-            'date_taken' => $media->date_taken,
-            'gender' => $request->input('gender'),
-            'age' => $request->input('age'),
-            'caption' => $request->input('caption'),
-            'hash' => $request->input('hash'),
-            'metadata' => $metadataJson,
+            'animal_id' => $validated['animal_id'],
+            'location_id' => $validated['location_id'],
+            'gender' => $validated['gender'] ?? null,
+            'age' => $validated['age'] ?? null,
+            'caption' => $validated['caption'] ?? null,
+            'hash' => $validated['hash'] ?? null,
+            'metadata' => json_encode($metadata),
         ]);
 
         return redirect()

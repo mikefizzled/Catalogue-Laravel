@@ -23,12 +23,6 @@ class AnimalController extends Controller
     {
         $animals = Animal::orderBy('common_name', 'asc')->paginate(20);
 
-        $animals->getCollection()->transform(function ($animal) {
-            $animal->thumbnail_url = Storage::disk('s3')->url('thumbnails/'.$animal->thumbnail_url);
-
-            return $animal;
-        });
-
         return view('admin.animals.index', ['animals' => $animals]);
     }
 
@@ -85,7 +79,9 @@ class AnimalController extends Controller
         ConservationService::attachBoccCriteria($bocc5StatusId, $request->bocc_5_criteria);
         ConservationService::attachBoccCriteria($bocc5aStatusId, $request->bocc_5a_criteria);
 
-        return redirect()->route('admin.animals.show', $bird)->with('success', 'Bird created successfully!');
+        return redirect()
+            ->route('admin.animals.show', $bird)
+            ->with('success', 'Species created successfully: '.$bird->common_name);
     }
 
     /**
@@ -141,7 +137,7 @@ class AnimalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Animal $bird)
+    public function update(Request $request, Animal $animal)
     {
         $validated = $request->validate([
             'common_name' => 'required|string|max:255',
@@ -156,20 +152,20 @@ class AnimalController extends Controller
         ]);
 
         // Update core bird fields
-        $bird->update([
+        $animal->update([
             'common_name' => $validated['common_name'],
             'scientific_name' => $validated['scientific_name'],
             'genus_id' => $validated['genus_id'],
-            'ebird_species_code' => $validated['ebird_species_code'] ?? $bird->ebird_species_code,
+            'ebird_species_code' => $validated['ebird_species_code'] ?? $animal->ebird_species_code,
         ]);
 
         // Handle thumbnail replacement
         if ($request->hasFile('thumbnail')) {
-            $bird->thumbnail_url = MediaService::storeThumbnail(
+            $animal->thumbnail_url = MediaService::storeThumbnail(
                 $request->file('thumbnail'),
-                $request->slug,
+                $animal->slug,
             );
-            $bird->update();
+            $animal->update();
         }
 
         /* Update statuses & criteria exactly as in store()
@@ -189,7 +185,7 @@ class AnimalController extends Controller
         ConservationService::attachBoccCriteria($bocc5aId, $validated['bocc_5a_criteria'] ?? '');
         */
         return redirect()
-            ->route('admin.animals.show', $bird)
+            ->route('admin.animals.show', $animal)
             ->with('success', 'Bird updated successfully!');
     }
 

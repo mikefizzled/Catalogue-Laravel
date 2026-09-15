@@ -45,7 +45,9 @@ class GenusController extends Controller
             'family_id' => $data['family_id'],
         ]);
 
-        return redirect()->route('admin.genera.show', $genus)->with('success', 'Genus created successfully!');
+        return redirect()
+            ->route('admin.genera.show', $genus)
+            ->with('success', 'Genus created successfully!');
     }
 
     /**
@@ -78,7 +80,9 @@ class GenusController extends Controller
     {
         $genus->update($request->validated());
 
-        return redirect()->route('admin.genera.show', $genus)->with('success', 'Genus updated successfully!');
+        return redirect()
+            ->route('admin.genera.show', $genus)
+            ->with('success', 'Genus updated successfully!');
     }
 
     /**
@@ -88,7 +92,7 @@ class GenusController extends Controller
     {
         if ($genus->animals()->count()) {
             return redirect()
-                ->route('admin.genera.index')
+                ->route('admin.genera.show', $genus)
                 ->with('error', 'Cannot delete a genus that still has species.');
         }
 
