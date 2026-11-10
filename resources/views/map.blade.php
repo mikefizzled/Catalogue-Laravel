@@ -13,7 +13,7 @@
         
         <div 
             id="map" 
-            class="mx-1 h-1/2 md:h-[500px] lg:h-[650px] shadow-xl " 
+            class="mx-1 h-[60svh] min-h-[300px] md:h-[500px] lg:h-[650px] shadow-xl " 
             title="Map of recorded species at locations" 
             aria-label="Interactive map showing species by location">
         </div>
